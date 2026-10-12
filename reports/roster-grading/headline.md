@@ -18,13 +18,13 @@ Self-check results: PASS
 ## Bottom 10
 - prompts/micro/Nomenclator.md: 38.26 (Weak)
 - prompts/fusions/Greenlight.md: 37.94 (Weak)
+- prompts/fusions/Typesetter.md: 37.87 (Weak)
 - prompts/fusions/Upgrader.md: 37.09 (Weak)
 - prompts/fusions/Transmuter.md: 35.85 (Weak)
 - prompts/fusions/Honeypot.md: 35.41 (Weak)
 - prompts/fusions/Sherpa.md: 34.88 (Weak)
 - prompts/fusions/Registrar.md: 34.27 (Weak)
 - prompts/fusions/Mulligan.md: 33.97 (Weak)
-- prompts/fusions/Typesetter.md: 30.87 (Weak)
 - prompts/fusions/Prompt Engineer.md: 26.00 (Weak)
 
 Run-to-run agreement: None found

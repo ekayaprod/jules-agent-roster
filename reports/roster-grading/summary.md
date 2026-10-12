@@ -3,22 +3,22 @@
 ## 1. Self-check
 PASS: calibration matches code
 PASS: every computed dimension has a weight or is advisory
+WARN: F tied at min/max above 60%
+WARN: F median 100.0 not between 25 and 75
 WARN: D median 14.4 not between 25 and 75
 WARN: F tied at min/max above 60%
-WARN: F median 100.0 not between 25 and 75
+WARN: F median 100 not between 25 and 75
 WARN: D median 14.42307692307692 not between 25 and 75
-WARN: F tied at min/max above 60%
-WARN: F median 100.0 not between 25 and 75
 PASS: frontmatter parse coverage (100.0%)
 PASS: boilerplate stripping active
 PASS: tools checked with shutil.which
 PASS: unit tests pass
 
 ## 2. Coverage
-Found: 267
+Found: 269
 Parsed: None found
-Scored: 254
-Excluded: 13
+Scored: 255
+Excluded: 14
 - prompts/README.md: readme file
 - prompts/fusions/README.md: readme file
 - prompts/system/3passcleaner.md: system part in path
@@ -30,6 +30,7 @@ Excluded: 13
 - prompts/system/Creative-Procedure.md: system part in path
 - prompts/system/DATA_FLOW.md: system part in path
 - prompts/system/Forge-Procedure.md: system part in path
+- prompts/system/Improve-Prompt.md: system part in path
 - prompts/system/Master-Forge.md: system part in path
 - prompts/system/Scheduled-Auto-Run.md: system part in path
 
@@ -40,26 +41,26 @@ None found
 None found
 
 ## 5. Length correlations
+- E: 0.38
 - I: 0.12
-- B: 0.00
-- D: 0.17
-- A: -0.16
-- C: 0.36
-- F: -0.13
-- E: 0.39
+- A: -0.17
+- F: -0.12
 - H: -0.26
-- composite: 0.16
+- C: 0.36
+- D: 0.18
+- B: 0.00
+- composite: 0.15
 
 ## 6. Dimension correlation matrix
 None found
 
 Leave-one-dimension-out:
-- A: 0.72
+- A: 0.71
 - B: 1.00
 - C: 0.91
 - D: 0.95
 - E: 0.94
-- F: 0.99
+- F: 1.00
 - H: 0.97
 - I: 0.99
 
@@ -141,79 +142,79 @@ Leave-one-dimension-out:
   - Strengths: C [23.809523809523807] (91), E [4] (94)
   - Issues: None found
 ### Bottom 25
-- **prompts/fusions/Lumen.md**: Rank 230.0 (p10-p90: 219.0-240.0)
+- **prompts/fusions/Occam.md**: Rank 231.0 (p10-p90: 224.0-236.0)
+  - Strengths: None found
+  - Issues: A [1.4973262032085561] (8), D [9.090909090909092] (5)
+- **prompts/fusions/Lumen.md**: Rank 232.0 (p10-p90: 221.0-241.0)
   - Strengths: I [4] (80)
   - Issues: A [1.6994633273703041] (8), D [9.30232558139535] (5)
-- **prompts/fusions/WorldGen.md**: Rank 231.0 (p10-p90: 218.0-240.0)
+- **prompts/fusions/WorldGen.md**: Rank 233.0 (p10-p90: 219.0-242.0)
   - Strengths: None found
   - Issues: C [7.5] (15), D [10.0] (6)
-- **prompts/fusions/Logician.md**: Rank 232.0 (p10-p90: 226.0-238.0)
+- **prompts/fusions/Logician.md**: Rank 234.0 (p10-p90: 227.0-240.0)
   - Strengths: I [4] (80)
   - Issues: A [2.3391812865497075] (15), D [4.444444444444445] (0)
-- **prompts/fusions/Wayfinder.md**: Rank 233.0 (p10-p90: 221.0-241.0)
+- **prompts/fusions/Wayfinder.md**: Rank 235.0 (p10-p90: 222.0-243.0)
   - Strengths: None found
   - Issues: E [1] (19)
-- **prompts/fusions/Lexicon.md**: Rank 234.0 (p10-p90: 225.0-240.0)
+- **prompts/fusions/Lexicon.md**: Rank 236.0 (p10-p90: 227.0-241.0)
   - Strengths: None found
   - Issues: A [1.8276762402088773] (5), D [10.81081081081081] (7)
-- **prompts/fusions/Firewall.md**: Rank 235.0 (p10-p90: 221.0-243.0)
+- **prompts/fusions/Firewall.md**: Rank 237.0 (p10-p90: 223.0-245.0)
   - Strengths: None found
   - Issues: A [1.4883720930232558] (3), D [5.88235294117647] (1)
-- **prompts/fusions/Void.md**: Rank 236.0 (p10-p90: 227.0-242.0)
+- **prompts/fusions/Void.md**: Rank 238.0 (p10-p90: 228.0-243.0)
   - Strengths: None found
   - Issues: A [1.6233766233766231] (8), D [7.4074074074074066] (3)
-- **prompts/fusions/Electrician.md**: Rank 237.0 (p10-p90: 228.0-240.0)
+- **prompts/fusions/Electrician.md**: Rank 239.0 (p10-p90: 230.0-242.0)
   - Strengths: None found
   - Issues: A [1.7045454545454544] (9), D [17.142857142857142] (15)
-- **prompts/fusions/Foreman.md**: Rank 238.0 (p10-p90: 224.0-244.0)
+- **prompts/fusions/Foreman.md**: Rank 240.0 (p10-p90: 226.0-245.0)
   - Strengths: E [4] (88)
   - Issues: A [1.7957351290684627] (6), C [10.256410256410255] (17), D [17.94871794871795] (16)
-- **prompts/fusions/Retcon.md**: Rank 239.0 (p10-p90: 228.0-241.0)
+- **prompts/fusions/Retcon.md**: Rank 241.0 (p10-p90: 229.0-243.0)
   - Strengths: None found
   - Issues: D [7.6923076923076925] (3)
-- **prompts/orphans/Virtuoso.md**: Rank 240.0 (p10-p90: 213.0-247.0)
+- **prompts/orphans/Virtuoso.md**: Rank 242.0 (p10-p90: 215.0-249.0)
   - Strengths: I [4] (80)
   - Issues: C [5.555555555555555] (5), D [8.333333333333332] (4), E [0] (0)
-- **prompts/fusions/Tectonic.md**: Rank 241.0 (p10-p90: 228.0-244.0)
+- **prompts/fusions/Tectonic.md**: Rank 243.0 (p10-p90: 230.0-245.0)
   - Strengths: E [4] (81)
   - Issues: A [1.503006012024048] (3), D [6.976744186046512] (2)
-- **prompts/orphans/Tokenizer.md**: Rank 242.0 (p10-p90: 217.0-247.0)
-  - Strengths: H [2.639057329615259] (81), I [4] (80)
-  - Issues: C [2.2222222222222223] (0), D [15.555555555555555] (13), E [0] (0)
-- **prompts/fusions/Examiner.md**: Rank 243.0 (p10-p90: 225.0-247.0)
+- **prompts/fusions/Examiner.md**: Rank 244.0 (p10-p90: 227.0-249.0)
   - Strengths: None found
   - Issues: A [0.8325624421831638] (0), I [1] (20)
-- **prompts/fusions/Weaver.md**: Rank 244.0 (p10-p90: 237.0-247.0)
-  - Strengths: E [4] (81), I [4] (80)
-  - Issues: A [1.9047619047619049] (8), D [10.714285714285714] (7)
-- **prompts/micro/Nomenclator.md**: Rank 245.0 (p10-p90: 238.0-248.0)
+- **prompts/fusions/Weaver.md**: Rank 245.0 (p10-p90: 242.0-249.0)
+  - Strengths: None found
+  - Issues: A [2.320887991927346] (16), D [10.869565217391305] (7)
+- **prompts/micro/Nomenclator.md**: Rank 246.0 (p10-p90: 239.0-250.0)
   - Strengths: None found
   - Issues: D [2.857142857142857] (0), H [2.4849066497880004] (17)
-- **prompts/fusions/Greenlight.md**: Rank 246.0 (p10-p90: 237.0-248.0)
+- **prompts/fusions/Greenlight.md**: Rank 247.0 (p10-p90: 238.0-250.0)
   - Strengths: None found
   - Issues: A [1.9337016574585635] (8), C [2.857142857142857] (7)
-- **prompts/fusions/Upgrader.md**: Rank 247.0 (p10-p90: 242.0-250.0)
+- **prompts/fusions/Typesetter.md**: Rank 248.0 (p10-p90: 245.0-248.0)
+  - Strengths: None found
+  - Issues: A [2.043010752688172] (7), D [13.636363636363635] (11)
+- **prompts/fusions/Upgrader.md**: Rank 249.0 (p10-p90: 244.0-252.0)
   - Strengths: I [4] (80)
   - Issues: A [2.05761316872428] (9), D [5.714285714285714] (0)
-- **prompts/fusions/Transmuter.md**: Rank 248.0 (p10-p90: 245.0-250.0)
+- **prompts/fusions/Transmuter.md**: Rank 250.0 (p10-p90: 247.0-252.0)
   - Strengths: I [4] (80)
   - Issues: A [1.4908256880733946] (1), C [2.7777777777777777] (7), D [19.444444444444446] (18)
-- **prompts/fusions/Honeypot.md**: Rank 249.0 (p10-p90: 246.0-251.0)
+- **prompts/fusions/Honeypot.md**: Rank 251.0 (p10-p90: 248.0-253.0)
   - Strengths: None found
   - Issues: A [1.3651877133105803] (0), C [0.0] (11), D [16.666666666666664] (14)
-- **prompts/fusions/Sherpa.md**: Rank 250.0 (p10-p90: 246.0-252.0)
+- **prompts/fusions/Sherpa.md**: Rank 252.0 (p10-p90: 249.0-254.0)
   - Strengths: None found
   - Issues: A [0.7493755203996669] (0), D [4.3478260869565215] (0)
-- **prompts/fusions/Registrar.md**: Rank 251.0 (p10-p90: 248.0-252.0)
+- **prompts/fusions/Registrar.md**: Rank 253.0 (p10-p90: 250.0-254.0)
   - Strengths: I [4] (80)
   - Issues: A [1.9646365422396856] (20), C [4.0] (1), D [14.000000000000002] (11)
-- **prompts/fusions/Mulligan.md**: Rank 252.0 (p10-p90: 249.0-252.0)
+- **prompts/fusions/Mulligan.md**: Rank 254.0 (p10-p90: 251.0-254.0)
   - Strengths: None found
   - Issues: C [5.405405405405405] (11), D [13.513513513513514] (10), I [1] (20)
-- **prompts/fusions/Typesetter.md**: Rank 253.0 (p10-p90: 253.0-253.0)
-  - Strengths: None found
-  - Issues: A [1.2276785714285714] (0), D [9.30232558139535] (5)
-- **prompts/fusions/Prompt Engineer.md**: Rank 254.0 (p10-p90: 254.0-254.0)
+- **prompts/fusions/Prompt Engineer.md**: Rank 255.0 (p10-p90: 255.0-255.0)
   - Strengths: None found
   - Issues: A [1.66270783847981] (3), C [5.714285714285714] (5), D [11.428571428571429] (8), E [0] (0)
 
@@ -222,14 +223,14 @@ Clusters: None found
 10 closest unique pairs:
 - prompts/Scavenger.md and prompts/fusions/Gravedigger.md: 0.83
 - prompts/Overseer.md and prompts/fusions/Sonar.md: 0.81
+- prompts/Vibe Check.md and prompts/fusions/Realist.md: 0.74
 - prompts/fusions/Lumen.md and prompts/fusions/Pacemaker.md: 0.73
 - prompts/fusions/Dead-Ender.md and prompts/fusions/Examiner.md: 0.72
 - prompts/fusions/Medic.md and prompts/fusions/Quartermaster.md: 0.71
 - prompts/Overseer.md and prompts/fusions/Zoning Board.md: 0.70
 - prompts/fusions/Pacemaker.md and prompts/fusions/Surgeon.md: 0.70
 - prompts/fusions/Pacemaker.md and prompts/fusions/Triage Commander.md: 0.69
-- prompts/Vibe.md and prompts/fusions/Reclaimer.md: 0.69
-- prompts/fusions/Examiner.md and prompts/fusions/Expediter.md: 0.68
+- prompts/Author.md and prompts/fusions/Ghostwriter.md: 0.69
 Same-name pairs: None found
 
 ## 9. Coherence
@@ -274,9 +275,6 @@ Top 25 files by flags:
 - prompts/fusions/Liquidator.md: 2 flags
   - dangling_reference: **The Scoped Refactorer Grant:** Authorizes the ag
   - dangling_reference: 🎯 **SELECT / CLASSIFY** — Silently classify target
-- prompts/fusions/Smith.md: 2 flags
-  - opposing_modality: Your discovery posture is bounded-sweep. You are a
-  - dangling_reference: 🎯 **SELECT / CLASSIFY** — Silently classify target
 - prompts/fusions/Threat Modeler.md: 2 flags
   - opposing_modality: Your discovery posture is bounded-sweep. You are a
   - dangling_reference: 🎯 **SELECT / CLASSIFY** — Silently classify target
@@ -304,18 +302,20 @@ Top 25 files by flags:
   - dangling_reference: **The Scoped Instrumenter Grant:** Authorizes the
 - prompts/fusions/Foresight.md: 1 flags
   - dangling_reference: 🎯 **SELECT / CLASSIFY** — Silently classify target
+- prompts/fusions/Hive.md: 1 flags
+  - opposing_modality: **The Test Immunity Doctrine:** Treat all test fil
 Recurring tensions: None found
 
 ## 10. Spot-check
-- prompts/orphans/Sprinter.md: 56.48
+- prompts/orphans/Speed Camera.md: 60.06
 - prompts/fusions/Transmuter.md: 35.85
 - prompts/fusions/Narrator.md: 70.82
 - prompts/fusions/Barricade.md: 44.26
-- prompts/Author.md: 51.15
+- prompts/Author.md: 54.50
 - prompts/fusions/Amputator.md: 58.61
-- prompts/orphans/Fabricator.md: 57.71
-- prompts/orphans/Publicist.md: 58.42
+- prompts/orphans/Diplomat.md: 47.03
 - prompts/orphans/Polyglot.md: 53.67
+- prompts/orphans/Performance Engineer.md: 51.18
 - prompts/fusions/Viewmorph.md: 71.17
 
 Highest 5:
@@ -326,10 +326,10 @@ Highest 5:
 - prompts/fusions/Sanitizer.md: 72.10
 
 Lowest 5:
+- prompts/fusions/Honeypot.md: 35.41
 - prompts/fusions/Sherpa.md: 34.88
 - prompts/fusions/Registrar.md: 34.27
 - prompts/fusions/Mulligan.md: 33.97
-- prompts/fusions/Typesetter.md: 30.87
 - prompts/fusions/Prompt Engineer.md: 26.00
 
 ## 11. Unavailable tools
@@ -340,15 +340,19 @@ Lowest 5:
 - cd: 1 agents
 
 ## 12. Effect report
-scoring method changed from percentiles to fixed curves; ranks are not comparable.
+Comparing against scores-20261011183951.csv
+Spearman: None found
+Top-25 overlap: None found
+Bottom-25 overlap: None found
+Largest movers: None found
 
 ## 13. Reference check
 consistently low across earlier versions:
-- Virtuoso: Rank 240.0
-- Upgrader: Rank 247.0
-- Pruner: Rank 223.0
-- Foreman: Rank 238.0
-- Sherpa: Rank 250.0
+- Virtuoso: Rank 242.0
+- Upgrader: Rank 249.0
+- Pruner: Rank 225.0
+- Foreman: Rank 240.0
+- Sherpa: Rank 252.0
 Unstable across versions:
 - Hazmat: Rank 21.0
 - Paramedic: Rank 10.0

@@ -1,37 +1,34 @@
 line,count
-### The Philosophy,252
-### Coding Standards,251
-* ✅ **EXPECTED PATTERN:**,248
-* ❌ **ANTI-PATTERN:**,248
-### Strict Operational Rules,252
-### The Process,252
+### The Philosophy,253
+### Coding Standards,252
+* ✅ **EXPECTED PATTERN:**,249
+* ❌ **ANTI-PATTERN:**,249
+### Strict Operational Rules,253
+### The Process,253
 "**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.",58
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.,58
-**Target Matrix:**,228
-"* Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.",39
-**Heuristic Verification:**,218
-### Favorite Optimizations,252
+**Target Matrix:**,229
+"* Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.",38
+**Heuristic Verification:**,219
+### Favorite Optimizations,253
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.,92
+4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling.,39
 "* **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.",37
-**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.,85
-4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling.,37
-**Required PR Headers:**,169
-"🎯 Feature/Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact",45
-"**Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.",34
-"**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.",102
-4. ✅ **VERIFY** — **The Reporter Protocol:** Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target.,64
-"**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.",27
+**Required PR Headers:**,173
+"🎯 Feature/Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact",46
+"**Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.",33
+"**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.",101
+4. ✅ **VERIFY** — **The Reporter Protocol:** Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target.,66
+"**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.",26
 "2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.",28
-### Memory & Triage,28
 "* Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.",40
 "2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 1.",14
 "3. ⚙️ **EXCAVATE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.",1
-"2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 2.",1
-4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify mutations in bounded batches. Max 3 verification attempts per target. Halt execution upon reaching the quota ceiling.,3
 "2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 5.",7
 "2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 5.",6
 "2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets immediately up to your limit. Log unhandled targets. Target Limit: 1.",1
 "3. ⚙️ **RESUSCITATE** — Execute precisely and immediately upon target acquisition. Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps for additional targets once locked — enter, execute, exit. Submit PR immediately on completion.",1
-"**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.",9
+"**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.",8
 "3. ⚙️ **FLOW** — * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion. * Execute precisely and immediately upon target acquisition.",1
 "🎯 Feature/Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact.",1
 "* **Single Target Posture:** Stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.",1
@@ -88,6 +85,7 @@ Stop scanning at the first valid Target Matrix match and execute immediately.,2
 "1. 🔍 **DISCOVER** — scanning Hot Paths (flat components/hooks directories, complex container components, legacy forms) and Cold Paths (pure UI primitives, backend utilities). **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.",1
 "**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main` **and immediately proceed with the PR**, or execute an immediate Graceful Abort and revert.",1
 "2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1 logical cluster per cycle.",1
+"3. ⚙️ **SWEEP** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.",1
 "* **The Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.",1
 "2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. **Exit Gate:** If zero valid targets found, halt cleanly immediately. Target Limit: Uncapped.",1
 "3. ⚙️ **ERADICATE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.",2
@@ -95,6 +93,7 @@ Stop scanning at the first valid Target Matrix match and execute immediately.,2
 "3. ⚙️ **CODIFY** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.",1
 "3. ⚙️ **COMPILE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.",1
 "2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. **Exit Gate:** If zero valid targets found, halt cleanly immediately. Target Limit: 3.",1
+4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify mutations in bounded batches. Max 3 verification attempts per target. Halt execution upon reaching the quota ceiling.,2
 "3. ⚙️ **ACCELERATE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.",1
 "* **Refactorer Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.",1
 "3. ⚙️ **ENFORCE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.",1
@@ -102,6 +101,7 @@ Stop scanning at the first valid Target Matrix match and execute immediately.,2
 "2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. **Exit Gate:** If zero valid targets found, halt cleanly immediately. Target Limit: 5.",1
 "2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 1 cohesive module or layout container.",1
 "3. ⚙️ **MORPH** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.",1
+"3. ⚙️ **ILLUMINATE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.",1
 "2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1 complete biome (domain migration) per cycle.",1
 "1. 🔍 **DISCOVER** — Execute via Priority Triage using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.",1
 "2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets markdown files up to your limit. Log unhandled targets. **Exit Gate:** If zero valid targets found, halt cleanly immediately. Target Limit: 1.",1
