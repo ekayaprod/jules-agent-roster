@@ -317,6 +317,33 @@ describe('JulesTerminal', () => {
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
         });
 
+        it('does not dispatch BACKGROUND_FETCH_FAILED telemetry event if loadSources fails and TelemetryUtils is missing during save configuration', async () => {
+            global.StorageUtils.getItem.mockReturnValue(null);
+
+            await manager.init();
+
+            const keyInput = document.getElementById('julesApiKeyInput');
+            keyInput.value = 'new_valid_key';
+            const saveBtn = document.getElementById('saveSettingsBtn');
+
+            const mockError = new Error('Save fetch failed');
+            manager.loadSources.mockRejectedValueOnce(mockError);
+
+            jest.spyOn(JulesTerminal, 'getTelemetryUtils').mockReturnValueOnce(null);
+
+            try {
+                saveBtn.click();
+
+                await Promise.resolve();
+                await Promise.resolve();
+                await Promise.resolve();
+
+                expect(global.TelemetryUtils.dispatchEvent).not.toHaveBeenCalled();
+            } finally {
+                JulesTerminal.getTelemetryUtils.mockRestore();
+            }
+        });
+
         it('dispatches CONFIGURATION_FAILED telemetry event and shows error toast if save configuration fails', async () => {
             global.StorageUtils.getItem.mockReturnValue(null);
             await manager.init();
