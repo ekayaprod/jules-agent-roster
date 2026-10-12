@@ -278,6 +278,29 @@ describe('JulesTerminal', () => {
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
         });
 
+        it('handles loadSources failure gracefully during init when TelemetryUtils is unavailable', async () => {
+            global.StorageUtils.getItem.mockImplementation((k) => {
+                if (k === 'jules_api_key') return 'valid_key_123';
+                if (k === 'github_api_key') return 'gh_token_123';
+                return null;
+            });
+
+            const originalGetTelemetryUtils = JulesTerminal.getTelemetryUtils;
+            JulesTerminal.getTelemetryUtils = jest.fn().mockReturnValue(null);
+
+            const mockError = new Error('Background fetch failed');
+            manager.loadSources.mockRejectedValueOnce(mockError);
+
+            await manager.init();
+
+            // Wait for next tick so background promise catch can run
+            await Promise.resolve();
+
+            expect(global.TelemetryUtils.dispatchEvent).not.toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
+
+            JulesTerminal.getTelemetryUtils = originalGetTelemetryUtils;
+        });
+
         it('dispatches CONFIGURATION_FAILED telemetry event and shows error toast if save configuration fails', async () => {
             global.StorageUtils.getItem.mockReturnValue(null);
             await manager.init();
