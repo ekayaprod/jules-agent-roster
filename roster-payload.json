@@ -1870,17 +1870,6 @@
     "isCustom": true
   },
   {
-    "name": "Smith",
-    "emoji": "🕶️",
-    "role": "Code Purger",
-    "category": "Maintenance",
-    "tier": "Fusion",
-    "description": "COLLAPSE the illusion of choice by semantically tracing dead architectural branches and ruthlessly executing bounded, deterministic deletions.",
-    "forge_version": "V86.1",
-    "promptFile": "prompts/fusions/Smith.md",
-    "isCustom": true
-  },
-  {
     "name": "Sonar",
     "emoji": "📡",
     "role": "Complexity Mapper",
@@ -2450,6 +2439,17 @@
     "description": "SWEEP the repository to enforce absolute synchronization between custom_agents.json and fusion filenames.",
     "forge_version": "V86.7",
     "promptFile": "prompts/micro/Nomenclator.md",
+    "isCustom": true
+  },
+  {
+    "name": "Smith",
+    "emoji": "🕶️",
+    "role": "Code Purger",
+    "category": "Maintenance",
+    "tier": "Mythic",
+    "description": "COLLAPSE the illusion of choice by semantically tracing dead architectural branches and ruthlessly executing bounded, deterministic deletions.",
+    "forge_version": "V88.8",
+    "promptFile": "prompts/mythics/Smith.md",
     "isCustom": true
   }
 ]
