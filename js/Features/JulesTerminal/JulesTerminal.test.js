@@ -125,6 +125,45 @@ describe('JulesTerminal', () => {
             expect(picker.innerHTML).toBe(`<option value="">${originalText}</option>`);
         });
 
+        it('event listener handles concurrent fetch errors gracefully', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            delete picker.dataset.listenerAttached;
+
+            // Re-clone to remove existing listeners
+            const clone = picker.cloneNode(true);
+            delete clone.dataset.listenerAttached;
+            picker.parentNode.replaceChild(clone, picker);
+            manager.getEl = jest.fn((id) => {
+                if (id === 'julesRepoPicker') return clone;
+                if (id === 'julesTerminal') return document.getElementById('julesTerminal');
+                return document.getElementById(id);
+            });
+
+            global.window.julesAPI.getSources.mockResolvedValueOnce({
+                sources: [{ name: 'owner/repo' }]
+            });
+
+            const mockError = new Error('Concurrent load error');
+            manager.loadPullRequestsForRepo = jest.fn().mockRejectedValue(mockError);
+            manager.loadActiveSessionsForRepo = jest.fn().mockResolvedValue(null);
+
+            let capturedHandler = null;
+            const originalAddEventListener = clone.addEventListener;
+            clone.addEventListener = jest.fn((event, handler) => {
+                if (event === 'change') capturedHandler = handler;
+                if (originalAddEventListener) originalAddEventListener.call(clone, event, handler);
+            });
+
+            await manager.loadSources();
+
+            expect(capturedHandler).not.toBeNull();
+
+            await capturedHandler({ target: { value: 'owner/repo' } });
+
+            expect(manager.loadPullRequestsForRepo).toHaveBeenCalledWith('owner/repo');
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BACKGROUND_FETCH_FAILED", mockError);
+        });
+
         it('event listener triggers data fetch for valid source selection', async () => {
             const picker = document.getElementById("julesRepoPicker");
             delete picker.dataset.listenerAttached;
