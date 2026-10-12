@@ -28,30 +28,46 @@ function compareVersions(v1, v2) {
 
 const currentVersion = "V88.4";
 
-for (const dir of dirs) {
-    const files = fs.readdirSync(dir).filter(f => f.endsWith('.md'));
-    for (const file of files) {
-        // Skip READMEs and system prompts if any are in these dirs
-        if (file === 'README.md') continue;
-
-        const filePath = path.join(dir, file);
-        const content = fs.readFileSync(filePath, 'utf8');
-        const match = content.match(/^forge_version:\s*(.+)$/m);
-        let version = null;
-        if (match) {
-            version = match[1].trim();
-            // Remove quotes if present
-            version = version.replace(/^["'](.*)["']$/, '$1');
+async function main() {
+    await Promise.all(dirs.map(async (dir) => {
+        let files;
+        try {
+            files = await fs.promises.readdir(dir);
+        } catch (err) {
+            return;
         }
+        files = files.filter(f => f.endsWith('.md') && f !== 'README.md');
 
-        if (compareVersions(version, currentVersion) < 0) {
-            if (oldestFile === null || compareVersions(version, oldestVersion) < 0) {
-                oldestFile = filePath;
-                oldestVersion = version;
+        await Promise.all(files.map(async (file) => {
+            const filePath = path.join(dir, file);
+            let content;
+            try {
+                content = await fs.promises.readFile(filePath, 'utf8');
+            } catch (err) {
+                return;
             }
-        }
-    }
+            const match = content.match(/^forge_version:\s*(.+)$/m);
+            let version = null;
+            if (match) {
+                version = match[1].trim();
+                // Remove quotes if present
+                version = version.replace(/^["'](.*)["']$/, '$1');
+            }
+
+            if (compareVersions(version, currentVersion) < 0) {
+                // Not thread-safe if truly parallel without lock/mutex,
+                // but since JS is single threaded event loop, we don't have true races
+                // over these variables, however we should be careful with comparison logic
+                if (oldestFile === null || compareVersions(version, oldestVersion) < 0) {
+                    oldestFile = filePath;
+                    oldestVersion = version;
+                }
+            }
+        }));
+    }));
+
+    console.log("Oldest File:", oldestFile);
+    console.log("Oldest Version:", oldestVersion);
 }
 
-console.log("Oldest File:", oldestFile);
-console.log("Oldest Version:", oldestVersion);
+main().catch(console.error);
