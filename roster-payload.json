@@ -2294,7 +2294,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "ILLUMINATE blind spots by sensing macroscopic system gaps and weaving net-new observability infrastructure from the void.",
-    "forge_version": "V86.1",
+    "forge_version": "V88.8",
     "promptFile": "prompts/fusions/Watchtower.md",
     "isCustom": true
   },
