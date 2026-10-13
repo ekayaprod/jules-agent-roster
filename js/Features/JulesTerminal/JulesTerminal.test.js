@@ -751,6 +751,17 @@ describe('JulesTerminal', () => {
             jest.useRealTimers();
         });
 
+        it('returns early if already processing', async () => {
+            manager.isProcessingQueue = true;
+            const task = jest.fn();
+            manager.sessionQueue.push(task);
+
+            await manager._processSessionQueue();
+
+            expect(task).not.toHaveBeenCalled();
+            expect(manager.isProcessingQueue).toBe(true);
+        });
+
         it('handles task failure when TelemetryUtils is unavailable', async () => {
             const originalTelemetryUtils = global.TelemetryUtils;
             delete global.TelemetryUtils;
