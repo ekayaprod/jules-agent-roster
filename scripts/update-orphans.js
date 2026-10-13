@@ -68,10 +68,13 @@ async function updateOrphans() {
     // 3. Read fusions (asynchronous iteration for improved performance and lower memory footprint)
     const newlyOrphaned = [];
     const dir = await fs.promises.readdir(fusionsDir, { withFileTypes: true });
-    for (const dirent of dir) {
-        if (!dirent.isFile()) continue;
+
+    // Implement concurrency limit to avoid EMFILE issues while speeding up file reads
+    const concurrencyLimit = 50;
+    const processDirent = async (dirent) => {
+        if (!dirent.isFile()) return;
         const file = dirent.name;
-        if (!file.endsWith('.md') || file === 'README.md') continue;
+        if (!file.endsWith('.md') || file === 'README.md') return;
 
         const filePath = path.join(fusionsDir, file);
         const content = await fs.promises.readFile(filePath, 'utf8');
@@ -81,6 +84,11 @@ async function updateOrphans() {
         if (!referencedAgents.has(name)) {
             newlyOrphaned.push({ file, filePath, name });
         }
+    };
+
+    for (let i = 0; i < dir.length; i += concurrencyLimit) {
+        const batch = dir.slice(i, i + concurrencyLimit);
+        await Promise.all(batch.map(processDirent));
     }
 
     // 4. Move orphaned files
