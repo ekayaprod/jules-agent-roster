@@ -32,6 +32,24 @@ describe('TelemetryUtils error scenarios', () => {
         expect(parsed.additionalContext).toBe('[Circular Reference]');
     });
 
+    it('extracts error message for original_error when the error passed is an Error instance', () => {
+        consoleErrorSpy.mockImplementationOnce(() => {
+            throw new Error('console.error failed');
+        });
+
+        const testError = new Error('Test error message');
+        TelemetryUtils.dispatchEvent('TEST_ERROR_INSTANCE', testError, { someContext: 'val' });
+
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(2);
+
+        const fallbackCall = consoleErrorSpy.mock.calls[1][0];
+        const parsed = JSON.parse(fallbackCall);
+
+        expect(parsed.event).toBe('TEST_ERROR_INSTANCE');
+        expect(parsed.error).toBe('Test error message');
+        expect(parsed.original_error).toBe('Test error message');
+    });
+
     it('fails silently if the fallback catch block is triggered', () => {
         jsonStringifySpy.mockImplementation(() => {
             throw new Error('Permanent stringify error');
