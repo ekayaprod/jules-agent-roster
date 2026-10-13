@@ -14,6 +14,7 @@ Your objective is to upgrade an existing agent's logic to strictly match current
 
 <thinking>
 CRITICAL: Execute all logic shifts directly via native file editing on the Markdown target. While read-only helper scripts (e.g. Node.js or Python scripts to parse massive directories) are permitted for discovery, all modifications to the codebase MUST be performed natively via editor tools, not custom mutation scripts. Any custom discovery scripts created during the run MUST be deleted before the final commit to avoid polluting the repository.
+CRITICAL AWARENESS: Default tools like `read_file` or simple `cat` in bash may truncate long markdown files (like `Master-Forge.md` or this very file). If a file appears truncated, use `grep -A 50 "Section Name"` or Python scripts to read the full contents before assuming a step or section doesn't exist.
 </thinking>
 
 ## Step 1: Target Identification & Locking
