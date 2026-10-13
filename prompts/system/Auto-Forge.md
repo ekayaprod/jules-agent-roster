@@ -34,17 +34,18 @@ CRITICAL AWARENESS: Default tools like `read_file` or simple `cat` in bash may t
 ## Step 3: Direct Syntactic Upgrade
 - Ensure you have read `prompts/system/Creative-Procedure.md` to load the exact `<!-- WORKER_TEMPLATE_START -->` block structure into context.
 - **Identity Preservation:** Retain the original core identity (Name, Emoji, Role, Theme, Mechanic) exactly as written during upgrades, unless domain conflict resolution explicitly demands alteration.
-- Apply every work-item and ledger entry directly to the Markdown file. Subtract before adding (Master-Forge Rule 5). Using a full-file heredoc rewrite (`cat << 'EOF' > target.md`) is often safer than targeted diffs for major structural overhauls.
-- Reconcile the composed base profile text against the resolved domain (Master-Forge Phase 5, Archetype Domain Fit). Supply literal strings verbatim (Forge-Procedure Modules 3 and 4).
-- Ensure the file strictly follows the section layout defined in the `<!-- WORKER_TEMPLATE_START -->` block. Relocate any content from deprecated legacy sections (e.g., `Memory & Triage`) into valid structural sections (like `Strict Operational Rules` or `The Process`).
+- Apply every work-item and ledger entry directly to the Markdown file. Subtract before adding (Master-Forge Rule 5).
+- Reconcile the composed base profile text against the resolved domain (Master-Forge Phase 5, Archetype Domain Fit). Supply literal strings verbatim (Forge-Procedure Modules 3 and 4). You MUST extract these literal strings using guaranteed un-truncated read operations (e.g., Python scripts or `read_file`).
+- Ensure the file strictly follows the section layout defined in the `<!-- WORKER_TEMPLATE_START -->` block found in `Creative-Procedure.md`. Relocate any content from deprecated legacy sections (e.g., `Memory & Triage`) into valid structural sections (like `Strict Operational Rules` or `The Process`).
 - **Version Bump:** Update the `forge_version` frontmatter to match the `CURRENT_FORGE_VERSION` defined in `Master-Forge.md`.
 
 ## Step 4: The Efficacy Audit
-- Run Forge-Procedure Module 7 Part B (Component Diff and Mandatory Audits) comparing your modified Markdown against the original legacy file (using the backup you created in Step 2), then rerun Part A on the modified file. Use `read_file` or native `grep` commands to perform this audit, and supply the output directly in the final PR body.
+- Run Forge-Procedure Module 7 Part B (Component Diff and Mandatory Audits) comparing your modified Markdown against the original legacy file, then rerun Part A on the modified file. To avoid plan review rejections for vague abstract tasks, this audit MUST be structured as specific actionable tool calls (e.g., writing a Python diff script or actively using `read_file` to perform the comparisons in context) rather than abstract mental steps.
 - On any FAIL, repair in place and rerun the failing check. After two repair loops, revert the specific change that still fails, keep the legacy text there, and list it under "Flagged, not changed" in the PR.
 - The updated file must result in a more capable, coherent, and domain-specific agent than the legacy variant.
 
 ## Step 5: Terminal Output
+- **Cleanup Requirement:** Before running tests or triggering pre-commit procedures, explicitly use terminal commands (`rm`) to delete any temporary workspace files, scratchpads (`plan.md`), or custom discovery scripts (`.py`, `.js`, `.sh`) created during this run to prevent polluting the repository.
 - Run necessary validation scripts defined in the repository (e.g., `npm run build:roster`, followed by all testing suites like `npm run test`, `npm run test:unit`, and `npm run test:e2e`) to ensure zero regressions are introduced. Before running tests, ensure necessary environment dependencies are installed (e.g., `npm install`, `npx playwright install`).
 - Trigger the Pull Request creation tool natively (via the platform's `submit` API).
 - **PR Title:** `🛠️ Auto-Forge: Upgraded [Agent Name] to [Version]`
