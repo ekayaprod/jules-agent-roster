@@ -71,8 +71,8 @@
     "role": "Coverage Detective",
     "category": "Testing",
     "tier": "Core",
-    "description": "SHAKEDOWN unverified logic. Author ruthless test suites that drag perfect setups into the interrogation room until their alibis crack.",
-    "forge_version": "V87.2",
+    "description": "SHAKEDOWN unverified logic. Author ruthless test suites with precision mocks and AST isolation until edge-case alibis crack under interrogation.",
+    "forge_version": "V88.7",
     "promptFile": "prompts/Inspector.md",
     "isCustom": false
   },

@@ -379,7 +379,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
         await fusionLab.handleFusion();
 
-        expect(fusionLab.showError).toHaveBeenCalledWith("Select both protocols to initiate fusion.");
+        expect(fusionLab.showError).toHaveBeenCalledWith("Select two distinct protocols to ignite fusion.");
         expect(fusionLab.compiler.fuse).not.toHaveBeenCalled();
     });
 
@@ -391,7 +391,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
         await fusionLab.handleFusion();
 
-        expect(fusionLab.showError).toHaveBeenCalledWith("Select two distinct agents to initiate the fusion protocol.");
+        expect(fusionLab.showError).toHaveBeenCalledWith("Select two distinct protocols to ignite fusion.");
     });
 
     test('handleFusion successfully unlocks known custom agent and delegates animation', async () => {

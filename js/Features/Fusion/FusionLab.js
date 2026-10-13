@@ -172,7 +172,7 @@ class FusionLab {
     const agentB = this.state.slotB;
 
     if (!agentA || !agentB) {
-        this.showError("Select both protocols to initiate fusion.");
+      this.showError("Select two distinct protocols to ignite fusion.");
         return;
     }
 
@@ -187,7 +187,7 @@ class FusionLab {
     const result = this.compiler.fuse(agentA, agentB);
 
     if (result.name === "Error") {
-      const ERROR_MAP = { "Invalid agents selected.": "Select two distinct agents to initiate the fusion protocol." };
+      const ERROR_MAP = { "Invalid agents selected.": "Select two distinct protocols to ignite fusion." };
       this.showError(ERROR_MAP[result.prompt] || result.prompt);
       return;
     }
