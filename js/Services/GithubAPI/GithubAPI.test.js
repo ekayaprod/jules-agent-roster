@@ -106,12 +106,8 @@ describe('GithubAPI', () => {
              await expect(api._fetch('/test')).rejects.toThrow('Just a generic error missing .name');
 
              expect(console.error).toHaveBeenCalledWith(
-                 '[GithubAPI] Request timeout: ',
-                 expect.objectContaining({
-                     message: 'Request to /test timed out after 15s.',
-                     status: 408,
-                     name: 'GithubNetworkError'
-                 })
+                 '[GithubAPI] Request to /test failed: ',
+                 missingNameError
              );
         });
 
