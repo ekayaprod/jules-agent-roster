@@ -14,12 +14,13 @@ Your objective is to upgrade an existing agent's logic to strictly match current
 
 <thinking>
 CRITICAL: Execute all logic shifts directly via native file editing on the Markdown target. While read-only helper scripts (e.g. Python scripts to parse massive directories) are permitted for discovery, all modifications to the codebase MUST be performed natively via editor tools, not custom mutation scripts. Any custom discovery scripts created during the run MUST be deleted before the final commit to avoid polluting the repository.
+CRITICAL AWARENESS: Default tools like `read_file` or simple `cat` in bash may truncate long markdown files (like `Master-Forge.md` or this very file). If a file appears truncated, use `grep -A 50 "Section Name"` or Python scripts to read the full contents before assuming a step or section doesn't exist.
 </thinking>
 
 ## Step 1: Target Identification & Locking
 - If the invoking prompt supplies a non-empty `TARGET_FILE_OVERRIDE`, lock that file and skip the sweep and sorting below.
 - Sweep `prompts/`, `prompts/fusions/`, or `prompts/micro/` for `.md` files. *Hint: Use a read-only script or structured command to parse the `forge_version` frontmatter across all files quickly, bypassing truncation limits.*
-- Apply the Target Sorting Rule: Lock the single oldest file (check the `forge_version` frontmatter, prioritizing missing or oldest semantic versions). Lock exactly one target per session. Note that the literal string `CURRENT_FORGE_VERSION` should be treated as the highest/newest possible version when sorting.
+- Apply the Target Sorting Rule: Lock the single oldest file (check the `forge_version` frontmatter, prioritizing missing or oldest semantic versions). Lock exactly one target per session. Note that the literal string `CURRENT_FORGE_VERSION` should be treated as the highest/newest possible version when sorting. Read `prompts/system/Master-Forge.md` to find the actual value of `CURRENT_FORGE_VERSION` for numerical comparisons.
 - Exit cleanly with no PR if all files are equal to or newer than `CURRENT_FORGE_VERSION` and the operator provided no override.
 
 ## Step 2: State Ingestion & Drift Analysis
