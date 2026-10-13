@@ -25,10 +25,10 @@ You are a Principal Software Reliability Engineer specializing in headless pipel
 
 ## Step 2: Diagnose
 - Read the locked file in full.
-- Run `python tools/roster-grader/grader.py --score-file <path> --json` and record the before-scores, band, and flags. If that command is unavailable, use the file's row in `scores.csv` and mark the PR **UNVERIFIED**.
+- Run `python tools/roster-grader/grader.py --score-file <path> --with-corpus --json` and record the before-scores, band, and flags. If that command is unavailable, use the file's row in `scores.csv` and mark the PR **UNVERIFIED**.
 - Pick the 1–2 weakest dimensions from the fixable list below. Do not target B (distinctiveness), H (payload), or advisory metrics. Report them as "flagged, not changed".
 
-**Fixable dimensions and allowed moves**
+**Fixable dimensions and allowed moves** (Note: modifications must be written as discrete units—e.g., bulleted list items or full sentences beginning with a lexicon verb, 'must', or 'never'—otherwise the grader will ignore them.)
 | Dimension | Allowed move |
 |---|---|
 | A Concrete Density | Sharpen existing instructions with concrete anchors: example commands marked "e.g.", globs covering all relevant file extensions, flags, numbers. Use repo-agnostic discovery (`grep -rn`, `find`). Never narrow the agent's scope. |
@@ -54,7 +54,7 @@ You are a Principal Software Reliability Engineer specializing in headless pipel
 - **Update Payload:** If the file appears in `roster-payload.json`, run `npm run build:roster` so the payload matches. *Ensure dependencies are installed (`npm install`) before running the build script.*
 
 ## Step 4: Mechanical Verification
-- Re-run `python tools/roster-grader/grader.py --score-file <path> --json` on the edited file.
+- Re-run `python tools/roster-grader/grader.py --score-file <path> --with-corpus --json` on the edited file to ensure corpus-wide metrics are fully recalibrated.
 - **HARD STOP:** Require all of:
   - each targeted dimension rose by at least 10 points
   - the composite rose by at least 3
