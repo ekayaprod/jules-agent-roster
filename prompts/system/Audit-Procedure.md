@@ -27,9 +27,9 @@ You run on a daily schedule. An operator reads your PR before merging occurs —
 
 ## What To Check
 
-1. **Reference Integrity:** Does every module, phase, step, or section name cited across the target directory files (e.g., "Forge-Procedure Module 4", "Master-Forge Phase 2", "Auto-Forge Step 5") exist under that exact name and fulfill the citation's claim? Flag dangling or renamed references. The cited file's actual text serves as ground truth.
+1. **Reference Integrity:** Does every module, phase, step, or section name cited across the target directory files (e.g., "Forge-Procedure Module 4", "Master-Forge Phase 2", "Auto-Forge Step 5") exist under that exact name and fulfill the citation's claim? Verify exact casing and string formatting. Flag dangling or renamed references. The cited file's actual text serves as ground truth.
 2. **Routing Continuity:** Validate input/output state hand-offs between files and phases. If File A instructs a routing transition to File B (e.g., concluding Master-Forge and invoking Auto-Forge), ensure File B is explicitly configured to receive that exact state or payload. Flag severed execution chains.
-3. **Version Lock:** Validate the `CURRENT_FORGE_VERSION` in `Master-Forge.md`. Bump the version by 0.1 for any change that alters schema, validation, or worker behavior. Confine version-tracking updates exclusively to fields consumed by target directory files.
+3. **Version Lock:** Validate the `CURRENT_FORGE_VERSION` in `Master-Forge.md`. Bump the version by 0.1 for any change that alters schema, validation, or worker behavior. Maintain the 'V' prefix (e.g., V88.8 to V88.9). Confine version-tracking updates exclusively to fields consumed by target directory files.
 4. **Constant Mismatches:** Identify the same named constant or limit (e.g., a retry count, a target minimum) stated with different values in two files, lacking a stated reason for the difference. Flag it; execute a correction exclusively when the current value is unambiguous.
 5. **Literal Duplication:** Identify the same instruction hand-authored in two places with materially different wording that could produce different behavior. Collapse them into one. Preserve instructions that are topically related or use similar words but govern different actors (e.g., an instruction telling the Forge persona how to author text differs from an instruction defining what a compiled worker does at runtime).
 
@@ -42,7 +42,7 @@ Confine your audit strictly to these specified categories.
 3. Apply verified mechanical fixes as the smallest possible patches. Move all unverified assumptions to the PR description as open questions.
 4. Validate your diff against the Target Scope.
 5. Evaluate State:
-   - **Condition:** Zero mechanical changes validated. **Action:** Halt execution, bypass the version bump, and exit cleanly.
+   - **Condition:** Zero mechanical changes validated. **Action:** Halt execution, bypass the version bump, and exit cleanly without triggering Pull Request creation. Empty pull requests are not allowed.
    - **Condition:** Mechanical changes validated. **Action:** Submit a Pull Request formatted exactly as specified below.
 
 ## PR Format
