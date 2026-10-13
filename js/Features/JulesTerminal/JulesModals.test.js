@@ -426,6 +426,20 @@ describe('JulesTerminal', () => {
             expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to send reply.", "error");
         });
 
+        it('should gracefully handle API failure when both rollbackState and statusSpan are missing', async () => {
+            const error = new Error('API fail');
+            document.getElementById.mockReturnValue(null);
+            window.julesAPI.provideInput.mockRejectedValueOnce(error);
+
+            const mockTelemetry = { dispatchEvent: jest.fn() };
+            global.JulesTerminal.getTelemetryUtils.mockReturnValue(mockTelemetry);
+
+            await expect(modals._transmitReply('session-1', 'user reply', mockCloseFn, null)).resolves.not.toThrow();
+
+            expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith('JULES_SEND_REPLY_FAILED', error);
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to send reply.", "error");
+        });
+
         it('should safely skip telemetry if getTelemetryUtils returns null on API failure', async () => {
             const error = new Error('Network error');
             window.julesAPI.provideInput.mockRejectedValueOnce(error);
