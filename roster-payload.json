@@ -2046,6 +2046,17 @@
     "isCustom": true
   },
   {
+    "name": "Syncopator",
+    "emoji": "🎶",
+    "role": "Jive Centrifuge",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "SYNCOPATE bloated, vibe-coded logic into highly dense, native functional pipelines.",
+    "forge_version": "V88.8",
+    "promptFile": "prompts/fusions/Syncopator.md",
+    "isCustom": true
+  },
+  {
     "name": "Syntax",
     "emoji": "🔡",
     "role": "Prompt Architect",
