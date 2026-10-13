@@ -39,6 +39,29 @@ describe('ClipboardUtils', () => {
             expect(document.execCommand).not.toHaveBeenCalled();
         });
 
+        it('should catch error and dispatch telemetry if Clipboard API fails on writeText', async () => {
+            const mockApiError = new Error('api error');
+            global.navigator.clipboard.writeText.mockRejectedValue(mockApiError);
+            document.execCommand.mockReturnValue(true);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("CLIPBOARD_API_FAILED", mockApiError);
+            expect(result).toBe(true);
+        });
+
+        it('should return true when writeText succeeds', async () => {
+            global.navigator.clipboard.writeText.mockResolvedValue();
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
+            expect(document.execCommand).not.toHaveBeenCalled();
+            expect(result).toBe(true);
+        });
+
         it('should fallback to execCommand if Clipboard API fails and dispatch telemetry', async () => {
             const mockError = new Error('Clipboard denied');
             global.navigator.clipboard.writeText.mockRejectedValue(mockError);
