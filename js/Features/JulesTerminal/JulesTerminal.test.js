@@ -619,6 +619,34 @@ describe('JulesTerminal', () => {
         });
     });
 
+    describe('_fetchAndRenderSessions', () => {
+        let originalJulesAPI;
+
+        beforeEach(() => {
+            originalJulesAPI = global.window.julesAPI;
+        });
+
+        afterEach(() => {
+            global.window.julesAPI = originalJulesAPI;
+        });
+
+        it('checks empty terminal and returns if sessions array is missing from response', async () => {
+            const terminal = document.createElement('div');
+            const sourceName = 'owner/repo';
+
+            global.window.julesAPI = {
+                apiKey: 'test-api-key',
+                getSessionsByRepo: jest.fn().mockResolvedValue({})
+            };
+            manager._checkEmptyTerminal = jest.fn();
+
+            await manager._fetchAndRenderSessions(sourceName, terminal);
+
+            expect(global.window.julesAPI.getSessionsByRepo).toHaveBeenCalledWith(sourceName);
+            expect(manager._checkEmptyTerminal).toHaveBeenCalled();
+        });
+    });
+
     describe('_processSessionQueue', () => {
         beforeEach(() => {
             jest.useFakeTimers();
@@ -693,6 +721,34 @@ describe('JulesTerminal', () => {
             await manager._processSessionQueue();
 
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('QUEUE_EXECUTION_ERROR', mockError);
+            expect(manager.isProcessingQueue).toBe(false);
+        });
+
+        it('continues executing remaining tasks after a task failure', async () => {
+            const mockError = new Error('Task Failed');
+
+            const task1 = jest.fn().mockResolvedValue();
+            const task2 = async () => { throw mockError; };
+            const task3 = jest.fn().mockResolvedValue();
+
+            manager.sessionQueue.push(task1, task2, task3);
+
+            const processPromise = manager._processSessionQueue();
+
+            if (jest.runAllTimersAsync) {
+                await jest.runAllTimersAsync();
+            } else {
+                for(let i = 0; i < 5; i++) {
+                    await Promise.resolve();
+                    jest.advanceTimersByTime(1000);
+                }
+            }
+
+            await processPromise;
+
+            expect(task1).toHaveBeenCalled();
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('QUEUE_EXECUTION_ERROR', mockError);
+            expect(task3).toHaveBeenCalled();
             expect(manager.isProcessingQueue).toBe(false);
         });
     });
