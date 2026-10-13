@@ -292,7 +292,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "ELIMINATE context drift. Write granular inline documentation and synchronize it rigidly with high-level architectural READMEs.",
-    "forge_version": "V86.3",
+    "forge_version": "V88.9",
     "promptFile": "prompts/fusions/Archivist.md",
     "isCustom": true
   },
