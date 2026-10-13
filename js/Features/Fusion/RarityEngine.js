@@ -46,23 +46,19 @@ const RarityEngine = (function() {
 
     /**
      * Checks if a fusion results in a Mythic rarity tier.
-     * Structurally checks if either constituent agent natively possesses the "Mythic" tier.
-     * * Historical Intent: Extracted during the Auto-Forge V88.8 Revisionist Upgrade (PR #3230)
-     *   to isolate Mythic "Anomaly Integration" domain rules from the legacy monolithic matrix.
      * @param {Object} agent1 - The first constituent agent.
      * @param {Object} agent2 - The second constituent agent.
      * @returns {Object|null} A Mythic result object if matched, otherwise null.
      */
     function _checkMythic(agent1, agent2) {
         if (agent1.tier === "Mythic" || agent2.tier === "Mythic") return { rarity: "Mythic", domain: "Anomaly Integration" };
+        if (agent1.name && agent1.name === agent2.name && PLUS_NAMES.has(agent1.name)) return { rarity: "Mythic", domain: "12. Plus Glitch" };
+        if (agent1.name && agent1.name === agent2.name) return { rarity: "Mythic", domain: "13. Core Glitch" };
         return null;
     }
 
     /**
      * Checks if a fusion results in a Legendary rarity tier via paradoxical combination.
-     * Structurally scans for destructive paradoxes (Scavenger + Plus agents or Core Paradoxes like Architect + Pedant).
-     * * Historical Intent: Extracted during the Auto-Forge V88.8 Revisionist Upgrade (PR #3230)
-     *   to safely sandbox "Legendary" destructive interactions without crashing standard rarity evaluation.
      * @param {Object} agent1 - The first constituent agent.
      * @param {Object} agent2 - The second constituent agent.
      * @returns {Object|null} A Legendary result object with specific paradox domains if matched, otherwise null.
@@ -85,9 +81,6 @@ const RarityEngine = (function() {
 
     /**
      * Checks if a fusion results in an Epic or Rare tier based on overlapping super domains.
-     * Structurally evaluates macro-domain bridges (Integrity crossed with Visible/Invisible for Epic, or Visible crossed with Invisible for Rare).
-     * * Historical Intent: Extracted during the Auto-Forge V88.8 Revisionist Upgrade (PR #3230)
-     *   to formalize the "QA Bridge" and "Full-Stack Bridge" mechanics.
      * @param {string} sd1 - Super domain classification of the first agent.
      * @param {string} sd2 - Super domain classification of the second agent.
      * @returns {Object|null} An Epic or Rare result object if a bridge is formed, otherwise null.
@@ -103,6 +96,14 @@ const RarityEngine = (function() {
         return null;
     }
 
+    /**
+     * Checks if a fusion results in Common or Uncommon tiers based on synergy.
+     * @param {Object} agent1 - The first constituent agent.
+     * @param {Object} agent2 - The second constituent agent.
+     * @param {string} sd1 - Super domain classification of the first agent.
+     * @param {string} sd2 - Super domain classification of the second agent.
+     * @returns {Object|null} A synergy result object if a synergy is formed, otherwise null.
+     */
     function _checkSynergy(agent1, agent2, sd1, sd2) {
         if (sd1 === "Plus" && sd2 === "Plus") return { rarity: "Uncommon", domain: "1. Base Synthesis" };
 
@@ -173,6 +174,7 @@ const RarityEngine = (function() {
         return _evaluateFusion(agent1, agent2).domain;
     }
 
+    // Return frozen API
     return Object.freeze({
         calculateRarity,
         getSuperDomain,

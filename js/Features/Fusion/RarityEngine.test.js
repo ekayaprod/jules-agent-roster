@@ -41,6 +41,22 @@ describe('RarityEngine', () => {
     });
 
     describe('calculateRarity', () => {
+        it('returns "Mythic" for Anomaly Integration when one agent is Mythic', () => {
+            expect(RarityEngine.calculateRarity({ tier: 'Mythic' }, { name: 'Agent2' })).toBe('Mythic');
+            expect(RarityEngine.calculateRarity({ name: 'Agent1' }, { tier: 'Mythic' })).toBe('Mythic');
+        });
+
+        it('returns "Mythic" for Plus Glitch when a Plus agent is combined with itself', () => {
+            expect(RarityEngine.calculateRarity({ name: 'Bolt+' }, { name: 'Bolt+' })).toBe('Mythic');
+            expect(RarityEngine.calculateRarity({ name: 'Palette+' }, { name: 'Palette+' })).toBe('Mythic');
+            expect(RarityEngine.calculateRarity({ name: 'Sentinel+' }, { name: 'Sentinel+' })).toBe('Mythic');
+        });
+
+        it('returns "Mythic" for Core Glitch when a standard agent is combined with itself', () => {
+            expect(RarityEngine.calculateRarity({ name: 'Architect' }, { name: 'Architect' })).toBe('Mythic');
+            expect(RarityEngine.calculateRarity({ name: 'Scavenger' }, { name: 'Scavenger' })).toBe('Mythic');
+        });
+
         it('returns "Common" if agent1 or agent2 is missing', () => {
             expect(RarityEngine.calculateRarity(null, { name: 'Agent1' })).toBe('Common');
             expect(RarityEngine.calculateRarity({ name: 'Agent1' }, null)).toBe('Common');
@@ -132,6 +148,22 @@ describe('RarityEngine', () => {
         it('returns "Unknown Domain" if agent1 or agent2 is missing', () => {
             expect(RarityEngine.getFusionDomain(null, { name: 'Agent1' })).toBe('Unknown Domain');
             expect(RarityEngine.getFusionDomain({ name: 'Agent1' }, null)).toBe('Unknown Domain');
+        });
+
+        it('returns "Anomaly Integration" when one agent is Mythic', () => {
+            expect(RarityEngine.getFusionDomain({ tier: 'Mythic' }, { name: 'Agent2' })).toBe('Anomaly Integration');
+            expect(RarityEngine.getFusionDomain({ name: 'Agent1' }, { tier: 'Mythic' })).toBe('Anomaly Integration');
+        });
+
+        it('returns "12. Plus Glitch" when a Plus agent is combined with itself', () => {
+            expect(RarityEngine.getFusionDomain({ name: 'Bolt+' }, { name: 'Bolt+' })).toBe('12. Plus Glitch');
+            expect(RarityEngine.getFusionDomain({ name: 'Palette+' }, { name: 'Palette+' })).toBe('12. Plus Glitch');
+            expect(RarityEngine.getFusionDomain({ name: 'Sentinel+' }, { name: 'Sentinel+' })).toBe('12. Plus Glitch');
+        });
+
+        it('returns "13. Core Glitch" when a standard agent is combined with itself', () => {
+            expect(RarityEngine.getFusionDomain({ name: 'Architect' }, { name: 'Architect' })).toBe('13. Core Glitch');
+            expect(RarityEngine.getFusionDomain({ name: 'Scavenger' }, { name: 'Scavenger' })).toBe('13. Core Glitch');
         });
 
         it('returns "10. Plus Paradox" or "11. Core Paradox" when Scavenger is combined', () => {
