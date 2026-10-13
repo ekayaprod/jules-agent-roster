@@ -98,6 +98,19 @@ describe('GithubAPI', () => {
              );
         });
 
+        it('should handle timeout without abort error name check (falsy error.name missing branch)', async () => {
+             const missingNameError = new Error('Just a generic error missing .name');
+             missingNameError.name = undefined;
+             global.fetch.mockRejectedValueOnce(missingNameError);
+
+             await expect(api._fetch('/test')).rejects.toThrow('Just a generic error missing .name');
+
+             expect(console.error).toHaveBeenCalledWith(
+                 '[GithubAPI] Request to /test failed: ',
+                 missingNameError
+             );
+        });
+
         it('should handle generic errors', async () => {
              const genericError = new Error('Generic Error');
              global.fetch.mockRejectedValueOnce(genericError);
@@ -121,7 +134,7 @@ describe('GithubAPI', () => {
              );
         });
 
-        it('should handle successful response but failing json parsing', async () => {
+        it('should handle successful response but failing json parsing (async rejection)', async () => {
              const jsonError = new Error('JSON parsing error');
              global.fetch.mockResolvedValueOnce({
                  ok: true,
@@ -130,6 +143,21 @@ describe('GithubAPI', () => {
 
              await expect(api._fetch('/test')).rejects.toThrow('JSON parsing error');
 
+        });
+
+        it('should handle successful response but failing json parsing (sync throw)', async () => {
+             const jsonError = new Error('JSON parsing error');
+             global.fetch.mockResolvedValueOnce({
+                 ok: true,
+                 json: () => { throw jsonError; }
+             });
+
+             await expect(api._fetch('/test')).rejects.toThrow('JSON parsing error');
+
+             expect(console.error).toHaveBeenCalledWith(
+                 '[GithubAPI] Request to /test failed: ',
+                 jsonError
+             );
         });
 
         it('should handle ok:false and failing json parsing gracefully', async () => {
