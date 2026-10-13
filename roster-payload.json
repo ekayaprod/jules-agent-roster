@@ -2266,6 +2266,17 @@
     "isCustom": true
   },
   {
+    "name": "Vibe Auditor",
+    "emoji": "🪩",
+    "role": "Jive Auditor",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "AUDIT the macroscopic repository topology, categorize structural decay and synthetic jive, and govern the centralized triage queue to optimize the swarm's eradication of probabilistic hallucinations.",
+    "forge_version": "V88.9",
+    "promptFile": "prompts/fusions/Vibe Auditor.md",
+    "isCustom": true
+  },
+  {
     "name": "Vice",
     "emoji": "🗜️",
     "role": "Render Enforcer",
