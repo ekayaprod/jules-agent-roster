@@ -259,3 +259,93 @@ describe('JulesTerminal - Additional Coverage', () => {
     });
 
 });
+
+describe('JulesTerminal - More Coverage', () => {
+    let terminalInstance;
+    let mockApp;
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+        document.body.innerHTML = '<div id="julesTerminal"></div>';
+        mockApp = { agents: [], customAgents: {} };
+        window.julesAPI = { apiKey: 'test', getSessionsByRepo: jest.fn() };
+        terminalInstance = new JulesTerminal(mockApp);
+    });
+
+    it('should call _checkEmptyTerminal and return if no sessions property in response', async () => {
+        const terminal = document.getElementById('julesTerminal');
+        terminalInstance._checkEmptyTerminal = jest.fn();
+        window.julesAPI.getSessionsByRepo.mockResolvedValue({});
+
+        await terminalInstance._fetchAndRenderSessions('test', terminal);
+        expect(terminalInstance._checkEmptyTerminal).toHaveBeenCalled();
+    });
+    it('should skip session without time properties that is not in renderedSessionIds', async () => {
+        const terminal = document.getElementById('julesTerminal');
+        const session = {
+            id: 'no-time-session',
+            sourceContext: { source: 'test' },
+            state: 'ACTIVE'
+        };
+        window.julesAPI.getSessionsByRepo.mockResolvedValue({ sessions: [session] });
+
+        terminalInstance.renderedSessionIds = new Set();
+        terminalInstance.dismissedSessionIds = new Set();
+        terminalInstance._processSession = jest.fn();
+        terminalInstance._checkEmptyTerminal = jest.fn();
+
+        await terminalInstance._fetchAndRenderSessions('test', terminal);
+
+        expect(terminalInstance._processSession).not.toHaveBeenCalled();
+    });
+
+    it('should fallback to regex match when agent name is not in exact cache', () => {
+        const terminal = document.getElementById('julesTerminal');
+        const session = { id: 'session-regex', title: 'AgentTask_123', sourceContext: { source: 'test' } };
+
+        terminalInstance.renderedSessionIds = new Set();
+        terminalInstance.modals = { _showHistoryModal: jest.fn() };
+        terminalInstance.polling = { startTerminalPolling: jest.fn() };
+        terminalInstance._createAndInsertSessionBlock = jest.fn().mockReturnValue(document.createElement('div'));
+
+        terminalInstance._agentMapCache = new Map();
+        terminalInstance._agentMapCache.set('AgentTask', { name: 'AgentTask', emoji: '🛠️' });
+        terminalInstance._agentRegexCache = /(AgentTask)/;
+
+        terminalInstance._processSession(session, terminal);
+
+        expect(terminalInstance._createAndInsertSessionBlock).toHaveBeenCalledWith(
+            terminal,
+            expect.any(String),
+            'session-session-regex',
+            '🛠️',
+            'AgentTask_123',
+            'Initializing...',
+            'status-session-regex',
+            expect.any(Function)
+        );
+    });
+
+    it('should invoke _showHistoryModal on block keydown enter', () => {
+        const terminal = document.getElementById('julesTerminal');
+        const session = { id: 'session-click', title: 'TestAgent', sourceContext: { source: 'test' } };
+
+        terminalInstance.renderedSessionIds = new Set();
+        terminalInstance.modals = { _showHistoryModal: jest.fn() };
+        terminalInstance.polling = { startTerminalPolling: jest.fn() };
+
+        terminalInstance._processSession(session, terminal);
+
+        const block = terminal.querySelector('#session-session-click');
+        expect(block).not.toBeNull();
+
+        const preventDefault = jest.fn();
+        const event = new KeyboardEvent('keydown', { key: 'Enter' });
+        event.preventDefault = preventDefault;
+
+        block.dispatchEvent(event);
+
+        expect(preventDefault).toHaveBeenCalled();
+        expect(terminalInstance.modals._showHistoryModal).toHaveBeenCalledWith('session-click', '🤖', 'TestAgent');
+    });
+});
