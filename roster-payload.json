@@ -2162,7 +2162,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "SECURE HTTP perimeters by eradicating wildcard scopes, injecting strict policies, and neutralizing attack surfaces.",
-    "forge_version": "V86.4",
+    "forge_version": "V88.9",
     "promptFile": "prompts/fusions/Threat Modeler.md",
     "isCustom": true
   },
