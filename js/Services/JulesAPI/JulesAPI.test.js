@@ -115,6 +115,15 @@ describe('JulesAPI', () => {
             delete global.TelemetryUtils;
         });
 
+        it('should fallback to console.error if TelemetryUtils is unavailable during parse error', async () => {
+            const malformedError = new Error('Malformed JSON');
+            global.fetch.mockResolvedValueOnce({ ok: false, status: 500, json: async () => { throw malformedError; } });
+
+            await expect(api._fetch('/test')).rejects.toThrow('We encountered a server error. Please wait a moment and try again.');
+
+            expect(console.error).toHaveBeenCalledWith("[JulesAPI] Failed to parse error response JSON", malformedError);
+        });
+
         it('should handle request timeout', async () => {
             global.fetch.mockImplementationOnce(() => new Promise((resolve, reject) => {
                  setTimeout(() => {
