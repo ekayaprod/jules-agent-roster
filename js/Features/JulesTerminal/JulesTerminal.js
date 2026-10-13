@@ -171,7 +171,7 @@ class JulesTerminal {
                 StorageUtils.setItem("jules_api_key", key);
                 StorageUtils.setItem("github_api_key", githubKey);
                 toggleModal(false);
-                this.app.toast.show("Connecting to APIs...");
+                if (this.app && this.app.toast) this.app.toast.show("Connecting to APIs...");
 
                 if (window.julesAPI) {
                     window.julesAPI.configure(key, githubKey);
