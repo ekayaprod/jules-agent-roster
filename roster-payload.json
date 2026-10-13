@@ -308,6 +308,17 @@
     "isCustom": true
   },
   {
+    "name": "Aura",
+    "emoji": "👁️‍🗨️",
+    "role": "Vibe Cartographer",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "ILLUMINATE the macroscopic repository topography to reveal the systemic fault lines of AI hallucination, mapping synthetic abstractions into the centralized triage queue to optimize swarm eradication.",
+    "forge_version": "V88.9",
+    "promptFile": "prompts/fusions/Aura.md",
+    "isCustom": true
+  },
+  {
     "name": "Automata",
     "emoji": "🦾",
     "role": "State Flattener",

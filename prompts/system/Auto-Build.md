@@ -16,15 +16,36 @@ CRITICAL: Execute all steps continuously in a single unbroken chain until the Pu
 
 Execute the following steps from start to finish:
 
-1. **Planning & Setup:** Before executing the chain, use `request_plan_review` and `set_plan` to outline your execution strategy, ensuring all steps are accounted for.
-2. **Selection & Research:** Check `prompts/orphans/emptyslots.md` and `fusion_matrix.json` for an unassigned fusion combination. Pick one. Then, read the two corresponding parent `.md` files in the root `prompts/` directory to deeply understand their mechanics and philosophies so you can design a coherent synthesis.
-3. **Author the Worker:** Read the rules in `prompts/system/Master-Forge.md`, `prompts/system/Forge-Procedure.md` (Module 5, the Fusion Engine, governs the synthesis), and `prompts/system/Creative-Procedure.md` (Modules 1–2 govern the theme). Work through Phases 1–4 and the Finalization Pipeline internally. Then, use the exact `<!-- WORKER_TEMPLATE_START -->` block found inside `prompts/system/Creative-Procedure.md` to hand-author your new worker's markdown file in `prompts/fusions/`.
-   - *Hint:* Pay strict attention to List Length Constraints, exact formatting for lists (e.g. `* **[Name]:** [Instruction]`), and injecting the literal value for `CURRENT_FORGE_VERSION` from `Master-Forge.md`.
+1. **Planning & Setup:**
+   - Before executing the chain, use `request_plan_review` and `set_plan` to outline your execution strategy, ensuring all steps are accounted for.
+   - **Important:** Ensure your plan contains explicit verification steps (e.g., using `read_file` or `git diff`) immediately following any file modifications or script executions.
+   - Run `npm install` early so that subsequent ecosystem scripts like `build:roster` will succeed.
+   - Include a dedicated, explicit step in your plan specifically phrased as: "Complete pre commit steps to ensure proper testing, verification, review, and reflection are done."
+
+2. **Selection & Research:**
+   - Check `prompts/orphans/emptyslots.md` and `fusion_matrix.json` for an unassigned fusion combination. Pick one.
+   - Read the two corresponding parent `.md` files in the root `prompts/` directory to deeply understand their mechanics and philosophies.
+   - **Synthesis Engine:** Do not simply stack the two mechanics. Find the exact middle of the Venn diagram between the two parent roles to form a highly specific, creative, and novel operational paradigm.
+
+3. **Author the Worker:**
+   - Read the rules in `prompts/system/Master-Forge.md`, `prompts/system/Forge-Procedure.md` (Module 5 governs the synthesis), and `prompts/system/Creative-Procedure.md` (Modules 1–2 govern the theme).
+   - Work through Phases 1–4 and the Finalization Pipeline internally.
+   - Use the exact `<!-- WORKER_TEMPLATE_START -->` block found inside `prompts/system/Creative-Procedure.md` to hand-author your new worker's markdown file in `prompts/fusions/`.
+   - *Hint:* Pay strict attention to List Length Constraints, exact formatting for lists (e.g., `* **[Name]:** [Instruction]`), and injecting the literal value for `CURRENT_FORGE_VERSION` from `Master-Forge.md`.
    - *Hint:* Ensure all `{{TOKEN}}` placeholders in the template are completely resolved to concrete values. Refer strictly to `Forge-Procedure.md` Module 3 for the correct verbatim throughput strings, testing doctrine, and reporter procedure.
-4. **Self-Audit:** Run `prompts/system/Forge-Procedure.md` Module 7 Part A (checks 1–7 and 10; omit checks 8 and 9 for a net-new Fusion) and the Part B Mandatory Audits that apply. Repair every FAIL before continuing.
+
+4. **Self-Audit:**
+   - Mentally run `prompts/system/Forge-Procedure.md` Module 7 Part A (checks 1–7 and 10; omit checks 8 and 9 for a net-new Fusion) and the Part B Mandatory Audits that apply.
+   - Repair every FAIL in the file before continuing.
+   - Output the final PASS/FAIL list into a local file named `self_audit_log.txt`. This will be used later for the PR body.
+
 5. **Update the Ecosystem:**
    - Update `fusion_matrix.json` to map the parent combination to your new worker's name.
    - Run `node scripts/update-orphans.js`. Note: This script automatically updates `emptyslots.md` and `Core-Agents-Matrix.md`, so you do not need to edit those files manually.
    - Run `npm run build:roster` to compile the frontend `roster-payload.json` artifact.
-   - Ensure you use `git status` and explicitly `git add` all generated artifacts, notably `roster-payload.json` and any modified system markdown files like `Core-Agents-Matrix.md`.
-6. **Verify and Submit:** Run `npm install` and `npx playwright install --with-deps`, then run the test suites (`npm run test` and `npm run test:e2e`). Follow pre-commit instructions by calling the `pre_commit_instructions` tool, ensure all changes are committed, and submit the PR. Include the final Module 7 Part A PASS/FAIL list in the PR body.
+   - Verify these updates using `git diff` and `git status`. Ensure you explicitly `git add` all generated artifacts.
+
+6. **Verify and Submit:**
+   - Run `npx playwright install --with-deps`, then run the test suites (`npm run test` and `npm run test:e2e`).
+   - Follow pre-commit instructions by calling the `pre_commit_instructions` tool and addressing feedback.
+   - Ensure all changes are committed, and submit the PR. Include the contents of `self_audit_log.txt` (the Module 7 Part A PASS/FAIL list) in the PR description.
