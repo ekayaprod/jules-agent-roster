@@ -466,6 +466,31 @@ describe('JulesTerminal', () => {
             expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to send reply.", "error");
             expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith("JULES_SEND_REPLY_FAILED", error);
         });
+
+        it('should handle errors thrown by toast.show after provideInput succeeds and test fallback rollbackState branch', async () => {
+            window.julesAPI.provideInput.mockResolvedValueOnce({});
+            const error = new Error('Toast error');
+
+            // First call (Transmitting reply...) succeeds
+            mockApp.toast.show.mockImplementationOnce(() => {});
+            // Second call (Reply transmitted.) throws
+            mockApp.toast.show.mockImplementationOnce(() => {
+                throw error;
+            });
+
+            const rollbackState = {
+                className: 'term-status status-waiting',
+                textContent: 'Needs response',
+                onclick: jest.fn()
+            };
+
+            await modals._transmitReply('session-1', 'user reply', mockCloseFn, rollbackState);
+
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to send reply.", "error");
+            expect(mockStatusSpan.className).toBe('term-status status-waiting');
+            expect(mockStatusSpan.textContent).toBe('Needs response');
+            expect(mockStatusSpan.onclick).toBe(rollbackState.onclick);
+        });
     });
 
     describe('_showKeyError and _clearKeyError', () => {

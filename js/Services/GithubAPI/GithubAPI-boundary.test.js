@@ -5,6 +5,7 @@ describe('GithubAPI explicit 400/500 HTTP status assertions', () => {
     let originalFetch;
 
     beforeEach(() => {
+        jest.spyOn(console, 'error').mockImplementation(() => {});
         api = new GithubAPI();
         api.configure('test-key');
         originalFetch = global.fetch;
@@ -12,6 +13,7 @@ describe('GithubAPI explicit 400/500 HTTP status assertions', () => {
     });
 
     afterEach(() => {
+        jest.restoreAllMocks();
         global.fetch = originalFetch;
     });
 

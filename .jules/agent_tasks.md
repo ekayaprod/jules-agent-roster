@@ -13,4 +13,3 @@
 * 🏗️ `js/core/events/handlers/GlobalEvents.js`: Structural monolith (420 lines). Split into domain modules and colocate dependencies.
 
 ## The [PRUNER] Queue
-* 🧹 `js/Services/AgentRepository/AgentRepository.js`: Remove commented out debugging artifacts and hollow carapaces.

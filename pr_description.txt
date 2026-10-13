@@ -1,6 +1,0 @@
-- Removed duplicate placeholder `{{DISCOVERY_VELOCITY_RULE}}` from `prompts/system/Creative-Procedure.md` worker template.
-- Resolved literal duplication in `prompts/system/Forge-Procedure.md` by collapsing "Build auth headers from strictly typed environment variables. Always build auth headers from strictly typed environment variables." into "Always build auth headers from strictly typed environment variables."
-- Bumped `CURRENT_FORGE_VERSION` in `prompts/system/Master-Forge.md` to "V88.8".
-
-### Flagged, not changed
-No additional issues were flagged.

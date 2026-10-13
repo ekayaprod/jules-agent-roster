@@ -252,7 +252,9 @@ class JulesTerminal {
                         await Promise.all([
                             this.loadPullRequestsForRepo(sourceName),
                             this.loadActiveSessionsForRepo(sourceName)
-                        ]);
+                        ]).catch(error => {
+                            JulesTerminal.getTelemetryUtils()?.dispatchEvent("BACKGROUND_FETCH_FAILED", error);
+                        });
                     } else {
                         this.polling._clearPollingAndCache();
                         this.getEl("julesTerminal").innerHTML = DOMUtils.getTerminalIndicatorHTML("Awaiting repository connection...");
@@ -382,10 +384,10 @@ class JulesTerminal {
 
         if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
 
-        // ⚡ Bolt+: The O(n) Eradication. Avoid intermediate array allocation from .map()
+        // ⚡ Performance Optimization: Avoid intermediate array allocation from .map() and iterator allocation from for...of.
         const currentSessionIds = new Set();
-        for (const s of repoSessions) {
-            currentSessionIds.add(s.id);
+        for (let i = 0; i < repoSessions.length; i++) {
+            currentSessionIds.add(repoSessions[i].id);
         }
         this.renderedSessionIds.forEach(id => !currentSessionIds.has(id) && this.dismissSession(id));
         repoSessions.forEach(session => this._processSession(session, terminal));

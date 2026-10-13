@@ -272,13 +272,30 @@ class RosterApp {
     const hasPinnedManager = Boolean(this.pinnedManager);
 
     let totalLength = 0;
+    let maxArrLen = 0;
     const catKeysLen = this.categoryKeys.length;
     for (let i = 0; i < catKeysLen; i++) {
         const arr = categorizedAgents[this.categoryKeys[i]];
-        if (arr) totalLength += arr.length;
+        if (arr) {
+            totalLength += arr.length;
+            if (arr.length > maxArrLen) maxArrLen = arr.length;
+        }
     }
     const flattenedAgents = new Array(totalLength);
     let offset = 0;
+
+    // ⚡ Bolt+: Typed-array linked list implementation eliminates internal intermediate array allocations per render.
+    if (!this._bucketHeads) {
+        this._bucketHeads = new Int32Array(8);
+        this._bucketTails = new Int32Array(8);
+        this._bucketNexts = new Int32Array(Math.max(1024, maxArrLen));
+    } else if (this._bucketNexts.length < maxArrLen) {
+        this._bucketNexts = new Int32Array(maxArrLen);
+    }
+
+    const heads = this._bucketHeads;
+    const tails = this._bucketTails;
+    const nexts = this._bucketNexts;
 
     for (let i = 0; i < catKeysLen; i++) {
         const key = this.categoryKeys[i];
@@ -286,6 +303,10 @@ class RosterApp {
         if (!arr || arr.length === 0) continue;
 
         const arrLen = arr.length;
+
+        heads[0] = -1; heads[1] = -1; heads[2] = -1; heads[3] = -1;
+        heads[4] = -1; heads[5] = -1; heads[6] = -1; heads[7] = -1;
+
         for (let j = 0; j < arrLen; j++) {
             const item = arr[j];
             item.gridCategory = key;
@@ -299,13 +320,24 @@ class RosterApp {
                 const name = agent.name;
                 if (name && name.endsWith("+")) score += 1;
             }
-            item._sortScore = score;
+
+            nexts[j] = -1;
+            const head = heads[score];
+            if (head === -1) {
+                heads[score] = j;
+                tails[score] = j;
+            } else {
+                nexts[tails[score]] = j;
+                tails[score] = j;
+            }
         }
 
-        arr.sort((a, b) => b._sortScore - a._sortScore);
-
-        for (let j = 0; j < arrLen; j++) {
-            flattenedAgents[offset++] = arr[j];
+        for (let score = 7; score >= 0; score--) {
+            let curr = heads[score];
+            while (curr !== -1) {
+                flattenedAgents[offset++] = arr[curr];
+                curr = nexts[curr];
+            }
         }
     }
 

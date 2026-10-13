@@ -67,6 +67,8 @@ async function processDirectory(dirPath, isCustom, targetFolder) {
                     relativePath = `prompts/fusions/${file}`;
                 } else if (targetFolder === 'micro') {
                     relativePath = `prompts/micro/${file}`;
+                } else if (targetFolder === 'mythics') {
+                    relativePath = `prompts/mythics/${file}`;
                 }
 
                 return {
@@ -98,14 +100,16 @@ async function buildRoster() {
     const promptsDir = path.join(rootDir, 'prompts');
     const fusionsDir = path.join(rootDir, 'prompts', 'fusions');
     const microDir = path.join(rootDir, 'prompts', 'micro');
+    const mythicsDir = path.join(rootDir, 'prompts', 'mythics');
 
-    const [coreAgents, fusionAgents, microAgents] = await Promise.all([
+    const [coreAgents, fusionAgents, microAgents, mythicAgents] = await Promise.all([
         processDirectory(promptsDir, false, null),
         processDirectory(fusionsDir, true, 'fusions'),
-        processDirectory(microDir, true, 'micro')
+        processDirectory(microDir, true, 'micro'),
+        processDirectory(mythicsDir, true, 'mythics')
     ]);
 
-    const agents = [...coreAgents, ...fusionAgents, ...microAgents];
+    const agents = [...coreAgents, ...fusionAgents, ...microAgents, ...mythicAgents];
 
     const outputPath = path.join(rootDir, 'roster-payload.json');
     await fs.promises.writeFile(outputPath, JSON.stringify(agents, null, 2) + '\n');

@@ -125,6 +125,45 @@ describe('JulesTerminal', () => {
             expect(picker.innerHTML).toBe(`<option value="">${originalText}</option>`);
         });
 
+        it('event listener handles concurrent fetch errors gracefully', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            delete picker.dataset.listenerAttached;
+
+            // Re-clone to remove existing listeners
+            const clone = picker.cloneNode(true);
+            delete clone.dataset.listenerAttached;
+            picker.parentNode.replaceChild(clone, picker);
+            manager.getEl = jest.fn((id) => {
+                if (id === 'julesRepoPicker') return clone;
+                if (id === 'julesTerminal') return document.getElementById('julesTerminal');
+                return document.getElementById(id);
+            });
+
+            global.window.julesAPI.getSources.mockResolvedValueOnce({
+                sources: [{ name: 'owner/repo' }]
+            });
+
+            const mockError = new Error('Concurrent load error');
+            manager.loadPullRequestsForRepo = jest.fn().mockRejectedValue(mockError);
+            manager.loadActiveSessionsForRepo = jest.fn().mockResolvedValue(null);
+
+            let capturedHandler = null;
+            const originalAddEventListener = clone.addEventListener;
+            clone.addEventListener = jest.fn((event, handler) => {
+                if (event === 'change') capturedHandler = handler;
+                if (originalAddEventListener) originalAddEventListener.call(clone, event, handler);
+            });
+
+            await manager.loadSources();
+
+            expect(capturedHandler).not.toBeNull();
+
+            await capturedHandler({ target: { value: 'owner/repo' } });
+
+            expect(manager.loadPullRequestsForRepo).toHaveBeenCalledWith('owner/repo');
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BACKGROUND_FETCH_FAILED", mockError);
+        });
+
         it('event listener triggers data fetch for valid source selection', async () => {
             const picker = document.getElementById("julesRepoPicker");
             delete picker.dataset.listenerAttached;
@@ -276,6 +315,33 @@ describe('JulesTerminal', () => {
             await Promise.resolve();
 
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
+        });
+
+        it('does not dispatch BACKGROUND_FETCH_FAILED telemetry event if loadSources fails and TelemetryUtils is missing during save configuration', async () => {
+            global.StorageUtils.getItem.mockReturnValue(null);
+
+            await manager.init();
+
+            const keyInput = document.getElementById('julesApiKeyInput');
+            keyInput.value = 'new_valid_key';
+            const saveBtn = document.getElementById('saveSettingsBtn');
+
+            const mockError = new Error('Save fetch failed');
+            manager.loadSources.mockRejectedValueOnce(mockError);
+
+            jest.spyOn(JulesTerminal, 'getTelemetryUtils').mockReturnValueOnce(null);
+
+            try {
+                saveBtn.click();
+
+                await Promise.resolve();
+                await Promise.resolve();
+                await Promise.resolve();
+
+                expect(global.TelemetryUtils.dispatchEvent).not.toHaveBeenCalled();
+            } finally {
+                JulesTerminal.getTelemetryUtils.mockRestore();
+            }
         });
 
         it('dispatches CONFIGURATION_FAILED telemetry event and shows error toast if save configuration fails', async () => {
@@ -495,12 +561,32 @@ describe('JulesTerminal', () => {
             expect(global.window.julesAPI.createSession).toHaveBeenCalledWith('fetched prompt', 'task description', 'owner/repo', 'TestAgent');
         });
 
+        it('handles fetchPrompt failure gracefully', async () => {
+            const agent = { name: 'TestAgent' };
+            const mockError = new Error('Fetch Error');
+            mockApp.agentRepo.fetchPrompt.mockRejectedValue(mockError);
+
+            await manager.launchSession(agent);
+
+            await Promise.resolve();
+            await Promise.resolve();
+            await Promise.resolve();
+
+            expect(mockApp.toast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session: Fetch Error'), TOAST_TYPES.ERROR, 20000);
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('JULES_LAUNCH_SESSION_FAILED', expect.any(Error), { sourceName: 'owner/repo' });
+            expect(global.window.julesAPI.createSession).not.toHaveBeenCalled();
+            expect(manager._fetchAndRenderSessions).not.toHaveBeenCalled();
+        });
+
         it('handles launch failure gracefully', async () => {
             const agent = { name: 'TestAgent', prompt: 'test' };
             const mockError = new Error('API Error');
+            const btn = document.createElement('button');
+            jest.spyOn(DOMUtils, 'setButtonState');
+            manager._checkEmptyTerminal = jest.fn();
             global.window.julesAPI.createSession.mockRejectedValue(mockError);
 
-            await manager.launchSession(agent);
+            await manager.launchSession(agent, btn);
 
             await Promise.resolve();
             await Promise.resolve();
@@ -509,20 +595,27 @@ describe('JulesTerminal', () => {
             expect(mockApp.toast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session: API Error'), TOAST_TYPES.ERROR, 20000);
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('JULES_LAUNCH_SESSION_FAILED', expect.any(Error), { sourceName: 'owner/repo' });
             expect(manager._fetchAndRenderSessions).not.toHaveBeenCalled();
+            expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, BUTTON_STATES.READY, "Launch in Jules 🚀");
+            expect(manager._checkEmptyTerminal).toHaveBeenCalled();
         });
 
         it('dispatches SESSION_SYNC_TIMEOUT if _fetchAndRenderSessions fails', async () => {
             const agent = { name: 'TestAgent', prompt: 'test' };
             const mockError = new Error('Poll Error');
+            const btn = document.createElement('button');
+            jest.spyOn(DOMUtils, 'setButtonState');
+            manager._checkEmptyTerminal = jest.fn();
             manager._fetchAndRenderSessions.mockRejectedValue(mockError);
 
-            await manager.launchSession(agent);
+            await manager.launchSession(agent, btn);
 
             await Promise.resolve();
             await Promise.resolve();
             await Promise.resolve();
 
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('SESSION_SYNC_TIMEOUT', mockError);
+            expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, BUTTON_STATES.READY, "Launch in Jules 🚀");
+            expect(manager._checkEmptyTerminal).toHaveBeenCalled();
         });
     });
 

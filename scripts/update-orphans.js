@@ -62,24 +62,26 @@ async function updateOrphans() {
     // Sort empty slots for deterministic output
     emptySlots.sort();
 
-    // 3. Read fusions
-    const fusions = (await fs.promises.readdir(fusionsDir)).filter(f => f.endsWith('.md') && f !== 'README.md');
-
     // Ensure orphans dir exists
     await fs.promises.mkdir(orphansDir, { recursive: true });
 
-    const newlyOrphaned = (await Promise.all(
-        fusions.map(async (file) => {
-            const filePath = path.join(fusionsDir, file);
-            const content = await fs.promises.readFile(filePath, 'utf8');
-            const { attributes } = parseMarkdownFrontmatter(content);
-            const name = attributes.name || file.replace('.md', '');
-            if (!referencedAgents.has(name)) {
-                return { file, filePath, name };
-            }
-            return null;
-        })
-    )).filter(Boolean);
+    // 3. Read fusions (asynchronous iteration for improved performance and lower memory footprint)
+    const newlyOrphaned = [];
+    const dir = await fs.promises.readdir(fusionsDir, { withFileTypes: true });
+    for (const dirent of dir) {
+        if (!dirent.isFile()) continue;
+        const file = dirent.name;
+        if (!file.endsWith('.md') || file === 'README.md') continue;
+
+        const filePath = path.join(fusionsDir, file);
+        const content = await fs.promises.readFile(filePath, 'utf8');
+        const { attributes } = parseMarkdownFrontmatter(content);
+        const name = attributes.name || file.replace('.md', '');
+
+        if (!referencedAgents.has(name)) {
+            newlyOrphaned.push({ file, filePath, name });
+        }
+    }
 
     // 4. Move orphaned files
     await Promise.all(newlyOrphaned.map(async (orphan) => {

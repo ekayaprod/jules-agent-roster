@@ -9,11 +9,7 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 ## Missing Combinations
 
 - `Dispatch,Dispatch`
-- `Dispatch,Vibe Check`
-- `Helix,Vibe Check`
-- `Modernizer,Vibe Check`
 - `Overseer,Overseer`
-- `Overseer,Scavenger`
 - `Overseer,Vibe Check`
 - `Scribe,Vibe Check`
 - `Untangler,Vibe`

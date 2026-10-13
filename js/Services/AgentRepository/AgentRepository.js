@@ -15,7 +15,6 @@ class AgentRepository {
     }
 
     async _fetchPayload() {
-        // ⚡ Bolt+: The Waterfall Collapse. Unblocked the two-stage fetching and JSON parsing cycles into a single chained execution matrix, eliminating an artificial blocking tick.
         return NetworkUtils.fetchWithRetry("./roster-payload.json", { throwOn404: false })
             .then(res => this.safeJsonParse(res, "./roster-payload.json"))
             .catch(err => {
@@ -27,7 +26,6 @@ class AgentRepository {
     }
 
     async _fetchFusionMatrix() {
-        // ⚡ Bolt+: The Waterfall Collapse. Unblocked the two-stage fetching and JSON parsing cycles into a single chained execution matrix, eliminating an artificial blocking tick.
         return NetworkUtils.fetchWithRetry("./fusion_matrix.json", { throwOn404: false })
             .then(res => res && res.ok ? this.safeJsonParse(res, "./fusion_matrix.json") : {})
             .catch(err => {
@@ -46,7 +44,6 @@ class AgentRepository {
      * @throws {Error} If loading fails.
      */
     async fetchAgents() {
-        // ⚡ Bolt+: The Waterfall Collapse. Unblocked the two-stage fetching and JSON parsing cycles into a single chained execution matrix, eliminating an artificial blocking tick.
         const [payload, fusionMatrixData] = await Promise.all([
             this._fetchPayload(),
             this._fetchFusionMatrix()
@@ -68,7 +65,6 @@ class AgentRepository {
 
         this.agents = this.validateAgentsData(standardAgentsRaw);
 
-        // 🧬 COLLAPSE: Functional reduce pipeline directly constructing the customAgents dictionary.
         this.customAgents = customAgentsRaw.reduce((acc, agent) => {
             const validation = this.validateCustomAgent(agent.name, agent);
             if (validation.valid) acc[agent.name] = validation.sanitized;
@@ -100,7 +96,6 @@ class AgentRepository {
     async fetchPrompt(name, url, fallback) {
         // If this exact prompt is currently being fetched, wait for the existing promise.
         // Prevent concurrent identical fetch requests.
-        // 🧬 COLLAPSE: Condensed redundant cache checks and assignments into native null-coalescing operations.
         this._pendingPrompts ??= {};
         return this._pendingPrompts[url] ??= this._executeFetchPrompt(name, url, fallback);
     }
@@ -140,10 +135,7 @@ class AgentRepository {
             throw new Error("Provide a valid list of agents in the expected format.");
         }
 
-        // ↗️ VECTORIZE: The Single-Pass Bypass. We ignore the heavily abstracted layers and execute the calculation in one direct, zero-allocation pass.
-        // ⚡ Bolt+: The O(n²) Eradication. Replaced a nested array linear search with a pre-computed Set dictionary lookup, dropping algorithmic complexity to O(1) per loop iteration.
         const validCategoriesSet = new Set(Object.keys(CONFIG.categories));
-        // 🧬 COLLAPSE: Collapsed sprawling validation accumulator loop into a single-pass reduce pipeline.
         return agentPayload.reduce((acc, agent) => {
             if (!agent || typeof agent.name !== "string") return acc;
 

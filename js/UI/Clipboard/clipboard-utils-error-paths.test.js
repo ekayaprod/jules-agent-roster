@@ -7,6 +7,9 @@ describe('ClipboardUtils API fail catch block missing coverage', () => {
     let originalGlobalTelemetryUtils;
 
     beforeEach(() => {
+        if (!global.navigator) {
+             global.navigator = {};
+        }
         originalClipboard = global.navigator.clipboard;
         originalExecCommand = document.execCommand;
         originalWindowTelemetryUtils = window.TelemetryUtils;
@@ -14,11 +17,6 @@ describe('ClipboardUtils API fail catch block missing coverage', () => {
 
         window.TelemetryUtils = { dispatchEvent: jest.fn() };
         global.TelemetryUtils = window.TelemetryUtils;
-
-        // Try to safely mock navigator.clipboard
-        if (!global.navigator) {
-             global.navigator = {};
-        }
 
         global.navigator.clipboard = {
             writeText: jest.fn()
@@ -46,6 +44,7 @@ describe('ClipboardUtils API fail catch block missing coverage', () => {
 
         const result = await ClipboardUtils.copyText('test text');
 
+        expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
         expect(document.execCommand).toHaveBeenCalledWith('copy');
         expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("CLIPBOARD_API_FAILED", mockApiError);
         expect(result).toBe(true);

@@ -16,6 +16,7 @@ class TelemetryUtils {
             ...additionalContext
         };
         try {
+            // Using ES2019 optional catch binding to avoid unused parameters
             console.error(JSON.stringify(payload));
         } catch {
             payload.error_payload_stringification_failed = true;

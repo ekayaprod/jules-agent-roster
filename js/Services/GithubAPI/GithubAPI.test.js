@@ -88,6 +88,14 @@ describe('GithubAPI', () => {
                  name: 'GithubNetworkError'
              });
 
+             expect(console.error).toHaveBeenCalledWith(
+                 '[GithubAPI] Request timeout: ',
+                 expect.objectContaining({
+                     message: 'Request to /test timed out after 15s.',
+                     status: 408,
+                     name: 'GithubNetworkError'
+                 })
+             );
         });
 
         it('should handle generic errors', async () => {
@@ -96,6 +104,10 @@ describe('GithubAPI', () => {
 
              await expect(api._fetch('/test')).rejects.toThrow('Generic Error');
 
+             expect(console.error).toHaveBeenCalledWith(
+                 '[GithubAPI] Request to /test failed: ',
+                 genericError
+             );
         });
 
         it('should handle successful response but failing json parsing', async () => {
@@ -118,6 +130,26 @@ describe('GithubAPI', () => {
              });
 
              await expect(api._fetch('/test')).rejects.toThrow('Client Error: Failed to parse error response: Failed to parse error response JSON');
+        });
+
+        it('should fallback to default error message if errorData.message is missing', async () => {
+            global.fetch.mockResolvedValueOnce({
+                ok: false,
+                status: 418,
+                json: async () => ({})
+            });
+
+            await expect(api._fetch('/test')).rejects.toThrow('Client Error: Github API Error (418)');
+        });
+
+        it('should not prepend Client/Server Error if status is outside 4xx and 5xx', async () => {
+            global.fetch.mockResolvedValueOnce({
+                ok: false,
+                status: 302,
+                json: async () => ({ message: 'Found' })
+            });
+
+            await expect(api._fetch('/test')).rejects.toThrow('Found');
         });
     });
 

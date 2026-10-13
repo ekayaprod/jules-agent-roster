@@ -156,6 +156,31 @@ describe('SingularityBespokeBuilder', () => {
       expect(builder.elements.missionInput.classList.contains('border-error')).toBe(true);
       expect(focusSpy).toHaveBeenCalled();
     });
+
+    it('should handle terminal launchSession failure and show default error UI when error has no message', async () => {
+      global.fetch.mockResolvedValueOnce({
+        ok: true,
+        text: () => Promise.resolve('Template with {{UI_MISSION_STATEMENT}}'),
+      });
+
+      mockTerminal.launchSession.mockImplementation(() => {
+        throw new Error();
+      });
+
+      builder.init();
+      builder.elements.missionInput.value = 'Failing Mission';
+
+      const focusSpy = jest.spyOn(builder.elements.missionInput, 'focus');
+
+      await builder.handleForge();
+
+      expect(mockTerminal.launchSession).toHaveBeenCalled();
+
+      expect(builder.elements.errorWrapper.classList.contains('hidden')).toBe(false);
+      expect(builder.elements.errorText.innerText).toBe('Failed to forge agent. Try again.');
+      expect(builder.elements.missionInput.classList.contains('border-error')).toBe(true);
+      expect(focusSpy).toHaveBeenCalled();
+    });
   });
 });
 

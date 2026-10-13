@@ -86,13 +86,15 @@ class LLMRouter {
     }
 
     _validateMessages(messages) {
-        if (!Array.isArray(messages) || messages.length === 0) {
-            throw new LLMValidationError("Payload must contain a non-empty array of messages.");
-        }
-        for (const msg of messages) {
-            if (!msg.role || !msg.content || typeof msg.role !== 'string' || typeof msg.content !== 'string') {
-                throw new LLMValidationError("Each message must have string 'role' and 'content' properties.");
-            }
+        const MessagesSchema = z.array(z.object({
+            role: z.string(),
+            content: z.string()
+        })).min(1);
+
+        try {
+            MessagesSchema.parse(messages);
+        } catch (error) {
+            throw new LLMValidationError("Payload must contain a non-empty array of messages with 'role' and 'content'.");
         }
     }
 
@@ -193,7 +195,7 @@ class LLMRouter {
     /**
      * Route a request to Anthropic Messages API
      */
-    async chatAnthropic(messages, model = "claude-sonnet-3-7", temperature = 0.7, maxTokens = 4096) {
+    async chatAnthropic(messages, model = "claude-sonnet-5-5", temperature = 0.7, maxTokens = 4096) {
         this._validateAuthHeader(this.anthropicKey, "Anthropic");
         this._validateMessages(messages);
 
