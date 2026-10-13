@@ -110,6 +110,17 @@ describe('GithubAPI', () => {
              );
         });
 
+        it('should handle falsy/null errors gracefully without crashing', async () => {
+             global.fetch.mockRejectedValueOnce(null);
+
+             await expect(api._fetch('/test')).rejects.toBeNull();
+
+             expect(console.error).toHaveBeenCalledWith(
+                 '[GithubAPI] Request to /test failed: ',
+                 null
+             );
+        });
+
         it('should handle successful response but failing json parsing', async () => {
              const jsonError = new Error('JSON parsing error');
              global.fetch.mockResolvedValueOnce({
