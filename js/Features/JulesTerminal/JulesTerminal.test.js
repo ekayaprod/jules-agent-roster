@@ -317,6 +317,35 @@ describe('JulesTerminal', () => {
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
         });
 
+        it('does not dispatch BACKGROUND_FETCH_FAILED telemetry event if loadSources fails and TelemetryUtils is missing during loadSources fetch error', async () => {
+            global.StorageUtils.getItem.mockReturnValue(null);
+
+            await manager.init(); // Sets up event listeners
+
+            const keyInput = document.getElementById('julesApiKeyInput');
+            keyInput.value = 'new_valid_key';
+            const saveBtn = document.getElementById('saveSettingsBtn');
+
+            const mockError = new Error('Save fetch failed');
+            manager.loadSources.mockRejectedValueOnce(mockError);
+
+            jest.spyOn(JulesTerminal, 'getTelemetryUtils').mockReturnValueOnce(null);
+
+            try {
+                // Execute
+                saveBtn.click();
+
+                // Wait for promises in the async event listener
+                await Promise.resolve(); // for the initial async handler ticks
+                await Promise.resolve(); // for loadSources catch block
+                await Promise.resolve();
+
+                expect(global.TelemetryUtils.dispatchEvent).not.toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
+            } finally {
+                JulesTerminal.getTelemetryUtils.mockRestore();
+            }
+        });
+
         it('does not dispatch BACKGROUND_FETCH_FAILED telemetry event if loadSources fails and TelemetryUtils is missing during save configuration', async () => {
             global.StorageUtils.getItem.mockReturnValue(null);
 
@@ -342,6 +371,72 @@ describe('JulesTerminal', () => {
             } finally {
                 JulesTerminal.getTelemetryUtils.mockRestore();
             }
+        });
+
+        it('does not dispatch CONFIGURATION_FAILED telemetry event if configure fails and TelemetryUtils is missing', async () => {
+            global.StorageUtils.getItem.mockReturnValue(null);
+            await manager.init();
+
+            const keyInput = document.getElementById('julesApiKeyInput');
+            keyInput.value = 'new_valid_key';
+            const saveBtn = document.getElementById('saveSettingsBtn');
+
+            const mockError = new Error('Configure failed');
+            global.window.julesAPI.configure.mockImplementation(() => {
+                throw mockError;
+            });
+
+            jest.spyOn(JulesTerminal, 'getTelemetryUtils').mockReturnValueOnce(null);
+
+            try {
+                await saveBtn.click();
+            } catch(e) {
+                // Expected
+            }
+
+            await Promise.resolve(); // flush promise queue
+
+            expect(global.TelemetryUtils.dispatchEvent).not.toHaveBeenCalledWith('CONFIGURATION_FAILED', mockError);
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to configure APIs.", TOAST_TYPES.ERROR);
+
+            JulesTerminal.getTelemetryUtils.mockRestore();
+        });
+
+        it('does not throw if app or toast is missing when configure fails', async () => {
+            global.StorageUtils.getItem.mockReturnValue(null);
+
+            // Re-create manager with mock app without toast
+            const tempApp = { toast: undefined };
+            const tempManager = new JulesTerminal(tempApp);
+            // Mock required methods
+            tempManager.modals = {
+                _initInteractionModal: jest.fn(),
+                _initPRModal: jest.fn(),
+                _clearKeyError: jest.fn(),
+                _showKeyError: jest.fn()
+            };
+            tempManager.loadSources = jest.fn().mockResolvedValue();
+
+            await tempManager.init();
+
+            const keyInput = document.getElementById('julesApiKeyInput');
+            keyInput.value = 'new_valid_key';
+            const saveBtn = document.getElementById('saveSettingsBtn');
+
+            const mockError = new Error('Configure failed');
+            global.window.julesAPI.configure.mockImplementation(() => {
+                throw mockError;
+            });
+
+            try {
+                await saveBtn.click();
+            } catch(e) {
+                // Expected
+            }
+
+            await Promise.resolve(); // flush promise queue
+
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CONFIGURATION_FAILED', mockError);
         });
 
         it('dispatches CONFIGURATION_FAILED telemetry event and shows error toast if save configuration fails', async () => {
