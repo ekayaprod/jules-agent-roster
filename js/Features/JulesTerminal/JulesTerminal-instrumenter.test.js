@@ -1,7 +1,8 @@
 global.JulesModals = class { constructor() {} setupConfigModal() {} setupLaunchModal() {} };
 global.TerminalPolling = class { constructor() {} };
-global.DOMUtils = { createEl: jest.fn(), getEl: jest.fn(), on: jest.fn(), setButtonState: jest.fn() };
+global.DOMUtils = { createEl: jest.fn(), getEl: jest.fn(), on: jest.fn(), setButtonState: jest.fn(), getTerminalSessionHTML: jest.fn().mockReturnValue('<div></div>') };
 global.TOAST_TYPES = { ERROR: "error" };
+global.MESSAGES = { NO_PROTOCOL_DATA: "No protocol data" };
 
 const JulesTerminal = require('./JulesTerminal.js');
 
@@ -61,5 +62,32 @@ describe('JulesTerminal - Instrumenter', () => {
         await terminal._processSessionQueue();
 
         expect(tuMock.dispatchEvent).toHaveBeenCalledWith("QUEUE_EXECUTION_ERROR", expect.any(Error));
+    });
+
+    test('launchSession queue dispatch handlesSESSION_SYNC_TIMEOUT properly on fetch/render failure', async () => {
+        const tuMock = { dispatchEvent: jest.fn() };
+        JulesTerminal.getTelemetryUtils = jest.fn().mockReturnValue(tuMock);
+
+        const mockAgent = { name: "TestAgent", prompt: "Test prompt", emoji: "🤖" };
+
+        let originalText = "Select Repository";
+        const picker = document.getElementById('julesRepoPicker');
+        picker.innerHTML = `<option value="test-source">${originalText}</option>`;
+        picker.value = "test-source";
+
+        document.body.innerHTML += '<input id="julesTaskInput" value="Test task" />';
+
+        // Simulate createSession succeeding
+        window.julesAPI.createSession = jest.fn().mockResolvedValue(true);
+
+        const mockError = new Error("Fetch Failed");
+        terminal._fetchAndRenderSessions = jest.fn().mockRejectedValue(mockError);
+
+        await terminal.launchSession(mockAgent);
+
+        await Promise.resolve();
+        await Promise.resolve();
+
+        expect(tuMock.dispatchEvent).toHaveBeenCalledWith("SESSION_SYNC_TIMEOUT", mockError);
     });
 });
