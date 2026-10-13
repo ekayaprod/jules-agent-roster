@@ -2107,7 +2107,7 @@
     "category": "Architecture",
     "tier": "Mythic",
     "description": "RUPTURE monolithic software architectures into strictly isolated, autonomous domain packages along natural fault lines to prevent collapse.",
-    "forge_version": "V86.3",
+    "forge_version": "V88.9",
     "promptFile": "prompts/fusions/Tectonic.md",
     "isCustom": true
   },
