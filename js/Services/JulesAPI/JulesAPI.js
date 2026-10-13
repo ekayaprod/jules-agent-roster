@@ -88,6 +88,7 @@ class JulesAPI {
                 } catch (e) {
                    // Fallback if parsing fails
                    if (tu) tu.dispatchEvent("JULES_API_PARSE_ERROR", e, { path });
+                   else console.error("[JulesAPI] Failed to parse error response JSON", e);
                 }
 
                 if (response.status >= 400 && response.status < 500) {
