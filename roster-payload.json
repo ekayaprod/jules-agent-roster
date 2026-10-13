@@ -1579,7 +1579,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "REVEAL the authentic execution path by stripping synthetic AI abstractions and mutating the remnants into native, structurally sound syntax.",
-    "forge_version": "CURRENT_FORGE_VERSION",
+    "forge_version": "V88.8",
     "promptFile": "prompts/fusions/Realist.md",
     "isCustom": true
   },
@@ -2043,6 +2043,17 @@
     "description": "MIGRATE deprecated consumer references to modern standards when performing major package version bumps.",
     "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Synchronizer.md",
+    "isCustom": true
+  },
+  {
+    "name": "Syncopator",
+    "emoji": "🎶",
+    "role": "Jive Centrifuge",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "SYNCOPATE bloated, vibe-coded logic into highly dense, native functional pipelines.",
+    "forge_version": "V88.8",
+    "promptFile": "prompts/fusions/Syncopator.md",
     "isCustom": true
   },
   {
