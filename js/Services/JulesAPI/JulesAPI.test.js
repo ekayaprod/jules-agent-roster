@@ -172,6 +172,15 @@ describe('JulesAPI', () => {
             global.fetch.mockRejectedValueOnce(new TypeError('Failed to fetch'));
             await expect(api._fetch('/test')).rejects.toThrow(TypeError);
         });
+
+        it('should rethrow errors when parsing successful response JSON fails', async () => {
+            const jsonError = new Error('Invalid JSON');
+            global.fetch.mockResolvedValueOnce({
+                ok: true,
+                json: async () => { throw jsonError; }
+            });
+            await expect(api._fetch('/test')).rejects.toThrow(jsonError);
+        });
     });
 
     describe('Endpoints', () => {
