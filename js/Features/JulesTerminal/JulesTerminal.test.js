@@ -93,6 +93,26 @@ describe('JulesTerminal', () => {
             expect(mockApp.toast.show).toHaveBeenCalledWith("Unable to connect to GitHub: Please check your credentials and try again.", true);
         });
 
+        it('handles error in loadSources when TelemetryUtils is missing', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            const originalText = picker.options[0].textContent;
+            const mockError = new Error("Test connection error");
+            global.window.julesAPI.getSources.mockRejectedValueOnce(mockError);
+
+            jest.spyOn(JulesTerminal, 'getTelemetryUtils').mockReturnValueOnce(null);
+
+            try {
+                await manager.loadSources();
+
+                expect(picker.innerHTML).toBe(`<option value="">${originalText}</option>`);
+                expect(picker.disabled).toBe(false);
+                expect(global.TelemetryUtils.dispatchEvent).not.toHaveBeenCalled();
+                expect(mockApp.toast.show).toHaveBeenCalledWith("Unable to connect to GitHub: Test connection error", true);
+            } finally {
+                JulesTerminal.getTelemetryUtils.mockRestore();
+            }
+        });
+
         it('populates the dropdown when sources are present', async () => {
             const picker = document.getElementById("julesRepoPicker");
             global.window.julesAPI.getSources.mockResolvedValueOnce({
@@ -162,6 +182,51 @@ describe('JulesTerminal', () => {
 
             expect(manager.loadPullRequestsForRepo).toHaveBeenCalledWith('owner/repo');
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BACKGROUND_FETCH_FAILED", mockError);
+        });
+
+        it('event listener handles concurrent fetch errors gracefully when TelemetryUtils is missing', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            delete picker.dataset.listenerAttached;
+
+            // Re-clone to remove existing listeners
+            const clone = picker.cloneNode(true);
+            delete clone.dataset.listenerAttached;
+            picker.parentNode.replaceChild(clone, picker);
+            manager.getEl = jest.fn((id) => {
+                if (id === 'julesRepoPicker') return clone;
+                if (id === 'julesTerminal') return document.getElementById('julesTerminal');
+                return document.getElementById(id);
+            });
+
+            global.window.julesAPI.getSources.mockResolvedValueOnce({
+                sources: [{ name: 'owner/repo' }]
+            });
+
+            const mockError = new Error('Concurrent load error');
+            manager.loadPullRequestsForRepo = jest.fn().mockRejectedValue(mockError);
+            manager.loadActiveSessionsForRepo = jest.fn().mockResolvedValue(null);
+
+            let capturedHandler = null;
+            const originalAddEventListener = clone.addEventListener;
+            clone.addEventListener = jest.fn((event, handler) => {
+                if (event === 'change') capturedHandler = handler;
+                if (originalAddEventListener) originalAddEventListener.call(clone, event, handler);
+            });
+
+            await manager.loadSources();
+
+            expect(capturedHandler).not.toBeNull();
+
+            jest.spyOn(JulesTerminal, 'getTelemetryUtils').mockReturnValueOnce(null);
+
+            try {
+                await capturedHandler({ target: { value: 'owner/repo' } });
+
+                expect(manager.loadPullRequestsForRepo).toHaveBeenCalledWith('owner/repo');
+                expect(global.TelemetryUtils.dispatchEvent).not.toHaveBeenCalled();
+            } finally {
+                JulesTerminal.getTelemetryUtils.mockRestore();
+            }
         });
 
         it('event listener triggers data fetch for valid source selection', async () => {
