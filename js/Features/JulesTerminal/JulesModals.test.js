@@ -295,6 +295,30 @@ describe('JulesTerminal', () => {
             window.TelemetryUtils = originalTelemetryUtils;
         });
 
+        it('should safely strip href on URL parsing failure when telemetry is completely missing', () => {
+            mockElements.prModalExternalLink.removeAttribute = jest.fn();
+            const originalURL = global.URL;
+            const errorToThrow = new TypeError('Invalid URL');
+            global.URL = jest.fn(() => {
+                throw errorToThrow;
+            });
+
+            const originalJulesTerminal = global.JulesTerminal;
+            delete global.JulesTerminal;
+
+            const originalTelemetryUtils = window.TelemetryUtils;
+            delete window.TelemetryUtils; // simulate missing
+
+            modals._showPRModal({ ...mockPR, html_url: 'invalid' });
+
+            expect(mockElements.prModalExternalLink.removeAttribute).toHaveBeenCalledWith('href');
+
+            // Restore original URL and globals
+            global.URL = originalURL;
+            global.JulesTerminal = originalJulesTerminal;
+            window.TelemetryUtils = originalTelemetryUtils;
+        });
+
         it('should gracefully handle URL parsing error when both JulesTerminal and window are undefined', () => {
             mockElements.prModalExternalLink.removeAttribute = jest.fn();
             const originalURL = global.URL;
