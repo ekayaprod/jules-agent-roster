@@ -767,6 +767,33 @@ describe('JulesTerminal', () => {
             expect(manager._checkEmptyTerminal).toHaveBeenCalled();
         });
 
+        it('does not dispatch JULES_LAUNCH_SESSION_FAILED if TelemetryUtils is null', async () => {
+            const originalTelemetryUtils = global.TelemetryUtils;
+            delete global.TelemetryUtils;
+
+            try {
+                const agent = { name: 'TestAgent', prompt: 'test' };
+                const mockError = new Error('API Error');
+                const btn = document.createElement('button');
+                jest.spyOn(DOMUtils, 'setButtonState');
+                manager._checkEmptyTerminal = jest.fn();
+                global.window.julesAPI.createSession.mockRejectedValue(mockError);
+
+                await manager.launchSession(agent, btn);
+
+                await Promise.resolve();
+                await Promise.resolve();
+                await Promise.resolve();
+
+                expect(mockApp.toast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session: API Error'), TOAST_TYPES.ERROR, 20000);
+                expect(manager._fetchAndRenderSessions).not.toHaveBeenCalled();
+                expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, BUTTON_STATES.READY, "Launch in Jules 🚀");
+                expect(manager._checkEmptyTerminal).toHaveBeenCalled();
+            } finally {
+                global.TelemetryUtils = originalTelemetryUtils;
+            }
+        });
+
         it('dispatches SESSION_SYNC_TIMEOUT if _fetchAndRenderSessions fails', async () => {
             const agent = { name: 'TestAgent', prompt: 'test' };
             const mockError = new Error('Poll Error');
