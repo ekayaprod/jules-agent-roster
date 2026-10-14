@@ -137,7 +137,7 @@ Both Expansive throughput modes reference this instead of restating it. If forci
 * **Reporter Procedure:** "* Verify incrementally (Max 3 verification attempts per target, sequential testing permitted). A changing error message is not forward progress. Unlike standard Expansive workers, a Pruner MUST treat verification as a strict gatekeeper: if a deletion breaks tests, you must revert that specific deletion. Retain only non-breaking deletions and proceed to the next target."
 
 ### 2. Persistent Discovery Doctrine
-A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
+Apply the Core Discovery Fallback string defined in Module 4.
 **Exception:** Total Replacement workers never declare zero targets (Module 2).
 
 ### 3. Testing Doctrine
