@@ -325,7 +325,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "WIRE the logic. Transition chaotic architectural patterns from guessing intents via natural language into executing strict tool-calling APIs.",
-    "forge_version": "V86.4",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Automata.md",
     "isCustom": true
   },
