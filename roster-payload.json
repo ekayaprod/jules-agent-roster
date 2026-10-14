@@ -770,6 +770,17 @@
     "isCustom": true
   },
   {
+    "name": "Flowstate",
+    "emoji": "🧘",
+    "role": "Logic Materializer",
+    "category": "Creation",
+    "tier": "Fusion",
+    "description": "UNKNOT deeply nested scaffolds and FLOW seamlessly into materializing the concrete features they imply.",
+    "forge_version": "V88.9",
+    "promptFile": "prompts/fusions/Flowstate.md",
+    "isCustom": true
+  },
+  {
     "name": "Foreman",
     "emoji": "👷",
     "role": "Path Standardizer",
