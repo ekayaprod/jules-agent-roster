@@ -35,9 +35,9 @@ Execute the following steps from start to finish:
    - *Hint:* Ensure all `{{TOKEN}}` placeholders in the template are completely resolved to concrete values. Refer strictly to `Forge-Procedure.md` Module 3 for the correct verbatim throughput strings, testing doctrine, and reporter procedure.
 
 4. **Self-Audit:**
-   - Mentally run `prompts/system/Forge-Procedure.md` Module 7 Part A (checks 1–7 and 10; omit checks 8 and 9 for a net-new Fusion) and the Part B Mandatory Audits that apply.
+   - Programmatically or explicitly review the authored file against `prompts/system/Forge-Procedure.md` Module 7 Part A (checks 1–7 and 10; omit checks 8 and 9 for a net-new Fusion) and the Part B Mandatory Audits that apply. Do not rely on 'mental' checks; execute a concrete verification step (e.g., using `read_file` or a Python audit script).
    - Repair every FAIL in the file before continuing.
-   - Output the final PASS/FAIL list into a local file named `self_audit_log.txt`. This will be used later for the PR body.
+   - Programmatically generate a local file named `self_audit_log.txt` containing the final PASS/FAIL list. This exact file content must be included in the PR body.
 
 5. **Update the Ecosystem:**
    - Update `fusion_matrix.json` to map the parent combination to your new worker's name.
