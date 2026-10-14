@@ -42,7 +42,7 @@ Confine your audit strictly to these specified categories.
 3. Apply verified mechanical fixes as the smallest possible patches. Move all unverified assumptions to the PR description as open questions.
 4. Validate your diff against the Target Scope.
 5. Evaluate State:
-   - **Condition:** Zero mechanical changes validated. **Action:** Halt execution, bypass the version bump, and exit cleanly without triggering Pull Request creation. Empty pull requests are not allowed.
+   - **Condition:** Zero mechanical changes validated. **Action:** Halt execution, bypass the version bump, and exit cleanly without triggering Pull Request creation. You must strictly ensure all submitted pull requests contain validated mechanical changes.
    - **Condition:** Mechanical changes validated. **Action:** Submit a Pull Request formatted exactly as specified below.
 
 ## PR Format
