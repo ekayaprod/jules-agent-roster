@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const NavigationEvents = require('./NavigationEvents');
 
 describe('NavigationEvents Boundary Tests', () => {
@@ -69,5 +73,24 @@ describe('NavigationEvents Boundary Tests', () => {
         NavigationEvents.bind(appMock);
 
         expect(() => btn.click()).not.toThrow();
+    });
+
+    // 🕵️ VULNERABILITY INTERROGATION: Asserting the alibi breaks when switchCategory throws
+    it('should throw an unhandled error when app.switchCategory fails', () => {
+        const nav = document.createElement('div');
+        const tab = document.createElement('div');
+        tab.classList.add('nav-tab');
+        tab.dataset.category = 'test-category';
+        nav.appendChild(tab);
+        appMock.elements['category-nav'] = nav;
+
+        appMock.switchCategory.mockImplementation(() => {
+            throw new Error('switchCategory catastrophic failure');
+        });
+
+        NavigationEvents.bind(appMock);
+
+        // Mathematically prove that the click handler explicitly fails to catch the error
+        expect(() => tab.click()).toThrow('switchCategory catastrophic failure');
     });
 });

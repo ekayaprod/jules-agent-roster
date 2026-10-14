@@ -64,6 +64,23 @@ describe('JulesTerminal - Instrumenter', () => {
         expect(tuMock.dispatchEvent).toHaveBeenCalledWith("QUEUE_EXECUTION_ERROR", expect.any(Error));
     });
 
+    // 🕵️ VULNERABILITY INTERROGATION: Asserting the alibi breaks when telemetry dispatch throws within the catch block
+    test('should throw an unhandled rejection when telemetry dispatch fails in _processSessionQueue catch block', async () => {
+        const tuMock = {
+            dispatchEvent: jest.fn().mockImplementation(() => {
+                throw new Error("Telemetry dispatch catastrophic failure");
+            })
+        };
+        JulesTerminal.getTelemetryUtils = jest.fn().mockReturnValue(tuMock);
+
+        terminal.sessionQueue = [
+            jest.fn().mockRejectedValue(new Error("Queue error"))
+        ];
+
+        // Mathematically prove that the queue processing explicitly fails to catch the nested telemetry error
+        await expect(terminal._processSessionQueue()).rejects.toThrow("Telemetry dispatch catastrophic failure");
+    });
+
     test('launchSession queue dispatch handlesSESSION_SYNC_TIMEOUT properly on fetch/render failure', async () => {
         const tuMock = { dispatchEvent: jest.fn() };
         JulesTerminal.getTelemetryUtils = jest.fn().mockReturnValue(tuMock);
