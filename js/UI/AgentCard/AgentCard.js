@@ -94,7 +94,7 @@ class AgentCard {
     const isFusionAgent = typeof index === 'string' && Number.isNaN(Number(index));
     const pinHtml =
       index !== undefined && index !== null && index !== '' && isFusionAgent
-        ? `<button class="icon-btn pin-btn ${pinClass} transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" aria-pressed="${String(Boolean(isPinned))}">📌</button>`
+        ? `<button class="icon-btn pin-btn ${pinClass} transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" aria-pressed="${String(Boolean(isPinned))}">📌</button>`
         : '';
 
     // Splay Out Child Fusions Logic (Refactored to Modal Trigger)
@@ -103,7 +103,7 @@ class AgentCard {
     const fusionIndex = window.rosterApp?.fusionLab?.fusionIndex;
 
     if (hasValidIndex && AgentCard._hasChildFusions(agent.name, fusionIndex)) {
-      fusionQuickListHtml = `<div class="fusions-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions" role="button" tabindex="0">▼</div>`;
+      fusionQuickListHtml = `<div class="fusions-hint transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions" role="button" tabindex="0">▼</div>`;
     }
 
     const repoPicker = document.getElementById('julesRepoPicker');
@@ -141,11 +141,11 @@ class AgentCard {
                         <div class="description mt-3">${desc}</div>
                     </div>
                     ${fusionQuickListHtml}
-                    <button class="flip-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" aria-label="Flip card to view protocol details" >↺</button>
+                    <button class="flip-hint transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" aria-label="Flip card to view protocol details" >↺</button>
                 </div>
 
                 <div class="flip-card-back" data-action="flip-card-back">
-                    <button class="flip-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" aria-label="Tap to view front" >↺</button>
+                    <button class="flip-hint transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" aria-label="Tap to view front" >↺</button>
                     <div class="prompt-scroll-area" id="prompt-content-${index}"></div>
                     
                     <div class="card-actions mt-auto pt-2 flex relative">
