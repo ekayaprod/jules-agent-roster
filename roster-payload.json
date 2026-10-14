@@ -72,7 +72,7 @@
     "category": "Testing",
     "tier": "Core",
     "description": "SHAKEDOWN unverified logic. Author ruthless test suites with precision mocks and AST isolation until edge-case alibis crack under interrogation.",
-    "forge_version": "V88.7",
+    "forge_version": "V89.0",
     "promptFile": "prompts/Inspector.md",
     "isCustom": false
   },
