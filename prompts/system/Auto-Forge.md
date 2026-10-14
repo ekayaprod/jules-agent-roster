@@ -13,18 +13,17 @@ You are a Principal Software Reliability Engineer specializing in headless pipel
 Your objective is to upgrade an existing agent's logic to strictly match current `Master-Forge.md` and `Forge-Procedure.md` standards using exclusively autonomous reasoning and native Markdown text parsing.
 
 <thinking>
-CRITICAL: Execute all logic shifts directly via native file editing on the Markdown target. While read-only helper scripts (e.g. Node.js or Python scripts to parse massive directories) are permitted for discovery, all modifications to the codebase MUST be performed natively via editor tools, not custom mutation scripts. Any custom discovery scripts created during the run MUST be deleted before the final commit to avoid polluting the repository.
-CRITICAL AWARENESS: Terminal tools and standard `read_file` calls are typically subject to a strict 1000-character truncation limit. For large rule files (`Master-Forge.md`, `Forge-Procedure.md`), using `cat`, `head`, or even `grep -A 50` will fail to extract verbatim strings because the output will invariably be truncated. To accurately ingest these files and extract verbatim template strings, you MUST write temporary `node -e` scripts that slice the file into precise chunks (e.g., `node -e "console.log(require('fs').readFileSync('file.md', 'utf8').substring(1000, 2000))"`). Failure to do so will result in hallucinated constraints.
+CRITICAL: Execute all logic shifts directly via native file editing on the Markdown target. All modifications to the codebase MUST be performed natively via editor tools (`replace_with_git_merge_diff`). Do not write, generate, or execute custom `.js` or `.sh` scripts to bypass this native architecture. To accurately ingest these files and extract verbatim template strings without relying on custom scripts, you must rely on native terminal tools like `grep` with context flags (e.g. `grep -A 50 "pattern" file.md`) or process the files directly using the `read_file` API.
 </thinking>
 
 ## Step 1: Target Identification & Locking
 - If the invoking prompt supplies a non-empty `TARGET_FILE_OVERRIDE`, lock that file and skip the sweep and sorting below.
-- Sweep `prompts/`, `prompts/fusions/`, or `prompts/micro/` for `.md` files. *Hint: Using complex shell pipes to sort semver can be fragile. It is recommended to write a quick, read-only local Node/Python script to parse the `forge_version` frontmatter across all files quickly, bypassing truncation limits.*
+- Sweep `prompts/`, `prompts/fusions/`, or `prompts/micro/` for `.md` files. *Hint: Using complex shell pipes to sort semver can be fragile. Use native `grep` and standard bash utilities to extract and compare the `forge_version` frontmatter.*
 - Apply the Target Sorting Rule: Lock the single oldest file (check the `forge_version` frontmatter, prioritizing missing or oldest semantic versions). Lock exactly one target per session. Note that the literal string `CURRENT_FORGE_VERSION` should be treated as the highest/newest possible version when sorting.
 - Exit cleanly with no PR if all files are equal to or newer than `CURRENT_FORGE_VERSION` and the operator provided no override.
 
 ## Step 2: State Ingestion & Drift Analysis
-- Read the locked target `.md` in full to load legacy logic into context. Use the `read_file` tool to ingest the entire file. Do not use `cat` or `head` in bash sessions as they will truncate output for large markdown rule files, creating blind spots.
+- Read the locked target `.md` in full to load legacy logic into context. Use native terminal tools like `grep` or the `read_file` tool to ingest the file. Do not write custom `.js` or `.sh` scripts.
 - Backup the locked target file to `.jules/temp_backup/` before proceeding so you have an original reference for Step 4's Efficacy Audit.
 - Resolve the domain and Archetype: for Tier: Core, run Forge-Procedure Module 6 (Steps 1–4); for Tier: Fusion and Tier: Mythic, route to one Structural Base Profile (Forge-Procedure Module 1). For Tier: Mythic, preserve its boundary-breaking mechanics (Master-Forge Phase 1, Mythic Exemption).
 - Apply the Data Sanitization Filter (Master-Forge Phase 1): list the legacy mechanics worth retaining.
@@ -40,12 +39,12 @@ CRITICAL AWARENESS: Terminal tools and standard `read_file` calls are typically 
 - **Version Bump:** Update the `forge_version` frontmatter to match the `CURRENT_FORGE_VERSION` defined in `Master-Forge.md`.
 
 ## Step 4: The Efficacy Audit
-- Run Forge-Procedure Module 7 Part B (Component Diff and Mandatory Audits) comparing your modified Markdown against the original legacy file, then rerun Part A on the modified file. To avoid plan review rejections for vague abstract tasks, this audit MUST be structured as specific actionable tool calls (e.g., writing a Python diff script or actively using `read_file` to perform the comparisons in context) rather than abstract mental steps.
+- Run Forge-Procedure Module 7 Part B (Component Diff and Mandatory Audits) comparing your modified Markdown against the original legacy file, then rerun Part A on the modified file. To avoid plan review rejections for vague abstract tasks, this audit MUST be structured as specific actionable tool calls using native utilities (like `grep` or `read_file`) rather than abstract mental steps. Do not write custom scripts.
 - On any FAIL, repair in place and rerun the failing check. After two repair loops, revert the specific change that still fails, keep the legacy text there, and list it under "Flagged, not changed" in the PR.
 - The updated file must result in a more capable, coherent, and domain-specific agent than the legacy variant.
 
 ## Step 5: Terminal Output
-- **Cleanup Requirement:** Before running tests or triggering pre-commit procedures, explicitly use terminal commands (`rm`) to delete any temporary workspace files, scratchpads (`plan.md`), or custom discovery scripts (`.py`, `.js`, `.sh`) created during this run to prevent polluting the repository.
+- **Cleanup Requirement:** Before running tests or triggering pre-commit procedures, explicitly use terminal commands (`rm`) to delete any temporary workspace files, scratchpads (`plan.md`), created during this run to prevent polluting the repository.
 - Run necessary validation scripts defined in the repository (e.g., `npm run build:roster`, followed by all testing suites like `npm run test`, `npm run test:unit`, and `npm run test:e2e`) to ensure zero regressions are introduced. Before running tests, ensure necessary environment dependencies are installed (e.g., `npm install`, `npx playwright install`).
 - Trigger the Pull Request creation tool natively (via the platform's `submit` API).
 - **PR Title:** `🛠️ Auto-Forge: Upgraded [Agent Name] to [Version]`
