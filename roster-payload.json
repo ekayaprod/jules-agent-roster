@@ -336,7 +336,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "BUILD the defenses. Scaffold missing security primitives and defensive infrastructure from scratch to protect exposed surfaces.",
-    "forge_version": "V86.4",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Barricade.md",
     "isCustom": true
   },
