@@ -32,7 +32,16 @@ describe('GlobalEvents Inspector Tests', () => {
         GlobalEvents.bind(appMock);
 
         // Mathematically prove that the click handler explicitly fails to catch the error
-        expect(() => btn.click()).toThrow('downloadCustomAgentsByParent catastrophic failure');
+
+        const errorEvent = jest.fn((e) => e.preventDefault());
+        window.addEventListener('error', errorEvent);
+
+        btn.click();
+
+        expect(errorEvent).toHaveBeenCalled();
+        expect(errorEvent.mock.calls[0][0].error.message).toBe('downloadCustomAgentsByParent catastrophic failure');
+
+        window.removeEventListener('error', errorEvent);
 
         document.body.innerHTML = '';
 

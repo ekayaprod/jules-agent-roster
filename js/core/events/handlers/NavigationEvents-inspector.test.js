@@ -91,6 +91,15 @@ describe('NavigationEvents Boundary Tests', () => {
         NavigationEvents.bind(appMock);
 
         // Mathematically prove that the click handler explicitly fails to catch the error
-        expect(() => tab.click()).toThrow('switchCategory catastrophic failure');
+
+        const errorEvent = jest.fn((e) => e.preventDefault());
+        window.addEventListener('error', errorEvent);
+
+        tab.click();
+
+        expect(errorEvent).toHaveBeenCalled();
+        expect(errorEvent.mock.calls[0][0].error.message).toBe('switchCategory catastrophic failure');
+
+        window.removeEventListener('error', errorEvent);
     });
 });

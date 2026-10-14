@@ -109,6 +109,15 @@ describe('SearchEvents Polygraph', () => {
         SearchEvents.bind(appMock);
 
         // Mathematically prove that the click handler explicitly fails to catch the error
-        expect(() => appMock.elements.clearBtn.click()).toThrow('clearSearch catastrophic failure');
+
+        const errorEvent = jest.fn((e) => e.preventDefault());
+        window.addEventListener('error', errorEvent);
+
+        appMock.elements.clearBtn.click();
+
+        expect(errorEvent).toHaveBeenCalled();
+        expect(errorEvent.mock.calls[0][0].error.message).toBe('clearSearch catastrophic failure');
+
+        window.removeEventListener('error', errorEvent);
     });
 });
