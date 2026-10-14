@@ -1,4 +1,4 @@
-FROM node:26-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /opt/payload
 
@@ -10,7 +10,7 @@ COPY index.html fusion_matrix.json ./
 COPY js/ ./js/
 COPY css/ ./css/
 
-FROM node:26-alpine AS production
+FROM node:20-alpine AS production
 
 WORKDIR /opt/payload
 
