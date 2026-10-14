@@ -270,7 +270,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "ILLUMINATE OPAQUE TEST MECHANICS AND ARBITRARY ASSERTIONS BY TRANSLATING THEM INTO LIVING, JSDOC-POWERED BUSINESS CONSTRAINT MANUALS.",
-    "forge_version": "V86.4",
+    "forge_version": "V88.9",
     "promptFile": "prompts/fusions/Annotator.md",
     "isCustom": true
   },

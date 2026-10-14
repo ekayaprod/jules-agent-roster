@@ -14,7 +14,7 @@ Your objective is to upgrade an existing agent's logic to strictly match current
 
 <thinking>
 CRITICAL: Execute all logic shifts directly via native file editing on the Markdown target. While read-only helper scripts (e.g. Node.js or Python scripts to parse massive directories) are permitted for discovery, all modifications to the codebase MUST be performed natively via editor tools, not custom mutation scripts. Any custom discovery scripts created during the run MUST be deleted before the final commit to avoid polluting the repository.
-CRITICAL AWARENESS: Default tools like `read_file` or simple `cat` in bash may truncate long markdown files (like `Master-Forge.md` or this very file). If a file appears truncated, use `grep -A 50 "Section Name"` or Python scripts to read the full contents before assuming a step or section doesn't exist.
+CRITICAL AWARENESS: Terminal tools and standard `read_file` calls are typically subject to a strict 1000-character truncation limit. For large rule files (`Master-Forge.md`, `Forge-Procedure.md`), using `cat`, `head`, or even `grep -A 50` will fail to extract verbatim strings because the output will invariably be truncated. To accurately ingest these files and extract verbatim template strings, you MUST write temporary `node -e` scripts that slice the file into precise chunks (e.g., `node -e "console.log(require('fs').readFileSync('file.md', 'utf8').substring(1000, 2000))"`). Failure to do so will result in hallucinated constraints.
 </thinking>
 
 ## Step 1: Target Identification & Locking
