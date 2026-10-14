@@ -10,4 +10,4 @@ CRITICAL: Execute the following remediation protocol:
 1. Formulate exact revisions to resolve the identified friction points.
 2. Integrate these revisions into the prompt file.
 3. Commit the updated prompt file to the existing PR.
-Ensure all previous modifications to the target agent remain strictly intact. Update your execution plan as required prior to finalizing the commit.
+Preserve all previous modifications to the target agent entirely. Update your execution plan as required prior to finalizing the commit.

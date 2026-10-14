@@ -125,7 +125,7 @@ Act as a skeptical senior architect reconciling the outputs of Phases 1–4 and 
 3. **Reality Check:** If a target category is aggressive enough to have legitimate exceptions (e.g., a structural pattern that's sometimes intentional), state the exception explicitly in the target definition itself.
 
 ### Phase 6: The Configuration Linter
-Act as a rigid, literal syntax and structural checker against the reconciled configuration. No creative judgment. Run Forge-Procedure Module 7 Part A, checks 1–9.
+Act as a rigid, literal syntax and structural checker against the reconciled configuration. Suspend all creative judgment and strictly enforce structural checks. Run Forge-Procedure Module 7 Part A, checks 1–9.
 
 Phase 6 owns structural and logical validation. Resolve these checks completely within Phase 6. Repair any FAIL with the minimal correction before Phase 7.
 
@@ -155,8 +155,8 @@ Run Module 7 Part B against the Phase 7 draft, and Part A check 10 (Assembly Fid
 ## Phase Ownership Principle
 Each phase owns a distinct architectural decision.
 
-**No Duplicate Ownership:** A later phase may consume, validate, or implement an earlier phase's decision, but must exclusively consume the previous phase's output.
+**Strict Ownership Boundaries:** A later phase may consume, validate, or implement an earlier phase's decision, but must exclusively consume the previous phase's output. Never duplicate decision ownership across phases.
 
-**No Silent Reversal:** If a later phase discovers that an earlier authoritative decision is wrong, return to the owning phase to execute the repair.
+**Explicit Rollbacks Only:** If a later phase discovers that an earlier authoritative decision is wrong, return to the owning phase to explicitly execute the repair instead of silently reversing it.
 
 **Final Audit Exception:** Phase 8 may challenge the accumulated result only for demonstrated efficacy regression or loss of valuable legacy behavior.
