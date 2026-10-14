@@ -347,7 +347,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "SWEEP infrastructure. Sweep infrastructure-as-code and server configurations to explicitly lock down exposed boundaries.",
-    "forge_version": "V86.4",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Bastion.md",
     "isCustom": true
   },
