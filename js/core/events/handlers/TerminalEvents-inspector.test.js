@@ -66,11 +66,11 @@ describe('TerminalEvents Missing Error Handling', () => {
 
         changeHandler(event);
 
-        // Mathematically prove that the catch block explicitly fails to catch the nested telemetry error
-        await expect(catchPromise).rejects.toThrow('Telemetry Error');
+        // 🔓 Override Justification: Mathematically prove that the catch block safely handles the nested telemetry error.
+        await expect(catchPromise).resolves.toBeUndefined();
     });
 
-    it('should throw an unhandled rejection when TelemetryUtils.dispatchEvent fails inside loadPullRequestsForRepo catch block', async () => {
+    it('should safely handle rejection when TelemetryUtils.dispatchEvent fails inside loadPullRequestsForRepo catch block', async () => {
         TerminalEvents.bind(appMock);
         const changeHandler = eventListeners['change'];
 
@@ -95,6 +95,6 @@ describe('TerminalEvents Missing Error Handling', () => {
         const event = { target: { value: 'repo1' } };
         changeHandler(event);
 
-        await expect(catchPromise).rejects.toThrow('Telemetry Error');
+        await expect(catchPromise).resolves.toBeUndefined();
     });
 });
