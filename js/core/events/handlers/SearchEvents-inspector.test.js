@@ -99,4 +99,16 @@ describe('SearchEvents Polygraph', () => {
             triggerBtn.click();
         }).not.toThrow();
     });
+
+    // 🕵️ VULNERABILITY INTERROGATION: Asserting the alibi breaks when clearSearch throws
+    it('should throw an unhandled error when app.clearSearch fails', () => {
+        appMock.clearSearch.mockImplementation(() => {
+            throw new Error('clearSearch catastrophic failure');
+        });
+
+        SearchEvents.bind(appMock);
+
+        // Mathematically prove that the click handler explicitly fails to catch the error
+        expect(() => appMock.elements.clearBtn.click()).toThrow('clearSearch catastrophic failure');
+    });
 });

@@ -577,6 +577,19 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         localWarnMock.mockRestore();
     });
 
+    // 🕵️ VULNERABILITY INTERROGATION: Asserting the alibi breaks when compiler.fuse throws
+    test('should throw an unhandled error when compiler.fuse fails in handleShelfSelection', () => {
+        fusionLab.agentMap.set('AgentA', { name: 'AgentA' });
+        fusionLab.agentMap.set('AgentB', { name: 'AgentB' });
+
+        fusionLab.compiler.fuse = jest.fn().mockImplementation(() => {
+            throw new Error('Compiler fuse catastrophic failure');
+        });
+
+        // Mathematically prove that the method explicitly fails to catch the error
+        expect(() => fusionLab.handleShelfSelection('AgentA,AgentB')).toThrow('Compiler fuse catastrophic failure');
+    });
+
     test('renderFusionResult manages container state and appending custom agent card', () => {
         const result = { name: 'CustomResult' };
         fusionLab.compiler.fusionMatrixMap = {
