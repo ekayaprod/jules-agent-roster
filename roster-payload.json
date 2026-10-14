@@ -303,7 +303,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "ENFORCE variable canonicalization. Rip implicit strings and integers out of business logic and lock the schema with robust tests.",
-    "forge_version": "V86.4",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Auditor.md",
     "isCustom": true
   },
