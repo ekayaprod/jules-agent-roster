@@ -2371,7 +2371,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "WEAVE duplicated logic into single utilities, flattening deeply nested execution paths into pristine, linear strands.",
-    "forge_version": "V88.8",
+    "forge_version": "V86.8",
     "promptFile": "prompts/fusions/Weaver.md",
     "isCustom": true
   },
