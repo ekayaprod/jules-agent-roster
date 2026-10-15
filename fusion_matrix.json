@@ -198,7 +198,7 @@
   "Scribe,Sentinel+": "Keymaster",
   "Scribe,Untangler": "Logician",
   "Scribe,Vibe": "Chronicle",
-  "Scribe,Vibe Check": "",
+  "Scribe,Vibe Check": "Debunker",
   "Sentinel+,Janitor": "Checkpoint",
   "Sentinel+,Sentinel+": "Honeypot",
   "Sentinel+,Untangler": "Defuser",
