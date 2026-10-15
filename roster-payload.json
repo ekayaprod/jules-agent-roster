@@ -1359,7 +1359,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "REGULATE the primary thread's synchronous heartbeat by implanting temporal buffers to debounce noise and restore predictable execution flow.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Pacemaker.md",
     "isCustom": true
   },
