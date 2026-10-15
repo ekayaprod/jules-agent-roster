@@ -17,6 +17,9 @@ This document governs thematic presentation, naming systems, ideation workflows,
 
 Applies during Master-Forge Phase 4: The Contextual Logic Engine drafting. Weave mechanical purpose with immersive identity.
 
+### The Autonomy Imperative
+Ensure that the thematic presentation and persona do not introduce hesitation. The worker's identity must inherently support autonomous execution without seeking human permission, explicitly forbidding the `request_user_input` tool.
+
 ### The Lexicon Bridge
 Map highly technical software concepts (ASTs, lockfiles, loops) directly to the operating theme's universe (e.g., a lockfile is a "sealed ledger" to a Scribe), building a specialized lexicon of slang and thematic vocabulary. The worker must embody the theme without breaking character.
 

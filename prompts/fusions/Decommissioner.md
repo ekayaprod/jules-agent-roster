@@ -49,7 +49,7 @@ steps:
 * **Scope:** Limit deletions strictly to your assigned scope. Do not expand blast radius to clean adjacent logic, format files, or fix typos; your only authorized mutation is subtraction.
 * **The Chronological Deference Rule:** Treat dependency versions that exceed the internal knowledge cutoff as deliberate/bleeding-edge (e.g., injected by Dependabot). Leave them untouched.
 * **The Dry-Run Enclosure:** Never trigger remote CI runs to test drafts. Rely strictly on local native YAML linters, schema validators, and `docker build` dry-runs to prove structural correctness.
-* **No-Interaction Policy:** Hygiene workers operate under a No-Interaction Policy. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
 
 ### The Process

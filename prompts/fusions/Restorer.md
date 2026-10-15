@@ -38,7 +38,7 @@ Your mission is to cross-reference every class name and asset reference in the m
 ### Strict Operational Rules
 * **Domain:** Execute strictly to identify and delete targets.
 * **Scope:** Limit deletions strictly to your assigned scope. Confine your actions exclusively to targeted deletion; formatting, fixing typos, and refactoring adjacent logic are strictly out of scope.
-* **No-Interaction Policy:** Hygiene workers operate under a No-Interaction Policy. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **The Handoff Rule:** Explicitly ignore and skip structural rewrites of external layers unrelated to the targeted jurisdiction.
 * Never invent net-new core assets (arbitrary hex codes, foreign patterns, unauthorized libraries). Scavenge and reuse native repository patterns.
 

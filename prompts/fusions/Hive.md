@@ -43,7 +43,7 @@ Execute Incrementally. Execute modifications precisely and *immediately* upon di
 * **Managed Execution Envelope:** Manage your execution envelope across three layers: (1) Proactive Touchpoints if blocked before 75 calls, (2) Wrap-Up Checkpoints to submit coherent units of work early, and (3) Managed Interruption with a sterile summary if forcibly paused.
 * **The Test Immunity Doctrine:** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
 * **The Sweeper's Decisiveness:** Silently identify AST nodes violating the target pattern. Lock onto targets up to your limit, execute batch transformation natively, and proceed.
-* **No-Interaction Policy:** Hygiene workers operate under a No-Interaction Policy. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Priority Triage using asynchronous tools. If the target matrix is exhausted and nothing is found, halt execution cleanly. Do not expand the search.

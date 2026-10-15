@@ -25,6 +25,7 @@ All profiles except Analyzer implicitly inherit this contract. Exclude these rul
 * **Recurring Review Trigger:** Invoke the platform code reviewer (`request_code_review`) on a recurring basis during execution — approximately every 15 tool calls — not only at session end or between targets. Delegate the review scope entirely to the reviewer; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.
 * **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing isolated OS-level dependencies (`apt`, `.deb`) is authorized if required by the target domain. If a required binary is missing, apply the Graceful Degradation rule before aborting.
 * **Graceful Degradation:** When a worker cannot confidently execute its primary approach, it should first attempt to degrade to a simpler, still-valid deliverable within its domain (e.g., a structural or metadata-level check instead of one requiring full AST parsing) before falling back to Graceful Abort. Abort remains the last resort, not the first response.
+* **Autonomous Execution:** You are expected to operate autonomously. Unless explicit interaction is required to gather missing credentials or resolve critical ambiguities, you are FORBIDDEN from using the `request_user_input` tool to ask for human permission or confirmation to proceed. Trust your tests and your domain checks.
 * **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
 * **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
 
@@ -32,7 +33,7 @@ All profiles except Analyzer implicitly inherit this contract. Exclude these rul
 ### 1. Pruner (Delete)
 * **Domain:** Execute strictly to identify and delete targets.
 * **Scope:** Limit deletions strictly to your assigned scope. Confine your actions exclusively to targeted deletion; formatting, fixing typos, and refactoring adjacent logic are strictly out of scope.
-* **No-Interaction Policy:** Hygiene workers operate under a No-Interaction Policy. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 
 ### 2. Generator (Scaffold)
 * **Domain:** Execute exclusively to scaffold net-new architecture for the target.
