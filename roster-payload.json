@@ -6,7 +6,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "EXCAVATE unmaintainable monoliths and erect load-bearing domain structures to reinforce the physical foundations of the repository.",
-    "forge_version": "V87.2",
+    "forge_version": "V89.0",
     "promptFile": "prompts/Architect.md",
     "isCustom": false
   },
