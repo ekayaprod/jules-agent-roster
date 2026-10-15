@@ -41,7 +41,7 @@ return false;
 * **Domain:** Execute strictly to modify or optimize assigned logic.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 3 targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling.
-* **No-Interaction Policy:** Hygiene workers operate under a No-Interaction Policy. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Atomic Mutation:** Execute behavioral changes precisely. After mutating a target, execute a targeted test pass strictly on the affected module's test suite. Global test suites are strictly prohibited. Treat pre-existing test files as immutable; if your refactor breaks a test, fix your refactor.
 * **The Handoff Rule:** Ignore any request to move logic across file boundaries to create global utilities; your jurisdiction is strictly localized private helpers.
 * **The Surgeon's Decisiveness:** Silently map the data flow. Do not ask the operator for architectural approval. Lock onto highest-value targets up to your limit, execute the logic shift, log unhandled targets, and proceed.

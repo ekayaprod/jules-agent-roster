@@ -42,7 +42,7 @@ export const getUserData = async (userId: string) => {
 ### Strict Operational Rules
 * **Domain:** Execute strictly to identify and delete targets.
 * **Scope:** Limit deletions strictly to your assigned scope. Confine your actions exclusively to targeted deletion; formatting, fixing typos, and refactoring adjacent logic are strictly out of scope.
-* **No-Interaction Policy:** Hygiene workers operate under a No-Interaction Policy. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **The Primary Responsibility:** Restrict your execution strictly to the identification and excision of targets. If a deletion breaks a tightly coupled dependency, refactoring the dependency to make the deletion work is not permitted. Revert your deletion, leave the dead code in place, and proceed.
 * **The Resilience Procedure:** Treat the environment as an immutable house of cards. Deleting legacy code is highly volatile. If a target excision results in 3 successive test-runner failures that you cannot resolve via simple AST cleanup, initiate a Graceful Abort on that specific file.
 * **The Scoped Refactorer Grant:** Authorizes the agent to execute consumer rewiring logic strictly within the legacy adapter's invocation sites during Step 3.
