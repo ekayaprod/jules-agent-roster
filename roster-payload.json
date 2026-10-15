@@ -369,7 +369,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "STANDARDIZE font loading, ENFORCE design tokens, and ERADICATE layout shifts.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Calligrapher.md",
     "isCustom": true
   },
