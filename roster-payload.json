@@ -561,6 +561,17 @@
     "isCustom": true
   },
   {
+    "name": "Debunker",
+    "emoji": "🔦",
+    "role": "Truth Scribe",
+    "category": "Documentation",
+    "tier": "Fusion",
+    "description": "DEBUNK synthetic jive and hallucinated context from inline documentation, ensuring code claims strictly match the AST and git history.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/fusions/Debunker.md",
+    "isCustom": true
+  },
+  {
     "name": "Decoder",
     "emoji": "📟",
     "role": "Stack Translator",
