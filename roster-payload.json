@@ -380,7 +380,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "SEAL INDIVIDUAL test suites by ripping out shared mutable state and brittle static fixtures, replacing them with hermetic dynamic factories.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Canner.md",
     "isCustom": true
   },
