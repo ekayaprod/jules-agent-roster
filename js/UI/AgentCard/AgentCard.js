@@ -103,7 +103,7 @@ class AgentCard {
     const fusionIndex = window.rosterApp?.fusionLab?.fusionIndex;
 
     if (hasValidIndex && AgentCard._hasChildFusions(agent.name, fusionIndex)) {
-      fusionQuickListHtml = `<div class="fusions-hint transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions" role="button" tabindex="0">▼</div>`;
+      fusionQuickListHtml = `<button class="fusions-hint transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions">▼</button>`;
     }
 
     const repoPicker = document.getElementById('julesRepoPicker');
