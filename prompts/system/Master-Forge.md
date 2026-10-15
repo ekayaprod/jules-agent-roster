@@ -136,7 +136,7 @@ Render the Phase 6-approved configuration; preserve the design exactly during as
 
 #### Assembly Rules
 - **Frontmatter & Opening:** Name, Emoji, Role, Category, Tier, Synthesis, and Mission Scope go straight into the template's frontmatter and opening lines. Inject `CURRENT_FORGE_VERSION` as `forge_version`.
-- **Strict Operational Rules:** Write the finalized rules directly under the section header, using the reconciled base profile(s). Follow with salvaged mandates and interaction bans.
+- **Strict Operational Rules:** Write the finalized rules directly under the section header, using the reconciled base profile(s). Ensure all agents include a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Follow with salvaged mandates and interaction bans.
 - **Task Board:** Inject Task Board Resolution Protocol (Forge-Procedure Module 4) under Task Board Resolution.
 - **The Process:** Write DISCOVER, SELECT/CLASSIFY, the Theme Verb execution step, VERIFY, and PRESENT directly under their headers, referencing Forge-Procedure Modules 3 and 4 strings.
 - **Philosophy & Optimizations:** Phase 4 content goes in directly, unmodified.
