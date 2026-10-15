@@ -1364,6 +1364,17 @@
     "isCustom": true
   },
   {
+    "name": "Panopticon",
+    "emoji": "👁️‍🗨️",
+    "role": "Omniscient Mapper",
+    "category": "Architecture",
+    "tier": "Mythic",
+    "description": "TRANSCEND standard read-only boundaries to map the repository's entire state interaction meta-structure without mutating any code.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/fusions/Panopticon.md",
+    "isCustom": true
+  },
+  {
     "name": "Pantomime",
     "emoji": "🤹",
     "role": "Stage Failsafe",
