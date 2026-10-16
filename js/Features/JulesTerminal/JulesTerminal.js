@@ -324,7 +324,7 @@ class JulesTerminal {
         const fragment = document.createDocumentFragment();
         prs.forEach(pr => {
             const item = document.createElement("div");
-            item.className = "term-pr-item transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-sm";
+            item.className = "term-pr-item transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-sm focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-95";
 
             item.innerHTML = `
                 <span class="pr-open-status">[PR OPEN]</span>
