@@ -391,7 +391,7 @@
     "category": "UX",
     "tier": "Mythic",
     "description": "REDESIGN fragmented multi-page mazes into cohesive single-page workflows to preserve user context.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Canvas.md",
     "isCustom": true
   },
