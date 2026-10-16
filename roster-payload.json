@@ -2151,7 +2151,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "INSTRUMENT opaque execution paths with performance timers and metadata loggers to eliminate computational bottlenecks.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Telemetrist.md",
     "isCustom": true
   },
