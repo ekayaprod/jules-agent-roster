@@ -16,3 +16,7 @@
 - The [INSTRUMENTER] Queue: Missing error boundaries in /UI, /core, /Utils
 - The [TRANSFORMER] Queue: Hardcoded hex states in /css
 [CRITICAL ANOMALY] Overseer could not find debugging artifacts in js/Services/AgentRepository/AgentRepository.js
+[MAPPED CLUSTERS UPDATED]
+- The [REFACTORER] Queue: Monolithic files in /Features/JulesTerminal, /core
+- The [PRUNER] Queue: hollow carapace empty callback function in js/Features/JulesTerminal/JulesTerminal.js, unstructured console.error in /Services
+- The [TRANSFORMER] Queue: Hardcoded hex states in /css/main.css
