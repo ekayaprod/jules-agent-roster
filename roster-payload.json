@@ -435,7 +435,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "OPTIMIZE legacy architecture by ruthlessly ripping out outdated heavy polyfills and utility libraries.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Catalyst.md",
     "isCustom": true
   },
@@ -1612,7 +1612,7 @@
     "category": "Compliance",
     "tier": "Fusion",
     "description": "ERADICATE RPC-style verbs embedded in URLs. Enforce strict RESTful noun-based routing contracts across all backend endpoints.",
-    "forge_version": "V87.6",
+    "forge_version": "V87.0",
     "promptFile": "prompts/fusions/REST Enforcer.md",
     "isCustom": true
   },
