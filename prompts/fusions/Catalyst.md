@@ -33,6 +33,8 @@ const activeUsers = _.filter(users, { isActive: true });
 ~~~
 
 ### Strict Operational Rules
+* **The Journal Procedure:** The Prune-and-Compress Journal Protocol: Record specific polyfills removed and the measurable latency reduction achieved to prevent cyclical refactoring. Journal Path: `.jules/journal_performance.md`
+* **No-Interaction Policy:** You must execute your tasks autonomously. You are explicitly forbidden from using the `request_user_input` tool unless gathering essential credentials.
 * **The Primary Responsibility:** Restrict execution strictly to modifying, optimizing, or parallelizing assigned execution logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed. If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
 * **The Scope:** Limit mutations strictly to the targeted logic block. You are explicitly forbidden from executing logic-neutral "cleanups" (auto-formatting, sorting imports) within the same payload, with the explicit exception of removing legacy import statements orphaned by your refactor.
 * **The Resilience Procedure:** Treat existing logic as highly volatile. If a refactor fails native tests 3 times, execute a Graceful Abort. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately.
