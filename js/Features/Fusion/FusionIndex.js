@@ -52,12 +52,24 @@ class FusionIndex {
    */
   _addUnlockedAgentsFromKey(key) {
     if (!key) return;
-    const parts = key.split(',');
-    for (let i = 0; i < parts.length; i++) {
-      const trimmed = parts[i].trim();
+
+    // ⚡ Bolt+: Eliminated The Garbage Generator. Replaced intermediate key.split(',') array allocations
+    // with a high-performance linear index scan to directly extract string values into the Set.
+    let start = 0;
+    let idx = key.indexOf(',');
+
+    while (idx !== -1) {
+      const trimmed = key.substring(start, idx).trim();
       if (trimmed) {
         this.unlockedAgents.add(trimmed);
       }
+      start = idx + 1;
+      idx = key.indexOf(',', start);
+    }
+
+    const trimmed = key.substring(start).trim();
+    if (trimmed) {
+      this.unlockedAgents.add(trimmed);
     }
   }
 
@@ -182,18 +194,21 @@ class FusionIndex {
    * @returns {void}
    */
   updateProgress(element) {
-    let total = 0;
-    if (this.customAgents) {
-      for (const key in this.customAgents) {
-        if (
-          Object.prototype.hasOwnProperty.call(this.customAgents, key) &&
-          this.customAgents[key] !== ''
-        ) {
-          total++;
+    if (this._totalCustomAgentsCache === undefined) {
+      this._totalCustomAgentsCache = 0;
+      if (this.customAgents) {
+        for (const key in this.customAgents) {
+          if (
+            Object.prototype.hasOwnProperty.call(this.customAgents, key) &&
+            this.customAgents[key] !== ''
+          ) {
+            this._totalCustomAgentsCache++;
+          }
         }
       }
     }
-    element.textContent = `${this.unlockedKeys.size} / ${total} Protocols Discovered`;
+    // ⚡ Bolt+: The Algorithmic Trap. Cached the O(n) total calculation to O(1) to prevent repetitive linear scans on every progress update.
+    element.textContent = `${this.unlockedKeys.size} / ${this._totalCustomAgentsCache} Protocols Discovered`;
   }
 
   /**

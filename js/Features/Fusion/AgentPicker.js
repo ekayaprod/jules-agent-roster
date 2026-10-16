@@ -163,7 +163,11 @@ class AgentPicker {
 
         const chunked = [];
         for (let i = 0; i < htmlResults.length; i += columns) {
-            const rowChunk = htmlResults.slice(i, i + columns).join("");
+            // ⚡ Bolt+: The Garbage Generator. Swapped transient array slice allocations for an inner concatenation loop.
+            let rowChunk = "";
+            for (let j = 0; j < columns && (i + j) < htmlResults.length; j++) {
+                rowChunk += htmlResults[i + j];
+            }
             chunked.push(`<div class="picker-chunk-grid transition-all duration-300 ease-in-out grid-cols-${columns}">${rowChunk}</div>`);
         }
 
