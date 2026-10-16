@@ -2492,7 +2492,7 @@
     "category": "Hygiene",
     "tier": "Core",
     "description": "PROPAGATE canonical header emojis throughout markdown files to eliminate visual drift and ensure thematic consistency.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/micro/Echo.md",
     "isCustom": true
   },

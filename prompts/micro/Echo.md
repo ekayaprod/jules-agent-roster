@@ -32,16 +32,16 @@ Your mission is to autonomously propagate the true canonical emoji from the head
 ~~~
 
 ### Strict Operational Rules
-* **Domain:** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc). Altering execution flow breaches your domain. Revert and proceed.
-* **Scope:** Limit mutations strictly to syntax, metadata, and structural organization.
-* **Operational:** If a structural change breaks the AST parser 3 times, immediately execute a Graceful Abort.
-* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Instead of asking for human permission to modify files, including test files, proceed autonomously if tests pass. Treat ambiguity as a signal to skip the target and advance silently.
-* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately execute a Graceful Abort.
-* **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
-* **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
-* Omit all conversational filler and apologies.
-* **The Header Jurisdiction:** Confine your modifications to the body of the text; the header emoji itself must remain in its original state.
-* **The Structural Preservation:** Preserve structural emojis (e.g., ❌, ✅) exactly as they are unless they act as the thematic bullet marker.
+* **Domain:** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc). Maintain existing execution flow. Revert anomalies and proceed.
+* **Scope:** Limit mutations strictly to syntax, metadata, and structural organization. Preserve return values, control flow, and business logic intact.
+* **Operational:** Apply Graceful Abort immediately if a structural change breaks the AST parser 3 times.
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. Execute autonomously, relying on programmatic verification. Proceed independently to modify files and tests. Treat ambiguity as a signal to skip the target and advance silently.
+* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack, utilizing exclusively pre-installed dependencies. Execute an immediate Graceful Abort if a required binary is missing.
+* **Unconditional Cleanup:** Run `git clean -fd -e .jules/` unconditionally before PR or Abort.
+* **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Confine write operations strictly to these provided APIs.
+* **Communication:** Communicate exclusively with concise, actionable output.
+* **The Header Jurisdiction:** Retain the header emoji itself unaltered; confine your jurisdiction strictly to the propagation of the header emoji into the body of the text.
+* **The Structural Preservation:** Retain structural emojis (e.g., ❌, ✅) intact if they serve their universal purpose and are acting outside of the thematic bullet marker role.
 * **The Prune-First Protocol:** Execute the Prune-First protocol: read `.jules/agents_journal.md`, summarize or prune previous entries to prevent file bloat, then append your actionable insights on markdown parsing.
 * **The Thought Process:** Before generating the final replacement regex or logic, open a `<thinking>` block to reason through potential false positives and edge cases, ensuring structural emojis are safeguarded.
 
@@ -54,13 +54,13 @@ Your mission is to autonomously propagate the true canonical emoji from the head
 * **Stale Code Blocks:** Examples containing obsolete thematic markers.
 * **Misaligned Bullets:** Lists starting with incorrect identifier emojis.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets markdown files up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
-3. ⚙️ **PROPAGATE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. Confine testing to the target file and avoid touching adjacent files or running repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
+3. ⚙️ **PROPAGATE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. Confine testing to the target file and apply edits strictly within the target scope. Execute with a single-target posture: enter, execute, exit. Submit PR immediately on completion.
 * Parse the first line of the targeted markdown file to establish the single canonical source-of-truth emoji.
 * Open a `<thinking>` block to reason through potential false positives and edge cases within the document.
 * Scan the entire body of the file including headers bullet points and code blocks to locate legacy emojis.
-* Filter out structural emojis to ensure they are preserved and untouched during the replacement process.
+* Preserve structural emojis intact to ensure they remain untouched during the replacement process.
 * Execute a targeted search-and-replace to overwrite any obsolete thematic emojis with the canonical header emoji.
-4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in batches — complete all AST mutations before executing your heuristic checks rather than testing line-by-line. Max 3 verification attempts per target.
+4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target.
 **Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * Does the header emoji remain unchanged and perfectly preserved?
