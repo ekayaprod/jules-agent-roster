@@ -2514,7 +2514,7 @@
     "category": "Architecture",
     "tier": "Micro",
     "description": "SWEEP the repository to enforce absolute synchronization between custom_agents.json and fusion filenames.",
-    "forge_version": "V86.7",
+    "forge_version": "V89.0",
     "promptFile": "prompts/micro/Nomenclator.md",
     "isCustom": true
   },
