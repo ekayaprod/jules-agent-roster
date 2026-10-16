@@ -1,7 +1,7 @@
 [
   {
     "name": "Architect",
-    "emoji": "🏗️",
+    "emoji": "\ud83c\udfd7\ufe0f",
     "role": "Filesystem Foreman",
     "category": "Architecture",
     "tier": "Core",
@@ -12,7 +12,7 @@
   },
   {
     "name": "Author",
-    "emoji": "📘",
+    "emoji": "\ud83d\udcd8",
     "role": "Readme Writer",
     "category": "Documentation",
     "tier": "Core",
@@ -23,7 +23,7 @@
   },
   {
     "name": "Bolt+",
-    "emoji": "⚡",
+    "emoji": "\u26a1",
     "role": "Speed Daemon",
     "category": "Plus",
     "tier": "Core",
@@ -34,7 +34,7 @@
   },
   {
     "name": "Cortex",
-    "emoji": "🧠",
+    "emoji": "\ud83e\udde0",
     "role": "AI Integrator",
     "category": "Creation",
     "tier": "Core",
@@ -45,7 +45,7 @@
   },
   {
     "name": "Dispatch",
-    "emoji": "📯",
+    "emoji": "\ud83d\udcef",
     "role": "Logistics Leverager",
     "category": "Operations",
     "tier": "Core",
@@ -56,7 +56,7 @@
   },
   {
     "name": "Helix",
-    "emoji": "🧬",
+    "emoji": "\ud83e\uddec",
     "role": "Logic Centrifuge",
     "category": "Architecture",
     "tier": "Core",
@@ -67,7 +67,7 @@
   },
   {
     "name": "Inspector",
-    "emoji": "🕵️",
+    "emoji": "\ud83d\udd75\ufe0f",
     "role": "Coverage Detective",
     "category": "Testing",
     "tier": "Core",
@@ -78,7 +78,7 @@
   },
   {
     "name": "Janitor",
-    "emoji": "🧹",
+    "emoji": "\ud83e\uddf9",
     "role": "Sanitation Crew",
     "category": "Maintenance",
     "tier": "Core",
@@ -89,7 +89,7 @@
   },
   {
     "name": "Modernizer",
-    "emoji": "♻️",
+    "emoji": "\u267b\ufe0f",
     "role": "Evolution Engine",
     "category": "Maintenance",
     "tier": "Core",
@@ -100,7 +100,7 @@
   },
   {
     "name": "Navigator",
-    "emoji": "🧭",
+    "emoji": "\ud83e\udded",
     "role": "Architectural Cartographer",
     "category": "Architecture",
     "tier": "Core",
@@ -111,7 +111,7 @@
   },
   {
     "name": "Overseer",
-    "emoji": "👁️",
+    "emoji": "\ud83d\udc41\ufe0f",
     "role": "Triage Auditor",
     "category": "Operations",
     "tier": "Core",
@@ -122,7 +122,7 @@
   },
   {
     "name": "Palette+",
-    "emoji": "🎨",
+    "emoji": "\ud83c\udfa8",
     "role": "Design Sculptor",
     "category": "Plus",
     "tier": "Core",
@@ -133,18 +133,18 @@
   },
   {
     "name": "Paramedic",
-    "emoji": "🚨",
+    "emoji": "\ud83d\udea8",
     "role": "Code CPR",
     "category": "Repair",
     "tier": "Core",
-    "description": "RESUSCITATE fatal crashes and silent output failures alike — trace both to root cause and restore genuine, observable function.",
+    "description": "RESUSCITATE fatal crashes and silent output failures alike \u2014 trace both to root cause and restore genuine, observable function.",
     "forge_version": "V87.5",
     "promptFile": "prompts/Paramedic.md",
     "isCustom": false
   },
   {
     "name": "Pedant",
-    "emoji": "☝️",
+    "emoji": "\u261d\ufe0f",
     "role": "Strict Bureaucrat",
     "category": "Compliance",
     "tier": "Core",
@@ -155,7 +155,7 @@
   },
   {
     "name": "Scavenger",
-    "emoji": "🪲",
+    "emoji": "\ud83e\udeb2",
     "role": "Cruft Consumer",
     "category": "Maintenance",
     "tier": "Core",
@@ -166,7 +166,7 @@
   },
   {
     "name": "Scribe",
-    "emoji": "🕯️",
+    "emoji": "\ud83d\udd6f\ufe0f",
     "role": "Code Illuminator",
     "category": "Documentation",
     "tier": "Core",
@@ -177,7 +177,7 @@
   },
   {
     "name": "Sentinel+",
-    "emoji": "🛡️",
+    "emoji": "\ud83d\udee1\ufe0f",
     "role": "Perimeter Fortifier",
     "category": "Plus",
     "tier": "Core",
@@ -188,7 +188,7 @@
   },
   {
     "name": "Untangler",
-    "emoji": "🧶",
+    "emoji": "\ud83e\uddf6",
     "role": "Logic Simplifier",
     "category": "Maintenance",
     "tier": "Core",
@@ -199,7 +199,7 @@
   },
   {
     "name": "Vibe Check",
-    "emoji": "🪩",
+    "emoji": "\ud83e\udea9",
     "role": "Jive Breaker",
     "category": "Testing",
     "tier": "Core",
@@ -210,7 +210,7 @@
   },
   {
     "name": "Vibe",
-    "emoji": "🎧",
+    "emoji": "\ud83c\udfa7",
     "role": "Concept Coder",
     "category": "Creation",
     "tier": "Core",
@@ -221,7 +221,7 @@
   },
   {
     "name": "Accountant",
-    "emoji": "📊",
+    "emoji": "\ud83d\udcca",
     "role": "Budget Enforcer",
     "category": "Operations",
     "tier": "Fusion",
@@ -232,7 +232,7 @@
   },
   {
     "name": "Acetone",
-    "emoji": "🛢️",
+    "emoji": "\ud83d\udee2\ufe0f",
     "role": "Render Solvent",
     "category": "UX",
     "tier": "Fusion",
@@ -243,7 +243,7 @@
   },
   {
     "name": "Adversary",
-    "emoji": "🤺",
+    "emoji": "\ud83e\udd3a",
     "role": "Framework Inquisitor",
     "category": "Testing",
     "tier": "Mythic",
@@ -254,7 +254,7 @@
   },
   {
     "name": "Amputator",
-    "emoji": "🦿",
+    "emoji": "\ud83e\uddbf",
     "role": "Fallback Purger",
     "category": "Operations",
     "tier": "Fusion",
@@ -265,7 +265,7 @@
   },
   {
     "name": "Annotator",
-    "emoji": "📝",
+    "emoji": "\ud83d\udcdd",
     "role": "Constraint Decoder",
     "category": "Testing",
     "tier": "Fusion",
@@ -276,7 +276,7 @@
   },
   {
     "name": "Antibody",
-    "emoji": "💊",
+    "emoji": "\ud83d\udc8a",
     "role": "Deterministic Immunizer",
     "category": "Testing",
     "tier": "Fusion",
@@ -287,7 +287,7 @@
   },
   {
     "name": "Archivist",
-    "emoji": "📚",
+    "emoji": "\ud83d\udcda",
     "role": "Context Linker",
     "category": "Documentation",
     "tier": "Fusion",
@@ -298,7 +298,7 @@
   },
   {
     "name": "Auditor",
-    "emoji": "🔎",
+    "emoji": "\ud83d\udd0e",
     "role": "Quality Inspector",
     "category": "Testing",
     "tier": "Fusion",
@@ -309,7 +309,7 @@
   },
   {
     "name": "Aura",
-    "emoji": "👁️‍🗨️",
+    "emoji": "\ud83d\udc41\ufe0f\u200d\ud83d\udde8\ufe0f",
     "role": "Vibe Cartographer",
     "category": "Operations",
     "tier": "Fusion",
@@ -320,7 +320,7 @@
   },
   {
     "name": "Automata",
-    "emoji": "🦾",
+    "emoji": "\ud83e\uddbe",
     "role": "State Flattener",
     "category": "Architecture",
     "tier": "Fusion",
@@ -331,7 +331,7 @@
   },
   {
     "name": "Barricade",
-    "emoji": "🚧",
+    "emoji": "\ud83d\udea7",
     "role": "The Genesis",
     "category": "Security",
     "tier": "Fusion",
@@ -342,7 +342,7 @@
   },
   {
     "name": "Bastion",
-    "emoji": "🏰",
+    "emoji": "\ud83c\udff0",
     "role": "Boundary Hardener",
     "category": "Architecture",
     "tier": "Fusion",
@@ -353,7 +353,7 @@
   },
   {
     "name": "Bulwark",
-    "emoji": "🧱",
+    "emoji": "\ud83e\uddf1",
     "role": "Perimeter Warden",
     "category": "Architecture",
     "tier": "Fusion",
@@ -364,7 +364,7 @@
   },
   {
     "name": "Calligrapher",
-    "emoji": "🪶",
+    "emoji": "\ud83e\udeb6",
     "role": "Typography Balancer",
     "category": "UX",
     "tier": "Fusion",
@@ -375,7 +375,7 @@
   },
   {
     "name": "Canner",
-    "emoji": "🫙",
+    "emoji": "\ud83e\uded9",
     "role": "State Isolator",
     "category": "Testing",
     "tier": "Fusion",
@@ -386,7 +386,7 @@
   },
   {
     "name": "Canvas",
-    "emoji": "🖼️",
+    "emoji": "\ud83d\uddbc\ufe0f",
     "role": "Unified Surface",
     "category": "UX",
     "tier": "Mythic",
@@ -397,7 +397,7 @@
   },
   {
     "name": "Cartographer",
-    "emoji": "🗺️",
+    "emoji": "\ud83d\uddfa\ufe0f",
     "role": "System Topographer",
     "category": "Operations",
     "tier": "Fusion",
@@ -408,7 +408,7 @@
   },
   {
     "name": "Cataloger",
-    "emoji": "🗃️",
+    "emoji": "\ud83d\uddc3\ufe0f",
     "role": "Architectural Mapper",
     "category": "Documentation",
     "tier": "Fusion",
@@ -419,7 +419,7 @@
   },
   {
     "name": "Catalyst",
-    "emoji": "🏎️",
+    "emoji": "\ud83c\udfce\ufe0f",
     "role": "Momentum Optimizer",
     "category": "Performance",
     "tier": "Fusion",
@@ -430,7 +430,7 @@
   },
   {
     "name": "Cerberus",
-    "emoji": "🐺",
+    "emoji": "\ud83d\udc3a",
     "role": "Perimeter Guard",
     "category": "Security",
     "tier": "Fusion",
@@ -441,7 +441,7 @@
   },
   {
     "name": "Chameleon",
-    "emoji": "🦎",
+    "emoji": "\ud83e\udd8e",
     "role": "State Mutator",
     "category": "UX",
     "tier": "Fusion",
@@ -452,7 +452,7 @@
   },
   {
     "name": "Checkpoint",
-    "emoji": "🛑",
+    "emoji": "\ud83d\uded1",
     "role": "Security Enforcer",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -463,7 +463,7 @@
   },
   {
     "name": "Chronicle",
-    "emoji": "🖨️",
+    "emoji": "\ud83d\udda8\ufe0f",
     "role": "Pipeline Machinist",
     "category": "Documentation",
     "tier": "Fusion",
@@ -474,7 +474,7 @@
   },
   {
     "name": "Chronicler",
-    "emoji": "📜",
+    "emoji": "\ud83d\udcdc",
     "role": "Context Historian",
     "category": "Documentation",
     "tier": "Fusion",
@@ -485,7 +485,7 @@
   },
   {
     "name": "City Clerk",
-    "emoji": "🏙️",
+    "emoji": "\ud83c\udfd9\ufe0f",
     "role": "Zoning Commissioner",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -496,7 +496,7 @@
   },
   {
     "name": "Collider",
-    "emoji": "⚛️",
+    "emoji": "\u269b\ufe0f",
     "role": "Particle Smasher",
     "category": "Architecture",
     "tier": "Fusion",
@@ -507,7 +507,7 @@
   },
   {
     "name": "Construct",
-    "emoji": "🏗️",
+    "emoji": "\ud83c\udfd7\ufe0f",
     "role": "Greenfield Architect",
     "category": "Architecture",
     "tier": "Fusion",
@@ -518,7 +518,7 @@
   },
   {
     "name": "Conveyor",
-    "emoji": "⚙️",
+    "emoji": "\u2699\ufe0f",
     "role": "Pipeline Centrifuge",
     "category": "Operations",
     "tier": "Fusion",
@@ -529,7 +529,7 @@
   },
   {
     "name": "Coroner",
-    "emoji": "💀",
+    "emoji": "\ud83d\udc80",
     "role": "Forensic Debugger",
     "category": "Architecture",
     "tier": "Fusion",
@@ -540,7 +540,7 @@
   },
   {
     "name": "Customs",
-    "emoji": "🛃",
+    "emoji": "\ud83d\udec3",
     "role": "Border Control",
     "category": "Security",
     "tier": "Fusion",
@@ -551,7 +551,7 @@
   },
   {
     "name": "Dead-Ender",
-    "emoji": "⛔",
+    "emoji": "\u26d4",
     "role": "Route Purger",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -562,7 +562,7 @@
   },
   {
     "name": "Debunker",
-    "emoji": "🔦",
+    "emoji": "\ud83d\udd26",
     "role": "Truth Scribe",
     "category": "Documentation",
     "tier": "Fusion",
@@ -573,7 +573,7 @@
   },
   {
     "name": "Decoder",
-    "emoji": "📟",
+    "emoji": "\ud83d\udcdf",
     "role": "Stack Translator",
     "category": "Operations",
     "tier": "Fusion",
@@ -584,7 +584,7 @@
   },
   {
     "name": "Decommissioner",
-    "emoji": "🗑️",
+    "emoji": "\ud83d\uddd1\ufe0f",
     "role": "Infrastructure Cleaner",
     "category": "Operations",
     "tier": "Fusion",
@@ -595,7 +595,7 @@
   },
   {
     "name": "Defibrillator",
-    "emoji": "💥",
+    "emoji": "\ud83d\udca5",
     "role": "Pipeline Resuscitator",
     "category": "Operations",
     "tier": "Fusion",
@@ -606,7 +606,7 @@
   },
   {
     "name": "Defuser",
-    "emoji": "🪢",
+    "emoji": "\ud83e\udea2",
     "role": "Access Simplifier",
     "category": "Security",
     "tier": "Fusion",
@@ -617,7 +617,7 @@
   },
   {
     "name": "Demolition",
-    "emoji": "🧨",
+    "emoji": "\ud83e\udde8",
     "role": "Pipeline Scavenger",
     "category": "Operations",
     "tier": "Fusion",
@@ -628,7 +628,7 @@
   },
   {
     "name": "Discharge",
-    "emoji": "🪫",
+    "emoji": "\ud83e\udeab",
     "role": "Pipeline Drainer",
     "category": "Operations",
     "tier": "Fusion",
@@ -639,7 +639,7 @@
   },
   {
     "name": "Dispatcher",
-    "emoji": "🛤️",
+    "emoji": "\ud83d\udee4\ufe0f",
     "role": "Connection Manager",
     "category": "Operations",
     "tier": "Fusion",
@@ -650,7 +650,7 @@
   },
   {
     "name": "Echodrop",
-    "emoji": "🦇",
+    "emoji": "\ud83e\udd87",
     "role": "Acoustic Dispatcher",
     "category": "Operations",
     "tier": "Fusion",
@@ -661,7 +661,7 @@
   },
   {
     "name": "Electrician",
-    "emoji": "🔌",
+    "emoji": "\ud83d\udd0c",
     "role": "SDK Maintainer",
     "category": "Architecture",
     "tier": "Fusion",
@@ -672,7 +672,7 @@
   },
   {
     "name": "Envoy",
-    "emoji": "📜",
+    "emoji": "\ud83d\udcdc",
     "role": "Operations Documentarian",
     "category": "Documentation",
     "tier": "Fusion",
@@ -683,7 +683,7 @@
   },
   {
     "name": "Espresso",
-    "emoji": "☕",
+    "emoji": "\u2615",
     "role": "Workflow Concentrator",
     "category": "UX",
     "tier": "Mythic",
@@ -694,7 +694,7 @@
   },
   {
     "name": "Examiner",
-    "emoji": "🧑‍🏫",
+    "emoji": "\ud83e\uddd1\u200d\ud83c\udfeb",
     "role": "Alignment Enforcer",
     "category": "Testing",
     "tier": "Standard",
@@ -705,7 +705,7 @@
   },
   {
     "name": "Exorcist",
-    "emoji": "✝️",
+    "emoji": "\u271d\ufe0f",
     "role": "Hallucination Eradicator",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -716,7 +716,7 @@
   },
   {
     "name": "Expediter",
-    "emoji": "🛎️",
+    "emoji": "\ud83d\udece\ufe0f",
     "role": "Build Optimizer",
     "category": "Operations",
     "tier": "Fusion",
@@ -727,7 +727,7 @@
   },
   {
     "name": "Few-Shot Forger",
-    "emoji": "💭",
+    "emoji": "\ud83d\udcad",
     "role": "Pattern Injector",
     "category": "Architecture",
     "tier": "Fusion",
@@ -738,7 +738,7 @@
   },
   {
     "name": "Finesse",
-    "emoji": "🦢",
+    "emoji": "\ud83e\udda2",
     "role": "Aesthetic Purist",
     "category": "UX",
     "tier": "Fusion",
@@ -749,7 +749,7 @@
   },
   {
     "name": "Firewall",
-    "emoji": "📛",
+    "emoji": "\ud83d\udcdb",
     "role": "Prompt Defender",
     "category": "Security",
     "tier": "Fusion",
@@ -760,7 +760,7 @@
   },
   {
     "name": "First Responder",
-    "emoji": "🚒",
+    "emoji": "\ud83d\ude92",
     "role": "Crisis Manager",
     "category": "Security",
     "tier": "Fusion",
@@ -771,7 +771,7 @@
   },
   {
     "name": "Flourish",
-    "emoji": "🎩",
+    "emoji": "\ud83c\udfa9",
     "role": "UX Alchemist",
     "category": "UX",
     "tier": "Fusion",
@@ -782,7 +782,7 @@
   },
   {
     "name": "Flowstate",
-    "emoji": "🧘",
+    "emoji": "\ud83e\uddd8",
     "role": "Logic Materializer",
     "category": "Creation",
     "tier": "Fusion",
@@ -793,7 +793,7 @@
   },
   {
     "name": "Foreman",
-    "emoji": "👷",
+    "emoji": "\ud83d\udc77",
     "role": "Path Standardizer",
     "category": "Architecture",
     "tier": "Fusion",
@@ -804,7 +804,7 @@
   },
   {
     "name": "Forensic Architect",
-    "emoji": "🏛️",
+    "emoji": "\ud83c\udfdb\ufe0f",
     "role": "Structural Forensicist",
     "category": "Architecture",
     "tier": "Fusion",
@@ -815,7 +815,7 @@
   },
   {
     "name": "Foresight",
-    "emoji": "🔮",
+    "emoji": "\ud83d\udd2e",
     "role": "AI Synthesizer",
     "category": "Creation",
     "tier": "Fusion",
@@ -826,7 +826,7 @@
   },
   {
     "name": "Fractal",
-    "emoji": "❄️",
+    "emoji": "\u2744\ufe0f",
     "role": "Abstract Generator",
     "category": "Architecture",
     "tier": "Fusion",
@@ -837,7 +837,7 @@
   },
   {
     "name": "Futurist",
-    "emoji": "🛸",
+    "emoji": "\ud83d\udef8",
     "role": "Payload Evolver",
     "category": "Architecture",
     "tier": "Fusion",
@@ -848,7 +848,7 @@
   },
   {
     "name": "Gatekeeper",
-    "emoji": "⛩️",
+    "emoji": "\u26e9\ufe0f",
     "role": "Policy Keymaster",
     "category": "Architecture",
     "tier": "Fusion",
@@ -859,7 +859,7 @@
   },
   {
     "name": "Ghost Hunter",
-    "emoji": "👻",
+    "emoji": "\ud83d\udc7b",
     "role": "Hallucination Specialist",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -870,7 +870,7 @@
   },
   {
     "name": "Ghostwriter",
-    "emoji": "👻",
+    "emoji": "\ud83d\udc7b",
     "role": "Fiction Purger",
     "category": "Documentation",
     "tier": "Fusion",
@@ -881,7 +881,7 @@
   },
   {
     "name": "Glossary",
-    "emoji": "🗂️",
+    "emoji": "\ud83d\uddc2\ufe0f",
     "role": "Domain Taxonomist",
     "category": "Documentation",
     "tier": "Fusion",
@@ -892,7 +892,7 @@
   },
   {
     "name": "Grammarian",
-    "emoji": "✒️",
+    "emoji": "\u2712\ufe0f",
     "role": "Microcopy Canonicalizer",
     "category": "UX",
     "tier": "Mythic",
@@ -903,7 +903,7 @@
   },
   {
     "name": "Gravedigger",
-    "emoji": "🪦",
+    "emoji": "\ud83e\udea6",
     "role": "Necropolis Guide",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -914,7 +914,7 @@
   },
   {
     "name": "Greenlight",
-    "emoji": "🟢",
+    "emoji": "\ud83d\udfe2",
     "role": "Merge Architect",
     "category": "Testing",
     "tier": "Mythic",
@@ -925,7 +925,7 @@
   },
   {
     "name": "Groundskeeper",
-    "emoji": "🏡",
+    "emoji": "\ud83c\udfe1",
     "role": "Automation Maintainer",
     "category": "Architecture",
     "tier": "Fusion",
@@ -936,7 +936,7 @@
   },
   {
     "name": "Harbormaster",
-    "emoji": "⚓",
+    "emoji": "\u2693",
     "role": "Logistics Cartographer",
     "category": "Architecture",
     "tier": "Fusion",
@@ -947,7 +947,7 @@
   },
   {
     "name": "Hazmat",
-    "emoji": "☣️",
+    "emoji": "\u2623\ufe0f",
     "role": "Biohazard Responder",
     "category": "Operations",
     "tier": "Mythic",
@@ -958,7 +958,7 @@
   },
   {
     "name": "Helmsman",
-    "emoji": "⛵",
+    "emoji": "\u26f5",
     "role": "Routing Upgrader",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -969,7 +969,7 @@
   },
   {
     "name": "Hitman",
-    "emoji": "🕴️",
+    "emoji": "\ud83d\udd74\ufe0f",
     "role": "Feature Assassin",
     "category": "Maintenance",
     "tier": "Mythic",
@@ -980,7 +980,7 @@
   },
   {
     "name": "Hive",
-    "emoji": "🐝",
+    "emoji": "\ud83d\udc1d",
     "role": "Neural Synchronizer",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -991,7 +991,7 @@
   },
   {
     "name": "Hoister",
-    "emoji": "🪝",
+    "emoji": "\ud83e\ude9d",
     "role": "Scope Elevator",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1002,7 +1002,7 @@
   },
   {
     "name": "Hologram",
-    "emoji": "🎇",
+    "emoji": "\ud83c\udf87",
     "role": "Generative Projectionist",
     "category": "UX",
     "tier": "Fusion",
@@ -1013,7 +1013,7 @@
   },
   {
     "name": "Honeypot",
-    "emoji": "🍯",
+    "emoji": "\ud83c\udf6f",
     "role": "Tripwire Orchestrator",
     "category": "Security",
     "tier": "Mythic",
@@ -1024,7 +1024,7 @@
   },
   {
     "name": "Hyperloop",
-    "emoji": "🚄",
+    "emoji": "\ud83d\ude84",
     "role": "Edge Router",
     "category": "Performance",
     "tier": "Fusion",
@@ -1035,7 +1035,7 @@
   },
   {
     "name": "Illuminator",
-    "emoji": "🖌️",
+    "emoji": "\ud83d\udd8c\ufe0f",
     "role": "Architecture Draftsman",
     "category": "Documentation",
     "tier": "Fusion",
@@ -1046,7 +1046,7 @@
   },
   {
     "name": "Inoculator",
-    "emoji": "💉",
+    "emoji": "\ud83d\udc89",
     "role": "Resilience Specialist",
     "category": "Operations",
     "tier": "Fusion",
@@ -1057,7 +1057,7 @@
   },
   {
     "name": "Interpolator",
-    "emoji": "💬",
+    "emoji": "\ud83d\udcac",
     "role": "Syntax Upgrader",
     "category": "Hygiene",
     "tier": "Fusion",
@@ -1068,7 +1068,7 @@
   },
   {
     "name": "Interrogator",
-    "emoji": "🔦",
+    "emoji": "\ud83d\udd26",
     "role": "Assertion Specialist",
     "category": "Testing",
     "tier": "Fusion",
@@ -1079,7 +1079,7 @@
   },
   {
     "name": "Jeweler",
-    "emoji": "💎",
+    "emoji": "\ud83d\udc8e",
     "role": "Interaction QA",
     "category": "Testing",
     "tier": "Fusion",
@@ -1090,7 +1090,7 @@
   },
   {
     "name": "Keymaster",
-    "emoji": "🗝️",
+    "emoji": "\ud83d\udddd\ufe0f",
     "role": "Cryptographic Auditor",
     "category": "Security",
     "tier": "Fusion",
@@ -1101,7 +1101,7 @@
   },
   {
     "name": "Launchpad",
-    "emoji": "🚀",
+    "emoji": "\ud83d\ude80",
     "role": "Pipeline Deployer",
     "category": "Operations",
     "tier": "Fusion",
@@ -1112,7 +1112,7 @@
   },
   {
     "name": "Lexicon",
-    "emoji": "🔤",
+    "emoji": "\ud83d\udd24",
     "role": "Vocabulary Standardizer",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1123,7 +1123,7 @@
   },
   {
     "name": "Limiter",
-    "emoji": "🧊",
+    "emoji": "\ud83e\uddca",
     "role": "Boundary Enforcer",
     "category": "Operations",
     "tier": "Fusion",
@@ -1134,7 +1134,7 @@
   },
   {
     "name": "Liquidator",
-    "emoji": "🚿",
+    "emoji": "\ud83d\udebf",
     "role": "Adapter Purger",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1145,7 +1145,7 @@
   },
   {
     "name": "Logician",
-    "emoji": "🧮",
+    "emoji": "\ud83e\uddee",
     "role": "Logic Documenter",
     "category": "Documentation",
     "tier": "Fusion",
@@ -1156,7 +1156,7 @@
   },
   {
     "name": "Lumberjack",
-    "emoji": "🪓",
+    "emoji": "\ud83e\ude93",
     "role": "Branch Chopper",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1167,7 +1167,7 @@
   },
   {
     "name": "Lumen",
-    "emoji": "💡",
+    "emoji": "\ud83d\udca1",
     "role": "Health Auditor",
     "category": "Operations",
     "tier": "Fusion",
@@ -1178,7 +1178,7 @@
   },
   {
     "name": "Manifest",
-    "emoji": "📋",
+    "emoji": "\ud83d\udccb",
     "role": "Protocol Enforcer",
     "category": "Operations",
     "tier": "Fusion",
@@ -1189,7 +1189,7 @@
   },
   {
     "name": "Mapper",
-    "emoji": "🛰️",
+    "emoji": "\ud83d\udef0\ufe0f",
     "role": "Coverage Mapper",
     "category": "Testing",
     "tier": "Fusion",
@@ -1200,7 +1200,7 @@
   },
   {
     "name": "Marshal",
-    "emoji": "🧯",
+    "emoji": "\ud83e\uddef",
     "role": "Runbook Architect",
     "category": "Documentation",
     "tier": "Fusion",
@@ -1211,7 +1211,7 @@
   },
   {
     "name": "Medic",
-    "emoji": "🩹",
+    "emoji": "\ud83e\ude79",
     "role": "Implementation Fixer",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1222,7 +1222,7 @@
   },
   {
     "name": "Millisecond",
-    "emoji": "⏲️",
+    "emoji": "\u23f2\ufe0f",
     "role": "Render Optimizer",
     "category": "Performance",
     "tier": "Fusion",
@@ -1233,7 +1233,7 @@
   },
   {
     "name": "Mitosis",
-    "emoji": "🧫",
+    "emoji": "\ud83e\uddeb",
     "role": "Logic Parallelizer",
     "category": "Performance",
     "tier": "Fusion",
@@ -1244,7 +1244,7 @@
   },
   {
     "name": "Mixologist",
-    "emoji": "🍸",
+    "emoji": "\ud83c\udf78",
     "role": "Formula Prover",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1255,7 +1255,7 @@
   },
   {
     "name": "Mulligan",
-    "emoji": "🃏",
+    "emoji": "\ud83c\udccf",
     "role": "Interface Reroller",
     "category": "UX",
     "tier": "Fusion",
@@ -1266,7 +1266,7 @@
   },
   {
     "name": "Narrator",
-    "emoji": "🎙️",
+    "emoji": "\ud83c\udf99\ufe0f",
     "role": "Spec Translator",
     "category": "Testing",
     "tier": "Fusion",
@@ -1277,7 +1277,7 @@
   },
   {
     "name": "Obituary Writer",
-    "emoji": "🪦",
+    "emoji": "\ud83e\udea6",
     "role": "Code Eulogist",
     "category": "Documentation",
     "tier": "Fusion",
@@ -1288,7 +1288,7 @@
   },
   {
     "name": "Occam",
-    "emoji": "🪒",
+    "emoji": "\ud83e\ude92",
     "role": "Under Engineerer",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1299,7 +1299,7 @@
   },
   {
     "name": "Oracle",
-    "emoji": "🧿",
+    "emoji": "\ud83e\uddff",
     "role": "Contract Sealer",
     "category": "Documentation",
     "tier": "Fusion",
@@ -1310,7 +1310,7 @@
   },
   {
     "name": "Organizer",
-    "emoji": "🧲",
+    "emoji": "\ud83e\uddf2",
     "role": "Semantic Organizer",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1321,7 +1321,7 @@
   },
   {
     "name": "Ouija",
-    "emoji": "🪬",
+    "emoji": "\ud83e\udeac",
     "role": "Lore Resurrector",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1332,7 +1332,7 @@
   },
   {
     "name": "Overclock",
-    "emoji": "⏱️",
+    "emoji": "\u23f1\ufe0f",
     "role": "Chrono Refiner",
     "category": "Testing",
     "tier": "Fusion",
@@ -1343,7 +1343,7 @@
   },
   {
     "name": "Overdrive",
-    "emoji": "🏎️",
+    "emoji": "\ud83c\udfce\ufe0f",
     "role": "Hallucination Accelerator",
     "category": "Fusion",
     "tier": "Fusion",
@@ -1354,7 +1354,7 @@
   },
   {
     "name": "Pacemaker",
-    "emoji": "🫀",
+    "emoji": "\ud83e\udec0",
     "role": "Thread Surgeon",
     "category": "Performance",
     "tier": "Fusion",
@@ -1365,7 +1365,7 @@
   },
   {
     "name": "Panopticon",
-    "emoji": "👁️‍🗨️",
+    "emoji": "\ud83d\udc41\ufe0f\u200d\ud83d\udde8\ufe0f",
     "role": "Omniscient Mapper",
     "category": "Architecture",
     "tier": "Mythic",
@@ -1376,7 +1376,7 @@
   },
   {
     "name": "Pantomime",
-    "emoji": "🤹",
+    "emoji": "\ud83e\udd39",
     "role": "Stage Failsafe",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1387,7 +1387,7 @@
   },
   {
     "name": "Parallel",
-    "emoji": "♾️",
+    "emoji": "\u267e\ufe0f",
     "role": "Replacement Builder",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1398,7 +1398,7 @@
   },
   {
     "name": "PathCentralizer",
-    "emoji": "🌐",
+    "emoji": "\ud83c\udf10",
     "role": "Route Extractor",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1409,7 +1409,7 @@
   },
   {
     "name": "Pathfinder",
-    "emoji": "🥾",
+    "emoji": "\ud83e\udd7e",
     "role": "Friction Eradicator",
     "category": "UX",
     "tier": "Fusion",
@@ -1420,7 +1420,7 @@
   },
   {
     "name": "Payload",
-    "emoji": "🚂",
+    "emoji": "\ud83d\ude82",
     "role": "Armored Express",
     "category": "Performance",
     "tier": "Fusion",
@@ -1431,7 +1431,7 @@
   },
   {
     "name": "Phoenix",
-    "emoji": "🐦‍🔥",
+    "emoji": "\ud83d\udc26\u200d\ud83d\udd25",
     "role": "Genesis Engine",
     "category": "Creation",
     "tier": "Mythic",
@@ -1442,7 +1442,7 @@
   },
   {
     "name": "Plumbline",
-    "emoji": "📐",
+    "emoji": "\ud83d\udcd0",
     "role": "Reality Mason",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1453,7 +1453,7 @@
   },
   {
     "name": "Policy Maker",
-    "emoji": "⚖️",
+    "emoji": "\u2696\ufe0f",
     "role": "AI Architect",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1464,7 +1464,7 @@
   },
   {
     "name": "Polygraph",
-    "emoji": "🎛️",
+    "emoji": "\ud83c\udf9b\ufe0f",
     "role": "Test Engineer",
     "category": "Testing",
     "tier": "Fusion",
@@ -1475,7 +1475,7 @@
   },
   {
     "name": "Prefect",
-    "emoji": "🏅",
+    "emoji": "\ud83c\udfc5",
     "role": "Constraint Enforcer",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1486,18 +1486,18 @@
   },
   {
     "name": "Press Secretary",
-    "emoji": "👔",
+    "emoji": "\ud83d\udc54",
     "role": "Incident Communicator",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "👔 Draft objective timelines and actionable prevention plans from technical git forensics.",
+    "description": "\ud83d\udc54 Draft objective timelines and actionable prevention plans from technical git forensics.",
     "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Press Secretary.md",
     "isCustom": true
   },
   {
     "name": "Profiler",
-    "emoji": "🔬",
+    "emoji": "\ud83d\udd2c",
     "role": "Complexity Auditor",
     "category": "Documentation",
     "tier": "Fusion",
@@ -1508,7 +1508,7 @@
   },
   {
     "name": "Prompt Engineer",
-    "emoji": "✨",
+    "emoji": "\u2728",
     "role": "LLM Mechanics Expert",
     "category": "Documentation",
     "tier": "Mythic",
@@ -1519,7 +1519,7 @@
   },
   {
     "name": "Propagator",
-    "emoji": "🪴",
+    "emoji": "\ud83e\udeb4",
     "role": "Structural Propagator",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1530,7 +1530,7 @@
   },
   {
     "name": "Prophet",
-    "emoji": "🔮",
+    "emoji": "\ud83d\udd2e",
     "role": "Deprecation Forecaster",
     "category": "Hygiene",
     "tier": "Fusion",
@@ -1541,18 +1541,18 @@
   },
   {
     "name": "Proton Pack",
-    "emoji": "🎒",
+    "emoji": "\ud83c\udf92",
     "role": "Poltergeist Purger",
     "category": "Maintenance",
     "tier": "Fusion",
-    "description": "TRAP the ghosts in the machine—zombie intervals, detached DOM nodes, and rogue observers that actively haunt the runtime.",
+    "description": "TRAP the ghosts in the machine\u2014zombie intervals, detached DOM nodes, and rogue observers that actively haunt the runtime.",
     "forge_version": "V87.5",
     "promptFile": "prompts/fusions/Proton Pack.md",
     "isCustom": true
   },
   {
     "name": "Pruner",
-    "emoji": "🪚",
+    "emoji": "\ud83e\ude9a",
     "role": "Code Destroyer",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1563,7 +1563,7 @@
   },
   {
     "name": "Purger",
-    "emoji": "🗑️",
+    "emoji": "\ud83d\uddd1\ufe0f",
     "role": "Deletion Specialist",
     "category": "Hygiene",
     "tier": "Mythic",
@@ -1574,7 +1574,7 @@
   },
   {
     "name": "Quarantine",
-    "emoji": "🏕️",
+    "emoji": "\ud83c\udfd5\ufe0f",
     "role": "Centralization Specialist",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1585,7 +1585,7 @@
   },
   {
     "name": "Quartermaster",
-    "emoji": "📦",
+    "emoji": "\ud83d\udce6",
     "role": "Centralizing Authority",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1596,7 +1596,7 @@
   },
   {
     "name": "REST Enforcer",
-    "emoji": "🚦",
+    "emoji": "\ud83d\udea6",
     "role": "Protocol Warden",
     "category": "Compliance",
     "tier": "Fusion",
@@ -1607,7 +1607,7 @@
   },
   {
     "name": "Ratchet",
-    "emoji": "🔩",
+    "emoji": "\ud83d\udd29",
     "role": "Strictness Enforcer",
     "category": "Compliance",
     "tier": "Fusion",
@@ -1618,7 +1618,7 @@
   },
   {
     "name": "Realist",
-    "emoji": "🪩",
+    "emoji": "\ud83e\udea9",
     "role": "Syntax Realist",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1629,7 +1629,7 @@
   },
   {
     "name": "Reclaimer",
-    "emoji": "♻️",
+    "emoji": "\u267b\ufe0f",
     "role": "Codebase Recycler",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1640,18 +1640,18 @@
   },
   {
     "name": "Redirector",
-    "emoji": "🔀",
+    "emoji": "\ud83d\udd00",
     "role": "Link Sweeper",
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "REDIRECT broken internal links and map traffic flows to preserve architectural integrity.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Redirector.md",
     "isCustom": true
   },
   {
     "name": "Refiner",
-    "emoji": "🏭",
+    "emoji": "\ud83c\udfed",
     "role": "Structural Modernization",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1662,7 +1662,7 @@
   },
   {
     "name": "Registrar",
-    "emoji": "📑",
+    "emoji": "\ud83d\udcd1",
     "role": "Component Cataloger",
     "category": "Architecture",
     "tier": "Mythic",
@@ -1673,7 +1673,7 @@
   },
   {
     "name": "Regulator",
-    "emoji": "🛂",
+    "emoji": "\ud83d\udec2",
     "role": "Boundary Enforcer",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1684,7 +1684,7 @@
   },
   {
     "name": "Renovator",
-    "emoji": "🏚️",
+    "emoji": "\ud83c\udfda\ufe0f",
     "role": "UX Polisher",
     "category": "UX",
     "tier": "Fusion",
@@ -1695,7 +1695,7 @@
   },
   {
     "name": "Reroll",
-    "emoji": "🎲",
+    "emoji": "\ud83c\udfb2",
     "role": "Logic Resetter",
     "category": "Architecture",
     "tier": "Mythic",
@@ -1706,7 +1706,7 @@
   },
   {
     "name": "Respawn",
-    "emoji": "⏳",
+    "emoji": "\u23f3",
     "role": "Pipeline Reroller",
     "category": "Operations",
     "tier": "Fusion",
@@ -1717,7 +1717,7 @@
   },
   {
     "name": "Respec",
-    "emoji": "🕹️",
+    "emoji": "\ud83d\udd79\ufe0f",
     "role": "Suite Reroller",
     "category": "Testing",
     "tier": "Fusion",
@@ -1728,7 +1728,7 @@
   },
   {
     "name": "Restorer",
-    "emoji": "🕸️",
+    "emoji": "\ud83d\udd78\ufe0f",
     "role": "Reference Cleaner",
     "category": "UX",
     "tier": "Fusion",
@@ -1739,7 +1739,7 @@
   },
   {
     "name": "Retcon",
-    "emoji": "📖",
+    "emoji": "\ud83d\udcd6",
     "role": "Documentation Reroller",
     "category": "Documentation",
     "tier": "Fusion",
@@ -1750,7 +1750,7 @@
   },
   {
     "name": "Retrofit",
-    "emoji": "🚢",
+    "emoji": "\ud83d\udea2",
     "role": "Transit Evolver",
     "category": "Operations",
     "tier": "Fusion",
@@ -1761,7 +1761,7 @@
   },
   {
     "name": "Retrofitter",
-    "emoji": "🔧",
+    "emoji": "\ud83d\udd27",
     "role": "Syntactic Upgrader",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1772,7 +1772,7 @@
   },
   {
     "name": "Revisionist",
-    "emoji": "🧾",
+    "emoji": "\ud83e\uddfe",
     "role": "Lie Detector",
     "category": "Documentation",
     "tier": "Fusion",
@@ -1783,7 +1783,7 @@
   },
   {
     "name": "Revoker",
-    "emoji": "🪪",
+    "emoji": "\ud83e\udeaa",
     "role": "Credential Scrubber",
     "category": "Security",
     "tier": "Fusion",
@@ -1794,7 +1794,7 @@
   },
   {
     "name": "Rulemaker",
-    "emoji": "🧑‍⚖️",
+    "emoji": "\ud83e\uddd1\u200d\u2696\ufe0f",
     "role": "Style Enforcer",
     "category": "Compliance",
     "tier": "Fusion",
@@ -1805,7 +1805,7 @@
   },
   {
     "name": "Rumble",
-    "emoji": "🫯",
+    "emoji": "\ud83e\udeef",
     "role": "Validation Brawler",
     "category": "Testing",
     "tier": "Fusion",
@@ -1816,7 +1816,7 @@
   },
   {
     "name": "Safety Inspector",
-    "emoji": "🦺",
+    "emoji": "\ud83e\uddba",
     "role": "QA Specialist",
     "category": "Testing",
     "tier": "Fusion",
@@ -1827,7 +1827,7 @@
   },
   {
     "name": "Sanitizer",
-    "emoji": "🧴",
+    "emoji": "\ud83e\uddf4",
     "role": "Clinical Sweeper",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1838,7 +1838,7 @@
   },
   {
     "name": "Scaffolder",
-    "emoji": "🪜",
+    "emoji": "\ud83e\ude9c",
     "role": "Structural Propagator",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1849,7 +1849,7 @@
   },
   {
     "name": "Scholar",
-    "emoji": "🎓",
+    "emoji": "\ud83c\udf93",
     "role": "Chief Archivist",
     "category": "Documentation",
     "tier": "Fusion",
@@ -1860,7 +1860,7 @@
   },
   {
     "name": "Scout",
-    "emoji": "🐾",
+    "emoji": "\ud83d\udc3e",
     "role": "Trail Scribe",
     "category": "Documentation",
     "tier": "Fusion",
@@ -1871,7 +1871,7 @@
   },
   {
     "name": "Sculptor",
-    "emoji": "🗿",
+    "emoji": "\ud83d\uddff",
     "role": "UI Animator",
     "category": "UX",
     "tier": "Fusion",
@@ -1882,7 +1882,7 @@
   },
   {
     "name": "Sherpa",
-    "emoji": "🏔️",
+    "emoji": "\ud83c\udfd4\ufe0f",
     "role": "Summit Guide",
     "category": "UX",
     "tier": "Mythic",
@@ -1893,7 +1893,7 @@
   },
   {
     "name": "Shredder",
-    "emoji": "🗑️",
+    "emoji": "\ud83d\uddd1\ufe0f",
     "role": "Graveyard Destroyer",
     "category": "Documentation",
     "tier": "Fusion",
@@ -1904,7 +1904,7 @@
   },
   {
     "name": "Siren",
-    "emoji": "📻",
+    "emoji": "\ud83d\udcfb",
     "role": "Vulnerability Broadcaster",
     "category": "Security",
     "tier": "Fusion",
@@ -1915,7 +1915,7 @@
   },
   {
     "name": "Slipstream",
-    "emoji": "💨",
+    "emoji": "\ud83d\udca8",
     "role": "Frictionless Router",
     "category": "UX",
     "tier": "Fusion",
@@ -1926,7 +1926,7 @@
   },
   {
     "name": "Sonar",
-    "emoji": "📡",
+    "emoji": "\ud83d\udce1",
     "role": "Complexity Mapper",
     "category": "Operations",
     "tier": "Fusion",
@@ -1937,7 +1937,7 @@
   },
   {
     "name": "Spellchecker",
-    "emoji": "🔤",
+    "emoji": "\ud83d\udd24",
     "role": "Typo Eradicator",
     "category": "UX",
     "tier": "Fusion",
@@ -1948,7 +1948,7 @@
   },
   {
     "name": "Standardizer",
-    "emoji": "🔢",
+    "emoji": "\ud83d\udd22",
     "role": "Copy Centralizer",
     "category": "Hygiene",
     "tier": "Fusion",
@@ -1959,7 +1959,7 @@
   },
   {
     "name": "Steward",
-    "emoji": "🧽",
+    "emoji": "\ud83e\uddfd",
     "role": "Dependency Caretaker",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1970,7 +1970,7 @@
   },
   {
     "name": "Strategist",
-    "emoji": "♟️",
+    "emoji": "\u265f\ufe0f",
     "role": "Roadmap Synchronizer",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1981,7 +1981,7 @@
   },
   {
     "name": "Streamliner",
-    "emoji": "⛷️",
+    "emoji": "\u26f7\ufe0f",
     "role": "Load Reducer",
     "category": "UX",
     "tier": "Fusion",
@@ -1992,7 +1992,7 @@
   },
   {
     "name": "Stylist",
-    "emoji": "👗",
+    "emoji": "\ud83d\udc57",
     "role": "Token Standardizer",
     "category": "UX",
     "tier": "Fusion",
@@ -2003,7 +2003,7 @@
   },
   {
     "name": "Sunsetter",
-    "emoji": "🌇",
+    "emoji": "\ud83c\udf07",
     "role": "Deprecation Documentarian",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -2014,7 +2014,7 @@
   },
   {
     "name": "Superintendent",
-    "emoji": "🏢",
+    "emoji": "\ud83c\udfe2",
     "role": "Facilities Director",
     "category": "Operations",
     "tier": "Fusion",
@@ -2025,7 +2025,7 @@
   },
   {
     "name": "Surgeon",
-    "emoji": "🔪",
+    "emoji": "\ud83d\udd2a",
     "role": "Structural Stabilizer",
     "category": "Architecture",
     "tier": "Fusion",
@@ -2036,7 +2036,7 @@
   },
   {
     "name": "Surveyor",
-    "emoji": "⛏️",
+    "emoji": "\u26cf\ufe0f",
     "role": "Test Relocator",
     "category": "Architecture",
     "tier": "Fusion",
@@ -2047,7 +2047,7 @@
   },
   {
     "name": "Swatch",
-    "emoji": "📓",
+    "emoji": "\ud83d\udcd3",
     "role": "Design Documentarian",
     "category": "Documentation",
     "tier": "Fusion",
@@ -2058,7 +2058,7 @@
   },
   {
     "name": "Switchboard",
-    "emoji": "🎛️",
+    "emoji": "\ud83c\udf9b\ufe0f",
     "role": "Pipeline Simplifier",
     "category": "Operations",
     "tier": "Fusion",
@@ -2069,7 +2069,7 @@
   },
   {
     "name": "Sylar",
-    "emoji": "🥄",
+    "emoji": "\ud83e\udd44",
     "role": "Logic Splicer",
     "category": "Architecture",
     "tier": "Fusion",
@@ -2080,7 +2080,7 @@
   },
   {
     "name": "Synchronizer",
-    "emoji": "🔄",
+    "emoji": "\ud83d\udd04",
     "role": "Dependency Migrator",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -2091,7 +2091,7 @@
   },
   {
     "name": "Syncopator",
-    "emoji": "🎶",
+    "emoji": "\ud83c\udfb6",
     "role": "Jive Centrifuge",
     "category": "Architecture",
     "tier": "Fusion",
@@ -2102,7 +2102,7 @@
   },
   {
     "name": "Syntax",
-    "emoji": "🔡",
+    "emoji": "\ud83d\udd21",
     "role": "Prompt Architect",
     "category": "Architecture",
     "tier": "Fusion",
@@ -2113,7 +2113,7 @@
   },
   {
     "name": "Systematizer",
-    "emoji": "🗄️",
+    "emoji": "\ud83d\uddc4\ufe0f",
     "role": "Logic Extractor",
     "category": "Architecture",
     "tier": "Fusion",
@@ -2124,7 +2124,7 @@
   },
   {
     "name": "Tachyon",
-    "emoji": "☄️",
+    "emoji": "\u2604\ufe0f",
     "role": "Stream Accelerator",
     "category": "Architecture",
     "tier": "Fusion",
@@ -2135,7 +2135,7 @@
   },
   {
     "name": "Tectonic",
-    "emoji": "🌋",
+    "emoji": "\ud83c\udf0b",
     "role": "Seismic Decoupler",
     "category": "Architecture",
     "tier": "Mythic",
@@ -2146,7 +2146,7 @@
   },
   {
     "name": "Telemetrist",
-    "emoji": "📡",
+    "emoji": "\ud83d\udce1",
     "role": "Metric Broadcaster",
     "category": "Operations",
     "tier": "Fusion",
@@ -2157,7 +2157,7 @@
   },
   {
     "name": "Telepath",
-    "emoji": "🎱",
+    "emoji": "\ud83c\udfb1",
     "role": "Clairvoyant Router",
     "category": "Performance",
     "tier": "Fusion",
@@ -2168,7 +2168,7 @@
   },
   {
     "name": "Temporal Loom",
-    "emoji": "🌀",
+    "emoji": "\ud83c\udf00",
     "role": "Dimensional Architect",
     "category": "Architecture",
     "tier": "Mythic",
@@ -2179,7 +2179,7 @@
   },
   {
     "name": "Terraformer",
-    "emoji": "⛰️",
+    "emoji": "\u26f0\ufe0f",
     "role": "Asset Reshaper",
     "category": "Architecture",
     "tier": "Fusion",
@@ -2190,7 +2190,7 @@
   },
   {
     "name": "Threat Modeler",
-    "emoji": "🏯",
+    "emoji": "\ud83c\udfef",
     "role": "Perimeter Architect",
     "category": "Security",
     "tier": "Fusion",
@@ -2201,7 +2201,7 @@
   },
   {
     "name": "Town Crier",
-    "emoji": "🔔",
+    "emoji": "\ud83d\udd14",
     "role": "Uncompromising Herald",
     "category": "Documentation",
     "tier": "Mythic",
@@ -2212,7 +2212,7 @@
   },
   {
     "name": "Toxicologist",
-    "emoji": "🧪",
+    "emoji": "\ud83e\uddea",
     "role": "Telemetry Enforcer",
     "category": "Operations",
     "tier": "Fusion",
@@ -2223,7 +2223,7 @@
   },
   {
     "name": "Transfusion",
-    "emoji": "🩸",
+    "emoji": "\ud83e\ude78",
     "role": "State Purifier",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -2234,7 +2234,7 @@
   },
   {
     "name": "Transition Manager",
-    "emoji": "🌉",
+    "emoji": "\ud83c\udf09",
     "role": "Migration Architect",
     "category": "Documentation",
     "tier": "Fusion",
@@ -2245,7 +2245,7 @@
   },
   {
     "name": "Transmuter",
-    "emoji": "🦋",
+    "emoji": "\ud83e\udd8b",
     "role": "Paradigm Migrator",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -2256,7 +2256,7 @@
   },
   {
     "name": "Triage Commander",
-    "emoji": "🏥",
+    "emoji": "\ud83c\udfe5",
     "role": "Incident Commander",
     "category": "Operations",
     "tier": "Fusion",
@@ -2267,7 +2267,7 @@
   },
   {
     "name": "Triage",
-    "emoji": "🩺",
+    "emoji": "\ud83e\ude7a",
     "role": "Diagnostic Healer",
     "category": "Operations",
     "tier": "Fusion",
@@ -2278,7 +2278,7 @@
   },
   {
     "name": "Typesetter",
-    "emoji": "🔠",
+    "emoji": "\ud83d\udd20",
     "role": "Pixel Perfectionist",
     "category": "UX",
     "tier": "Fusion",
@@ -2289,7 +2289,7 @@
   },
   {
     "name": "Upgrader",
-    "emoji": "📈",
+    "emoji": "\ud83d\udcc8",
     "role": "Dependency Broadcaster",
     "category": "Documentation",
     "tier": "Mythic",
@@ -2300,7 +2300,7 @@
   },
   {
     "name": "Vector",
-    "emoji": "↗️",
+    "emoji": "\u2197\ufe0f",
     "role": "Absolute Trajectory",
     "category": "Maintenance",
     "tier": "Mythic",
@@ -2311,7 +2311,7 @@
   },
   {
     "name": "Vice",
-    "emoji": "🗜️",
+    "emoji": "\ud83d\udddc\ufe0f",
     "role": "Render Enforcer",
     "category": "Performance",
     "tier": "Fusion",
@@ -2322,7 +2322,7 @@
   },
   {
     "name": "Viewmorph",
-    "emoji": "📱",
+    "emoji": "\ud83d\udcf1",
     "role": "Dimension Shifter",
     "category": "UX",
     "tier": "Fusion",
@@ -2333,7 +2333,7 @@
   },
   {
     "name": "Void",
-    "emoji": "🕳️",
+    "emoji": "\ud83d\udd73\ufe0f",
     "role": "Redundancy Destroyer",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -2344,7 +2344,7 @@
   },
   {
     "name": "Warden",
-    "emoji": "🔐",
+    "emoji": "\ud83d\udd10",
     "role": "Infrastructure Overseer",
     "category": "Architecture",
     "tier": "Fusion",
@@ -2355,7 +2355,7 @@
   },
   {
     "name": "Watchtower",
-    "emoji": "🗼",
+    "emoji": "\ud83d\uddfc",
     "role": "Telemetry Clairvoyant",
     "category": "Operations",
     "tier": "Fusion",
@@ -2366,7 +2366,7 @@
   },
   {
     "name": "Watermark",
-    "emoji": "💮",
+    "emoji": "\ud83d\udcae",
     "role": "Embedded Trust",
     "category": "Security",
     "tier": "Fusion",
@@ -2377,7 +2377,7 @@
   },
   {
     "name": "Wayfinder",
-    "emoji": "🪧",
+    "emoji": "\ud83e\udea7",
     "role": "UX Pathfinding",
     "category": "UX",
     "tier": "Fusion",
@@ -2388,7 +2388,7 @@
   },
   {
     "name": "Weaver",
-    "emoji": "🧵",
+    "emoji": "\ud83e\uddf5",
     "role": "Logic Flattener",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -2399,7 +2399,7 @@
   },
   {
     "name": "Whistleblower",
-    "emoji": "📢",
+    "emoji": "\ud83d\udce2",
     "role": "Syntax Shamer",
     "category": "Documentation",
     "tier": "Fusion",
@@ -2410,7 +2410,7 @@
   },
   {
     "name": "Wordsmith",
-    "emoji": "🖋️",
+    "emoji": "\ud83d\udd8b\ufe0f",
     "role": "Brand Voice",
     "category": "UX",
     "tier": "Fusion",
@@ -2421,7 +2421,7 @@
   },
   {
     "name": "WorldGen",
-    "emoji": "🌍",
+    "emoji": "\ud83c\udf0d",
     "role": "Topology Reroller",
     "category": "Architecture",
     "tier": "Fusion",
@@ -2432,7 +2432,7 @@
   },
   {
     "name": "Yggdrasil",
-    "emoji": "🌳",
+    "emoji": "\ud83c\udf33",
     "role": "Paradigm Mutator",
     "category": "Architecture",
     "tier": "Mythic",
@@ -2443,7 +2443,7 @@
   },
   {
     "name": "Zealot",
-    "emoji": "🔱",
+    "emoji": "\ud83d\udd31",
     "role": "Linting Overlord",
     "category": "Compliance",
     "tier": "Mythic",
@@ -2454,7 +2454,7 @@
   },
   {
     "name": "Zen",
-    "emoji": "🪷",
+    "emoji": "\ud83e\udeb7",
     "role": "Visual Excisor",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -2465,7 +2465,7 @@
   },
   {
     "name": "Zoning Board",
-    "emoji": "🗺️",
+    "emoji": "\ud83d\uddfa\ufe0f",
     "role": "Structural Auditor",
     "category": "Architecture",
     "tier": "Fusion",
@@ -2476,7 +2476,7 @@
   },
   {
     "name": "Echo",
-    "emoji": "🗣️",
+    "emoji": "\ud83d\udde3\ufe0f",
     "role": "Symbology Propagator",
     "category": "Hygiene",
     "tier": "Core",
@@ -2487,7 +2487,7 @@
   },
   {
     "name": "Iconographer",
-    "emoji": "🔣",
+    "emoji": "\ud83d\udd23",
     "role": "Symbology Curator",
     "category": "Micro",
     "tier": "Core",
@@ -2498,7 +2498,7 @@
   },
   {
     "name": "Nomenclator",
-    "emoji": "🏷️",
+    "emoji": "\ud83c\udff7\ufe0f",
     "role": "Filename Synchronizer",
     "category": "Architecture",
     "tier": "Micro",
@@ -2509,7 +2509,7 @@
   },
   {
     "name": "Smith",
-    "emoji": "🕶️",
+    "emoji": "\ud83d\udd76\ufe0f",
     "role": "Code Purger",
     "category": "Maintenance",
     "tier": "Mythic",
