@@ -40,7 +40,7 @@ CRITICAL: Execute all logic shifts directly via native file editing on the Markd
 
 ## Step 4: The Efficacy Audit
 - Run Forge-Procedure Module 7 Part B (Component Diff and Mandatory Audits) comparing your modified Markdown against the original legacy file, then rerun Part A on the modified file. To avoid plan review rejections for vague abstract tasks, this audit MUST be structured as specific actionable tool calls (e.g., writing a Python diff script or actively using `read_file` to perform the comparisons in context) rather than abstract mental steps.
-- On any FAIL, repair in place and rerun the failing check. After two repair loops, revert the specific change that still fails, keep the legacy text there, and list it under "Flagged, not changed" in the PR.
+- On any FAIL, repair in place and rerun the failing check. After two Regression Loops, revert the specific change that still fails, keep the legacy text there, and list it under "Flagged, not changed" in the PR.
 - The updated file must result in a more capable, coherent, and domain-specific agent than the legacy variant.
 
 ## Step 5: Terminal Output
