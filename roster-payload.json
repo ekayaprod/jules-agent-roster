@@ -1642,10 +1642,10 @@
     "name": "Redirector",
     "emoji": "🔀",
     "role": "Link Sweeper",
-    "category": "Maintenance",
+    "category": "UX",
     "tier": "Fusion",
     "description": "REDIRECT broken internal links and map traffic flows to preserve architectural integrity.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Redirector.md",
     "isCustom": true
   },
