@@ -842,7 +842,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "TRANSCEND hardcoded utility functions into boundless, hyper-generic abstractions while preserving the original caller signature.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Fractal.md",
     "isCustom": true
   },
