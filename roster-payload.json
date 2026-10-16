@@ -435,7 +435,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "OPTIMIZE legacy architecture by ruthlessly ripping out outdated heavy polyfills and utility libraries.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Catalyst.md",
     "isCustom": true
   },
@@ -809,7 +809,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "STANDARDIZE physical file naming and synchronize global import structures to enforce consistent architectural boundaries.",
-    "forge_version": "V88.3",
+    "forge_version": "V87.0",
     "promptFile": "prompts/fusions/Foreman.md",
     "isCustom": true
   },
