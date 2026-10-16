@@ -242,6 +242,17 @@
     "isCustom": true
   },
   {
+    "name": "Actualizer",
+    "emoji": "🪨",
+    "role": "Reality Architect",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "ANCHOR hallucinated abstractions by fully building the missing native architecture they poorly attempted to fake.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/fusions/Actualizer.md",
+    "isCustom": true
+  },
+  {
     "name": "Adversary",
     "emoji": "🤺",
     "role": "Framework Inquisitor",
