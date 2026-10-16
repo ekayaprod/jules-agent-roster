@@ -2503,7 +2503,7 @@
     "category": "Micro",
     "tier": "Core",
     "description": "SWEEP the repository looking for semantic inconsistencies.",
-    "forge_version": "V86.6",
+    "forge_version": "V89.0",
     "promptFile": "prompts/micro/Iconographer.md",
     "isCustom": true
   },
