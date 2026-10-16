@@ -595,7 +595,7 @@
   },
   {
     "name": "Decommissioner",
-    "emoji": "🗑️",
+    "emoji": "💣",
     "role": "Infrastructure Cleaner",
     "category": "Operations",
     "tier": "Fusion",
@@ -1574,7 +1574,7 @@
   },
   {
     "name": "Purger",
-    "emoji": "🗑️",
+    "emoji": "🚮",
     "role": "Deletion Specialist",
     "category": "Hygiene",
     "tier": "Mythic",
@@ -1904,7 +1904,7 @@
   },
   {
     "name": "Shredder",
-    "emoji": "🗑️",
+    "emoji": "✂️",
     "role": "Graveyard Destroyer",
     "category": "Documentation",
     "tier": "Fusion",
@@ -2486,6 +2486,17 @@
     "isCustom": true
   },
   {
+    "name": "Board Clerk",
+    "emoji": "📋",
+    "role": "Board Clerk",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "INJECT missing Task Board Resolution strings into system profiles to ensure task cleanup.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/micro/BoardClerk.md",
+    "isCustom": true
+  },
+  {
     "name": "Echo",
     "emoji": "🗣️",
     "role": "Symbology Propagator",
@@ -2505,17 +2516,6 @@
     "description": "SWEEP the repository looking for semantic inconsistencies.",
     "forge_version": "V89.0",
     "promptFile": "prompts/micro/Iconographer.md",
-    "isCustom": true
-  },
-  {
-    "name": "Nomenclator",
-    "emoji": "🏷️",
-    "role": "Filename Synchronizer",
-    "category": "Architecture",
-    "tier": "Micro",
-    "description": "SWEEP the repository to enforce absolute synchronization between custom_agents.json and fusion filenames.",
-    "forge_version": "V89.0",
-    "promptFile": "prompts/micro/Nomenclator.md",
     "isCustom": true
   },
   {
