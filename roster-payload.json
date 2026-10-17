@@ -853,7 +853,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "EVOLVE deprecated AI response shapes, sunset message formats, and fossilized prompt patterns.",
-    "forge_version": "V86.8",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Futurist.md",
     "isCustom": true
   },
