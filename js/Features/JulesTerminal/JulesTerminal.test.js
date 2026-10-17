@@ -78,6 +78,21 @@ describe('JulesTerminal', () => {
             expect(mockApp.toast.show).toHaveBeenCalledWith("Unable to connect to GitHub: Test connection error", true);
         });
 
+        it('handles error in loadSources where dispatchEvent is called with SOURCES_LOAD_FAILED and toast is shown', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            const mockError = new Error("Mock connection failure");
+            global.window.julesAPI.getSources.mockRejectedValueOnce(mockError);
+
+            const toastShowSpy = jest.spyOn(manager.app.toast, 'show');
+
+            await manager.loadSources();
+
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("SOURCES_LOAD_FAILED", mockError);
+            expect(toastShowSpy).toHaveBeenCalledWith("Unable to connect to GitHub: Mock connection failure", true);
+
+            toastShowSpy.mockRestore();
+        });
+
         it('handles error in loadSources with missing message (fallback to Please check your credentials and try again.)', async () => {
             const picker = document.getElementById("julesRepoPicker");
             const originalText = picker.options[0].textContent;
@@ -135,6 +150,26 @@ describe('JulesTerminal', () => {
             expect(picker.options[2].textContent).toBe('extracted/repo2');
         });
 
+        it('populates the dropdown gracefully when formatUtils is null and githubRepo is missing', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            global.window.julesAPI.getSources.mockResolvedValueOnce({
+                sources: [
+                    { name: 'repo3' }
+                ]
+            });
+
+            const getFormatUtilsSpy = jest.spyOn(JulesTerminal, 'getFormatUtils').mockReturnValue(null);
+
+            await manager.loadSources();
+
+            expect(picker.disabled).toBe(false);
+            expect(picker.options.length).toBe(2);
+            expect(picker.options[1].value).toBe('repo3');
+            expect(picker.options[1].textContent).toBe('repo3');
+
+            getFormatUtilsSpy.mockRestore();
+        });
+
         it('handles loadSources resolving without sources', async () => {
             const picker = document.getElementById("julesRepoPicker");
             const originalText = picker.options[0].textContent;
@@ -181,6 +216,44 @@ describe('JulesTerminal', () => {
             await capturedHandler({ target: { value: 'owner/repo' } });
 
             expect(manager.loadPullRequestsForRepo).toHaveBeenCalledWith('owner/repo');
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BACKGROUND_FETCH_FAILED", mockError);
+        });
+
+        it('event listener handles loadActiveSessionsForRepo fetch errors gracefully', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            delete picker.dataset.listenerAttached;
+
+            const clone = picker.cloneNode(true);
+            delete clone.dataset.listenerAttached;
+            picker.parentNode.replaceChild(clone, picker);
+            manager.getEl = jest.fn((id) => {
+                if (id === 'julesRepoPicker') return clone;
+                if (id === 'julesTerminal') return document.getElementById('julesTerminal');
+                return document.getElementById(id);
+            });
+
+            global.window.julesAPI.getSources.mockResolvedValueOnce({
+                sources: [{ name: 'owner/repo' }]
+            });
+
+            const mockError = new Error('Concurrent session load error');
+            manager.loadPullRequestsForRepo = jest.fn().mockResolvedValue(null);
+            manager.loadActiveSessionsForRepo = jest.fn().mockRejectedValue(mockError);
+
+            let capturedHandler = null;
+            const originalAddEventListener = clone.addEventListener;
+            clone.addEventListener = jest.fn((event, handler) => {
+                if (event === 'change') capturedHandler = handler;
+                if (originalAddEventListener) originalAddEventListener.call(clone, event, handler);
+            });
+
+            await manager.loadSources();
+
+            expect(capturedHandler).not.toBeNull();
+
+            await capturedHandler({ target: { value: 'owner/repo' } });
+
+            expect(manager.loadActiveSessionsForRepo).toHaveBeenCalledWith('owner/repo');
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BACKGROUND_FETCH_FAILED", mockError);
         });
 
@@ -287,6 +360,31 @@ describe('JulesTerminal', () => {
         });
     });
 
+
+    describe('loadActiveSessionsForRepo', () => {
+        it('clears polling, inserts fetching indicator when currentRepo is different, and starts session polling', async () => {
+            const terminal = document.getElementById('julesTerminal');
+            // Remove any existing indicators
+            terminal.innerHTML = '';
+            manager.currentRepo = 'old/repo';
+
+            const insertSpy = jest.spyOn(terminal, 'insertAdjacentHTML');
+
+            manager.polling = {
+                _clearPollingAndCache: jest.fn(),
+                _startSessionPolling: jest.fn()
+            };
+
+            await manager.loadActiveSessionsForRepo('new/repo');
+
+            expect(manager.polling._clearPollingAndCache).toHaveBeenCalled();
+            expect(insertSpy).toHaveBeenCalledWith("beforeend", global.DOMUtils.getTerminalIndicatorHTML("Checking active Jules routines..."));
+            expect(manager.currentRepo).toBe('new/repo');
+            expect(manager.polling._startSessionPolling).toHaveBeenCalledWith('new/repo', terminal);
+
+            insertSpy.mockRestore();
+        });
+    });
 
     describe('init', () => {
         beforeEach(() => {
