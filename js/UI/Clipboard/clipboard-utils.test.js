@@ -75,6 +75,32 @@ describe('ClipboardUtils', () => {
             expect(result).toBe(true);
         });
 
+        it('should handle number errors thrown by Clipboard API writeText', async () => {
+            const numberError = 404;
+            global.navigator.clipboard.writeText.mockRejectedValue(numberError);
+            document.execCommand.mockReturnValue(true);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_API_FAILED', numberError);
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(result).toBe(true);
+        });
+
+        it('should handle custom object errors thrown by Clipboard API writeText', async () => {
+            const customError = { message: "Custom object error", code: 123 };
+            global.navigator.clipboard.writeText.mockRejectedValue(customError);
+            document.execCommand.mockReturnValue(true);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_API_FAILED', customError);
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(result).toBe(true);
+        });
+
         it('should handle string errors thrown by Clipboard API writeText', async () => {
             const stringError = 'String error from writeText';
             global.navigator.clipboard.writeText.mockRejectedValue(stringError);
