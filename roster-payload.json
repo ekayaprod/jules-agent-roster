@@ -897,7 +897,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "CATALOGUE deeply-nested payloads and database schemas to eliminate ambient cognitive load for feature developers.",
-    "forge_version": "V86.7",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Glossary.md",
     "isCustom": true
   },
