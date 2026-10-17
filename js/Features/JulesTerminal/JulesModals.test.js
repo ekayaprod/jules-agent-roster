@@ -172,6 +172,39 @@ describe('JulesTerminal', () => {
             expect(global.DOMUtils.createMarkdownPreBlock).toHaveBeenCalledWith('No description provided.');
         });
 
+        it('should catch error when DOMUtils.createMarkdownPreBlock throws and display error text', () => {
+            const error = new Error('Markdown rendering failed');
+            global.DOMUtils.createMarkdownPreBlock.mockImplementationOnce(() => {
+                throw error;
+            });
+
+            const mockTelemetry = { dispatchEvent: jest.fn() };
+            global.JulesTerminal.getTelemetryUtils.mockReturnValue(mockTelemetry);
+
+            modals._showPRModal(mockPR);
+
+            expect(mockElements.prModalContent.appendChild).toHaveBeenCalledTimes(1);
+            const appendedElement = mockElements.prModalContent.appendChild.mock.calls[0][0];
+            expect(appendedElement.tagName).toBe('PRE');
+            expect(appendedElement.textContent).toBe('Error rendering description.');
+            expect(appendedElement.className).toBe('term-text color-error');
+
+            expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith('MODAL_MARKDOWN_RENDER_FAILED', error);
+        });
+
+        it('should catch error when DOMUtils.createMarkdownPreBlock throws and telemetry is missing safely', () => {
+            const error = new Error('Markdown rendering failed');
+            global.DOMUtils.createMarkdownPreBlock.mockImplementationOnce(() => {
+                throw error;
+            });
+
+            global.JulesTerminal.getTelemetryUtils.mockReturnValue(null);
+
+            expect(() => {
+                modals._showPRModal(mockPR);
+            }).not.toThrow();
+        });
+
         it('should bail early if modal is missing', () => {
             mockElements.julesPRModal = null;
             modals._showPRModal(mockPR);
