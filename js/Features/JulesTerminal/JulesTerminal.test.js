@@ -930,6 +930,15 @@ describe('JulesTerminal', () => {
             expect(manager.isProcessingQueue).toBe(false);
         });
 
+        it('handles non-function tasks in queue', async () => {
+            manager.sessionQueue.push('not a function');
+
+            await manager._processSessionQueue();
+
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('QUEUE_EXECUTION_ERROR', expect.any(TypeError));
+            expect(manager.isProcessingQueue).toBe(false);
+        });
+
         it('continues executing remaining tasks after a task failure', async () => {
             const mockError = new Error('Task Failed');
 
