@@ -1755,7 +1755,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "REROLL the messy first draft of project history to reflect truth by incinerating obsolete READMEs and publishing pristine, ground-truth-aligned macro-documentation.",
-    "forge_version": "V87.5",
+    "forge_version": "V87.0",
     "promptFile": "prompts/fusions/Retcon.md",
     "isCustom": true
   },
