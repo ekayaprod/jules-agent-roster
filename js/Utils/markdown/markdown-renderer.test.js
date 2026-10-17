@@ -258,6 +258,16 @@ describe('MarkdownRenderer', () => {
       expect(a.href.endsWith('#')).toBe(true);
     });
 
+    it('blocks javascript: URI with leading whitespace evasion', () => {
+      const fragment = MarkdownRenderer._renderInline([{
+        type: 'link',
+        href: ' javascript:alert(1)',
+        tokens: [{ type: 'text', text: 'xss' }]
+      }]);
+      const a = fragment.firstChild;
+      expect(a.href.endsWith('#')).toBe(true);
+    });
+
     it('blocks vbscript: URI', () => {
       const fragment = MarkdownRenderer._renderInline([{
         type: 'link',
