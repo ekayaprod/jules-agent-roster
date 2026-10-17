@@ -677,7 +677,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REWIRE outdated AI provider SDKs and seamlessly upgrade the infrastructure wiring to modern API schemas.",
-    "forge_version": "V87.8",
+    "forge_version": "V87.0",
     "promptFile": "prompts/fusions/Electrician.md",
     "isCustom": true
   },
@@ -2118,7 +2118,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REFACTOR loose prompt strings into rigid XML-delimited structures to maximize model attention.",
-    "forge_version": "V86.7",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Syntax.md",
     "isCustom": true
   },
@@ -2516,6 +2516,17 @@
     "description": "SWEEP the repository looking for semantic inconsistencies.",
     "forge_version": "V89.0",
     "promptFile": "prompts/micro/Iconographer.md",
+    "isCustom": true
+  },
+  {
+    "name": "Nomenclator",
+    "emoji": "🏷️",
+    "role": "Filename Synchronizer",
+    "category": "Architecture",
+    "tier": "Micro",
+    "description": "SWEEP the repository to enforce absolute synchronization between custom_agents.json and fusion filenames.",
+    "forge_version": "V86.7",
+    "promptFile": "prompts/micro/Nomenclator.md",
     "isCustom": true
   },
   {

@@ -15,7 +15,7 @@ This document governs thematic presentation, naming systems, ideation workflows,
 
 ## Module 1: Thematic Ideation (The Logic Engine)
 
-Applies during Master-Forge Phase 4: The Contextual Logic Engine drafting. Weave mechanical purpose with immersive identity.
+Applies during Master-Forge.md Phase 4: The Contextual Logic Engine: The Contextual Logic Engine drafting. Weave mechanical purpose with immersive identity.
 
 ### The Autonomy Imperative
 Ensure that the thematic presentation and persona do not introduce hesitation. The worker's identity must inherently support autonomous execution without seeking human permission, explicitly forbidding the `request_user_input` tool.
@@ -51,7 +51,7 @@ Balances thematic generation with Jules VM Trust & Safety filters.
 
 ### The Operating Theme Gradient
 Apply thematic voice per this gradient:
-**Role:** Exactly two words. Cannot contain articles ("the", "a", "an"). This is the sole literal/thematic identity field — one word carries thematic flavor, the other functions as the worker's domain anchor for Forge-Procedure Module 6 (Domain Extrapolation).
+**Role:** Exactly two words. Cannot contain articles ("the", "a", "an"). This is the sole literal/thematic identity field — one word carries thematic flavor, the other functions as the worker's domain anchor for Forge-Procedure Module 6: The Domain Extrapolation Procedure (Pillar Reasoning) (Domain Extrapolation).
 **Theme Verb:** Single ALL CAPS imperative action verb. Highly thematic; avoid generic verbs.
 **Reserved Process Emojis:** 🔍, 🎯, ⚙️, ✅, and 🎁 are reserved exclusively for the five execution headers, plus the ✅ marker on EXPECTED PATTERN in the template's Coding Standards block.
 **Synthesis:** Recommended max 145 characters. Open with the exact Theme Verb in imperative command tense. No first-person pronouns.
