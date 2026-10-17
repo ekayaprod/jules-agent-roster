@@ -100,6 +100,38 @@ describe('JulesTerminal - Additional Coverage', () => {
         expect(terminalInstance.modals._showKeyError).toHaveBeenCalledWith(keyInput, errorSpan, "Please enter your Jules API Key to connect.");
     });
 
+    it('should handle configuration errors when saveBtn clicked and catch loadSources rejection', async () => {
+        terminalInstance.init.mockRestore(); // restore for this test
+        const saveBtn = document.getElementById('saveSettingsBtn');
+        const keyInput = document.getElementById('julesApiKeyInput');
+        const githubTokenInput = document.getElementById('githubTokenInput');
+
+        terminalInstance.modals = {
+            _showKeyError: jest.fn(),
+            _clearKeyError: jest.fn(),
+            _initInteractionModal: jest.fn(),
+            _initPRModal: jest.fn()
+        };
+
+        terminalInstance.init();
+
+        keyInput.value = 'valid_key';
+        githubTokenInput.value = 'valid_gh_token';
+
+        const mockError = new Error('Background fetch failed');
+        terminalInstance.loadSources = jest.fn().mockRejectedValueOnce(mockError);
+        global.window.julesAPI = { configure: jest.fn() };
+        jest.spyOn(JulesTerminal, 'getTelemetryUtils').mockReturnValue(global.TelemetryUtils);
+
+        saveBtn.dispatchEvent(new Event('click'));
+
+        await Promise.resolve();
+        await Promise.resolve();
+        await Promise.resolve();
+
+        expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
+    });
+
     it('should load active sessions for repo and insert indicator if absent', () => {
         const terminal = document.getElementById('julesTerminal');
         const sourceName = 'test-repo';
