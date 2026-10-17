@@ -2530,6 +2530,17 @@
     "isCustom": true
   },
   {
+    "name": "Linter",
+    "emoji": "📏",
+    "role": "List Enforcer",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "ENFORCE strict list length constraints globally to eliminate structural violations.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/micro/Linter.md",
+    "isCustom": true
+  },
+  {
     "name": "Smith",
     "emoji": "🕶️",
     "role": "Code Purger",
