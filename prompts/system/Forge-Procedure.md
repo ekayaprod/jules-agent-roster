@@ -15,7 +15,7 @@ All terminology refers exclusively to repository analysis, code generation, infr
 
 ## Module 1: The 8 Structural Base Profiles
 
-The Master Forge relies on 8 structural base profiles. Tier: Fusion and Tier: Mythic workers use exactly one. Tier: Core workers may combine multiple profiles as determined by Module 6. Output the verbatim text of the selected profile(s) in the final worker, explicitly reconciling any direct contradictions per Master-Forge Phase 5.
+The Master Forge relies on 8 structural base profiles. Tier: Fusion and Tier: Mythic workers use exactly one. Tier: Core workers may combine multiple profiles as determined by Module 6. Output the verbatim text of the selected profile(s) in the final worker, explicitly reconciling any direct contradictions per Master-Forge Phase 5: The Architectural Reconciliation.
 
 ### Base Profile Override Rule
 Base profile rules are a minimum standard, not a ceiling. A worker's custom operational limits always take precedence over a conflicting generic base rule — replace or rewrite the base text to reflect the override, rather than preserving both.
@@ -243,12 +243,12 @@ Rigid, literal. No creative judgment.
 2. **Task Board State Coherence:** Verify adherence to the Task Board Resolution Protocol (Module 4).
 3. **Internal Duplication & Leakage:** Verify Canonical strings and Base Hygiene Contract rules are not duplicated in the worker text.
 4. **List Lengths:** Verify target, step, and heuristic counts meet the List Length Constraints in Module 4.
-5. **Creative Constraints:** Verify structural limits, emojis, capitalization, and bold-label bans match Creative-Procedure Module 2.
+5. **Creative Constraints:** Verify structural limits, emojis, capitalization, and bold-label bans match Creative-Procedure Module 2: Universal Creative & Safety Guardrails.
 6. **Custom Logic Focus:** Verify custom logic contains only hyper-specific domain constraints and no generic behavioral instructions.
 7. **Archetype Reconciliation:** Verify the reconciled profile mandates are internally coherent and that contradictory profile-derived mandates have not survived.
-8. **Drift Implementation:** Verify the Drift Audit classifications (Master-Forge Phase 2) have been semantically addressed. Not applicable to net-new workers.
+8. **Drift Implementation:** Verify the Drift Audit classifications (Master-Forge Phase 2: Legacy Intelligence & Drift Analysis) have been semantically addressed. Not applicable to net-new workers.
 9. **Core Domain Coverage:** For Tier: Core, verify the Target Matrix thoroughly covers the resolved domain.
-10. **Assembly Fidelity (rendered worker only):** Verify every template section from Creative-Procedure Module 4 is present in order, no `{{TOKEN}}` remains, all frontmatter keys are populated with `forge_version` equal to `CURRENT_FORGE_VERSION`, and every literal string that applies to the worker (Domain Autonomy, Core Discovery Fallback, Task Board Resolution Protocol, throughput block strings) appears verbatim.
+10. **Assembly Fidelity (rendered worker only):** Verify every template section from Creative-Procedure Module 4: The Worker Template is present in order, no `{{TOKEN}}` remains, all frontmatter keys are populated with `forge_version` equal to `CURRENT_FORGE_VERSION`, and every literal string that applies to the worker (Domain Autonomy, Core Discovery Fallback, Task Board Resolution Protocol, throughput block strings) appears verbatim.
 
 ### Part B: Efficacy Checks
 Impartial adjudication of an original worker against its upgraded draft. Recognize that "missing" can mean "improved" — removing restrictive boilerplate or contradictory legacy rules is often an upgrade. The only metric is which variant produces a superior headless worker for *this specific domain*. For net-new workers there is no original: skip the Component Diff and run only the Mandatory Audits that apply.
@@ -265,7 +265,7 @@ State the agent's core mission. Identify 3 to 4 critical operational mechanics, 
 - **Mythic Fidelity Check [Tier: Mythic Only]:** Identify every extreme/boundary-breaking mechanic from the legacy draft. Confirm each is physically present in the generated draft. FAIL if the output behaves identically to a standard-tier worker.
 
 **3. Verdict**
-- **Original Better (FAIL):** If the Original Variant wins any diff (i.e., a genuinely useful domain safeguard, structural PR header, or terminal fallback was lost), or if any Mandatory Audit fails. Repair per the invoking procedure (Master-Forge Phase 8; Auto-Forge Step 4).
+- **Original Better (FAIL):** If the Original Variant wins any diff (i.e., a genuinely useful domain safeguard, structural PR header, or terminal fallback was lost), or if any Mandatory Audit fails. Repair per the invoking procedure (Master-Forge Phase 8: The Efficacy Audit; Auto-Forge Step 4: The Efficacy Audit).
 - **Draft Better or Equal (PASS):** If the draft wins or ties every comparison and passes all Mandatory Audits.
 
 ---
