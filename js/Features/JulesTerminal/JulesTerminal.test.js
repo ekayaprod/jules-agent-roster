@@ -767,6 +767,27 @@ describe('JulesTerminal', () => {
             expect(manager._checkEmptyTerminal).toHaveBeenCalled();
         });
 
+        it('handles launch failure gracefully with missing error message', async () => {
+            const agent = { name: 'TestAgent', prompt: 'test' };
+            const mockError = new Error(); // Missing error message
+            const btn = document.createElement('button');
+            jest.spyOn(DOMUtils, 'setButtonState');
+            manager._checkEmptyTerminal = jest.fn();
+            global.window.julesAPI.createSession.mockRejectedValue(mockError);
+
+            await manager.launchSession(agent, btn);
+
+            await Promise.resolve();
+            await Promise.resolve();
+            await Promise.resolve();
+
+            expect(mockApp.toast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session: Unknown error'), TOAST_TYPES.ERROR, 20000);
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('JULES_LAUNCH_SESSION_FAILED', expect.any(Error), { sourceName: 'owner/repo' });
+            expect(manager._fetchAndRenderSessions).not.toHaveBeenCalled();
+            expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, BUTTON_STATES.READY, "Launch in Jules 🚀");
+            expect(manager._checkEmptyTerminal).toHaveBeenCalled();
+        });
+
         it('does not dispatch JULES_LAUNCH_SESSION_FAILED if TelemetryUtils is null', async () => {
             const originalTelemetryUtils = global.TelemetryUtils;
             delete global.TelemetryUtils;
