@@ -812,6 +812,30 @@ describe('JulesTerminal', () => {
             expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, BUTTON_STATES.READY, "Launch in Jules 🚀");
             expect(manager._checkEmptyTerminal).toHaveBeenCalled();
         });
+
+        it('does not dispatch SESSION_SYNC_TIMEOUT if TelemetryUtils is null', async () => {
+            const originalTelemetryUtils = global.TelemetryUtils;
+            delete global.TelemetryUtils;
+
+            try {
+                const agent = { name: 'TestAgent', prompt: 'test' };
+                const mockError = new Error('Poll Error');
+                const btn = document.createElement('button');
+                jest.spyOn(DOMUtils, 'setButtonState');
+                manager._checkEmptyTerminal = jest.fn();
+                manager._fetchAndRenderSessions.mockRejectedValue(mockError);
+
+                await manager.launchSession(agent, btn);
+                await Promise.resolve();
+                await Promise.resolve();
+                await Promise.resolve();
+
+                expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, BUTTON_STATES.READY, "Launch in Jules 🚀");
+                expect(manager._checkEmptyTerminal).toHaveBeenCalled();
+            } finally {
+                global.TelemetryUtils = originalTelemetryUtils;
+            }
+        });
     });
 
     describe('_fetchAndRenderSessions', () => {
