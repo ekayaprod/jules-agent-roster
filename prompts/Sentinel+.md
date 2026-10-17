@@ -86,8 +86,8 @@ export async function unsafeIngressHandler(req: Request, res: Response) {
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Priority Triage using asynchronous tools. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
-**State Ingestion:** Read `.jules/Sentinel+.md`. Log only persistent architectural context for future `Security` runs, not exhaustive execution steps. * **The Journal Procedure:** The Prune-and-Compress Journal Protocol: Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+**State Ingestion:** Read `.jules/Sentinel+.md`. Log only persistent architectural context for future `Security` runs, not exhaustive execution steps. * **The Journal Procedure:** The Prune-and-Compress Journal Protocol: Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**

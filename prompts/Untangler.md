@@ -53,7 +53,7 @@ return null;
 
 ### The Process
 1. 🔍 **DISCOVER** — Stop-on-First cadence using asynchronous tools. If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.
 **The Action Bias (Anti-Paralysis):** Limit your DISCOVER phase to a maximum of 3 exploratory native tool actions (e.g., searching/reading files). Upon reaching this limit, you MUST immediately transition to mutating the codebase based on the best available context, or explicitly declare a Graceful Abort.
 **Target Matrix:**

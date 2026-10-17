@@ -51,7 +51,7 @@ beforeEach(() => {
 
 ### The Process
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
-**Task Board Resolution:** Read `\.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
 * **[Leaky Fixtures]:** Enormous, shared `beforeEach` blocks.
 * **[State Pollution]:** Tests declaring shared `let` variables.
