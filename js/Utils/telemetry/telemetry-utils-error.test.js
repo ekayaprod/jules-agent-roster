@@ -75,4 +75,17 @@ describe('TelemetryUtils error scenarios', () => {
 
         expect(parsed.original_error).toBeNull();
     });
+
+    it('handles native JSON.stringify errors properly', () => {
+        TelemetryUtils.dispatchEvent('TEST_NATIVE_STRINGIFY_ERROR', 'Test error', { bigintVal: 1n });
+
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+
+        const fallbackCall = consoleErrorSpy.mock.calls[0][0];
+        const parsed = JSON.parse(fallbackCall);
+
+        expect(parsed.event).toBe('TEST_NATIVE_STRINGIFY_ERROR');
+        expect(parsed.error).toBe('Test error');
+        expect(parsed.additionalContext).toBe('[Circular Reference]');
+    });
 });
