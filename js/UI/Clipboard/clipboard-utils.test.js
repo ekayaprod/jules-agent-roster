@@ -114,6 +114,19 @@ describe('ClipboardUtils', () => {
             expect(result).toBe(true);
         });
 
+        it('should catch synchronous error in writeText on line 28', async () => {
+            const syncError = new Error('Explicit synchronous writeText error line 28');
+            global.navigator.clipboard.writeText.mockImplementation(() => { throw syncError; });
+            document.execCommand.mockReturnValue(true);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_API_FAILED', syncError);
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(result).toBe(true);
+        });
+
         it('should completely fallback if execCommand fails and dispatch telemetry', async () => {
             const mockApiError = new Error('Clipboard denied');
             const mockFallbackError = new Error('execCommand failed');
