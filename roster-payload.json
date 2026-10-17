@@ -435,7 +435,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "OPTIMIZE legacy architecture by ruthlessly ripping out outdated heavy polyfills and utility libraries.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Catalyst.md",
     "isCustom": true
   },
@@ -595,7 +595,7 @@
   },
   {
     "name": "Decommissioner",
-    "emoji": "🗑️",
+    "emoji": "💣",
     "role": "Infrastructure Cleaner",
     "category": "Operations",
     "tier": "Fusion",
@@ -809,7 +809,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "STANDARDIZE physical file naming and synchronize global import structures to enforce consistent architectural boundaries.",
-    "forge_version": "V88.3",
+    "forge_version": "V87.0",
     "promptFile": "prompts/fusions/Foreman.md",
     "isCustom": true
   },
@@ -831,7 +831,7 @@
     "category": "Creation",
     "tier": "Fusion",
     "description": "FLOW into the architecture to deduce and scaffold missing AI integrations.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Foresight.md",
     "isCustom": true
   },
@@ -842,7 +842,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "TRANSCEND hardcoded utility functions into boundless, hyper-generic abstractions while preserving the original caller signature.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Fractal.md",
     "isCustom": true
   },
@@ -897,7 +897,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "CATALOGUE deeply-nested payloads and database schemas to eliminate ambient cognitive load for feature developers.",
-    "forge_version": "V86.7",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Glossary.md",
     "isCustom": true
   },
@@ -1271,7 +1271,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "REROLL bricked or fossilized interfaces by folding the layout entirely and dealing a sweeping, net-new visual architecture without dropping a single state hook.",
-    "forge_version": "V86.8",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Mulligan.md",
     "isCustom": true
   },
@@ -1524,7 +1524,7 @@
     "category": "Documentation",
     "tier": "Mythic",
     "description": "Refine vague prompt prose into high-fidelity instructions. Maximize LLM success by tuning polarity, primacy, and behavioral mechanics to perfectly match the prompt's execution environment.",
-    "forge_version": "V88.3",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },
@@ -1574,7 +1574,7 @@
   },
   {
     "name": "Purger",
-    "emoji": "🗑️",
+    "emoji": "🚮",
     "role": "Deletion Specialist",
     "category": "Hygiene",
     "tier": "Mythic",
@@ -1904,7 +1904,7 @@
   },
   {
     "name": "Shredder",
-    "emoji": "🗑️",
+    "emoji": "✂️",
     "role": "Graveyard Destroyer",
     "category": "Documentation",
     "tier": "Fusion",
@@ -2486,13 +2486,24 @@
     "isCustom": true
   },
   {
+    "name": "Board Clerk",
+    "emoji": "📋",
+    "role": "Board Clerk",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "INJECT missing Task Board Resolution strings into system profiles to ensure task cleanup.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/micro/BoardClerk.md",
+    "isCustom": true
+  },
+  {
     "name": "Echo",
     "emoji": "🗣️",
     "role": "Symbology Propagator",
     "category": "Hygiene",
     "tier": "Core",
     "description": "PROPAGATE canonical header emojis throughout markdown files to eliminate visual drift and ensure thematic consistency.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/micro/Echo.md",
     "isCustom": true
   },
@@ -2503,7 +2514,7 @@
     "category": "Micro",
     "tier": "Core",
     "description": "SWEEP the repository looking for semantic inconsistencies.",
-    "forge_version": "V86.6",
+    "forge_version": "V89.0",
     "promptFile": "prompts/micro/Iconographer.md",
     "isCustom": true
   },

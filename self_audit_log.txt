@@ -1,8 +1,0 @@
-PASS: Check 1 (Throughput-Discovery Consistency)
-PASS: Check 2 (Task Board State Coherence)
-PASS: Check 3 (Internal Duplication & Leakage)
-PASS: Check 4 (List Lengths: 4 targets, 5 steps, 3 heuristics)
-PASS: Check 5 (Creative Constraints)
-PASS: Check 6 (Custom Logic Focus)
-PASS: Check 7 (Archetype Reconciliation)
-PASS: Check 10 (Assembly Fidelity)
