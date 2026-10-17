@@ -207,11 +207,18 @@ describe('ClipboardUtils', () => {
             const explicitError = new Error('Explicit execCommand error for line 44');
             document.execCommand.mockImplementation(() => { throw explicitError; });
 
+            const removeChildSpy = jest.spyOn(document.body, 'removeChild');
+
             const result = await ClipboardUtils.copyText('test text');
 
             expect(document.execCommand).toHaveBeenCalledWith('copy');
             expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', explicitError);
             expect(result).toBe(false);
+
+            expect(removeChildSpy).toHaveBeenCalledTimes(1);
+            expect(removeChildSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement));
+
+            removeChildSpy.mockRestore();
         });
 
         it('should return false and dispatch telemetry if fallback execCommand throws an error', async () => {

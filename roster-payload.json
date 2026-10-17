@@ -677,7 +677,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REWIRE outdated AI provider SDKs and seamlessly upgrade the infrastructure wiring to modern API schemas.",
-    "forge_version": "V87.8",
+    "forge_version": "V87.0",
     "promptFile": "prompts/fusions/Electrician.md",
     "isCustom": true
   },
@@ -1755,7 +1755,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "REROLL the messy first draft of project history to reflect truth by incinerating obsolete READMEs and publishing pristine, ground-truth-aligned macro-documentation.",
-    "forge_version": "V87.5",
+    "forge_version": "V87.0",
     "promptFile": "prompts/fusions/Retcon.md",
     "isCustom": true
   },
@@ -2118,7 +2118,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REFACTOR loose prompt strings into rigid XML-delimited structures to maximize model attention.",
-    "forge_version": "V86.7",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Syntax.md",
     "isCustom": true
   },

@@ -586,8 +586,10 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
             throw new Error('Compiler fuse catastrophic failure');
         });
 
-        // Mathematically prove that the method explicitly fails to catch the error
-        expect(() => fusionLab.handleShelfSelection('AgentA,AgentB')).toThrow('Compiler fuse catastrophic failure');
+        // The Surgical Override Authority: Correcting this test as the code now catches the error natively to fix the silent swallow bug.
+        fusionLab.showError = jest.fn();
+        fusionLab.handleShelfSelection('AgentA,AgentB');
+        expect(fusionLab.showError).toHaveBeenCalledWith('FusionLab: Failed to ignite fusion.');
     });
 
     test('renderFusionResult manages container state and appending custom agent card', () => {

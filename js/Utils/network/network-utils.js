@@ -35,7 +35,7 @@ class NetworkUtils {
         // Fallback for relative URLs
         try {
             hostname = new URL(urlString, typeof window !== 'undefined' && window.location ? window.location.href : 'http://localhost').hostname;
-        } catch (innerError) {
+        } catch {
             hostname = urlString;
             const tu = typeof getTelemetryUtils === "function" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
             if (tu) tu.dispatchEvent("NETWORK_URL_PARSE_FAILED", error, { url: urlString });

@@ -19,7 +19,7 @@ describe('Architecture Standard: Test Colocation', () => {
                         ...diffOutput.split('\n').filter(Boolean),
                         ...stagedOutput.split('\n').filter(Boolean)
                     ];
-                } catch (fallbackE) {
+                } catch {
                     // Just HEAD~1 if nothing else
                     const diffOutput = execSync('git diff --name-only HEAD~1', { encoding: 'utf-8' });
                     changedFiles = diffOutput.split('\n').filter(Boolean);
