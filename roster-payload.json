@@ -79,11 +79,11 @@
   {
     "name": "Janitor",
     "emoji": "🧹",
-    "role": "Sanitation Crew",
+    "role": "Housekeeping Pruner",
     "category": "Maintenance",
     "tier": "Core",
-    "description": "SWEEP the repository to clear hallway trash, purge microscopic decay, delete unlinked artifacts, and strip manifest bloat.",
-    "forge_version": "V88.3",
+    "description": "🧹 PURGE THE HALLWAYS. Strip unused artifacts, orphaned files, and unlinked scripts before they calcify.",
+    "forge_version": "V89.0",
     "promptFile": "prompts/Janitor.md",
     "isCustom": false
   },
@@ -2516,17 +2516,6 @@
     "description": "SWEEP the repository looking for semantic inconsistencies.",
     "forge_version": "V89.0",
     "promptFile": "prompts/micro/Iconographer.md",
-    "isCustom": true
-  },
-  {
-    "name": "Nomenclator",
-    "emoji": "🏷️",
-    "role": "Filename Synchronizer",
-    "category": "Architecture",
-    "tier": "Micro",
-    "description": "SWEEP the repository to enforce absolute synchronization between custom_agents.json and fusion filenames.",
-    "forge_version": "V86.7",
-    "promptFile": "prompts/micro/Nomenclator.md",
     "isCustom": true
   },
   {
