@@ -214,6 +214,35 @@ describe('GithubAPI', () => {
               await api.getPullRequest('owner/repo', 123);
               expect(global.fetch).toHaveBeenCalledWith('https://api.github.com/repos/owner/repo/pulls/123', expect.any(Object));
          });
+
+         it('getPullRequests handles json parsing error', async () => {
+              const jsonError = new Error('JSON parsing failed');
+              global.fetch.mockResolvedValue({
+                 ok: true,
+                 json: async () => Promise.reject(jsonError)
+             });
+
+              const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+              await expect(api.getPullRequests('owner/repo')).rejects.toThrow('JSON parsing failed');
+              expect(consoleErrorSpy).toHaveBeenCalledWith(
+                 '[GithubAPI] Request to /repos/owner/repo/pulls?state=open failed: ',
+                 jsonError
+             );
+         });
+
+         it('getPullRequests handles network error', async () => {
+              const networkError = new Error('Network failed');
+              global.fetch.mockRejectedValue(networkError);
+
+              const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+              await expect(api.getPullRequests('owner/repo')).rejects.toThrow('Network failed');
+              expect(consoleErrorSpy).toHaveBeenCalledWith(
+                 '[GithubAPI] Request to /repos/owner/repo/pulls?state=open failed: ',
+                 networkError
+             );
+         });
     });
 });
 
