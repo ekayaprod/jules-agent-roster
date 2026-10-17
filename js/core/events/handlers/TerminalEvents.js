@@ -12,13 +12,13 @@ class TerminalEvents {
                         try {
                             const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
                             if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", err);
-                        } catch (e) { /* ignore nested telemetry errors */ }
+                        } catch { /* ignore nested telemetry errors */ }
                     });
                     app.julesTerminal.loadPullRequestsForRepo(sourceName).catch(err => {
                         try {
                             const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
                             if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", err);
-                        } catch (e) { /* ignore nested telemetry errors */ }
+                        } catch { /* ignore nested telemetry errors */ }
                     });
                 } else {
                     const terminal = app.elements.julesTerminal;
@@ -62,7 +62,7 @@ class TerminalEvents {
                         if (tu) {
                             tu.dispatchEvent("TERMINAL_LOAD_ERROR", err);
                         }
-                    } catch (e) { /* ignore nested telemetry errors */ }
+                    } catch { /* ignore nested telemetry errors */ }
                 });
             });
         }
