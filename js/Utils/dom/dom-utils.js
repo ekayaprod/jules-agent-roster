@@ -118,7 +118,9 @@ class DOMUtils {
    * @see ../../docs/architecture/Utils/README.md#domutils-architecture
    */
   static getTerminalSessionHTML(escapedEmoji, safeAgentName, status, statusId = "") {
-    const idAttr = statusId ? ` id="${statusId}"` : "";
+    // Sanitize statusId to prevent attribute injection
+    const safeStatusId = statusId ? String(statusId).replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;') : "";
+    const idAttr = safeStatusId ? ` id="${safeStatusId}"` : "";
 
     // Ensure escapedEmoji is fully escaped in case FormatUtils is unavailable
     const safeEmoji = escapedEmoji ? String(escapedEmoji)

@@ -238,7 +238,8 @@ describe('DOMUtils', () => {
         it('should neutralize attribute injection vectors in statusId', () => {
             const maliciousId = 'status-123" onmouseover="alert(1)';
             const html = DOMUtils.getTerminalSessionHTML('🤖', 'Jules', 'Processing', maliciousId);
-            expect(html).not.toContain('onmouseover');
+            expect(html).not.toContain('" onmouseover');
+            expect(html).toContain('id="status-123&quot; onmouseover=&quot;alert(1)"');
         });
     });
 
