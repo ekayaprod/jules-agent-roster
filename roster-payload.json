@@ -1271,7 +1271,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "REROLL bricked or fossilized interfaces by folding the layout entirely and dealing a sweeping, net-new visual architecture without dropping a single state hook.",
-    "forge_version": "V86.8",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Mulligan.md",
     "isCustom": true
   },
@@ -1524,7 +1524,7 @@
     "category": "Documentation",
     "tier": "Mythic",
     "description": "Refine vague prompt prose into high-fidelity instructions. Maximize LLM success by tuning polarity, primacy, and behavioral mechanics to perfectly match the prompt's execution environment.",
-    "forge_version": "V88.3",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },
