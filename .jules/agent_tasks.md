@@ -8,17 +8,24 @@
 > - Do not delete this file.
 
 ## The [REFACTORER] Queue
-* `js/Features/JulesTerminal/JulesTerminal.js:1`: Code module exceeding 500 lines (636 lines). Split into domain modules.
-* `js/core/RosterApp.js:1`: Code module exceeding 500 lines (614 lines). Split into domain modules.
+* `js/Features/JulesTerminal/JulesTerminal.js:1`: Code module exceeding 500 lines (634 lines). Split into domain modules.
+* `js/core/RosterApp.js:1`: Code module exceeding 500 lines (615 lines). Split into domain modules.
 
 ## The [PRUNER] Queue
-* `js/Features/JulesTerminal/JulesTerminal.js:521`: Remove hollow carapace empty callback function.
+* `js/Features/JulesTerminal/JulesTerminal.js:518`: Remove hollow carapace empty callback function.
 * `js/Services/GithubAPI/GithubAPI.js:80`: Remove unstructured console.error call.
 * `js/Services/GithubAPI/GithubAPI.js:83`: Remove unstructured console.error call.
 * `js/Services/JulesAPI/JulesAPI.js:91`: Remove unstructured console.error call.
+* `js/Utils/telemetry/telemetry-utils.js:3`: Remove unstructured console.error call.
+* `js/Utils/telemetry/telemetry-utils.js:7`: Remove unstructured console.error call.
+* `js/Utils/telemetry/telemetry-utils.js:20`: Remove unstructured console.error call.
+* `js/Utils/telemetry/telemetry-utils.js:25`: Remove unstructured console.error call.
+* `js/Utils/telemetry/telemetry-utils.js:32`: Remove unstructured console.error call.
 
 ## The [INSTRUMENTER] Queue
 
 ## The [TRANSFORMER] Queue
 * `css/main.css:7`: Replace hardcoded hex codes with semantic theme variables.
 * `css/main.css:15`: Replace hardcoded hex codes with semantic theme variables.
+* `css/main.css:16`: Replace hardcoded hex codes with semantic theme variables.
+* `css/main.css:17`: Replace hardcoded hex codes with semantic theme variables.
