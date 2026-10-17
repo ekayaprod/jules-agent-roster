@@ -1524,7 +1524,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "ANALYZE algorithmic complexity to make invisible computational costs highly visible.",
-    "forge_version": "V86.8",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Profiler.md",
     "isCustom": true
   },
