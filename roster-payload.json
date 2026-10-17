@@ -242,6 +242,17 @@
     "isCustom": true
   },
   {
+    "name": "Actualizer",
+    "emoji": "🪨",
+    "role": "Reality Architect",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "ANCHOR hallucinated abstractions by fully building the missing native architecture they poorly attempted to fake.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/fusions/Actualizer.md",
+    "isCustom": true
+  },
+  {
     "name": "Adversary",
     "emoji": "🤺",
     "role": "Framework Inquisitor",
@@ -380,7 +391,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "SEAL INDIVIDUAL test suites by ripping out shared mutable state and brittle static fixtures, replacing them with hermetic dynamic factories.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Canner.md",
     "isCustom": true
   },
@@ -391,7 +402,7 @@
     "category": "UX",
     "tier": "Mythic",
     "description": "REDESIGN fragmented multi-page mazes into cohesive single-page workflows to preserve user context.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Canvas.md",
     "isCustom": true
   },
@@ -402,7 +413,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "MAP complex data flows and hidden trust boundaries into beautiful, multi-layered visual graphs using text-based markdown syntax.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Cartographer.md",
     "isCustom": true
   },
@@ -424,7 +435,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "OPTIMIZE legacy architecture by ruthlessly ripping out outdated heavy polyfills and utility libraries.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Catalyst.md",
     "isCustom": true
   },
@@ -584,7 +595,7 @@
   },
   {
     "name": "Decommissioner",
-    "emoji": "🗑️",
+    "emoji": "💣",
     "role": "Infrastructure Cleaner",
     "category": "Operations",
     "tier": "Fusion",
@@ -798,7 +809,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "STANDARDIZE physical file naming and synchronize global import structures to enforce consistent architectural boundaries.",
-    "forge_version": "V88.3",
+    "forge_version": "V87.0",
     "promptFile": "prompts/fusions/Foreman.md",
     "isCustom": true
   },
@@ -820,7 +831,7 @@
     "category": "Creation",
     "tier": "Fusion",
     "description": "FLOW into the architecture to deduce and scaffold missing AI integrations.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Foresight.md",
     "isCustom": true
   },
@@ -831,7 +842,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "TRANSCEND hardcoded utility functions into boundless, hyper-generic abstractions while preserving the original caller signature.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Fractal.md",
     "isCustom": true
   },
@@ -886,7 +897,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "CATALOGUE deeply-nested payloads and database schemas to eliminate ambient cognitive load for feature developers.",
-    "forge_version": "V86.7",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Glossary.md",
     "isCustom": true
   },
@@ -1260,7 +1271,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "REROLL bricked or fossilized interfaces by folding the layout entirely and dealing a sweeping, net-new visual architecture without dropping a single state hook.",
-    "forge_version": "V86.8",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Mulligan.md",
     "isCustom": true
   },
@@ -1359,8 +1370,19 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "REGULATE the primary thread's synchronous heartbeat by implanting temporal buffers to debounce noise and restore predictable execution flow.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Pacemaker.md",
+    "isCustom": true
+  },
+  {
+    "name": "Panopticon",
+    "emoji": "👁️‍🗨️",
+    "role": "Omniscient Mapper",
+    "category": "Architecture",
+    "tier": "Mythic",
+    "description": "TRANSCEND standard read-only boundaries to map the repository's entire state interaction meta-structure without mutating any code.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/fusions/Panopticon.md",
     "isCustom": true
   },
   {
@@ -1502,7 +1524,7 @@
     "category": "Documentation",
     "tier": "Mythic",
     "description": "Refine vague prompt prose into high-fidelity instructions. Maximize LLM success by tuning polarity, primacy, and behavioral mechanics to perfectly match the prompt's execution environment.",
-    "forge_version": "V88.3",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },
@@ -1552,7 +1574,7 @@
   },
   {
     "name": "Purger",
-    "emoji": "🗑️",
+    "emoji": "🚮",
     "role": "Deletion Specialist",
     "category": "Hygiene",
     "tier": "Mythic",
@@ -1590,7 +1612,7 @@
     "category": "Compliance",
     "tier": "Fusion",
     "description": "ERADICATE RPC-style verbs embedded in URLs. Enforce strict RESTful noun-based routing contracts across all backend endpoints.",
-    "forge_version": "V87.6",
+    "forge_version": "V87.0",
     "promptFile": "prompts/fusions/REST Enforcer.md",
     "isCustom": true
   },
@@ -1634,7 +1656,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "REDIRECT broken internal links and map traffic flows to preserve architectural integrity.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Redirector.md",
     "isCustom": true
   },
@@ -1882,7 +1904,7 @@
   },
   {
     "name": "Shredder",
-    "emoji": "🗑️",
+    "emoji": "✂️",
     "role": "Graveyard Destroyer",
     "category": "Documentation",
     "tier": "Fusion",
@@ -2140,7 +2162,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "INSTRUMENT opaque execution paths with performance timers and metadata loggers to eliminate computational bottlenecks.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Telemetrist.md",
     "isCustom": true
   },
@@ -2464,13 +2486,24 @@
     "isCustom": true
   },
   {
+    "name": "Board Clerk",
+    "emoji": "📋",
+    "role": "Board Clerk",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "INJECT missing Task Board Resolution strings into system profiles to ensure task cleanup.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/micro/BoardClerk.md",
+    "isCustom": true
+  },
+  {
     "name": "Echo",
     "emoji": "🗣️",
     "role": "Symbology Propagator",
     "category": "Hygiene",
     "tier": "Core",
     "description": "PROPAGATE canonical header emojis throughout markdown files to eliminate visual drift and ensure thematic consistency.",
-    "forge_version": "V86.5",
+    "forge_version": "V89.0",
     "promptFile": "prompts/micro/Echo.md",
     "isCustom": true
   },
@@ -2481,19 +2514,8 @@
     "category": "Micro",
     "tier": "Core",
     "description": "SWEEP the repository looking for semantic inconsistencies.",
-    "forge_version": "V86.6",
+    "forge_version": "V89.0",
     "promptFile": "prompts/micro/Iconographer.md",
-    "isCustom": true
-  },
-  {
-    "name": "Nomenclator",
-    "emoji": "🏷️",
-    "role": "Filename Synchronizer",
-    "category": "Architecture",
-    "tier": "Micro",
-    "description": "SWEEP the repository to enforce absolute synchronization between custom_agents.json and fusion filenames.",
-    "forge_version": "V86.7",
-    "promptFile": "prompts/micro/Nomenclator.md",
     "isCustom": true
   },
   {
