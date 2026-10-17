@@ -60,7 +60,7 @@ const Typography = ({ variant = "large-text", children }) => (
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Exhaustive Walkthrough using asynchronous tools.
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
 * **Blocking Web Fonts:** Google Font imports or `<link>` tags in document headers missing `preconnect`, `crossorigin`, or asynchronous loading strategies.
 * **The CLS Spikes:** `@font-face` declarations lacking `font-display: swap` or local fallback configurations (`size-adjust`, `ascent-override`).

@@ -60,8 +60,8 @@ app.post('/api/login', (req, res) => {
 
 ### The Process
 1. 🔍 **DISCOVER** — Exhaustive Walkthrough using asynchronous tools Cross-reference `.jules/worker_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **State Ingestion:** Read `.jules/journal_security.md`. Log only persistent architectural context for future `Security` runs, not exhaustive execution steps. * The Prune-and-Compress Journal Protocol: Record specific schema structures and limiter thresholds injected to prevent duplicate instrumentation.
-**Task Board Resolution:** * **The Worker Tasks Board (`.jules/worker_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself.
 **The Bounded Sweep:** You may scan and lock onto targets strictly until your Quota is met, at which point You must immediately abort all further scanning and proceed to execution.
 **Target Matrix:**
 * **Exposed Endpoints:** Identify exposed authentication routes (e.g., `/login`, `/auth`) or high-computation endpoints lacking rate-limiter middleware.
