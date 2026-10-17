@@ -205,7 +205,7 @@ class JulesModals {
             this.terminal.app.toast.show("Reply transmitted.", "success");
         } catch (error) {
             if (!rollbackState) {
-                const tu = JulesTerminal.getTelemetryUtils();
+                const tu = JulesModals.getTelemetryUtils();
                 if (tu) tu.dispatchEvent("JULES_SEND_REPLY_FAILED", error);
             }
 
@@ -253,7 +253,7 @@ class JulesModals {
                 }
             } catch (error) {
                 linkEl.removeAttribute('href');
-                const tu = typeof JulesTerminal !== 'undefined' ? JulesTerminal.getTelemetryUtils() : (typeof window !== 'undefined' ? window.TelemetryUtils : null);
+                const tu = JulesModals.getTelemetryUtils();
                 if (tu) tu.dispatchEvent("MODAL_URL_PARSE_FAILED", error, { url: pr.html_url });
             }
         }
@@ -264,7 +264,7 @@ class JulesModals {
                 const pre = DOMUtils.createMarkdownPreBlock(pr.body || "No description provided.");
                 contentEl.appendChild(pre);
             } catch (error) {
-                const tu = typeof JulesTerminal !== 'undefined' ? JulesTerminal.getTelemetryUtils() : (typeof window !== 'undefined' ? window.TelemetryUtils : null);
+                const tu = JulesModals.getTelemetryUtils();
                 if (tu) tu.dispatchEvent("MODAL_MARKDOWN_RENDER_FAILED", error);
 
                 const errorPre = document.createElement('pre');
