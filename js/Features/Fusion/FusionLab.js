@@ -257,7 +257,15 @@ class FusionLab {
     // Clear any previous errors
     this.clearError();
 
-    const result = this.compiler.fuse(agentA, agentB);
+    let result;
+    try {
+      result = this.compiler.fuse(agentA, agentB);
+    } catch (error) {
+      const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+      if (tu) tu.dispatchEvent("FUSION_LAB_COMPILER_FAILED", error, { agentA: agentA.name, agentB: agentB.name });
+      this.showError("FusionLab: Failed to ignite fusion.");
+      return;
+    }
 
     // Do not render Singularity as a standard card.
 
