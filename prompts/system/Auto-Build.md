@@ -28,7 +28,7 @@ Execute the following steps from start to finish:
    - **Synthesis Engine:** Fuse the two mechanics intrinsically. Find the exact middle of the Venn diagram between the two parent roles to form a highly specific, creative, and novel operational paradigm.
 
 3. **Author the Worker:**
-   - Read the rules in `prompts/system/Master-Forge.md`, `prompts/system/Forge-Procedure.md` (Module 5 governs the synthesis), and `prompts/system/Creative-Procedure.md` (Modules 1–2 govern the theme).
+   - Read the rules in `prompts/system/Master-Forge.md`, `prompts/system/Forge-Procedure.md` (Module 5 governs the synthesis), and `prompts/system/Creative-Procedure.md` (Module 1: Thematic Ideation (The Logic Engine) and Module 2: Universal Creative & Safety Guardrails govern the theme).
    - Work through Phases 1–4 and the Finalization Pipeline internally.
    - Use the exact `<!-- WORKER_TEMPLATE_START -->` block found inside `prompts/system/Creative-Procedure.md` to hand-author your new worker's markdown file in `prompts/fusions/`.
    - *Hint:* Pay strict attention to List Length Constraints, exact formatting for lists (e.g., `* **[Name]:** [Instruction]`), and injecting the literal value for `CURRENT_FORGE_VERSION` from `Master-Forge.md`.
