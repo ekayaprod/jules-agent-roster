@@ -5,27 +5,27 @@ Self-check results: PASS
 
 ## Top 10
 - prompts/Navigator.md: 75.43 (Strong)
-- prompts/fusions/Payload.md: 74.68 (Strong)
 - prompts/orphans/Historian.md: 72.68 (Strong)
 - prompts/fusions/Triage.md: 72.59 (Strong)
 - prompts/fusions/Sanitizer.md: 72.10 (Strong)
-- prompts/fusions/Bastion.md: 72.00 (Strong)
-- prompts/fusions/Fractal.md: 71.84 (Strong)
-- prompts/Paramedic.md: 71.83 (Strong)
+- prompts/fusions/Surveyor.md: 72.02 (Strong)
+- prompts/fusions/Narrator.md: 71.93 (Strong)
+- prompts/fusions/Payload.md: 71.42 (Strong)
 - prompts/orphans/Choreographer.md: 71.31 (Strong)
 - prompts/fusions/Viewmorph.md: 71.17 (Strong)
+- prompts/Modernizer.md: 71.03 (Strong)
 
 ## Bottom 10
-- prompts/fusions/Transmuter.md: 38.31 (Weak)
-- prompts/micro/Nomenclator.md: 38.26 (Weak)
-- prompts/fusions/Typesetter.md: 37.96 (Weak)
 - prompts/fusions/Greenlight.md: 37.94 (Weak)
+- prompts/fusions/Foresight.md: 37.87 (Weak)
 - prompts/fusions/Upgrader.md: 37.09 (Weak)
+- prompts/fusions/Glossary.md: 36.98 (Weak)
+- prompts/micro/Iconographer.md: 36.74 (Weak)
 - prompts/fusions/Honeypot.md: 35.41 (Weak)
+- prompts/fusions/Actualizer.md: 35.13 (Weak)
 - prompts/fusions/Sherpa.md: 34.88 (Weak)
-- prompts/fusions/Mulligan.md: 34.71 (Weak)
+- prompts/micro/BoardClerk.md: 34.69 (Weak)
 - prompts/fusions/Registrar.md: 34.27 (Weak)
-- prompts/fusions/Prompt Engineer.md: 28.51 (Weak)
 
 Run-to-run agreement: None found
 WARN/FAIL: None found
