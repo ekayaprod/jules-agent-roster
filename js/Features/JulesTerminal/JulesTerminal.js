@@ -384,11 +384,8 @@ class JulesTerminal {
 
         if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
 
-        // ⚡ Performance Optimization: Avoid intermediate array allocation from .map() and iterator allocation from for...of.
-        const currentSessionIds = new Set();
-        for (let i = 0; i < repoSessions.length; i++) {
-            currentSessionIds.add(repoSessions[i].id);
-        }
+        // ⚡ Performance Optimization: For the expected small array sizes (N < 20), native mapping is measurably faster than explicit loop allocations.
+        const currentSessionIds = new Set(repoSessions.map(s => s.id));
         this.renderedSessionIds.forEach(id => !currentSessionIds.has(id) && this.dismissSession(id));
         repoSessions.forEach(session => this._processSession(session, terminal));
 
