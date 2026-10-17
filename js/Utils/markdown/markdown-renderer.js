@@ -132,7 +132,7 @@ class MarkdownRenderer {
         case 'link': {
           const a = document.createElement('a');
           // XSS Protection for links
-          if (token.href && /^(?:javascript|vbscript|data):/i.test(token.href)) {
+          if (token.href && /^\s*(?:javascript|vbscript|data):/i.test(token.href)) {
             a.href = "#";
           } else {
             a.href = token.href;

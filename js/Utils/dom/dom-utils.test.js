@@ -234,6 +234,13 @@ describe('DOMUtils', () => {
             const html = DOMUtils.getTerminalSessionHTML('🤖', 'Jules', 'Processing', 'status-123');
             expect(html).toContain('<span class="term-status" id="status-123">Processing</span>');
         });
+
+        it('should neutralize attribute injection vectors in statusId', () => {
+            const maliciousId = 'status-123" onmouseover="alert(1)';
+            const html = DOMUtils.getTerminalSessionHTML('🤖', 'Jules', 'Processing', maliciousId);
+            expect(html).not.toContain('" onmouseover');
+            expect(html).toContain('id="status-123&quot; onmouseover=&quot;alert(1)"');
+        });
     });
 
     describe('getTerminalIndicatorHTML', () => {
