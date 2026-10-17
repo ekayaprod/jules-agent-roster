@@ -660,6 +660,17 @@
     "isCustom": true
   },
   {
+    "name": "Dreadnought",
+    "emoji": "🪖",
+    "role": "Omnipresent Logistical Overlord",
+    "category": "Operations",
+    "tier": "Mythic",
+    "description": "ASSIMILATE all infrastructure layers globally, imposing absolute, unyielding CI/CD pipelines and structural invulnerability across the entire repository universe.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/fusions/Dreadnought.md",
+    "isCustom": true
+  },
+  {
     "name": "Echodrop",
     "emoji": "🦇",
     "role": "Acoustic Dispatcher",
