@@ -67,7 +67,7 @@ describe('JulesTerminal', () => {
         };
 
         global.JulesTerminal = {
-            getTelemetryUtils: jest.fn()
+
         };
 
         global.PerformanceUtils = {
@@ -75,9 +75,11 @@ describe('JulesTerminal', () => {
         };
     });
 
+
     afterEach(() => {
         jest.clearAllTimers();
         jest.resetAllMocks();
+        if (JulesModals.getTelemetryUtils.mockRestore) JulesModals.getTelemetryUtils.mockRestore();
     });
 
     describe('_showInteractionModal', () => {
@@ -179,7 +181,7 @@ describe('JulesTerminal', () => {
             });
 
             const mockTelemetry = { dispatchEvent: jest.fn() };
-            global.JulesTerminal.getTelemetryUtils.mockReturnValue(mockTelemetry);
+            jest.spyOn(JulesModals, "getTelemetryUtils").mockReturnValue(mockTelemetry);
 
             modals._showPRModal(mockPR);
 
@@ -192,13 +194,34 @@ describe('JulesTerminal', () => {
             expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith('MODAL_MARKDOWN_RENDER_FAILED', error);
         });
 
+        it('should safely handle missing JulesTerminal globally on DOMUtils.createMarkdownPreBlock error', () => {
+            const error = new Error('Markdown rendering failed');
+            global.DOMUtils.createMarkdownPreBlock.mockImplementationOnce(() => {
+                throw error;
+            });
+
+            const mockTelemetry = { dispatchEvent: jest.fn() };
+            jest.spyOn(JulesModals, "getTelemetryUtils").mockReturnValue(mockTelemetry);
+
+            const originalJulesTerminal = global.JulesTerminal;
+            delete global.JulesTerminal;
+
+            expect(() => {
+                modals._showPRModal(mockPR);
+            }).not.toThrow();
+
+            expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith('MODAL_MARKDOWN_RENDER_FAILED', error);
+
+            global.JulesTerminal = originalJulesTerminal;
+        });
+
         it('should catch error when DOMUtils.createMarkdownPreBlock throws and telemetry is missing safely', () => {
             const error = new Error('Markdown rendering failed');
             global.DOMUtils.createMarkdownPreBlock.mockImplementationOnce(() => {
                 throw error;
             });
 
-            global.JulesTerminal.getTelemetryUtils.mockReturnValue(null);
+            jest.spyOn(JulesModals, "getTelemetryUtils").mockReturnValue(null);
 
             expect(() => {
                 modals._showPRModal(mockPR);
@@ -254,7 +277,7 @@ describe('JulesTerminal', () => {
             });
 
             const mockTelemetry = { dispatchEvent: jest.fn() };
-            global.JulesTerminal.getTelemetryUtils.mockReturnValue(mockTelemetry);
+            jest.spyOn(JulesModals, "getTelemetryUtils").mockReturnValue(mockTelemetry);
 
             modals._showPRModal({ ...mockPR, html_url: 'invalid' });
 
@@ -272,7 +295,7 @@ describe('JulesTerminal', () => {
                 throw new TypeError('Invalid URL');
             });
 
-            global.JulesTerminal.getTelemetryUtils.mockReturnValue(null);
+            jest.spyOn(JulesModals, "getTelemetryUtils").mockReturnValue(null);
 
             modals._showPRModal({ ...mockPR, html_url: 'invalid' });
 
@@ -316,6 +339,8 @@ describe('JulesTerminal', () => {
             const mockTelemetry = { dispatchEvent: jest.fn() };
             const originalTelemetryUtils = window.TelemetryUtils;
             window.TelemetryUtils = mockTelemetry;
+            // Also explicitly restore mock so the real JulesModals method uses window.TelemetryUtils
+            if (JulesModals.getTelemetryUtils.mockRestore) JulesModals.getTelemetryUtils.mockRestore();
 
             modals._showPRModal({ ...mockPR, html_url: 'invalid' });
 
@@ -395,6 +420,23 @@ describe('JulesTerminal', () => {
             document.getElementById.mockReturnValue(mockStatusSpan);
         });
 
+        it('should safely handle missing global JulesTerminal during API failure', async () => {
+            const error = new Error('API Error');
+            window.julesAPI.provideInput.mockRejectedValueOnce(error);
+
+            const mockTelemetry = { dispatchEvent: jest.fn() };
+            jest.spyOn(JulesModals, "getTelemetryUtils").mockReturnValue(mockTelemetry);
+            const originalJulesTerminal = global.JulesTerminal;
+            delete global.JulesTerminal;
+
+            await modals._transmitReply('session-1', 'user reply', mockCloseFn, null);
+
+            expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith('JULES_SEND_REPLY_FAILED', error);
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to send reply.", "error");
+
+            global.JulesTerminal = originalJulesTerminal;
+        });
+
         it('should close modal, update status immediately, and show success toast on API success', async () => {
             window.julesAPI.provideInput.mockResolvedValueOnce({});
 
@@ -423,7 +465,7 @@ describe('JulesTerminal', () => {
             window.julesAPI.provideInput.mockRejectedValueOnce(error);
 
             const mockTelemetry = { dispatchEvent: jest.fn() };
-            global.JulesTerminal.getTelemetryUtils.mockReturnValue(mockTelemetry);
+            jest.spyOn(JulesModals, "getTelemetryUtils").mockReturnValue(mockTelemetry);
 
             await modals._transmitReply('session-1', 'user reply', mockCloseFn, null);
 
@@ -439,7 +481,7 @@ describe('JulesTerminal', () => {
             window.julesAPI.provideInput.mockRejectedValueOnce(error);
 
             const mockTelemetry = { dispatchEvent: jest.fn() };
-            global.JulesTerminal.getTelemetryUtils.mockReturnValue(mockTelemetry);
+            jest.spyOn(JulesModals, "getTelemetryUtils").mockReturnValue(mockTelemetry);
 
             const rollbackState = {
                 className: 'term-status status-waiting',
@@ -489,7 +531,7 @@ describe('JulesTerminal', () => {
             window.julesAPI.provideInput.mockRejectedValueOnce(error);
 
             const mockTelemetry = { dispatchEvent: jest.fn() };
-            global.JulesTerminal.getTelemetryUtils.mockReturnValue(mockTelemetry);
+            jest.spyOn(JulesModals, "getTelemetryUtils").mockReturnValue(mockTelemetry);
 
             await expect(modals._transmitReply('session-1', 'user reply', mockCloseFn, null)).resolves.not.toThrow();
 
@@ -501,7 +543,7 @@ describe('JulesTerminal', () => {
             const error = new Error('Network error');
             window.julesAPI.provideInput.mockRejectedValueOnce(error);
 
-            global.JulesTerminal.getTelemetryUtils.mockReturnValue(null);
+            jest.spyOn(JulesModals, "getTelemetryUtils").mockReturnValue(null);
 
             await modals._transmitReply('session-1', 'user reply', mockCloseFn, null);
 
@@ -513,7 +555,7 @@ describe('JulesTerminal', () => {
             delete window.julesAPI;
 
             const mockTelemetry = { dispatchEvent: jest.fn() };
-            global.JulesTerminal.getTelemetryUtils.mockReturnValue(mockTelemetry);
+            jest.spyOn(JulesModals, "getTelemetryUtils").mockReturnValue(mockTelemetry);
 
             await modals._transmitReply('session-1', 'user reply', mockCloseFn, null);
 
@@ -530,7 +572,7 @@ describe('JulesTerminal', () => {
             });
 
             const mockTelemetry = { dispatchEvent: jest.fn() };
-            global.JulesTerminal.getTelemetryUtils.mockReturnValue(mockTelemetry);
+            jest.spyOn(JulesModals, "getTelemetryUtils").mockReturnValue(mockTelemetry);
 
             await modals._transmitReply('session-1', 'user reply', mockCloseFn, null);
 
@@ -842,15 +884,50 @@ describe('JulesTerminal', () => {
     });
 
     describe('getTelemetryUtils', () => {
-        it('should return null when telemetry utils are undefined globally', () => {
-            // Because JulesTerminal.getTelemetryUtils in source looks at global namespace.
-            // We need to trick it.
-            const originalTU = global.TelemetryUtils;
+        beforeAll(() => {
+            if (JulesModals.getTelemetryUtils.mockRestore) JulesModals.getTelemetryUtils.mockRestore();
+        });
+        let originalWindow, originalGlobal, originalTelemetryUtils;
+
+        beforeEach(() => {
+            originalWindow = global.window;
+            originalGlobal = global.global;
+            originalTelemetryUtils = global.TelemetryUtils;
+        });
+
+        afterEach(() => {
+            global.window = originalWindow;
+            global.global = originalGlobal;
+            global.TelemetryUtils = originalTelemetryUtils;
+        });
+
+        it('should return TelemetryUtils if available globally', () => {
+            global.TelemetryUtils = { mock: 'global' };
+            expect(JulesModals.getTelemetryUtils()).toEqual({ mock: 'global' });
+        });
+
+        it('should return window.TelemetryUtils if window is defined', () => {
             delete global.TelemetryUtils;
+            if (typeof window !== 'undefined') {
+                window.TelemetryUtils = { mock: 'window' };
+            } else {
+                global.window = { TelemetryUtils: { mock: 'window' } };
+            }
+            expect(JulesModals.getTelemetryUtils()).toEqual({ mock: 'window' });
+        });
 
+        it('should return global.TelemetryUtils as a fallback', () => {
+            delete global.TelemetryUtils;
+            global.window = undefined;
+            global.global = { TelemetryUtils: { mock: 'globalObj' } };
+            expect(JulesModals.getTelemetryUtils()).toEqual({ mock: 'globalObj' });
+        });
+
+        it('should return null when telemetry utils are undefined everywhere', () => {
+            delete global.TelemetryUtils;
+            global.window = undefined;
+            global.global = undefined;
             expect(JulesModals.getTelemetryUtils()).toBeNull();
-
-            global.TelemetryUtils = originalTU;
         });
     });
 });
