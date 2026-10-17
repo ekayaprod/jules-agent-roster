@@ -710,7 +710,7 @@
     "category": "Testing",
     "tier": "Standard",
     "description": "ALIGN outdated assertions with current source files to correct semantic drift without inventing net-new test coverage.",
-    "forge_version": "V87.4",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Examiner.md",
     "isCustom": true
   },
