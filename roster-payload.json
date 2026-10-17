@@ -1898,7 +1898,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "SCULPT static DOM elements into life by injecting fluid transitions, micro-interactions, and hardware-accelerated animations.",
-    "forge_version": "V86.8",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Sculptor.md",
     "isCustom": true
   },
