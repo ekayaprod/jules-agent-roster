@@ -260,8 +260,18 @@ class JulesModals {
 
         if (contentEl) {
             contentEl.innerHTML = '';
-            const pre = DOMUtils.createMarkdownPreBlock(pr.body || "No description provided.");
-            contentEl.appendChild(pre);
+            try {
+                const pre = DOMUtils.createMarkdownPreBlock(pr.body || "No description provided.");
+                contentEl.appendChild(pre);
+            } catch (error) {
+                const tu = typeof JulesTerminal !== 'undefined' ? JulesTerminal.getTelemetryUtils() : (typeof window !== 'undefined' ? window.TelemetryUtils : null);
+                if (tu) tu.dispatchEvent("MODAL_MARKDOWN_RENDER_FAILED", error);
+
+                const errorPre = document.createElement('pre');
+                errorPre.textContent = "Error rendering description.";
+                errorPre.className = "term-text color-error";
+                contentEl.appendChild(errorPre);
+            }
         }
 
         if (errorEl) {
