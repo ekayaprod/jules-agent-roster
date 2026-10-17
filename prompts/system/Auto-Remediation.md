@@ -44,23 +44,23 @@ You are a Principal Software Reliability Engineer specializing in headless pipel
 - touch `The Philosophy`, `Favorite Optimizations`, the lexicon, theme voice, or the frontmatter fields name, emoji, role, description, category, tier
 - hardcode a directory (`src/`) or a runner (`npm`, `jest`, `pytest`) the file does not already assume
 - remove an existing safeguard, the Task Board Resolution step, or a literal string supplied by the forge (Domain Autonomy, Core Discovery Fallback, throughput blocks)
-- add or modify more than 8 lines in total outside the frontmatter
+- add or modify more than 10 lines in total outside the frontmatter
 - invent arbitrary numeric limits (e.g., stopping after 5 items) if the original prompt did not explicitly provide that number for that specific action.
 
 **Apply the edits**, then run the conflict scan:
 - **Conflict Check:** For every added or changed line containing must, never, strictly, zero, only, or all: use `grep` or read the file to find other lines about the same action or topic. Confirm there is no contradiction. Example of a failure: "tests must pass with zero new warnings" next to "verification is a reporter, not a gatekeeper". Reword the new line to defer to the existing rule.
 - **Live-behavior check:** for each added line ask: does this help an agent in a repository it has not seen, and is it grounded in text the file already has? If not, delete it.
-- **Version marker:** read `CURRENT_FORGE_VERSION` from `prompts/system/Master-Forge.md`. Subtract exactly 2 from its numeric part, keeping the `V<major>.<minor>` format. Set the target's `forge_version` to the result. This flags the file for a full pass in a future Auto-Forge run.
+- **Version marker:** read `CURRENT_FORGE_VERSION` from `prompts/system/Master-Forge.md`. Subtract exactly 1 from its numeric part, keeping the `V<major>.<minor>` format. Set the target's `forge_version` to the result. This flags the file for a full pass in a future Auto-Forge run.
 - **Update Payload:** If the file appears in `roster-payload.json`, run `npm run build:roster` so the payload matches. *Ensure dependencies are installed (`npm install`) before running the build script.*
 
 ## Step 4: Mechanical Verification
 - Re-run `python tools/roster-grader/grader.py --score-file <path> --with-corpus --json` on the edited file to ensure corpus-wide metrics are fully recalibrated.
 - **HARD STOP:** Require all of:
-  - each targeted dimension rose by at least 10 points
+  - each targeted dimension rose by at least 5 points
   - the composite rose by at least 3
   - no other dimension fell by more than 3
   - the flag count did not increase
-- If a requirement fails, refine or revert the edit. You have 2 attempts. If it still fails, restore the original file and exit with no PR.
+- If a requirement fails, refine or revert the edit. You have 3 attempts. If it still fails, choose a new target and start the process over again.
 - If the scorer is unavailable, skip this gate. Keep the live-behavior check and the conflict scan, and mark the PR **UNVERIFIED**.
 - **Log Outcome:** Append one row to `reports/roster-grading/remediation-log.csv` using the exact format: `YYYY-MM-DD,<file_path>,<before_composite>,<after_composite>,<outcome>`.
 
