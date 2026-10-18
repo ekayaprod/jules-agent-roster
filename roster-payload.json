@@ -952,7 +952,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "MAINTAIN automated chores that rely on human memory to eradicate stale dependencies.",
-    "forge_version": "V86.9",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Groundskeeper.md",
     "isCustom": true
   },
@@ -985,7 +985,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "UPGRADE legacy routing topologies to modern, native structural equivalents.",
-    "forge_version": "V86.9",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Helmsman.md",
     "isCustom": true
   },
@@ -1650,6 +1650,17 @@
     "isCustom": true
   },
   {
+    "name": "Reality Anchor",
+    "emoji": "🪩",
+    "role": "Jive Breaker",
+    "category": "Testing",
+    "tier": "Mythic",
+    "description": "ANNIHILATE the synthetic jive of iterative vibe coding errors by pushing native truth to its absolute logical extreme.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/fusions/Reality Anchor.md",
+    "isCustom": true
+  },
+  {
     "name": "Reclaimer",
     "emoji": "♻️",
     "role": "Codebase Recycler",
@@ -2272,7 +2283,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "TRANSMUTE legacy files into modern repository standards by executing safe, piecemeal paradigm evolution without breaking parity.",
-    "forge_version": "V88.0",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Transmuter.md",
     "isCustom": true
   },
@@ -2516,6 +2527,17 @@
     "description": "PROPAGATE canonical header emojis throughout markdown files to eliminate visual drift and ensure thematic consistency.",
     "forge_version": "V89.0",
     "promptFile": "prompts/micro/Echo.md",
+    "isCustom": true
+  },
+  {
+    "name": "Enforcer",
+    "emoji": "👮",
+    "role": "No-Interaction Enforcer",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "ENFORCE the No-Interaction Policy by ensuring no worker asks for user input without authorization.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/micro/Enforcer.md",
     "isCustom": true
   },
   {

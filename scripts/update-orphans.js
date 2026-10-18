@@ -13,7 +13,6 @@ const fusionsDir = path.join(rootDir, 'prompts', 'fusions');
 const orphansDir = path.join(rootDir, 'prompts', 'orphans');
 const matrixPath = path.join(rootDir, 'fusion_matrix.json');
 const orphansMdPath = path.join(orphansDir, 'orphans.md');
-const emptySlotsMdPath = path.join(orphansDir, 'emptyslots.md');
 
 function parseMarkdownFrontmatter(content) {
     const yamlRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n/;
@@ -47,20 +46,14 @@ async function updateOrphans() {
     const matrixContent = await fs.promises.readFile(matrixPath, 'utf8');
     const matrix = JSON.parse(matrixContent);
 
-    // 2. Identify referenced agents and empty slots
+    // 2. Identify referenced agents
     const referencedAgents = new Set();
-    const emptySlots = [];
 
-    for (const [key, value] of Object.entries(matrix)) {
-        if (value === "") {
-            emptySlots.push(`- \`${key}\``);
-        } else {
+    for (const value of Object.values(matrix)) {
+        if (value !== "") {
             referencedAgents.add(value);
         }
     }
-
-    // Sort empty slots for deterministic output
-    emptySlots.sort();
 
     // Ensure orphans dir exists
     await fs.promises.mkdir(orphansDir, { recursive: true });
@@ -97,12 +90,8 @@ async function updateOrphans() {
         await fs.promises.rename(orphan.filePath, destPath);
     }));
 
-    // 5. Update emptyslots.md
-    const emptySlotsContent = `# Empty Fusion Slots\n\nThis document tracks all fusion combinations from \`fusion_matrix.json\` that currently do not have an assigned agent (\`""\`).\n\n## How to update\n\nTo update this file, run a script that parses \`fusion_matrix.json\` for empty values and regenerates the list below. Do not edit this manually.\n\n## Missing Combinations\n\n${emptySlots.join('\n')}\n`;
-    await fs.promises.writeFile(emptySlotsMdPath, emptySlotsContent);
-
-    // 6. Regenerate orphans.md
-    const allOrphans = (await fs.promises.readdir(orphansDir)).filter(f => f.endsWith('.md') && f !== 'orphans.md' && f !== 'emptyslots.md');
+    // 5. Regenerate orphans.md
+    const allOrphans = (await fs.promises.readdir(orphansDir)).filter(f => f.endsWith('.md') && f !== 'orphans.md');
     let orphansMdContent = '# Orphaned Agents\n\n';
 
     allOrphans.sort();
@@ -132,7 +121,7 @@ async function updateOrphans() {
 
     await fs.promises.writeFile(orphansMdPath, orphansMdContent);
 
-    // 7. Sync Core Agents Matrix
+    // 6. Sync Core Agents Matrix
     await syncMatrix();
 }
 
