@@ -2530,6 +2530,17 @@
     "isCustom": true
   },
   {
+    "name": "Enforcer",
+    "emoji": "👮",
+    "role": "No-Interaction Enforcer",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "ENFORCE the No-Interaction Policy by ensuring no worker asks for user input without authorization.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/micro/Enforcer.md",
+    "isCustom": true
+  },
+  {
     "name": "Iconographer",
     "emoji": "🔣",
     "role": "Symbology Curator",
