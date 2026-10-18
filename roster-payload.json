@@ -952,7 +952,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "MAINTAIN automated chores that rely on human memory to eradicate stale dependencies.",
-    "forge_version": "V86.9",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Groundskeeper.md",
     "isCustom": true
   },
