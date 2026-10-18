@@ -515,7 +515,7 @@ class JulesTerminal {
             safeAgentName,
             "Conjuring session...",
             "",
-            () => {} // cursor pointer set implicitly via callback presence
+            undefined // cursor pointer set implicitly via callback presence
         );
 
         if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.LOADING : "loading", "Launching...");

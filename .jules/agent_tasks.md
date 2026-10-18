@@ -12,10 +12,6 @@
 * `js/core/RosterApp.js:1`: Code module exceeding 500 lines (614 lines). Split into domain modules.
 
 ## The [PRUNER] Queue
-* `js/Features/JulesTerminal/JulesTerminal.js:521`: Remove hollow carapace empty callback function.
-* `js/Services/GithubAPI/GithubAPI.js:80`: Remove unstructured console.error call.
-* `js/Services/GithubAPI/GithubAPI.js:83`: Remove unstructured console.error call.
-* `js/Services/JulesAPI/JulesAPI.js:91`: Remove unstructured console.error call.
 
 ## The [INSTRUMENTER] Queue
 

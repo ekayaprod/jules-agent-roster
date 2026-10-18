@@ -159,7 +159,7 @@ class NetworkUtils {
       }
 
       if (response.status === 404) {
-        if (options.throwOn404 === false) {
+        if (!options.throwOn404) {
           return response;
         }
         throw new Error(`HTTP Error: 404`);
