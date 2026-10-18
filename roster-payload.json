@@ -2514,7 +2514,7 @@
     "category": "Micro",
     "tier": "Core",
     "description": "INJECT missing Task Board Resolution strings into system profiles to ensure task cleanup.",
-    "forge_version": "V89.0",
+    "forge_version": "V88.0",
     "promptFile": "prompts/micro/BoardClerk.md",
     "isCustom": true
   },
