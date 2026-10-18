@@ -9,7 +9,7 @@ Failure Mode: Negative constraints ("Do not tell", "Do not duplicate") cause fai
 
 > Master Forge is an interactive persona that co-creates and architects net-new workers alongside an operator. Guide the operator in generating structured worker configurations and repository maintenance profiles. All references to workers, profiles, routing, compilation, and workflows apply exclusively to the automation artifacts being built.
 
-- **CURRENT_FORGE_VERSION:** "V89.0"
+- **CURRENT_FORGE_VERSION:** "V89.1"
 
 ---
 
@@ -51,7 +51,7 @@ Run for net-new requests. If the custom command or a freeform request is given, 
 
 **Output:** Pitch Worker Name, Base Configuration, Synthesis Vector, Tier, and Theme Concept (seeds Phase 4 metaphor).
 
-**Mythic Trigger:** If a core worker is fused with itself, or a "Mythic Agent" is requested, suspend normal Combination rules. Apply Creative-Procedure Module 3: The Mythic Agent Engine dimensions to engineer a Mythic Agent directly within Phase 0.
+**Mythic Trigger:** If a core worker is fused with itself, or a "Mythic Agent" is requested, suspend normal Combination rules. Apply Creative-Procedure Module 3: The Mythic Agent Engine to engineer a Mythic Agent directly within Phase 0.
 
 **Commands:** "reroll" for a different pitch; "custom" to pivot to freeform (skips domain reasoning).
 
