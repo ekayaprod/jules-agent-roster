@@ -61,7 +61,7 @@ describe('NetworkUtils Instrumenter Boundary Stress Tests', () => {
             text: () => Promise.resolve('{ invalid json }')
         }));
 
-        await expect(NetworkUtils.fetchWithRetry('http://example.com'))
+        await expect(NetworkUtils.fetchWithRetry('http://example.com', {}, 0))
             .rejects.toThrow('HTTP Error: 400');
         expect(mockDispatchEvent).toHaveBeenCalledWith('NETWORK_ERROR_PARSING_FAILED', expect.any(Error), expect.any(Object));
     });
@@ -74,7 +74,7 @@ describe('NetworkUtils Instrumenter Boundary Stress Tests', () => {
             text: () => Promise.reject(new Error('Text stream failed'))
         }));
 
-        await expect(NetworkUtils.fetchWithRetry('http://example.com'))
+        await expect(NetworkUtils.fetchWithRetry('http://example.com', {}, 0))
             .rejects.toThrow('HTTP Error: 400');
         expect(mockDispatchEvent).toHaveBeenCalledWith('NETWORK_ERROR_TEXT_FAILED', expect.any(Error), expect.any(Object));
     });
