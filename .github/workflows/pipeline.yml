@@ -70,7 +70,7 @@ jobs:
       id-token: write
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   analyze:
     runs-on: ubuntu-latest
