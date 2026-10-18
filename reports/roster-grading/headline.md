@@ -16,16 +16,16 @@ Self-check results: PASS
 - prompts/Modernizer.md: 71.03 (Strong)
 
 ## Bottom 10
-- prompts/fusions/Greenlight.md: 37.94 (Weak)
-- prompts/fusions/Foresight.md: 37.87 (Weak)
 - prompts/fusions/Upgrader.md: 37.09 (Weak)
 - prompts/fusions/Glossary.md: 36.98 (Weak)
 - prompts/micro/Iconographer.md: 36.74 (Weak)
+- prompts/micro/Linter.md: 35.42 (Weak)
 - prompts/fusions/Honeypot.md: 35.41 (Weak)
 - prompts/fusions/Actualizer.md: 35.13 (Weak)
 - prompts/fusions/Sherpa.md: 34.88 (Weak)
 - prompts/micro/BoardClerk.md: 34.69 (Weak)
 - prompts/fusions/Registrar.md: 34.27 (Weak)
+- prompts/fusions/Typesetter.md: 33.72 (Weak)
 
 Run-to-run agreement: None found
 WARN/FAIL: None found
