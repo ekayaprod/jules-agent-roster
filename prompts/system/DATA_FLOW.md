@@ -12,7 +12,7 @@ This document flattens the system's chronological execution chains across the `p
 7. `Auto-Forge.md` executes validation scripts (e.g., `npm run build:roster`) and natively triggers PR creation.
 
 ## 2. Auto-Build Pipeline (Fusion Worker Creation Flow)
-1. `Auto-Build.md` selects an unassigned fusion combination from `fusion_matrix.json` referencing `emptyslots.md`.
+1. `Auto-Build.md` selects an unassigned fusion combination from `fusion_matrix.json`
 2. `Auto-Build.md` reads parent prompt logic in `prompts/`.
 3. `Auto-Build.md` consults `Master-Forge.md` and `Forge-Procedure.md` Module 5: The Fusion Engine (Intuitive Synthesis) for synthesis rules.
 4. `Auto-Build.md` generates the fusion logic using the structural boundaries defined in `Creative-Procedure.md`.

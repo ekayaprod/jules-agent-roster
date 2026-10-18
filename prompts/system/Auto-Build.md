@@ -23,7 +23,7 @@ Execute the following steps from start to finish:
    - Include a dedicated, explicit step in your plan specifically phrased as: "Complete pre commit steps to ensure proper testing, verification, review, and reflection are done."
 
 2. **Selection & Research:**
-   - Check `prompts/orphans/emptyslots.md` and `fusion_matrix.json` for an unassigned fusion combination. Pick one.
+   - Check `fusion_matrix.json` for an unassigned fusion combination. Pick one.
    - Read the two corresponding parent `.md` files in the root `prompts/` directory to deeply understand their mechanics and philosophies.
    - **Synthesis Engine:** Fuse the two mechanics intrinsically. Find the exact middle of the Venn diagram between the two parent roles to form a highly specific, creative, and novel operational paradigm.
 
@@ -41,7 +41,7 @@ Execute the following steps from start to finish:
 
 5. **Update the Ecosystem:**
    - Update `fusion_matrix.json` to map the parent combination to your new worker's name.
-   - Run `node scripts/update-orphans.js`. Note: This script automatically updates `emptyslots.md` and `Core-Agents-Matrix.md`. Avoid editing those files manually, as the script handles it.
+   - Run `node scripts/update-orphans.js`. Note: This script automatically updates `Core-Agents-Matrix.md`. Avoid editing this file manually, as the script handles it.
    - Run `npm run build:roster` to compile the frontend `roster-payload.json` artifact.
    - Verify these updates using `git diff` and `git status`. Ensure you explicitly `git add` all generated artifacts.
 
