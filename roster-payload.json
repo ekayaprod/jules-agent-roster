@@ -985,7 +985,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "UPGRADE legacy routing topologies to modern, native structural equivalents.",
-    "forge_version": "V86.9",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Helmsman.md",
     "isCustom": true
   },
