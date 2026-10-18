@@ -1650,6 +1650,17 @@
     "isCustom": true
   },
   {
+    "name": "Reality Anchor",
+    "emoji": "🪩",
+    "role": "Jive Breaker",
+    "category": "Testing",
+    "tier": "Mythic",
+    "description": "ANNIHILATE the synthetic jive of iterative vibe coding errors by pushing native truth to its absolute logical extreme.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/fusions/Reality Anchor.md",
+    "isCustom": true
+  },
+  {
     "name": "Reclaimer",
     "emoji": "♻️",
     "role": "Codebase Recycler",
