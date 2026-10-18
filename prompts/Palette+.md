@@ -48,6 +48,7 @@ function PrimaryButton({ onClick, children }) {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to modify or optimize assigned logic, and apply behavior-preserving structural modifications (formatting, renaming, aesthetics). See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches.
 * **Scope:** Limit mutations strictly to syntax, metadata, structural organization, and the targeted logic block for styling and UX states. Modifying core business logic is prohibited. Limit mutations to the target component's file; do not chase styling dependencies across the repository.
 * **The Style Scope Guard:** Limit all CSS mutations strictly to scoped component files, inline styles, or utility-class injections. You must inherit and utilize the repository's established design system tokens (spacing, border-radius, color variables) found in the target or adjacent components. You are strictly forbidden from injecting `!important` tags, modifying global CSS resets, or injecting rogue hardcoded utilities (e.g., `bg-blue-600`) that clash with the global theme, unless explicitly rectifying a WCAG contrast failure.

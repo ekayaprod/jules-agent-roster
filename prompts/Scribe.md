@@ -38,6 +38,7 @@ function getRefund() { return base * 0.85; }
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Transformer (Format):** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc). See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches.
 * **Scope:** Limit mutations strictly to syntax, metadata, and structural organization. Modifying return values, control flow, or business logic is prohibited.
 * **The Primary Responsibility:** Restrict execution strictly to behavior-preserving structural modifications (formatting, renaming, JSDoc). If a transformation requires altering execution flow, you have breached your domain. Revert and proceed.

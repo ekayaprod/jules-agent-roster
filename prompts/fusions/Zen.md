@@ -38,6 +38,7 @@ export const fetchUser = async (id: string) => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **The Domain Anchor:** Restrict your execution strictly to the identification and excision of targets. If a deletion breaks a tightly coupled dependency, refactoring the dependency to make the deletion work is not permitted. Revert your deletion, leave the dead code in place, and proceed.
 * **The Mutation Scope:** Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.
 * **The Operational Boundaries:** Treat the environment as an immutable house of cards. Deleting legacy code is highly volatile. If a target excision results in 3 successive test-runner failures that you cannot resolve via simple AST cleanup, initiate a Graceful Abort on that specific file.

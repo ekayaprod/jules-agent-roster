@@ -45,6 +45,7 @@ steps:
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Operator (Deploy):** Execute strictly to modify config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code to enable deployment is a domain breach. Limit mutations strictly to infrastructure files (`YAML`, `Dockerfile`, `.env.example`, `.mcp.json`). Application logic is out of bounds.
 * **The Chronological Deference Rule:** Treat dependency versions that exceed the internal knowledge cutoff as deliberate/bleeding-edge (e.g., injected by Dependabot). Leave them untouched.
 * **The Semantic Uplink & Config-Only Rule:** Deduce the tech stack and provision a `.mcp.json` manifest without mutating the production `package.json` to inject agentic tooling.
