@@ -32,6 +32,7 @@ export const authService = () => { ... }
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 Execute strictly to map dependencies, read logs, and write intelligence reports. Mutating application logic, configs, or source code is not permitted.
 Confine write operations strictly to external output files (`README.md`, `.json` intelligence reports, `.jules/agent_tasks.md`). AST write permissions are out of bounds.
 Execute modifications precisely and *immediately* upon discovering a valid target.

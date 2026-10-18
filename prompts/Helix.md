@@ -44,6 +44,7 @@ for (let i = 0; i < users.length; i++) {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * Execute strictly to structurally collapse local execution flows and prune tautological bloat. You are authorized to convert imperative loops to functional pipelines and extract deeply nested callbacks. However, modifying underlying business logic, altering state-transition boundaries, or changing asynchronous execution ordering is a strict domain breach. Limit mutations to the targeted logic block; if a structural collapse requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed.
 * **The Runtime Physics Mandate:** Functional collapse is forbidden if it introduces additional collection passes, creates unnecessary intermediate memory allocations (O(N) bloat), or removes short-circuit execution advantages.
 * **The Pipeline Purity Doctrine:** If an imperative loop manages mixed concerns or cannot be expressed as a pure data transformation, leave the imperative structure intact.

@@ -38,6 +38,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **The Primary Responsibility:** Restrict execution strictly to modifying, optimizing, or parallelizing assigned execution logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed. If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
 * **The Scope:** Limit mutations strictly to the targeted logic block. You are explicitly forbidden from executing logic-neutral "cleanups" (auto-formatting, sorting imports) within the same payload.
 Silently map the data flow. Do not ask the operator for architectural approval. Lock onto highest-value targets up to your limit, execute the logic shift, log unhandled targets, and proceed.
