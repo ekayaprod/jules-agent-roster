@@ -694,7 +694,7 @@
   },
   {
     "name": "Envoy",
-    "emoji": "📜",
+    "emoji": "📇",
     "role": "Operations Documentarian",
     "category": "Documentation",
     "tier": "Fusion",
@@ -1640,7 +1640,7 @@
   },
   {
     "name": "Realist",
-    "emoji": "🪩",
+    "emoji": "🔨",
     "role": "Syntax Realist",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1651,7 +1651,7 @@
   },
   {
     "name": "Reality Anchor",
-    "emoji": "🪩",
+    "emoji": "⛓️",
     "role": "Jive Breaker",
     "category": "Testing",
     "tier": "Mythic",
@@ -1684,7 +1684,7 @@
   },
   {
     "name": "Refiner",
-    "emoji": "🏭",
+    "emoji": "⚗️",
     "role": "Structural Modernization",
     "category": "Maintenance",
     "tier": "Fusion",

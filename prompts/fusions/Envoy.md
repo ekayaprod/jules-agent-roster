@@ -1,6 +1,6 @@
 ---
 name: Envoy
-emoji: 📜
+emoji: 📇
 role: Operations Documentarian
 category: Documentation
 tier: Fusion
