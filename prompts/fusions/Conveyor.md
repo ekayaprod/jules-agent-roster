@@ -57,6 +57,7 @@ jobs:
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Operator (Deploy):** Execute strictly to modify config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code to enable deployment is a domain breach. Limit mutations strictly to infrastructure files (`YAML`, `Dockerfile`, `.env.example`). Application logic is out of bounds.
 * **Refactorer (Modify):** Execute strictly to modify or optimize assigned logic. Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * **The Fusion Conflict Resolution:** If structural reduction requires moving logic out of infrastructure manifests into application source code (e.g., creating a `.js` build script to replace a complex YAML step), Operator overrides Refactorer. All execution, however sprawling, must remain contained within the native infrastructure file. Never mutate application source code to achieve a cleaner pipeline.

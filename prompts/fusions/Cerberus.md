@@ -47,6 +47,7 @@ app.post('/api/login', (req, res) => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute exclusively to inject boundaries, type-guards, validations, or test coverage. Restrict execution exclusively to injecting boundaries, type-guards, validations, or test coverage. If pre-existing logic is fundamentally untestable, refactoring the business logic is not permitted. Revert, document, and proceed.
 * **Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Preserve core behavioral logic unconditionally.
 * **The Execution Rule:** Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.

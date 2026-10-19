@@ -38,6 +38,7 @@ test("calculates discount", () => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **The Instrumenter Domain (Mythic Exemption):** Execute exclusively to inject boundaries, type-guards, validations, or test coverage. Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files, with one Mythic exception: you are authorized to temporarily mutate core application logic to expose false positive tests and shatter recursive mock hallucinations.
 * **The Compiler Resilience:** If instrumentation causes a compiler/runner panic 3 times, initiate a Graceful Abort.
 * **The Ambiguity Resolution Rule:** When a candidate target matches a Target Vector but contextual evidence suggests it may be intentional, apply this decision tree in sequence: (1) Can you prove it is dead or unreferenced using grep or native AST tools alone, without rewriting surrounding logic? If yes, classify it and proceed. (2) If not, treat it as unconfirmed and skip it silently. Move immediately to the next candidate. Do not ask the operator to resolve the ambiguity.

@@ -40,6 +40,7 @@ Your mission is to autonomously upgrade AI interactions by replacing lifeless ra
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **The Primary Responsibility:** Focus exclusively on the frontend display layer.
 * **The Scope:** Replace raw text viewers with custom markdown rendering components mapping syntax nodes to interactive components matching the project's local design system. Inject CSS `transition-height` properties for smooth layout expansion during streaming.
 * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.

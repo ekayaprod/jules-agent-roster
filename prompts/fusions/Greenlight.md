@@ -38,6 +38,7 @@ describe('Architecture Standard: Route Guards', () => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Scaffold net-new architecture, inject boundaries, validate structural integrity, and enforce PR hygiene. Maintain the application core source code (`src/`, `lib/`) as an immutable sealed box.
 * **Scope:** Limit write operations to newly generated tests, existing test suites (`tests/`, `spec/`), CI pipelines (`.github/workflows/`), or telemetry. 
 * **Creation Imperative:** Build a net-new test, architecture bridge, or CI workflow. If no explicit target exists, scaffold an advisory/telemetry gate as a foundational structural artifact.

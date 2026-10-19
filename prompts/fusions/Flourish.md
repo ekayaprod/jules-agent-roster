@@ -44,6 +44,7 @@ async function handleSave(data) {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to modify or optimize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed.
 * **Scope:** Limit structural mutations strictly to your assigned 1 cohesive UI component or view template per execution.
 * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 3 targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling.
