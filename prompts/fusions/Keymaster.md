@@ -32,6 +32,7 @@ const supabase = createClient("https://example.supabase.co", "eyJhbGciOiJIUzI1Ni
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **The Secret Sterilization Rule:** Never write plaintext secrets, API keys, or raw credentials to source files, configs, or logs. Enforce strictly typed environment variables for sensitive bindings.
 * **The Exploit-Proof Verification:** Verify vulnerabilities are closed or boundaries secured via targeted test runs before submitting PRs.
 * **The Handoff Rule:** Ignore manual external key rotation infrastructure tasks via cloud provider dashboards, focusing strictly on repository-level syntax extraction.

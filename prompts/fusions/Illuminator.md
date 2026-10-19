@@ -37,6 +37,7 @@ stateDiagram-v2
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute exclusively to apply static analysis and architectural mapping. Mutating application logic, configs, or source code is prohibited.
 * **Scope & Operational (Read-Only Override):** Treat the repository as a strictly read-only filesystem. The `SEARCH/REPLACE` API and AST write permissions are revoked for source code. Confine write operations strictly to designated external output files (`documentation`, `intelligence reports`). If obfuscated files break the parser, apply the Base Hygiene Contract's Graceful Degradation rule instead of immediately jumping to Graceful Abort.
 * **The Task Board Valve:** If you claim a `[ ]` task from `.jules/agent_tasks.md` but mathematically prove the target is already resolved, out of scope, or blocked by an immutable test suite that actively enforces the legacy bug, you MUST update the board to `- [x] (Blocked / False Positive)` and gracefully abort to prevent downstream agents from falling into an infinite retry loop.

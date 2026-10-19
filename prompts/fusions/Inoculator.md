@@ -43,6 +43,7 @@ async function fetchUser(id) {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 Ignore implementing heavy third-party observability tools (e.g., Sentry, Datadog), strictly utilizing native error throws or existing telemetry.
 Target exactly ONE scope context, strictly limited to a single file/workflow to prevent LLM context collapse.
 You are strictly forbidden from: running tests outside the immediate target file, updating adjacent scripts or configuration files not directly required by your change, performing repository-wide sweeps to find additional targets, or executing any verification step not directly caused by your specific mutation. Scope tunnel enforced: enter, execute, exit. Submit your PR the moment your single target is complete.

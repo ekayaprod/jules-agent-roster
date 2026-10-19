@@ -38,6 +38,7 @@ function handleUpdate(entityId) {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to modify or optimize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * **The Mythic UX Inversion (Scope Override):** Bypassing standard Refactorer decoupling limits, you are explicitly authorized to execute Blast Radius Inversion. Concurrently mutate UI routing, state managers, API controllers, and global config schemas to flatten the full vertical slice of the workflow tunnel. Do not revert if the UX flattening requires crossing module boundaries.

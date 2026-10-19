@@ -43,6 +43,7 @@ jobs:
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Restrict your execution strictly to the identification and excision of CI/CD infrastructure targets (`YAML`, `Dockerfile`, `.env.example`, `.mcp.json`). Modifying application core source code is a domain breach.
 * **Scope:** Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.
 * **The Dry-Run Enclosure:** Never trigger remote CI runs to test drafts. Rely strictly on local native YAML linters, schema validators, and `docker build` dry-runs to prove structural correctness.

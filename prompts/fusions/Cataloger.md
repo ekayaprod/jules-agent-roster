@@ -35,6 +35,7 @@ Welcome to the core logic! Here's how the sub-modules map out:
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **The Primary Responsibility:** Execute strictly to apply behavior-preserving structural modifications (formatting, rewriting, organizing). Altering application execution flow breaches your domain.
 * **The Scope:** Limit mutations strictly to syntax, metadata, and structural organization of external output files (`README.md`, `ARCHITECTURE.md`, `.json` intelligence reports). Modifying return values, control flow, or business logic is prohibited. AST write permissions are revoked.
 * **The Fusion Conflict Resolution:** When determining the output format of internal scanning (Overseer's deep structural mapping vs Author's human-readable welcoming docs), human-readable onboarding documentation takes absolute precedence over sterile task lists. All internal architectural findings must be synthesized into narrative, scannable markdown for developers, bypassing the `.jules/agent_tasks.md` task board entirely.
