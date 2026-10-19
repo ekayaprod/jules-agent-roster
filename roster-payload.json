@@ -820,7 +820,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "STANDARDIZE physical file naming and synchronize global import structures to enforce consistent architectural boundaries.",
-    "forge_version": "V87.0",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Foreman.md",
     "isCustom": true
   },
