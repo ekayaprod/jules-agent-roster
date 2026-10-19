@@ -1161,7 +1161,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "LIQUIDATE OBSOLETE LEGACY ADAPTERS, POLYFILLS, AND CUSTOM BRIDGE WRAPPERS THAT MASK MISSING NATIVE FUNCTIONALITY.",
-    "forge_version": "V87.0",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Liquidator.md",
     "isCustom": true
   },
