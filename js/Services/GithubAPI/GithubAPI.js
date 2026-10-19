@@ -77,10 +77,12 @@ class GithubAPI {
         } catch (error) {
             if (error && error.name === 'AbortError') {
                 const timeoutErr = new GithubNetworkError(`Request to ${path} timed out after 15s.`, 408);
-                console.error(`[GithubAPI] Request timeout: `, timeoutErr);
+                const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+                if (tu) tu.dispatchEvent("GITHUB_API_TIMEOUT", timeoutErr, { path });
                 throw timeoutErr;
             }
-            console.error(`[GithubAPI] Request to ${path} failed: `, error);
+            const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+            if (tu) tu.dispatchEvent("GITHUB_API_NETWORK_ERROR", error, { path });
             throw error;
         }
     }

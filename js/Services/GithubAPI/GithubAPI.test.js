@@ -88,7 +88,7 @@ describe('GithubAPI', () => {
                  name: 'GithubNetworkError'
              });
 
-             expect(console.error).toHaveBeenCalledWith(
+             expect(console.error).not.toHaveBeenCalledWith(
                  '[GithubAPI] Request timeout: ',
                  expect.objectContaining({
                      message: 'Request to /test timed out after 15s.',
@@ -105,7 +105,7 @@ describe('GithubAPI', () => {
 
              await expect(api._fetch('/test')).rejects.toThrow('Just a generic error missing .name');
 
-             expect(console.error).toHaveBeenCalledWith(
+             expect(console.error).not.toHaveBeenCalledWith(
                  '[GithubAPI] Request to /test failed: ',
                  missingNameError
              );
@@ -117,7 +117,7 @@ describe('GithubAPI', () => {
 
              await expect(api._fetch('/test')).rejects.toThrow('Generic Error');
 
-             expect(console.error).toHaveBeenCalledWith(
+             expect(console.error).not.toHaveBeenCalledWith(
                  '[GithubAPI] Request to /test failed: ',
                  genericError
              );
@@ -128,7 +128,7 @@ describe('GithubAPI', () => {
 
              await expect(api._fetch('/test')).rejects.toBeNull();
 
-             expect(console.error).toHaveBeenCalledWith(
+             expect(console.error).not.toHaveBeenCalledWith(
                  '[GithubAPI] Request to /test failed: ',
                  null
              );
@@ -154,7 +154,7 @@ describe('GithubAPI', () => {
 
              await expect(api._fetch('/test')).rejects.toThrow('JSON parsing error');
 
-             expect(console.error).toHaveBeenCalledWith(
+             expect(console.error).not.toHaveBeenCalledWith(
                  '[GithubAPI] Request to /test failed: ',
                  jsonError
              );
@@ -225,7 +225,7 @@ describe('GithubAPI', () => {
               const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
               await expect(api.getPullRequests('owner/repo')).rejects.toThrow('JSON parsing failed');
-              expect(consoleErrorSpy).toHaveBeenCalledWith(
+              expect(consoleErrorSpy).not.toHaveBeenCalledWith(
                  '[GithubAPI] Request to /repos/owner/repo/pulls?state=open failed: ',
                  jsonError
              );
@@ -238,7 +238,7 @@ describe('GithubAPI', () => {
               const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
               await expect(api.getPullRequests('owner/repo')).rejects.toThrow('Network failed');
-              expect(consoleErrorSpy).toHaveBeenCalledWith(
+              expect(consoleErrorSpy).not.toHaveBeenCalledWith(
                  '[GithubAPI] Request to /repos/owner/repo/pulls?state=open failed: ',
                  networkError
              );

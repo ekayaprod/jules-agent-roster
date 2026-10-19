@@ -13,9 +13,6 @@
 
 ## The [PRUNER] Queue
 * `js/Features/JulesTerminal/JulesTerminal.js:518`: Remove hollow carapace empty callback function.
-* `js/Services/GithubAPI/GithubAPI.js:80`: Remove unstructured console.error call.
-* `js/Services/GithubAPI/GithubAPI.js:83`: Remove unstructured console.error call.
-* `js/Services/JulesAPI/JulesAPI.js:91`: Remove unstructured console.error call.
 * `js/Utils/telemetry/telemetry-utils.js:3`: Remove unstructured console.error call.
 * `js/Utils/telemetry/telemetry-utils.js:7`: Remove unstructured console.error call.
 * `js/Utils/telemetry/telemetry-utils.js:20`: Remove unstructured console.error call.
