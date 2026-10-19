@@ -2574,14 +2574,14 @@
     "isCustom": true
   },
   {
-    "name": "Timekeeper",
-    "emoji": "⏱️",
-    "role": "Version Synchronizer",
+    "name": "Test Clerk",
+    "emoji": "🧪",
+    "role": "Doctrine Enforcer",
     "category": "Micro",
     "tier": "Core",
-    "description": "STANDARDIZE missing or outdated forge_version strings to ensure temporal coherence across the automated ecosystem.",
+    "description": "INJECT missing Testing Doctrine strings into agent profiles to enforce strict test-handling rules.",
     "forge_version": "V89.0",
-    "promptFile": "prompts/micro/Timekeeper.md",
+    "promptFile": "prompts/micro/TestClerk.md",
     "isCustom": true
   }
 ]
