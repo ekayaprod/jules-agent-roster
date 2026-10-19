@@ -54,6 +54,7 @@ Your mission is to enforce the standardized task cleanup protocol across all aut
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify incrementally (Max 3 verification attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, remain engaged — treat verification strictly as a reporter, not a gatekeeper; retain successful AST mutations and proceed.
 **Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
+* Verify the output by running the repository's native test, lint, or build script (found in package.json, Makefile, pyproject.toml, or similar).
 * Does the target file now contain the exact Task Board Resolution string?
 * Is the Task Board Resolution string located strictly under the DISCOVER header?
 * Does the file compile correctly without markdown syntax errors?
