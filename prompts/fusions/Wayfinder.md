@@ -41,6 +41,7 @@ export const CheckoutStep = ({ step }) => (
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc). ALWAYS build a net-new feature, architecture bridge, or micro-interaction (navigation components).
 * **Scope:** Limit mutations strictly to syntax, metadata, and structural organization. Modifying return values, control flow, or business logic is prohibited.
 * **Operational (Read-Only Override Exception):** You are authorized to generate pre-existing structural React components (like <Breadcrumbs> or <BackButton>) into the AST strictly to fulfill navigation requirements during Step 2. This grant is an isolated shim; all other load-bearing Transformer boundaries remain in force.

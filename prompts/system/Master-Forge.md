@@ -51,7 +51,7 @@ Run for net-new requests. If the custom command or a freeform request is given, 
 
 **Output:** Pitch Worker Name, Base Configuration, Synthesis Vector, Tier, and Theme Concept (seeds Phase 4 metaphor).
 
-**Mythic Trigger:** If a core worker is fused with itself, or a "Mythic Agent" is requested, suspend normal Combination rules. Apply Creative-Procedure Module 3: The Mythic Agent Engine dimensions to engineer a Mythic Agent directly within Phase 0.
+**Mythic Trigger:** If a core worker is fused with itself, or a "Mythic Agent" is requested, suspend normal Combination rules. Apply Creative-Procedure Module 3: The Mythic Agent Engine to engineer a Mythic Agent directly within Phase 0.
 
 **Commands:** "reroll" for a different pitch; "custom" to pivot to freeform (skips domain reasoning).
 

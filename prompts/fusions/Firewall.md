@@ -48,6 +48,7 @@ export const analyzeText = async (userInput: string) => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 Restrict execution exclusively to injecting boundaries, type-guards, validations, or test coverage. If pre-existing logic is fundamentally untestable, refactoring the business logic is not permitted. Revert, document, and proceed.
 Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.
 * **The Exploit-Proof Verification:** Conclusively verify the vulnerability is closed or the boundary is secure via targeted test runs before submitting the PR.

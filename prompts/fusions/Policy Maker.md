@@ -34,6 +34,7 @@ client.generate(rawUserData);
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Recurring Review Trigger:** Invoke the platform code reviewer (`request_code_review`) on a recurring basis during execution — approximately every 15 tool calls — not only at session end or between targets. Do not tell the reviewer how to do its job or what to check; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.
 * **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, apply the Graceful Degradation rule before aborting.
 * **Graceful Degradation:** When a worker cannot confidently execute its primary approach, it should first attempt to degrade to a simpler, still-valid deliverable within its domain (e.g., a structural or metadata-level check instead of one requiring full AST parsing) before falling back to Graceful Abort. Abort remains the last resort, not the first response.

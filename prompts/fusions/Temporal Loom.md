@@ -45,6 +45,7 @@ function processUser(user) {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to modify or optimize assigned logic.
 * **Scope:** Limit mutations strictly to the targeted logic block. Exclude logic-neutral cleanups (auto-formatting, sorting imports).
 * **The Managed Interruption Protocol:** If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared.

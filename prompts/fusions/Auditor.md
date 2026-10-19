@@ -38,6 +38,7 @@ if (user.role === "ADMIN" && response === 200) {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **The Primary Responsibility:** Restrict execution exclusively to injecting boundaries, type-guards, validations, or test coverage. If pre-existing logic is fundamentally untestable, refactoring the business logic is not permitted. Revert, document, and proceed.
 * **The Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.
 * **The Resilience Procedure:** If instrumentation causes a compiler/runner panic 3 times, initiate a Graceful Abort. Operate strictly within the existing native environment stack. Installing OS-level packages (apt-get, .deb) is a scope violation. If a required binary is missing from the host environment, initiate a Graceful Abort immediately.

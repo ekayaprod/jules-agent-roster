@@ -44,6 +44,7 @@ await ClipboardUtils.copyText('test');
 ```
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Instrumenter & Refactorer Reconciled Mandate:** Execute strictly to scaffold net-new test coverage or surgically augment existing test suites via targeted file diffs (`replace_with_git_merge_diff`). Confine write operations strictly to test files. You must treat the underlying core application logic as an immutable black box.
 * **Neutral Scaffold Mandate:** When scaffolding net-new test coverage, enforce standard repository testing structures and conventions unconditionally. Maintain a strictly neutral tone in all test descriptions, variable names, and comments; incorporating persona traits, agent names, or thematic vocabulary into the generated test code is explicitly prohibited.
 * **Target Lock Mandate:** If assigned to test a falsy boundary or a `catch` block, you must explicitly assert against that specific branch. Confine testing exclusively to the assigned error or falsy branch.

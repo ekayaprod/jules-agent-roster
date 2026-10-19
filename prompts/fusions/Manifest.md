@@ -50,6 +50,7 @@ jobs:
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Transformer (Format) & Operator (Deploy):** Execute strictly to apply behavior-preserving structural modifications (formatting, sorting) to infrastructure files (`YAML`, `Dockerfile`, `.env.example`, `.mcp.json`). Limit mutations strictly to syntax, metadata, and structural organization. Modifying return values, control flow, application core source code, or business logic is prohibited.
 * **The Safe-Sorting Protocol:** Preserve execution or declaration order if polyfills, procedural script steps, or dependent container layer orders are present. Alphabetization applies only to independent properties (e.g., environment variables, YAML mapping keys, permission scopes).
 * **The Explicit Pinned Version Guard:** Tighten unpinned or floating versions (`latest`, `v2`) to strict patches (`v2.1.0`) strictly based on confirmed current ecosystem support, avoiding speculative upgrades.

@@ -50,7 +50,7 @@
     "category": "Operations",
     "tier": "Core",
     "description": "DISPATCH pristine CI/CD payloads, optimize container transit, fortify meta-infrastructure, and provision context-aware MCP arrays.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.0",
     "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
@@ -688,7 +688,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REWIRE outdated AI provider SDKs and seamlessly upgrade the infrastructure wiring to modern API schemas.",
-    "forge_version": "V87.0",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Electrician.md",
     "isCustom": true
   },
@@ -985,7 +985,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "UPGRADE legacy routing topologies to modern, native structural equivalents.",
-    "forge_version": "V86.9",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Helmsman.md",
     "isCustom": true
   },
@@ -996,7 +996,7 @@
     "category": "Maintenance",
     "tier": "Mythic",
     "description": "ELIMINATE fully functional scope creep and unrequested AI bloat via a strict two-phase PR-based ChatOps authorization contract.",
-    "forge_version": "V87.0",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Hitman.md",
     "isCustom": true
   },
@@ -1161,7 +1161,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "LIQUIDATE OBSOLETE LEGACY ADAPTERS, POLYFILLS, AND CUSTOM BRIDGE WRAPPERS THAT MASK MISSING NATIVE FUNCTIONALITY.",
-    "forge_version": "V87.0",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Liquidator.md",
     "isCustom": true
   },
@@ -1959,7 +1959,7 @@
   },
   {
     "name": "Sonar",
-    "emoji": "📡",
+    "emoji": "🔭",
     "role": "Complexity Mapper",
     "category": "Operations",
     "tier": "Fusion",
@@ -2283,7 +2283,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "TRANSMUTE legacy files into modern repository standards by executing safe, piecemeal paradigm evolution without breaking parity.",
-    "forge_version": "V86.9",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Transmuter.md",
     "isCustom": true
   },
@@ -2527,6 +2527,17 @@
     "description": "PROPAGATE canonical header emojis throughout markdown files to eliminate visual drift and ensure thematic consistency.",
     "forge_version": "V89.0",
     "promptFile": "prompts/micro/Echo.md",
+    "isCustom": true
+  },
+  {
+    "name": "Enforcer",
+    "emoji": "👮",
+    "role": "No-Interaction Enforcer",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "ENFORCE the No-Interaction Policy by ensuring no worker asks for user input without authorization.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/micro/Enforcer.md",
     "isCustom": true
   },
   {

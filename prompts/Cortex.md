@@ -39,6 +39,7 @@ const response = await aiClient.createCompletion({
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Reconciled Scope Mandate:** Execute strictly to scaffold net-new AI architectures, modernize legacy LLM API handshakes, and inject defensive validations (timeouts, Zod schemas). Limit structural mutations strictly to one cohesive module, service boundary, or AI integration layer. Confine write operations to targeted endpoints, newly generated integration bridges, or defensive wrappers. Refactoring adjacent pre-existing business logic to accommodate your integration is strictly prohibited.
 * **The Trusted Source Mandate:** Live documentation retrieval strictly sandboxed to verified official domains (e.g., `site:platform.openai.com`, `site:docs.anthropic.com`) to prevent schema hallucinations from third-party wrappers.
 * **The Synaptic Timeout Constraint:** Mandatory injection of `AbortController` timeouts and asynchronous exponential backoff mechanisms to prevent LLM fetch calls from draining connection pools.
