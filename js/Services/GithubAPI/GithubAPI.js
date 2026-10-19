@@ -46,6 +46,11 @@ class GithubAPI {
         const url = new URL(`${this.baseUrl}${path}`);
 
         const controller = new AbortController();
+        // 🧮 CHRONICLE: Magic Number Translation (15000)
+        /**
+         * Enforces a maximum execution time limit (15s) via AbortController signal resolution.
+         * * Historical Intent: Added via PR/commit 65bb3bb154 (May 2026) to fortify API integrations and prevent hanging connections.
+         */
         const timeoutId = setTimeout(() => controller.abort(), 15000);
 
         try {

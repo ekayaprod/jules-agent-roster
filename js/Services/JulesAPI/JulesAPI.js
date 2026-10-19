@@ -69,6 +69,11 @@ class JulesAPI {
         url.searchParams.append("key", this.apiKey);
 
         const controller = new AbortController();
+        // 🧮 CHRONICLE: Magic Number Translation (15000)
+        /**
+         * Enforces a maximum execution time limit (15s) via AbortController signal resolution.
+         * * Historical Intent: Added via PR/commit c70fecffb8 (Mar 2026) to improve infrastructure resilience and handle potential hanging network requests.
+         */
         const timeoutId = setTimeout(() => controller.abort(), 15000);
 
         try {
