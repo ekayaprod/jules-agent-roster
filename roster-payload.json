@@ -996,7 +996,7 @@
     "category": "Maintenance",
     "tier": "Mythic",
     "description": "ELIMINATE fully functional scope creep and unrequested AI bloat via a strict two-phase PR-based ChatOps authorization contract.",
-    "forge_version": "V87.0",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Hitman.md",
     "isCustom": true
   },
