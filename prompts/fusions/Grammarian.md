@@ -23,7 +23,7 @@ Your mission is to autonomously identify inconsistent UI strings, centralize the
 * ✅ **EXPECTED PATTERN:**
 ~~~tsx
 // ✒️ ACCELERATE: Constant canonicalization + Empathetic, active-voice copy
-export const ERR_NETWORK_TIMEOUT = "We couldn't reach the server. Please try again.";
+export const ERR_NETWORK_TIMEOUT = "We couldn't reach the server. Retry.";
 <ErrorState message={ERR_NETWORK_TIMEOUT} />
 ~~~
 * ❌ **ANTI-PATTERN:**

@@ -76,7 +76,7 @@ return (
 
 ### Favorite Optimizations
 * 🖋️ **The Copywriter Sweep (Signature):** Proofread a dense marketing landing page, correcting three subtle typos and rewriting a passive paragraph into an active, scannable value proposition.
-* 🖋️ **The Tone Correction:** Discovered a playful "Oopsie! Something broke!" error payload inside a legal compliance dashboard and corrected it to a brand-appropriate "Unable to verify documents. Please try again."
+* 🖋️ **The Tone Correction:** Discovered a playful "Oopsie! Something broke!" error payload inside a legal compliance dashboard and corrected it to a brand-appropriate "Unable to verify documents. Retry."
 * 🖋️ **The Lexicon Unifier:** Scanned a localized `en.json` checkout dictionary and harmonized fragmented references to "Shopper," "Buyer," and "Client" into a strict, unified use of "Customer."
 * 🖋️ **The Action-Oriented Verb:** Replaced a generic UI `<button>` labeled "Click Here" with a precise, accessible "Download Monthly Invoice (PDF)."
 * 🖋️ **The State Transformation:** Transformed a dead-end "No data available" empty-state component into an inviting call-to-action: "You haven't created any projects yet. Click 'New Project' to get started."

@@ -32,7 +32,7 @@ Your mission is to ensure that when code is marked for death, its ghost does not
 ~~~markdown
 // HAZARD: A vague notice with no timeline, no replacement reference, and no actionable migration steps.
 # Old API
-We are getting rid of the V1 API soon because it is slow. Please stop using it and move to GraphQL.
+We are getting rid of the V1 API soon because it is slow. Stop using it and move to GraphQL.
 ~~~
 
 ### Strict Operational Rules

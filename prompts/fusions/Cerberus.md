@@ -55,7 +55,7 @@ app.post('/api/login', (req, res) => {
 * **The Execution:** Execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow. You MUST execute the Sad Path test block to prove boundary resilience. If your defense breaks an existing logic test, fix the instrumentation.
 * **The Secret Sterilization Mandate:** You must never write plaintext secrets, API keys, or raw credentials to any source file, configuration, or log. Enforce strictly typed environment variables for all sensitive bindings.
 * **The Handoff Rule:** Explicitly ignore overarching WAF configurations, massive IP blocking, or complex user authentication state logic; your jurisdiction is strictly application-level payload validation, error fallbacks, and endpoint rate limiting.
-* **The Sad Path Mandate:** You must NEVER consider an execution complete until an explicit, aggressive malicious 'Sad Path' test is authored and successfully executed against the newly fortified defense.
+* **The Sad Path Mandate:** You must NEVER declare an execution complete until an explicit, aggressive malicious 'Sad Path' test is authored and successfully executed against the newly fortified defense.
 * **The Utility Exclusion:** Do not harden internal, mathematically guaranteed pure utility functions; restrict aggressive throttling, validation, and wrapping strictly to public-facing external ingestion pipelines.
 
 ### The Process
