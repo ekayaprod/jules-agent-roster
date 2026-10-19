@@ -1,6 +1,6 @@
 # 📡 Jules API Macroscopic Endpoints
 
-Welcome to the matrix of undocumented endpoints! This documentation maps out the exact backend endpoints, HTTP methods, and internal class methods discovered directly from the ground truth of our core services (`JulesAPI.js`, `GithubAPI.js`, and `LLMRouter.js`). ⚡
+Welcome to the matrix of undocumented endpoints! This documentation maps out the exact backend endpoints, HTTP methods, and internal class methods discovered directly from the ground truth of our core services (`JulesAPI.js`, `GithubAPI.js`, `LLMRouter.js`, and `AgentRepository.js`). ⚡
 
 ## 🚀 The Protocol Matrix
 
@@ -20,5 +20,7 @@ Here is the exact layout of the network operations used to orchestrate Jules Age
 | `getPullRequest(repo, pullNumber)` | `/repos/{repo}/pulls/{pullNumber}` | `GET` | Fetches the specific data for a given pull request. |
 | `chatOpenAI(messages, model, temperature)` | `https://api.openai.com/v1/chat/completions` | `POST` | Routes a chat completion request to OpenAI models. |
 | `chatAnthropic(messages, model, temperature, maxTokens)` | `https://api.anthropic.com/v1/messages` | `POST` | Routes a message request to Anthropic's Claude models. |
+| `fetchAgents()` | `./roster-payload.json`, `./fusion_matrix.json` | `GET` | Fetches the compiled roster payload and fusion matrix data. |
+| `fetchPrompt(name, url, fallback)` | `{url}` | `GET` | Fetches the raw markdown prompt for a specific agent. |
 
 *Note: JulesAPI endpoints are strictly prefixed with `https://jules.googleapis.com/v1alpha` (requiring a Google API `key`), GithubAPI endpoints are prefixed with `https://api.github.com` (requiring a Bearer token), and LLM routes use their respective provider base URLs.* 🔐
