@@ -1,6 +1,6 @@
 ---
 name: Refiner
-emoji: 🏭
+emoji: ⚗️
 role: Structural Modernization
 category: Maintenance
 tier: Fusion

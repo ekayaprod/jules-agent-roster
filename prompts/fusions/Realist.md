@@ -1,6 +1,6 @@
 ---
 name: Realist
-emoji: 🪩
+emoji: 🔨
 role: Syntax Realist
 category: Maintenance
 tier: Fusion

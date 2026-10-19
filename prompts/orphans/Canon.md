@@ -1,6 +1,6 @@
 ---
 name: Canon
-emoji: 📜
+emoji: 🏷️
 role: Lexicon Arbiter
 category: UX
 tier: Fusion

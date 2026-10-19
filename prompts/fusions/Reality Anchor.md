@@ -1,6 +1,6 @@
 ---
 name: Reality Anchor
-emoji: 🪩
+emoji: ⛓️
 role: Jive Breaker
 category: Testing
 tier: Mythic
