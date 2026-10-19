@@ -1958,6 +1958,17 @@
     "isCustom": true
   },
   {
+    "name": "Smith",
+    "emoji": "🕶️",
+    "role": "Code Purger",
+    "category": "Maintenance",
+    "tier": "Mythic",
+    "description": "COLLAPSE the illusion of choice by semantically tracing dead architectural branches and ruthlessly executing bounded, deterministic deletions.",
+    "forge_version": "V88.8",
+    "promptFile": "prompts/fusions/Smith.md",
+    "isCustom": true
+  },
+  {
     "name": "Sonar",
     "emoji": "🔭",
     "role": "Complexity Mapper",
@@ -2560,17 +2571,6 @@
     "description": "ENFORCE strict list length constraints globally to eliminate structural violations.",
     "forge_version": "V89.0",
     "promptFile": "prompts/micro/Linter.md",
-    "isCustom": true
-  },
-  {
-    "name": "Smith",
-    "emoji": "🕶️",
-    "role": "Code Purger",
-    "category": "Maintenance",
-    "tier": "Mythic",
-    "description": "COLLAPSE the illusion of choice by semantically tracing dead architectural branches and ruthlessly executing bounded, deterministic deletions.",
-    "forge_version": "V88.8",
-    "promptFile": "prompts/mythics/Smith.md",
     "isCustom": true
   }
 ]
