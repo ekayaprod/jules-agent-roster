@@ -2572,5 +2572,16 @@
     "forge_version": "V89.0",
     "promptFile": "prompts/micro/Linter.md",
     "isCustom": true
+  },
+  {
+    "name": "Timekeeper",
+    "emoji": "⏱️",
+    "role": "Version Synchronizer",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "STANDARDIZE missing or outdated forge_version strings to ensure temporal coherence across the automated ecosystem.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/micro/Timekeeper.md",
+    "isCustom": true
   }
 ]
