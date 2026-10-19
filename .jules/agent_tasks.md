@@ -11,15 +11,6 @@
 * `js/Features/JulesTerminal/JulesTerminal.js:1`: Code module exceeding 500 lines (634 lines). Split into domain modules.
 * `js/core/RosterApp.js:1`: Code module exceeding 500 lines (615 lines). Split into domain modules.
 
-## The [PRUNER] Queue
-* `js/Services/GithubAPI/GithubAPI.js:80`: Remove unstructured console.error call.
-* `js/Services/GithubAPI/GithubAPI.js:83`: Remove unstructured console.error call.
-* `js/Services/JulesAPI/JulesAPI.js:91`: Remove unstructured console.error call.
-* `js/Utils/telemetry/telemetry-utils.js:3`: Remove unstructured console.error call.
-* `js/Utils/telemetry/telemetry-utils.js:7`: Remove unstructured console.error call.
-* `js/Utils/telemetry/telemetry-utils.js:20`: Remove unstructured console.error call.
-* `js/Utils/telemetry/telemetry-utils.js:25`: Remove unstructured console.error call.
-* `js/Utils/telemetry/telemetry-utils.js:32`: Remove unstructured console.error call.
 
 ## The [INSTRUMENTER] Queue
 

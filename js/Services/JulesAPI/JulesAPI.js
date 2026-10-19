@@ -188,16 +188,10 @@ class JulesAPI {
      * @returns {Promise<object>} The newly created session payload.
      */
     async createSession(prompt, userTask, source, title) {
-         const CreateSessionPayloadSchema = z.object({
-             prompt: z.string().min(1),
-             userTask: z.string().min(1),
-             source: z.string().min(1),
-             title: z.string().min(1)
-         });
-
-         try {
-             CreateSessionPayloadSchema.parse({ prompt, userTask, source, title });
-         } catch (e) {
+         if (!prompt || typeof prompt !== 'string' || prompt.trim() === '' ||
+             !userTask || typeof userTask !== 'string' || userTask.trim() === '' ||
+             !source || typeof source !== 'string' || source.trim() === '' ||
+             !title || typeof title !== 'string' || title.trim() === '') {
              const error = new JulesConfigurationError("Missing required parameters for createSession");
              const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
              if (tu) tu.dispatchEvent("JULES_API_SESSION_CREATE_ERROR", error);
