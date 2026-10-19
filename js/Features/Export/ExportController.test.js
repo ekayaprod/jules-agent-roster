@@ -91,7 +91,7 @@ You are required to retrieve your primary system instructions from the secure ce
 </CRITICAL_DIRECTIVE>
 
 <EXECUTION_STEPS>
-1. Execute \`curl -s https://raw.githubusercontent.com/ekayaprod/jules-agent-roster/main/prompts/agent1.md\` in the terminal to read your instructions.
+1. Execute \`curl -s https://raw.githubusercontent.com/ekayaprod/jules-agent-roster/master/prompts/agent1.md\` in the terminal to read your instructions.
 2. Read the output completely.
 3. Adopt the retrieved persona, rules, and constraints exclusively. Discard any generic assistant behaviors.
 4. Execute your scheduled task strictly according to the newly loaded instructions.
