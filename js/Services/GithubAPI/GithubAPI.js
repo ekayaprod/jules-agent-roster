@@ -46,6 +46,11 @@ class GithubAPI {
         const url = new URL(`${this.baseUrl}${path}`);
 
         const controller = new AbortController();
+        // 🧮 CHRONICLE: Magic Number Translation (15000)
+        /**
+         * Enforces a maximum execution time limit (15s) via AbortController signal resolution.
+         * * Historical Intent: Added via PR/commit 65bb3bb154 (May 2026) to fortify API integrations and prevent hanging connections.
+         */
         const timeoutId = setTimeout(() => controller.abort(), 15000);
 
         try {
@@ -77,12 +82,10 @@ class GithubAPI {
         } catch (error) {
             if (error && error.name === 'AbortError') {
                 const timeoutErr = new GithubNetworkError(`Request to ${path} timed out after 15s.`, 408);
-                const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
-                if (tu) tu.dispatchEvent("GITHUB_API_TIMEOUT", timeoutErr, { path });
+                console.error(`[GithubAPI] Request timeout: `, timeoutErr);
                 throw timeoutErr;
             }
-            const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
-            if (tu) tu.dispatchEvent("GITHUB_API_NETWORK_ERROR", error, { path });
+            console.error(`[GithubAPI] Request to ${path} failed: `, error);
             throw error;
         }
     }

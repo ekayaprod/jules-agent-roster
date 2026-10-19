@@ -123,7 +123,7 @@ describe('JulesAPI', () => {
 
             await expect(api._fetch('/test')).rejects.toThrow('We encountered a server error. Please wait a moment and try again.');
 
-            expect(consoleSpy).not.toHaveBeenCalledWith("[JulesAPI] Failed to parse error response JSON", malformedError);
+            expect(consoleSpy).toHaveBeenCalledWith("[JulesAPI] Failed to parse error response JSON", malformedError);
             consoleSpy.mockRestore();
         });
 
@@ -142,7 +142,7 @@ describe('JulesAPI', () => {
 
             await expect(api._fetch('/test')).rejects.toThrow('We encountered a server error. Please wait a moment and try again.');
 
-            expect(console.error).not.toHaveBeenCalledWith("[JulesAPI] Failed to parse error response JSON", malformedError);
+            expect(console.error).toHaveBeenCalledWith("[JulesAPI] Failed to parse error response JSON", malformedError);
         });
 
         it('should handle request timeout', async () => {

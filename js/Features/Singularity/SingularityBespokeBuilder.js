@@ -149,6 +149,11 @@ class SingularityBespokeBuilder {
         r = await NetworkUtils.fetchWithRetry("js/Features/Singularity/Singularity.md", { throwOn404: false });
       } else {
         const controller = new AbortController();
+        // 🧮 CHRONICLE: Magic Number Translation (15000)
+        /**
+         * Enforces a maximum execution time limit (15s) via AbortController signal resolution for the fallback fetch mechanism.
+         * * Historical Intent: Added via PR/commit c48dbe9f47 (Jul 2026) to enforce timeouts and strictly validate API headers.
+         */
         const timeoutId = setTimeout(() => controller.abort(), 15000);
         try {
           r = await fetch("js/Features/Singularity/Singularity.md", { signal: controller.signal });
