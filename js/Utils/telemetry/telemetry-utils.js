@@ -10,23 +10,37 @@ class TelemetryUtils {
      * @param {Object} [additionalContext] - Any extra context to include.
      */
     static dispatchEvent(eventName, error, additionalContext = {}) {
-        const payload = {
-            event: eventName,
-            error: error instanceof Error ? error.message : error,
-            ...additionalContext
-        };
+        let payload;
         try {
+            payload = {
+                event: eventName,
+                error: error instanceof Error ? error.message : error,
+                ...additionalContext
+            };
             // Using ES2019 optional catch binding to avoid unused parameters
             console.error(JSON.stringify(payload));
         } catch {
+            if (!payload) {
+                payload = {
+                    event: eventName,
+                    error: "Payload generation failed"
+                };
+            }
             payload.error_payload_stringification_failed = true;
             payload.additionalContext = "[Circular Reference]";
             try {
+                let originalError = error;
+                try {
+                    originalError = error && error.message ? error.message : error;
+                } catch {
+                    originalError = "Unextractable error";
+                }
+
                 console.error(JSON.stringify({
                     event: payload.event,
                     error: payload.error,
                     additionalContext: payload.additionalContext,
-                    original_error: error && error.message ? error.message : error
+                    original_error: originalError
                 }));
             } catch {
                 // If console.error or fallback JSON stringification fails, fail silently
