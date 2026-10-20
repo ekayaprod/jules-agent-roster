@@ -54,11 +54,11 @@ return data;
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 
 **Target Matrix:**
-* **Unsafe Parser:** Naked `JSON.parse()` wrappers without `try/catch` blocks.
-* **Loose Cast:** Loose `as Type` casts on API payloads lacking runtime schema or semantic length/range validation.
-* **Unprotected Call:** Unprotected `fetch()` or `axios` calls lacking `.catch()` handlers and explicit timeout configurations.
-* **Missing Bound:** Database connection scripts missing explicit timeout bounds.
-* **Buggy SDK:** Buggy third-party SDK initializations lacking error boundaries.
+* **Unsafe Parser**: Naked `JSON.parse()` wrappers without `try/catch` blocks.
+* **Loose Cast**: Loose `as Type` casts on API payloads lacking runtime schema or semantic length/range validation.
+* **Unprotected Call**: Unprotected `fetch()` or `axios` calls lacking `.catch()` handlers and explicit timeout configurations.
+* **Missing Bound**: Database connection scripts missing explicit timeout bounds.
+* **Buggy SDK**: Buggy third-party SDK initializations lacking error boundaries.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **FORTIFY** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * Locate the vulnerable I/O boundary and inject native validation layers (e.g., `try/catch` or type/length checks) directly into the source file.

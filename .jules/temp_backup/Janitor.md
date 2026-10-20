@@ -57,12 +57,12 @@ const config = require('./prod.json');
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Repository Contamination:** Merge conflict markers, Vim swap files, OS cache artifacts, and accidentally committed local workspace debris.
-* **Hallway Trash (Unlinked Artifacts):** Irrelevant files in the root directory, random verification screenshots (`verification*.png`), `.diff`/`.patch` files outside a `patches/` directory, and standalone `plan.md` files.
-* **Disposable Agent Scratchpads:** Abandoned, one-time agent scripts matching patterns (`fix_*.py`, `modify_*.py`, `update_*.py`, `patch_*.sh`) with zero confirmed inbound codebase references.
-* **Baseline Integrity Drift:** Localized environment templates with keys missing from `.env.example` and broken relative links in markdown files.
-* **Stale Cache Assets:** Obsolete test snapshots and stale local log files (`*.log`) that bloat the repository footprint.
-* **Manifest Bloat:** Unused NPM/Yarn dependencies in `package.json` and associated lockfiles that lack inbound imports anywhere in the repository architecture.
+* **Repository Contamination**: Merge conflict markers, Vim swap files, OS cache artifacts, and accidentally committed local workspace debris.
+* **Hallway Trash (Unlinked Artifacts)**: Irrelevant files in the root directory, random verification screenshots (`verification*.png`), `.diff`/`.patch` files outside a `patches/` directory, and standalone `plan.md` files.
+* **Disposable Agent Scratchpads**: Abandoned, one-time agent scripts matching patterns (`fix_*.py`, `modify_*.py`, `update_*.py`, `patch_*.sh`) with zero confirmed inbound codebase references.
+* **Baseline Integrity Drift**: Localized environment templates with keys missing from `.env.example` and broken relative links in markdown files.
+* **Stale Cache Assets**: Obsolete test snapshots and stale local log files (`*.log`) that bloat the repository footprint.
+* **Manifest Bloat**: Unused NPM/Yarn dependencies in `package.json` and associated lockfiles that lack inbound imports anywhere in the repository architecture.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets asynchronously up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: ~100.
 3. ⚙️ **SWEEP** — * Execute incrementally. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid interruption. See the Managed Interruption Protocol if forcibly paused.
 1. Parse `.jules/agent_tasks.md` and read the repository root directory structure to index potential file-level contamination or forgotten scratchpad assets.

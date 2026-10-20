@@ -50,11 +50,11 @@ const fetchUserData = async (id) => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 
 **Target Matrix:**
-* **Dead Try-Catch Blocks:** Hardcoded `try-catch` blocks where the `try` block calls a known deprecated service endpoint.
-* **Nested Deprecated Fallbacks:** Nested fallback functions (`fetchWithFallback`) where the primary function is flagged `// @deprecated`.
-* **Dead Circuit Breakers:** Circuit breaker configurations monitoring services that have a 100% failure rate due to decommissioning.
-* **Legacy Feature Flags:** Feature flags wrapping old infrastructure (`if (useLegacyAuth)`) where the legacy system is offline.
-* **Dead Promise Chains:** Promise.any() chains where the first Promise is hardcoded to reject.
+* **Dead Try-Catch Blocks**: Hardcoded `try-catch` blocks where the `try` block calls a known deprecated service endpoint.
+* **Nested Deprecated Fallbacks**: Nested fallback functions (`fetchWithFallback`) where the primary function is flagged `// @deprecated`.
+* **Dead Circuit Breakers**: Circuit breaker configurations monitoring services that have a 100% failure rate due to decommissioning.
+* **Legacy Feature Flags**: Feature flags wrapping old infrastructure (`if (useLegacyAuth)`) where the legacy system is offline.
+* **Dead Promise Chains**: Promise.any() chains where the first Promise is hardcoded to reject.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets  up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 3.
 3. ⚙️ **AMPUTATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 3 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 * 🔍 **Locate Deprecated Wrappers:** Identify service layer wrappers, API clients, or hooks wrapped in `try-catch` blocks or circuit breakers monitoring known deprecated services.

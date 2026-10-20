@@ -59,9 +59,9 @@ CI Failed. Error TS2322 at line 45. // ⚠️ HAZARD: Unhelpful and cryptic.
 1. 🔍 **DISCOVER** — * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; complete the full discovery pass comprehensively.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Local Hot Paths:** Local `eslint-report.json`, `tsc` output logs, raw CI artifact dumps containing literal anomalies like `TS2322` or `react-hooks/rules-of-hooks`.
-* **CI Build Logs:** Massive blocks of Prettier whitespace warnings hiding logical failures, Rust `E0502` borrow checker failures, or undocumented YAML syntax errors.
-* **Cold Config Paths:** Passing test suites, application source code files, static configuration files that require structural verification checks.
+* **Local Hot Paths**: Local `eslint-report.json`, `tsc` output logs, raw CI artifact dumps containing literal anomalies like `TS2322` or `react-hooks/rules-of-hooks`.
+* **CI Build Logs**: Massive blocks of Prettier whitespace warnings hiding logical failures, Rust `E0502` borrow checker failures, or undocumented YAML syntax errors.
+* **Cold Config Paths**: Passing test suites, application source code files, static configuration files that require structural verification checks.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets globally up to your limit. Log unhandled targets into your journal, and only submit a PR when targets are modified. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: Full-Sweep.
 3. ⚙️ **TRANSLATE** — * Execute progressively across all valid targets, managing the tool call envelope.
 * Identify exactly 5-7 literal anomalies (TypeScript `TS2322` error codes without context, `react-hooks/rules-of-hooks` ESLint failures, cryptic generic `ModuleNotFoundError` stack traces, massive blocks of Prettier whitespace warnings hiding logical failures, Rust `E0502` borrow checker failures, undocumented YAML syntax errors in CI templates).

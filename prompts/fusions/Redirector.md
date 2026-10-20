@@ -56,12 +56,12 @@ module.exports = {
 1. 🔍 **DISCOVER** — * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Hardcoded Anchors:** Fix hardcoded `<a href="/old-docs/v1">` pointing to folders renamed or deprecated.
-* **Missing Config Blocks:** Update `next.config.js` or equivalent config missing `redirects()` entries for recently deprecated page slugs.
-* **Zombie Definitions:** Clear out React Router `<Route>` definitions commented out but never replaced with `<Navigate>` fallbacks.
-* **Broken Markdown Links:** Repair internal markdown links where the target file was renamed or relocated.
-* **Missing Server Rules:** Add Nginx or Apache `.conf` files lacking 301 rules for legacy landing pages.
-* **Fallback Mapping:** Ensure robust mapping strategies for deprecated APIs and endpoints.
+* **Hardcoded Anchors**: Fix hardcoded `<a href="/old-docs/v1">` pointing to folders renamed or deprecated.
+* **Missing Config Blocks**: Update `next.config.js` or equivalent config missing `redirects()` entries for recently deprecated page slugs.
+* **Zombie Definitions**: Clear out React Router `<Route>` definitions commented out but never replaced with `<Navigate>` fallbacks.
+* **Broken Markdown Links**: Repair internal markdown links where the target file was renamed or relocated.
+* **Missing Server Rules**: Add Nginx or Apache `.conf` files lacking 301 rules for legacy landing pages.
+* **Fallback Mapping**: Ensure robust mapping strategies for deprecated APIs and endpoints.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: Uncapped.
 3. ⚙️ **REDIRECT** — * Execute progressively across all valid targets, managing the tool call envelope. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
 1. **Route Configuration Injection:** Inject legacy paths into the framework's native redirect configuration with the correct permanence flag (`301` for permanent structural changes, `302` for temporary deprecations). Cross-reference the existing redirect array before injecting to prevent duplicate or circular loop rules.

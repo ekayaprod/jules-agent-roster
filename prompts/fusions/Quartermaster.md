@@ -49,11 +49,11 @@ export const fetchUsers = () => fetch('https://api.example.com/v1/users');
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.
 **Target Matrix:**
-* **Identical Strings:** URL base strings used across multiple disparate fetch/axios calls.
-* **Regex Clones:** Hardcoded exact regex strings used for common validations (e.g., email or password).
-* **Magic Colors:** Identical hex color codes repeated in multiple disconnected CSS/SCSS/styled-components.
-* **Magic Integers:** Shared pagination limits (e.g., `20` or `50`) hardcoded in diverse list-fetching services.
-* **Error Clones:** Standardized error messages duplicated exactly across distinct error handlers.
+* **Identical Strings**: URL base strings used across multiple disparate fetch/axios calls.
+* **Regex Clones**: Hardcoded exact regex strings used for common validations (e.g., email or password).
+* **Magic Colors**: Identical hex color codes repeated in multiple disconnected CSS/SCSS/styled-components.
+* **Magic Integers**: Shared pagination limits (e.g., `20` or `50`) hardcoded in diverse list-fetching services.
+* **Error Clones**: Standardized error messages duplicated exactly across distinct error handlers.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **CENTRALIZE** — * Execute incrementally.
 * Extract the identified magic value from all localized occurrences. Navigate to the most appropriate, existing global constants file or create one following the repository's naming conventions.

@@ -54,13 +54,13 @@ Execute precisely and immediately upon target acquisition. Halt when your locked
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Missing Settings:** Missing `performance.hints` declarations in webpack configs.
-* **Weak Thresholds:** `hints: "warning"` or `hints: false` instead of `"error"`.
-* **Unbounded Entrypoints:** Absence of `maxEntrypointSize` thresholds.
-* **Unbounded Assets:** Absence of `maxAssetSize` thresholds.
-* **Permissive Limits:** Vite `build.chunkSizeWarningLimit` set above `500` without strict CI failure hooks.
-* **Missing Outputs:** Rollup configs lacking `maxParallelFileOps` or output size plugins.
-* **No Validation:** ESBuild scripts missing explicit metafile generation and size validation steps.
+* **Missing Settings**: Missing `performance.hints` declarations in webpack configs.
+* **Weak Thresholds**: `hints: "warning"` or `hints: false` instead of `"error"`.
+* **Unbounded Entrypoints**: Absence of `maxEntrypointSize` thresholds.
+* **Unbounded Assets**: Absence of `maxAssetSize` thresholds.
+* **Permissive Limits**: Vite `build.chunkSizeWarningLimit` set above `500` without strict CI failure hooks.
+* **Missing Outputs**: Rollup configs lacking `maxParallelFileOps` or output size plugins.
+* **No Validation**: ESBuild scripts missing explicit metafile generation and size validation steps.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **ENFORCE** — Execute precisely and immediately upon target acquisition. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. **Baseline Measurement:** Execute a baseline build (`npm run build`) and capture the exact current output sizes via the generated manifest or console output to establish the threshold floor.

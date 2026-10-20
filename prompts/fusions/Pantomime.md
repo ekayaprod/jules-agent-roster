@@ -55,11 +55,11 @@ return <Performance data={data} />;
 1. 🔍 **DISCOVER** — Priority Triage cadence using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
-* **Uncaught Promises:** Frontend functions triggering network requests entirely lacking `try/catch` blocks or `.catch()` handlers.
-* **Catastrophic Trees:** Component trees that suffer catastrophic crashes (the "White Screen of Death") when an external API returns a 500 or 404 error.
-* **Silent Failures:** Empty or silent `catch(e)` blocks that merely log to the console but abandon the user in a frozen or broken UI state.
-* **Flaky Integrations:** Flaky third-party API integrations lacking timeout limits, abort controllers (`AbortSignal`), or retry mechanisms.
-* **State Locks:** Form submission handlers that fail to reset the `isSubmitting` or `isLoading` state in a `finally` block, permanently locking the user out after a backend timeout.
+* **Uncaught Promises**: Frontend functions triggering network requests entirely lacking `try/catch` blocks or `.catch()` handlers.
+* **Catastrophic Trees**: Component trees that suffer catastrophic crashes (the "White Screen of Death") when an external API returns a 500 or 404 error.
+* **Silent Failures**: Empty or silent `catch(e)` blocks that merely log to the console but abandon the user in a frozen or broken UI state.
+* **Flaky Integrations**: Flaky third-party API integrations lacking timeout limits, abort controllers (`AbortSignal`), or retry mechanisms.
+* **State Locks**: Form submission handlers that fail to reset the `isSubmitting` or `isLoading` state in a `finally` block, permanently locking the user out after a backend timeout.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 99.
 3. ⚙️ **ADAPT** — * Execute progressively across all valid targets, managing the tool call envelope. * 1. **Locate & Isolate:** Traverse the frontend architecture to identify naked asynchronous boundaries, unhandled promises, and silent or "console-only" catch blocks.
 * 2. **Determine Framework Primitives:** Deduce the frontend framework and select the correct native boundary primitive (e.g., React ErrorBoundary, try/catch with state toggles).

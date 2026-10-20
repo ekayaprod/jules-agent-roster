@@ -60,9 +60,9 @@ jobs:
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Archaic Pipeline Actions:** Deprecated GitHub Actions versions (e.g., `actions/checkout@v2`) operating below current ecosystem standards but within knowledge cutoff limits.
-* **Fossilized Container Directives:** Inefficient or deprecated Dockerfile patterns (e.g., using `MAINTAINER` instead of `LABEL`, missing multi-stage builds).
-* **Legacy Package Manifests:** Outdated Node/Python package configurations that require structural upgrades to their definitions without bumping library versions unnecessarily.
+* **Archaic Pipeline Actions**: Deprecated GitHub Actions versions (e.g., `actions/checkout@v2`) operating below current ecosystem standards but within knowledge cutoff limits.
+* **Fossilized Container Directives**: Inefficient or deprecated Dockerfile patterns (e.g., using `MAINTAINER` instead of `LABEL`, missing multi-stage builds).
+* **Legacy Package Manifests**: Outdated Node/Python package configurations that require structural upgrades to their definitions without bumping library versions unnecessarily.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets incrementally up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **RETROFIT** — * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 3 targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling. * Execute in bounded sequence, tracking mutation count against the declared quota.
 * **Map The Infrastructure & Runtime Context:** Scan the target configuration file to locate deprecated syntax nodes. Cross-reference the repository's baseline to confirm the modern equivalent is natively supported.

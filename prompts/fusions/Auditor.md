@@ -52,13 +52,13 @@ if (user.role === "ADMIN" && response === 200) {
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Hardcoded Roles:** Identify string literals representing user roles (`"superuser"`, `"guest"`).
-* **Hardcoded Integers:** Identify integers representing specific time durations (`86400`, `3600`) without explanatory variables.
-* **Action Types:** Identify reducer action types declared as raw strings (`dispatch({ type: "FETCH_START" })`).
-* **Status Codes:** Identify status code checks comparing against implicit numbers (`res.status === 401`) instead of semantic variables.
-* **Dynamic Keys:** Identify object keys defined dynamically with repetitive strings (`{ "payment_failed": true }`).
-* **Feature Flags:** Identify feature flags referenced by their raw string names (`if (flags["new_dashboard"])`).
-* **Missing Validation:** Identify missing unit tests validating the exact integrity of the constants file itself.
+* **Hardcoded Roles**: Identify string literals representing user roles (`"superuser"`, `"guest"`).
+* **Hardcoded Integers**: Identify integers representing specific time durations (`86400`, `3600`) without explanatory variables.
+* **Action Types**: Identify reducer action types declared as raw strings (`dispatch({ type: "FETCH_START" })`).
+* **Status Codes**: Identify status code checks comparing against implicit numbers (`res.status === 401`) instead of semantic variables.
+* **Dynamic Keys**: Identify object keys defined dynamically with repetitive strings (`{ "payment_failed": true }`).
+* **Feature Flags**: Identify feature flags referenced by their raw string names (`if (flags["new_dashboard"])`).
+* **Missing Validation**: Identify missing unit tests validating the exact integrity of the constants file itself.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets  up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **ENFORCE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 Analyze Dependencies: Trace the usage of identified magic values within the target module to map required constants.

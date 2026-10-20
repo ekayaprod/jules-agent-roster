@@ -62,9 +62,9 @@ Limit mutations strictly to defensive wrappers, schema definitions, telemetry, o
 ### The Process
 1. 🔍 **DISCOVER** — Execute via a Fortify cadence using asynchronous tools. **State Ingestion:** Read `.jules/journal_security.md`. Log only persistent architectural context for future `Security` runs, not exhaustive execution steps. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 **Target Matrix:**
-* **Unvalidated LLM Inputs:** Look for raw strings passed to LLMs.
-* **Missing Output Schemas:** Look for LLM API calls without response formatting definitions.
-* **Hardcoded Credentials:** Identify plain text keys in AI integrations.
+* **Unvalidated LLM Inputs**: Look for raw strings passed to LLMs.
+* **Missing Output Schemas**: Look for LLM API calls without response formatting definitions.
+* **Hardcoded Credentials**: Identify plain text keys in AI integrations.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **FORTIFY** — Execute Incrementally. Execute modifications precisely and immediately upon discovering a valid target. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota. * Identify vulnerable AI integration surface.
 * Determine the expected input bounds and output schema.

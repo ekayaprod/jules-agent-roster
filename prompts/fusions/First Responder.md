@@ -59,9 +59,9 @@ database.save(data);
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
-* **Hot Paths:** Webhook endpoints, dynamic URL routes, exposed unauthenticated handlers.
-* **Cold Paths:** Internal cron jobs, static data renderers, protected backend cron tasks.
-* **Naked Inputs:** Hunt for dynamic payload injections lacking strict schema validation (`req.body`, `JSON.parse()`). Require a repro test.
+* **Hot Paths**: Webhook endpoints, dynamic URL routes, exposed unauthenticated handlers.
+* **Cold Paths**: Internal cron jobs, static data renderers, protected backend cron tasks.
+* **Naked Inputs**: Hunt for dynamic payload injections lacking strict schema validation (`req.body`, `JSON.parse()`). Require a repro test.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 5.
 3. ⚙️ **HARDEN** — * Execute incrementally. Continue executing within your locked scope up to a maximum of 5. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. Parse the AST to define a strict schema for the incoming payload using the project's established validation library.

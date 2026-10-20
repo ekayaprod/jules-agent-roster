@@ -43,10 +43,10 @@ const welcomeMessage = "Hello, " + user.firstName + "! You have " + user.inbox.l
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Legacy Builders:** `+` operators connecting strings and variables spanning multiple lines.
-* **Archaic Formatters:** Python `%s` string formatters or C# `String.Format({0})` calls.
-* **Array Hacks:** `.join()` arrays explicitly constructed just to bypass concatenation.
-* **Missing Literals:** Missing literal spacing bugs disguised in string math (e.g., `"text" +var+ "text"`).
+* **Legacy Builders**: `+` operators connecting strings and variables spanning multiple lines.
+* **Archaic Formatters**: Python `%s` string formatters or C# `String.Format({0})` calls.
+* **Array Hacks**: `.join()` arrays explicitly constructed just to bypass concatenation.
+* **Missing Literals**: Missing literal spacing bugs disguised in string math (e.g., `"text" +var+ "text"`).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets progressively up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **UPGRADE** — * Execute precisely and immediately upon target acquisition.
 1. Perform an AST walkthrough to prove equivalence of the string components.

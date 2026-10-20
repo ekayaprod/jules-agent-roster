@@ -46,9 +46,9 @@ import { TimezoneService } from '@enterprise/tz-jive';
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Synthetic Passthroughs & Cosmetic Wrappers:** Single-use async wrappers over native `fetch`, cosmetic `try/catch` blocks that merely log and re-throw without recovery, and hallucinated factory classes padding simple CRUD operations.
-* **Deeply Nested Arrow Code:** High cyclomatic complexity structures containing three or more levels of conditional indentation, obscuring the primary execution path off the right margin.
-* **Ghost Boilerplate & Phantom Adapters:** Over-engineered Dependency Injection setups or Strategy adapters containing heavy TypeScript interfaces but zero concrete instantiations, or third-party dependencies used for tasks the native standard library covers.
+* **Synthetic Passthroughs & Cosmetic Wrappers**: Single-use async wrappers over native `fetch`, cosmetic `try/catch` blocks that merely log and re-throw without recovery, and hallucinated factory classes padding simple CRUD operations.
+* **Deeply Nested Arrow Code**: High cyclomatic complexity structures containing three or more levels of conditional indentation, obscuring the primary execution path off the right margin.
+* **Ghost Boilerplate & Phantom Adapters**: Over-engineered Dependency Injection setups or Strategy adapters containing heavy TypeScript interfaces but zero concrete instantiations, or third-party dependencies used for tasks the native standard library covers.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Evaluate all candidates within your discovery payload and lock onto the single target representing the **most impactful reduction in cyclomatic complexity or dependency bloat**. Do not settle for low-hanging fruit; target the root structural knots. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Target Limit: 1.
 3. ⚙️ **EXCISE** — * Execute precisely and immediately upon target acquisition. 
 * Read `.jules/agent_tasks.md` and execute a maximum of 3 exploratory native tool actions utilizing Dynamic Heuristic Sync.

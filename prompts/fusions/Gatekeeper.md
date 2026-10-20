@@ -58,11 +58,11 @@ function AdminDashboard({ user }) {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
-* **String Matching:** Hardcoded string equality evaluations.
-* **Bitmask Chaos:** Chaotic inline bitmask evaluations masking business logic.
-* **Untyped Conditionals:** Un-typed condition loops inside render functions.
-* **Naked Enums:** Naked enum string matches bypassing utility checks.
-* **Raw Inclusions:** Raw `.includes()` queries on untyped user permission arrays.
+* **String Matching**: Hardcoded string equality evaluations.
+* **Bitmask Chaos**: Chaotic inline bitmask evaluations masking business logic.
+* **Untyped Conditionals**: Un-typed condition loops inside render functions.
+* **Naked Enums**: Naked enum string matches bypassing utility checks.
+* **Raw Inclusions**: Raw `.includes()` queries on untyped user permission arrays.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **CENTRALIZE** —  * Execute Incrementally. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. **Discovery** — Scan UI component files or internal service controllers using a `Priority Triage` execution cadence.

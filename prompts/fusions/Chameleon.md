@@ -54,11 +54,11 @@ Your mission is to eradicate distinct pseudo-class styling, organic transitions,
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
-* **Flat Buttons:** Flat `<button>` tags missing `:hover` background shifts.
-* **Plain Anchors:** Plain text `<a>` tags without underlines lacking `:focus-visible` outlines.
-* **Form Inputs:** Form `<input>` missing focus rings.
-* **Disabled States:** Disabled inputs lacking `opacity` adjustments or `cursor: not-allowed`.
-* **Interactive Cards:** Interactive cards missing `transform: translateY` or similar active effects.
+* **Flat Buttons**: Flat `<button>` tags missing `:hover` background shifts.
+* **Plain Anchors**: Plain text `<a>` tags without underlines lacking `:focus-visible` outlines.
+* **Form Inputs**: Form `<input>` missing focus rings.
+* **Disabled States**: Disabled inputs lacking `opacity` adjustments or `cursor: not-allowed`.
+* **Interactive Cards**: Interactive cards missing `transform: translateY` or similar active effects.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 5.
 3. ⚙️ **MUTATE** — * Execute incrementally. Continue executing within your locked scope up to a maximum of 5.
 * 1. Discovery — Execute Visual/DOM discovery targeting flat `<button>` tags, plain text `<a>` tags without underlines, form `<input>` lacking focus rings.

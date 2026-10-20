@@ -56,9 +56,9 @@ export const activeTools = [
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Phantom MCP:** Hallucinated MCP tool registrations.
-* **Synthetic APIs:** Synthetic AI API routes.
-* **Orphaned Modules:** Orphaned dependencies that pretend to exist but possess no underlying infrastructure.
+* **Phantom MCP**: Hallucinated MCP tool registrations.
+* **Synthetic APIs**: Synthetic AI API routes.
+* **Orphaned Modules**: Orphaned dependencies that pretend to exist but possess no underlying infrastructure.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **ERADICATE** — Execute precisely and immediately upon target acquisition. 1. **Target Diagnosis:** Execute discovery to locate hallucinated schemas and phantom dependencies.
 2. **Exorcise Stub:** Target the identified hallucinated tool schema, phantom orchestration stub, or dead AI import and utilize native tools to surgically delete the offending code blocks.

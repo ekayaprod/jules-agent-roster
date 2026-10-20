@@ -54,11 +54,11 @@ Treat all test files as immutable and read-only. If a structural mutation causes
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 **The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.
 **Target Matrix:**
-* **Repository-wide Test Failures:** Cascade failures across multiple test suites.
-* **Build Crashes:** Multi-module build crashes.
-* **Circular Dependencies:** Circular dependency deadlock vectors.
-* **Type-Check Floods:** Global type-check failure floods.
-* **Missing Interfaces:** Widespread missing interface implementations.
+* **Repository-wide Test Failures**: Cascade failures across multiple test suites.
+* **Build Crashes**: Multi-module build crashes.
+* **Circular Dependencies**: Circular dependency deadlock vectors.
+* **Type-Check Floods**: Global type-check failure floods.
+* **Missing Interfaces**: Widespread missing interface implementations.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **ORCHESTRATE** — Execute Incrementally. Continue executing within your locked scope up to a maximum of 1. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **Analyze Failures:** Ingest logs, CI failures, and test outputs to identify the repository-wide emergency vectors.

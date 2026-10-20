@@ -57,11 +57,11 @@ If Redis runs out of memory, try restarting the container or flushing it. Be car
 1. 🔍 **DISCOVER** — Execute via Pipeline cadence scan using asynchronous tools. * **The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **[Database Missing Backup]:** `docker-compose.yml` declaring external databases with no corresponding backup instructions.
-* **[Missing Runbook]:** Missing `DISASTER_RECOVERY.md`.
-* **[Infrastructure Stale Lock]:** Outdated infrastructure-as-code backend configurations missing lock release steps.
-* **[Auth Fallback]:** Auth0/Stripe dependencies lacking degraded-mode documentation.
-* **[Cache Barebones]:** Raw `redis-cli` cache implementations.
+* **[Database Missing Backup]**: `docker-compose.yml` declaring external databases with no corresponding backup instructions.
+* **[Missing Runbook]**: Missing `DISASTER_RECOVERY.md`.
+* **[Infrastructure Stale Lock]**: Outdated infrastructure-as-code backend configurations missing lock release steps.
+* **[Auth Fallback]**: Auth0/Stripe dependencies lacking degraded-mode documentation.
+* **[Cache Barebones]**: Raw `redis-cli` cache implementations.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output a list of findings or pause to ask the operator for prioritization. Lock onto targets arbitrarily up to your limit. Log any remaining unhandled targets into your journal (`.jules/journal_docs.md`) for the next scheduled run, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **DRILL** — * Execute Incrementally. Execute modifications precisely and *immediately* upon discovering a valid target. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. **Discovery:** Execute a Pipeline cadence scan targeting configuration files declaring external databases, missing `DISASTER_RECOVERY.md`, outdated infrastructure-as-code configurations, or missing failover protocols.

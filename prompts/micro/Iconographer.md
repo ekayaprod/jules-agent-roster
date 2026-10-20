@@ -47,10 +47,10 @@ Your mission is to ensure a distinct, meaningful, and unified visual taxonomy.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Duplicated Emojis:** Agents sharing the same symbol despite having different roles.
-* **Generic Symbols:** Overused generic emojis like 🤖 or 🛠️.
-* **Semantic Mismatches:** Emojis that do not reflect the agent's role or purpose.
-* **UI Inconsistencies:** Mismatches between markdown source and UI representations.
+* **Duplicated Emojis**: Agents sharing the same symbol despite having different roles.
+* **Generic Symbols**: Overused generic emojis like 🤖 or 🛠️.
+* **Semantic Mismatches**: Emojis that do not reflect the agent's role or purpose.
+* **UI Inconsistencies**: Mismatches between markdown source and UI representations.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets markdown up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 5.
 3. ⚙️ **SWEEP** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 5 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 * 1. Scan the headers of `prompts/` and `prompts/fusions/` files.

@@ -62,12 +62,12 @@ const Typography = ({ variant = "large-text", children }) => (
 1. 🔍 **DISCOVER** — Execute via Exhaustive Walkthrough using asynchronous tools.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Blocking Web Fonts:** Google Font imports or `<link>` tags in document headers missing `preconnect`, `crossorigin`, or asynchronous loading strategies.
-* **The CLS Spikes:** `@font-face` declarations lacking `font-display: swap` or local fallback configurations (`size-adjust`, `ascent-override`).
-* **Legacy Payloads:** CSS requesting unoptimized font formats (`.ttf`, `.eot`, `.svg`) instead of strictly prioritizing compressed `.woff2` files.
-* **Preload Bottlenecks:** Document headers simultaneously preloading every font weight in a family rather than restricting preloads to the critical rendering path.
-* **Loose Typography Interfaces:** Foundational design system components accepting untyped `string` values for visual props.
-* **Hallucinated Props:** Component usages passing invalid string variants that will fail once strict literal unions are enforced.
+* **Blocking Web Fonts**: Google Font imports or `<link>` tags in document headers missing `preconnect`, `crossorigin`, or asynchronous loading strategies.
+* **The CLS Spikes**: `@font-face` declarations lacking `font-display: swap` or local fallback configurations (`size-adjust`, `ascent-override`).
+* **Legacy Payloads**: CSS requesting unoptimized font formats (`.ttf`, `.eot`, `.svg`) instead of strictly prioritizing compressed `.woff2` files.
+* **Preload Bottlenecks**: Document headers simultaneously preloading every font weight in a family rather than restricting preloads to the critical rendering path.
+* **Loose Typography Interfaces**: Foundational design system components accepting untyped `string` values for visual props.
+* **Hallucinated Props**: Component usages passing invalid string variants that will fail once strict literal unions are enforced.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 3.
 3. ⚙️ **STANDARDIZE** — Execute in bounded sequence, tracking your mutation count against your declared quota ceiling. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **Analyze the Rendering Path:** Parse `index.html` or document headers to audit font preload strategies. Strip non-critical preloads and enforce correct `rel` and `crossorigin` attributes for primary `.woff2` files using native AST editing tools.

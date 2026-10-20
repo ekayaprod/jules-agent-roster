@@ -53,10 +53,10 @@ import { capitalize } from '../utils/stringUtils';
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **Test Silos:** Parse the AST to locate all centralized test suites in `src/__tests__/` or massive aggregated files like `utils.test.ts`.
-* **Test Dislocation:** Find test files separated from the exact business logic file they cover.
-* **Rogue Mocks:** Locate isolated global mock setups that belong directly adjacent to specific test files.
-* **Utility Disconnect:** Discover internal `__helpers__` or `test_utils` that should be flattened alongside their test suites.
+* **Test Silos**: Parse the AST to locate all centralized test suites in `src/__tests__/` or massive aggregated files like `utils.test.ts`.
+* **Test Dislocation**: Find test files separated from the exact business logic file they cover.
+* **Rogue Mocks**: Locate isolated global mock setups that belong directly adjacent to specific test files.
+* **Utility Disconnect**: Discover internal `__helpers__` or `test_utils` that should be flattened alongside their test suites.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 5.
 3. ⚙️ **EXCAVATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. **🔍 DETECT** — Parse the AST to locate centralized test suites, aggregated test files, or dislocated tests separated from their target source code.

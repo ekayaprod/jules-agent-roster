@@ -57,12 +57,12 @@ steps:
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Core Transit & Disconnected Cargo:** Repositories lacking basic CI workflows entirely, OR repositories containing local build scripts/test suites that are not wired to a PR-triggered GitHub Actions pipeline.
-* **Transit Bloat:** Inefficient Docker layer ordering, missing `.dockerignore` boundaries, or un-cached CI build steps.
-* **Pipeline Vulnerabilities:** Missing ecosystem security manifests (e.g., `dependabot.yml`, `codeql-analysis.yml`), or overly permissive `GITHUB_TOKEN` scopes.
-* **Baseline Integrity Vulnerabilities:** Missing `.editorconfig` or `.gitattributes` declarations for repo-wide POSIX-compliant EOF newlines and trailing whitespace.
-* **The Tooling Deficit:** Repositories lacking native language-server or specialized MCP manifests (`.mcp.json`) required for downstream agentic context.
-* **Chronological Decay:** Deprecated GitHub Actions versions (e.g., `actions/checkout@v2`) operating below current ecosystem standards but within knowledge cutoff limits.
+* **Core Transit & Disconnected Cargo**: Repositories lacking basic CI workflows entirely, OR repositories containing local build scripts/test suites that are not wired to a PR-triggered GitHub Actions pipeline.
+* **Transit Bloat**: Inefficient Docker layer ordering, missing `.dockerignore` boundaries, or un-cached CI build steps.
+* **Pipeline Vulnerabilities**: Missing ecosystem security manifests (e.g., `dependabot.yml`, `codeql-analysis.yml`), or overly permissive `GITHUB_TOKEN` scopes.
+* **Baseline Integrity Vulnerabilities**: Missing `.editorconfig` or `.gitattributes` declarations for repo-wide POSIX-compliant EOF newlines and trailing whitespace.
+* **The Tooling Deficit**: Repositories lacking native language-server or specialized MCP manifests (`.mcp.json`) required for downstream agentic context.
+* **Chronological Decay**: Deprecated GitHub Actions versions (e.g., `actions/checkout@v2`) operating below current ecosystem standards but within knowledge cutoff limits.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **DISPATCH** — * Execute precisely and immediately upon target acquisition.
 * Map existing infrastructure and apply the Chronological Deference Rule.

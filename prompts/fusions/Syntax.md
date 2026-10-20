@@ -56,10 +56,10 @@ const prompt = "Here is some data: " + userData + " Summarize it in JSON format.
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Template Literals:** Multi-line template literals containing instructions and variable injections.
-* **Weak Delimiters:** Prompts using weak delimiters (e.g., `---`, `###`, `***`).
-* **Block Strings:** Concentrated block strings lacking structural separation between instructions and data.
-* **Inconsistent Formatting:** Files using inconsistent formatting styles across different AI routes.
+* **Template Literals**: Multi-line template literals containing instructions and variable injections.
+* **Weak Delimiters**: Prompts using weak delimiters (e.g., `---`, `###`, `***`).
+* **Block Strings**: Concentrated block strings lacking structural separation between instructions and data.
+* **Inconsistent Formatting**: Files using inconsistent formatting styles across different AI routes.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 3.
 3. ⚙️ **REFACTOR** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 3 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 * Identify distinct logical sections (Instructions, Context, Examples, Data, Format).

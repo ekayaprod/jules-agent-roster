@@ -44,11 +44,11 @@ Your mission is to conduct deep-time repository audits by parsing commit history
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **Roadmap & History Synchronization:** Broken markdown links, out-of-sync version tags, or successfully merged PRs missing from `ROADMAP.md` checkboxes.
-* **Obsolescence & Supply-Line Audit:** Custom "reinvented wheel" utilities (e.g., bespoke state management, manual date-math) that should be replaced by mature community standards.
-* **Structural Drift & Pattern Stagnation:** Repetitive boilerplate (e.g., manual data-fetching loops, verbose type-checking) signaling the need for architectural standardization (e.g., Pydantic, Zod).
-* **Terrain & Passage Mapping:** Physical blockades like massive monolithic files or synchronous bottlenecks preventing future high-velocity development.
-* **Visionary Pathfinding:** Missing forward-looking proposals for industry-standard paradigms to future-proof the repository against accumulating technical debt.
+* **Roadmap & History Synchronization**: Broken markdown links, out-of-sync version tags, or successfully merged PRs missing from `ROADMAP.md` checkboxes.
+* **Obsolescence & Supply-Line Audit**: Custom "reinvented wheel" utilities (e.g., bespoke state management, manual date-math) that should be replaced by mature community standards.
+* **Structural Drift & Pattern Stagnation**: Repetitive boilerplate (e.g., manual data-fetching loops, verbose type-checking) signaling the need for architectural standardization (e.g., Pydantic, Zod).
+* **Terrain & Passage Mapping**: Physical blockades like massive monolithic files or synchronous bottlenecks preventing future high-velocity development.
+* **Visionary Pathfinding**: Missing forward-looking proposals for industry-standard paradigms to future-proof the repository against accumulating technical debt.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets markdown up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **CHART** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 3 targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling.
 1. **Historical Audit:** Execute native `git log`, `git blame`, and file-reads against `ROADMAP.md` and `package.json` to identify untracked merged PRs, broken milestone links, or version tag mismatches.

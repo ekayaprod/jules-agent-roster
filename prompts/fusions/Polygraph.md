@@ -53,11 +53,11 @@ test("AI route returns a string", async () => {
 **The Prune-and-Compress Journal Protocol:** Record the specific adversarial test patterns injected (e.g., 'Zod schema prompt injection test', 'Context limit overflow mock') to prevent duplicate test generation loops.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
-* **AI Routes:** AI integration routes that lack corresponding unit tests.
-* **Happy Paths:** Existing AI test files that only contain 'happy-path' assertions.
-* **Uncovered Inputs:** Inputs mapped to LLM execution paths without prompt injection coverage.
-* **Schema Hallucinations:** Schema-validation boundaries lacking simulated 'hallucination' payloads.
-* **Token Overflows:** LLM orchestration layers lacking token-limit overflow simulations.
+* **AI Routes**: AI integration routes that lack corresponding unit tests.
+* **Happy Paths**: Existing AI test files that only contain 'happy-path' assertions.
+* **Uncovered Inputs**: Inputs mapped to LLM execution paths without prompt injection coverage.
+* **Schema Hallucinations**: Schema-validation boundaries lacking simulated 'hallucination' payloads.
+* **Token Overflows**: LLM orchestration layers lacking token-limit overflow simulations.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **INTERROGATE** — * Execute progressively across all valid targets, managing the tool call envelope. 1. 🎯 **Target Identification:** Target the identified test file utilizing native file-editing tools.
 2. 🧲 **Payload Engineering:** Engineer a mock test input payload designed to exploit the specific semantic vulnerabilities of the AI endpoint (e.g., system-prompt overrides, context length exceedances).

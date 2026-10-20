@@ -51,11 +51,11 @@ function calculateRegionalTax(base) { ... }
 1. 🔍 **DISCOVER** — Exhaustive discovery using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **Unmarked Milestones:** Identify an unmarked `[ ] Build Stripe Webhook` checkbox in `ROADMAP.md` that corresponds to an already merged `stripe.js` file.
-* **Massive Algorithms:** Identify a massive `calculateCheckoutTaxes` function completely lacking a JSDoc `@see` link to the original compliance milestone.
-* **Obscure Rules:** Identify an obscure `if (user.region === 'EU')` business rule lacking rationale docstrings.
-* **Pattern Deviations:** Identify a class bypassing standard design patterns without a `@reason` tag explaining the constraint.
-* **Foreign Types:** Identify a complex Python `Union` type mandated by an external API without inline context.
+* **Unmarked Milestones**: Identify an unmarked `[ ] Build Stripe Webhook` checkbox in `ROADMAP.md` that corresponds to an already merged `stripe.js` file.
+* **Massive Algorithms**: Identify a massive `calculateCheckoutTaxes` function completely lacking a JSDoc `@see` link to the original compliance milestone.
+* **Obscure Rules**: Identify an obscure `if (user.region === 'EU')` business rule lacking rationale docstrings.
+* **Pattern Deviations**: Identify a class bypassing standard design patterns without a `@reason` tag explaining the constraint.
+* **Foreign Types**: Identify a complex Python `Union` type mandated by an external API without inline context.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 5.
 3. ⚙️ **ANNOTATE** — * Execute in bounded sequence, tracking mutation count against the declared quota.
 * 1. **The Context Trace:** Cross-reference recently shipped logic or undocumented algorithms against `ROADMAP.md` (or equivalent specification files).

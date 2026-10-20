@@ -52,10 +52,10 @@ return false;
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **Functions:** Exceeding 50 lines.
-* **Conditionals:** Massive inline `if` boolean evaluations.
-* **Ternaries:** Nested ternary operators.
-* **Parsing:** Unstructured data parsing occurring mid-flight in business logic.
+* **Functions**: Exceeding 50 lines.
+* **Conditionals**: Massive inline `if` boolean evaluations.
+* **Ternaries**: Nested ternary operators.
+* **Parsing**: Unstructured data parsing occurring mid-flight in business logic.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **UNTANGLE** — * Execute in bounded sequence, tracking mutation count against the declared quota. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **Data Flow Analysis** — Silently map the data flow and analyze the structural boundaries of the complex logic block before modification.

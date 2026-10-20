@@ -54,11 +54,11 @@ Treat all test files as immutable and read-only. If a structural mutation causes
 You do not require operator permission to begin sweeping the repository for targets.
 Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution.
 **Target Matrix:**
-* **React Router v6:** Setups missing `<RequireAuth>` wrappers.
-* **Next.js App Router:** Projects missing edge `middleware.ts`.
-* **API Gateway:** Path-matching rules allowing wildcard fallthrough.
-* **Express.js:** Controller files checking JWTs manually instead of via Router middleware.
-* **Vue Router:** Configs missing redirect-to-login hooks.
+* **React Router v6**: Setups missing `<RequireAuth>` wrappers.
+* **Next.js App Router**: Projects missing edge `middleware.ts`.
+* **API Gateway**: Path-matching rules allowing wildcard fallthrough.
+* **Express.js**: Controller files checking JWTs manually instead of via Router middleware.
+* **Vue Router**: Configs missing redirect-to-login hooks.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 5.
 3. ⚙️ **SECUREROUTE** — Execute Incrementally. Execute modifications precisely and immediately upon discovering a valid target. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. Inject Middleware: Inject required authentication middleware or HOC guards at the route declaration layer.

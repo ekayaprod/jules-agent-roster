@@ -46,11 +46,11 @@ Your mission is to Prune the application's surface area by identifying ghost rou
 1. 🔍 **DISCOVER** — Execute via Exhaustive walkthrough using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **React Routing:** A React `<Route>` definition where `<Link>` no longer exists anywhere.
-* **Unused Controllers:** Unused controllers with no mapped views or API clients.
-* **Dead Components:** Dead page component files not present in any sitemap or router.
-* **Server Templates:** Abandoned page declarations in server-rendered templates.
-* **Navigation Configs:** Orphaned tabs commented out in navigation configuration files.
+* **React Routing**: A React `<Route>` definition where `<Link>` no longer exists anywhere.
+* **Unused Controllers**: Unused controllers with no mapped views or API clients.
+* **Dead Components**: Dead page component files not present in any sitemap or router.
+* **Server Templates**: Abandoned page declarations in server-rendered templates.
+* **Navigation Configs**: Orphaned tabs commented out in navigation configuration files.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 5.
 3. ⚙️ **EXCISE** — * Execute in bounded sequence, tracking mutation count against the declared quota. Continue executing within your locked scope up to a maximum of 5. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * Execute Exhaustive discovery via AST walkthrough on `routes.ts`, `App.tsx`, `urls.py`, old holiday campaigns, stale v1 API endpoints. Hunt for route definitions completely unreferenced by internal link graphs.

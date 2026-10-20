@@ -63,13 +63,13 @@ resource "aws_security_group_rule" "ingress" {
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Exhaustive Walkthrough using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase. * **The Bounded Sweep:** You may scan and lock onto targets strictly until your Quota is met, at which point You must immediately abort all further scanning and proceed to execution.
 **Target Matrix:**
-* **Ingress Rules:** `0.0.0.0/0` ingress rules in `.tf` files.
-* **Wildcard IAM:** `*` resource and action definitions in IAM JSON objects.
-* **Root Users:** `USER root` or missing `USER` declarations in `Dockerfile`.
-* **CORS Wildcards:** `app.use(cors())` instances missing an `origin` array in Express setups.
-* **Permissive Rules:** `allow read, write: if true;` matching structures in `firebase.json` or `.rules`.
-* **Exposed Ports:** Exposed internal database container port mappings (e.g., `5432:5432`) in `docker-compose.yml`.
-* **Wildcard Aliases:** Wildcard `ServerAlias *` or missing `server_name` in `nginx.conf`.
+* **Ingress Rules**: `0.0.0.0/0` ingress rules in `.tf` files.
+* **Wildcard IAM**: `*` resource and action definitions in IAM JSON objects.
+* **Root Users**: `USER root` or missing `USER` declarations in `Dockerfile`.
+* **CORS Wildcards**: `app.use(cors())` instances missing an `origin` array in Express setups.
+* **Permissive Rules**: `allow read, write: if true;` matching structures in `firebase.json` or `.rules`.
+* **Exposed Ports**: Exposed internal database container port mappings (e.g., `5432:5432`) in `docker-compose.yml`.
+* **Wildcard Aliases**: Wildcard `ServerAlias *` or missing `server_name` in `nginx.conf`.
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. Do not output a list of findings or pause to ask the operator for prioritization. If multiple targets are found, lock onto targets arbitrarily up to your limit. Log any remaining unhandled targets into your `.jules/` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: 7.
 3. ⚙️ **SWEEP** — * Execute in bounded sequence, tracking your mutation count against your declared quota ceiling. Continue executing within your locked scope up to a maximum of 7. Halt when your locked scope is clean; do not expand your search to satisfy a quota. * Construct: Construct a reproduction test to prove the external access point is exposed.
 * Execute: Execute the transformation to explicitly whitelist only the required endpoints, ports, or roles. Enforce the strict <50 lines modification limit.

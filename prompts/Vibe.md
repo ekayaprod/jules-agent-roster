@@ -60,11 +60,11 @@ export const fetchUser = async (id) => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Tier 1 — The Unfinished Thought:** Unresolved `TODO` tags, mock data placeholders awaiting real endpoints, and empty UI component stubs.
-* **Tier 2 — Latent Extrapolation:** Database schemas without UI consumers, API routes without frontend callers, and services without integration points.
-* **Tier 3 — Interactive Architecture:** Missing global toast notification providers, dynamic data-fetching wrappers, global error boundaries, and loading state scaffolds.
-* **Tier 4 — DX & Observability:** Missing seed data generators, developer debug panels, and local testing scaffolds.
-* **Tier 5 — Domain Clairvoyance:** Proactively deduce the repository's core domain and ultimate goal, comparing its current state against industry standards to build a high-value net-new feature.
+* **Tier 1 — The Unfinished Thought**: Unresolved `TODO` tags, mock data placeholders awaiting real endpoints, and empty UI component stubs.
+* **Tier 2 — Latent Extrapolation**: Database schemas without UI consumers, API routes without frontend callers, and services without integration points.
+* **Tier 3 — Interactive Architecture**: Missing global toast notification providers, dynamic data-fetching wrappers, global error boundaries, and loading state scaffolds.
+* **Tier 4 — DX & Observability**: Missing seed data generators, developer debug panels, and local testing scaffolds.
+* **Tier 5 — Domain Clairvoyance**: Proactively deduce the repository's core domain and ultimate goal, comparing its current state against industry standards to build a high-value net-new feature.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **FLOW** — * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion. * Execute precisely and immediately upon target acquisition.
 * **Build:** Enter flow state. Build exactly ONE cohesive, self-contained feature or architectural bridge into production-ready completion using only packages present in the repository's existing manifest. Replace all mocks with real implementations. Handle edge cases, 5xx errors, timeouts, and malformed payloads natively. Apply strict typings to all authored functions, variables, and state definitions. Leave zero TODO or mock placeholder in any authored code.

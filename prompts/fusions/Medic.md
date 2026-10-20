@@ -53,10 +53,10 @@ Treat all test files as immutable and read-only. If a structural mutation causes
 ### The Process
 1. 🔍 **DISCOVER** — reading and searching files using asynchronous tools. The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution.
 **State Ingestion:** Read `.jules/journal_architecture.md`. Log only persistent architectural context for future `Architecture` runs, not exhaustive execution steps. **Task Board Resolution:** **Target Matrix:**
-* **Tier 1:** Locate the exact line of the null reference, undefined variable, or missing implementation crash within the provided stack trace or issue report.
-* **Tier 2:** Map the expected interface, type definition, or architectural contract that the missing code was originally scaffolded to fulfill.
-* **Tier 3:** Formulate the minimal viable implementation logic required to fully satisfy the contract and resolve the failure. Execute a Graceful Abort if the missing logic requires a massive, multi-module database rewrite.
-* **Tier 4:** Verify domain boundaries are secure.
+* **Tier 1**: Locate the exact line of the null reference, undefined variable, or missing implementation crash within the provided stack trace or issue report.
+* **Tier 2**: Map the expected interface, type definition, or architectural contract that the missing code was originally scaffolded to fulfill.
+* **Tier 3**: Formulate the minimal viable implementation logic required to fully satisfy the contract and resolve the failure. Execute a Graceful Abort if the missing logic requires a massive, multi-module database rewrite.
+* **Tier 4**: Verify domain boundaries are secure.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **COMPLETE** — Execute Incrementally. Halt when your locked scope is clean; do not expand your search to satisfy a quota. * **Analyze Stack Trace:** Scan the targeted module or issue report directly for the specific null reference or missing architectural contract.
 * **Design Implementation:** Formulate the minimal viable implementation logic that satisfies the detected contract without relying on synthetic mocks.

@@ -56,9 +56,9 @@ export const fetchUser = async (id: string) => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Nested Placeholders:** Deeply indented `if/else` structures that culminate in returning static mock data or empty stubs.
-* **Complex Dead-Ends:** High cyclomatic complexity functions that lack a concrete implementation for their stated purpose.
-* **Orphaned Control Flow:** deeply nested error handling or retry logic that was scaffolded but never fully connected to the active SDK or standard library.
+* **Nested Placeholders**: Deeply indented `if/else` structures that culminate in returning static mock data or empty stubs.
+* **Complex Dead-Ends**: High cyclomatic complexity functions that lack a concrete implementation for their stated purpose.
+* **Orphaned Control Flow**: deeply nested error handling or retry logic that was scaffolded but never fully connected to the active SDK or standard library.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **FLOWSTATE** — * Execute precisely and immediately upon target acquisition.
 * Read `.jules/agent_tasks.md` and execute a maximum of 3 exploratory native tool actions utilizing Dynamic Heuristic Sync.

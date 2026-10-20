@@ -55,10 +55,10 @@ const messages = [
 1. 🔍 **DISCOVER** — Semantic using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. If a task matches your domain, complete it and delete it, or delete it if already resolved; otherwise, ignore it and proceed with standard discovery.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
-* **Zero-Shot Integrations:** Zero-shot system prompts lacking example arrays.
-* **Wrapper Services:** AI service wrappers lacking example arrays.
-* **JSON Parsers:** Unstructured JSON parsers reliant on zero-shot inference.
-* **Translation Nodes:** Translation prompts adding conversational filler.
+* **Zero-Shot Integrations**: Zero-shot system prompts lacking example arrays.
+* **Wrapper Services**: AI service wrappers lacking example arrays.
+* **JSON Parsers**: Unstructured JSON parsers reliant on zero-shot inference.
+* **Translation Nodes**: Translation prompts adding conversational filler.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **FORGE** — * Execute progressively across all valid targets, managing the tool call envelope. Target Limit: 3.
 * **Discovery:** Scan `src/ai/`, `prompts/`, or integration layers for zero-shot LLM calls that rely entirely on natural language instructions to enforce syntax, JSON schemas, or strict tonal styles.

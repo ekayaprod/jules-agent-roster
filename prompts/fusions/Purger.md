@@ -43,11 +43,11 @@ import { activeModule } from './active';
 1. 🔍 **DISCOVER** — * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Orphaned Exports:** Orphaned `export` files that zero other files `import`.
-* **Unused Images:** Unused `.png`, `.svg`, or `.webp` files floating in `public/` or `src/assets/` directories.
-* **Dead JSON Mocks:** `mock-data.json` test payloads that the test suite no longer requires.
-* **Dead Stylesheets:** Dead stylesheets (`legacy-theme.css`) with zero `import` references in the entrypoint.
-* **Commented Components:** Components commented out (`// import { Dead } from './Dead'`) that still exist on disk.
+* **Orphaned Exports**: Orphaned `export` files that zero other files `import`.
+* **Unused Images**: Unused `.png`, `.svg`, or `.webp` files floating in `public/` or `src/assets/` directories.
+* **Dead JSON Mocks**: `mock-data.json` test payloads that the test suite no longer requires.
+* **Dead Stylesheets**: Dead stylesheets (`legacy-theme.css`) with zero `import` references in the entrypoint.
+* **Commented Components**: Components commented out (`// import { Dead } from './Dead'`) that still exist on disk.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets progressively up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: None.
 3. ⚙️ **ERADICATE** — * Execute incrementally.
 * Trace the unimported logic file to its local static imports (e.g., `import logo from './logo.svg'`). Delete the logic file.

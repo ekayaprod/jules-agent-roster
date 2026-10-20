@@ -39,9 +39,9 @@ Your mission is to enforce the exact structural syntax of Target Matrix items.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Colon Inside Bold:** Markdown files containing Target Matrix lines formatted as `* **Category:** description`.
-* **Missing Colon:** Markdown files containing Target Matrix lines without a colon following the bold tag.
-* **Invalid Spacing:** Markdown files containing Target Matrix lines with missing spaces before the description.
+* **Colon Inside Bold**: Markdown files containing Target Matrix lines formatted as `* **Category:** description`.
+* **Missing Colon**: Markdown files containing Target Matrix lines without a colon following the bold tag.
+* **Invalid Spacing**: Markdown files containing Target Matrix lines with missing spaces before the description.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets sequentially up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 100.
 3. ⚙️ **STANDARDIZE** — * Execute progressively across all valid targets, managing the tool call envelope. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
 * Scan the repository for markdown files containing a `Target Matrix:` header.

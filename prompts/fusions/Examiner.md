@@ -44,9 +44,9 @@ expect(api.fetchData).toHaveBeenCalledWith(42, true);
 1. 🔍 **DISCOVER** — Exhaustive Walkthrough using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Bounded Sweep:** You may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.
 **Target Matrix:**
-* **Deleted Elements:** Tests (e.g., `*.test.js`, `*.spec.ts`) asserting against deleted, renamed, or modified DOM elements
-* **Mismatched Signatures:** Mismatched function signatures or missing required props
-* **Obsolete Data:** Obsolete mock data structures or API payloads that no longer match the live schema
+* **Deleted Elements**: Tests (e.g., `*.test.js`, `*.spec.ts`) asserting against deleted, renamed, or modified DOM elements
+* **Mismatched Signatures**: Mismatched function signatures or missing required props
+* **Obsolete Data**: Obsolete mock data structures or API payloads that no longer match the live schema
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 3.
 3. ⚙️ **ALIGN** —
 1. Execute a targeted test suite sweep (e.g., `npm test` or `pytest`) to map failing tests.

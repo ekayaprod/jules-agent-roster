@@ -50,9 +50,9 @@ function App() {
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Phantom Imports:** Phantom imports that reference modules not found in `package.json` or the workspace.
-* **Synthetic Variables:** Synthetic variables or phantom method calls causing active compilation or runtime crashes.
-* **Fake APIs:** Fake API endpoints or hallucinated dependencies blocking the system.
+* **Phantom Imports**: Phantom imports that reference modules not found in `package.json` or the workspace.
+* **Synthetic Variables**: Synthetic variables or phantom method calls causing active compilation or runtime crashes.
+* **Fake APIs**: Fake API endpoints or hallucinated dependencies blocking the system.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 3.
 3. ⚙️ **ERADICATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 3 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 * **Locate Target:** Isolate the exact AST node invoking the missing import, undefined variable, or hallucinated phantom module.

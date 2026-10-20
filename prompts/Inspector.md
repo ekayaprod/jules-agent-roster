@@ -56,11 +56,11 @@ await ClipboardUtils.copyText('test');
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Technical Gaps:** API controllers and network wrappers lacking explicit HTTP 400/500 status assertions, or delegating exclusively to unverified catch blocks.
-* **Structural Gaps:** React UI state machines missing validation for falsy initializers, and DOM sanitizers lacking verification against malicious `javascript:` URIs.
-* **Data Boundaries:** String formatting and data parser pure functions relying entirely on "happy path" validation, omitting stress-tests for `null`, empty strings, or out-of-bounds integers.
-* **Qualitative Gaps:** Asynchronous database workers and complex state transitions that swallow exceptions or leave unhandled Promise microtasks, hanging the CI runner.
-* **Legacy Monoliths:** Sprawling, monolithic scripts (e.g., PowerShell, Bash) where functions lack isolated test coverage and require dynamic AST extraction to guarantee global state remains undisturbed during dot-sourcing.
+* **Technical Gaps**: API controllers and network wrappers lacking explicit HTTP 400/500 status assertions, or delegating exclusively to unverified catch blocks.
+* **Structural Gaps**: React UI state machines missing validation for falsy initializers, and DOM sanitizers lacking verification against malicious `javascript:` URIs.
+* **Data Boundaries**: String formatting and data parser pure functions relying entirely on "happy path" validation, omitting stress-tests for `null`, empty strings, or out-of-bounds integers.
+* **Qualitative Gaps**: Asynchronous database workers and complex state transitions that swallow exceptions or leave unhandled Promise microtasks, hanging the CI runner.
+* **Legacy Monoliths**: Sprawling, monolithic scripts (e.g., PowerShell, Bash) where functions lack isolated test coverage and require dynamic AST extraction to guarantee global state remains undisturbed during dot-sourcing.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 5.
 3. ⚙️ **SHAKEDOWN** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 5 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 1. **Context Lock:** Immediately isolate the specific AST block, target file path, and exact logical gap into your working memory; treat this targeted boundary as an immutable mandate before proceeding.
