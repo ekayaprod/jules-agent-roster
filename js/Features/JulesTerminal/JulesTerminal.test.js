@@ -669,6 +669,32 @@ describe('JulesTerminal', () => {
 
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
         });
+
+        it('does not dispatch BACKGROUND_FETCH_FAILED telemetry event if loadSources fails and TelemetryUtils is missing during init automatic load', async () => {
+            global.StorageUtils.getItem.mockImplementation((k) => {
+                if (k === 'jules_api_key') return 'valid_key_123';
+                if (k === 'github_api_key') return 'gh_token_123';
+                return null;
+            });
+
+            const mockError = new Error('Background fetch failed');
+            manager.loadSources.mockRejectedValueOnce(mockError);
+
+            jest.spyOn(JulesTerminal, 'getTelemetryUtils').mockReturnValueOnce(null);
+
+            try {
+                await manager.init();
+
+                // Wait for background promise to resolve/reject
+                await Promise.resolve();
+                await Promise.resolve();
+                await Promise.resolve();
+
+                expect(global.TelemetryUtils.dispatchEvent).not.toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
+            } finally {
+                JulesTerminal.getTelemetryUtils.mockRestore();
+            }
+        });
     });
 
     describe('dismissSession', () => {
