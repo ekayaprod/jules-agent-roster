@@ -282,7 +282,7 @@ describe('JulesTerminal', () => {
             modals._showPRModal({ ...mockPR, html_url: 'invalid' });
 
             expect(mockElements.prModalExternalLink.removeAttribute).toHaveBeenCalledWith('href');
-            expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith("MODAL_URL_PARSE_FAILED", errorToThrow, { url: 'invalid' });
+            expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith("MODAL_URL_PARSE_FAILED", undefined, { url: 'invalid' });
 
             // Restore original URL
             global.URL = originalURL;
@@ -345,7 +345,7 @@ describe('JulesTerminal', () => {
             modals._showPRModal({ ...mockPR, html_url: 'invalid' });
 
             expect(mockElements.prModalExternalLink.removeAttribute).toHaveBeenCalledWith('href');
-            expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith("MODAL_URL_PARSE_FAILED", errorToThrow, { url: 'invalid' });
+            expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith("MODAL_URL_PARSE_FAILED", undefined, { url: 'invalid' });
 
             // Restore original URL and globals
             global.URL = originalURL;
