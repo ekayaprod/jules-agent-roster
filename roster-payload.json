@@ -320,7 +320,7 @@
   },
   {
     "name": "Aura",
-    "emoji": "👁️‍🗨️",
+    "emoji": "🌟",
     "role": "Vibe Cartographer",
     "category": "Operations",
     "tier": "Fusion",
@@ -430,7 +430,7 @@
   },
   {
     "name": "Catalyst",
-    "emoji": "🏎️",
+    "emoji": "🚀",
     "role": "Momentum Optimizer",
     "category": "Performance",
     "tier": "Fusion",
@@ -518,7 +518,7 @@
   },
   {
     "name": "Construct",
-    "emoji": "🏗️",
+    "emoji": "🧱",
     "role": "Greenfield Architect",
     "category": "Architecture",
     "tier": "Fusion",
@@ -1662,7 +1662,7 @@
   },
   {
     "name": "Reclaimer",
-    "emoji": "♻️",
+    "emoji": "🗑️",
     "role": "Codebase Recycler",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -2102,7 +2102,7 @@
   },
   {
     "name": "Switchboard",
-    "emoji": "🎛️",
+    "emoji": "🔀",
     "role": "Pipeline Simplifier",
     "category": "Operations",
     "tier": "Fusion",
