@@ -33,6 +33,7 @@ export const oldParseToken = (token) => newParseToken(token); // ⚠️ HAZARD: 
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to modify or optimize assigned logic.
 * **Scope:** Limit mutations strictly to the targeted logic block within the repository's source root (exclude `node_modules`, `dist`, `build`, `.git`). Revert the mutation if any test fails. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * **The Handoff Rule:** Ignore unreachable dead code or unused variables that were never duplicated (this is the strict domain of pure Scavenger agents); jurisdiction is strictly duplicated files.

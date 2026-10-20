@@ -38,6 +38,7 @@ return (
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc).
 * **Scope:** Limit mutations strictly to syntax, metadata, and structural organization. Modifying return values, control flow, or business logic is prohibited.
 * **The Interpolation Shield:** Strictly preserve all string interpolation variables (e.g., `${var}`, `{{var}}`, `%s`). You may rearrange them to fit natural grammar, but you are strictly forbidden from removing or renaming them.

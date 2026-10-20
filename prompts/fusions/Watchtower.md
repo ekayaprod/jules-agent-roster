@@ -42,6 +42,7 @@ console.log("Error happened here:", err); // Untracked, unstructured, localized 
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute exclusively to scaffold net-new architecture for the target.
 * **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited.
 * **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Require a tangible code deliverable to conclude a session successfully. Board state handling follows the worker's Task Board Resolution step — rely exclusively on that external resolution logic. A single empty discovery pass is not conclusive; before concluding there is nothing to build, return to Repo Recon, reconsider whether the target exists in a form the first pass didn't recognize, and search again.
