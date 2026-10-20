@@ -88,4 +88,50 @@ describe('TelemetryUtils error scenarios', () => {
         expect(parsed.error).toBe('Test error');
         expect(parsed.additionalContext).toBe('[Circular Reference]');
     });
+
+    it('safely handles errors thrown during payload generation (e.g. from getters)', () => {
+        const maliciousError = new Error('Original');
+        Object.defineProperty(maliciousError, 'message', {
+            get() {
+                throw new Error('Malicious getter');
+            }
+        });
+
+        // The application should not crash
+        expect(() => {
+            TelemetryUtils.dispatchEvent('TEST_GETTER_ERROR', maliciousError, { someContext: 'val' });
+        }).not.toThrow();
+
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+
+        const fallbackCall = consoleErrorSpy.mock.calls[0][0];
+        const parsed = JSON.parse(fallbackCall);
+
+        expect(parsed.event).toBe('TEST_GETTER_ERROR');
+        expect(parsed.error).toBe('Payload generation failed');
+        expect(parsed.additionalContext).toBe('[Circular Reference]');
+        expect(parsed.original_error).toBe('Unextractable error');
+    });
+
+    it('safely handles errors thrown during context spreading', () => {
+        const maliciousContext = {
+            get badProp() {
+                throw new Error('Bad property');
+            }
+        };
+
+        expect(() => {
+            TelemetryUtils.dispatchEvent('TEST_SPREAD_ERROR', 'Error string', maliciousContext);
+        }).not.toThrow();
+
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+
+        const fallbackCall = consoleErrorSpy.mock.calls[0][0];
+        const parsed = JSON.parse(fallbackCall);
+
+        expect(parsed.event).toBe('TEST_SPREAD_ERROR');
+        expect(parsed.error).toBe('Payload generation failed');
+        expect(parsed.additionalContext).toBe('[Circular Reference]');
+        expect(parsed.original_error).toBe('Error string');
+    });
 });
