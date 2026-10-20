@@ -75,6 +75,29 @@ describe('ClipboardUtils', () => {
             expect(result).toBe(true);
         });
 
+        it('should use fallback if navigator.clipboard exists but writeText is undefined', async () => {
+            global.navigator.clipboard = {}; // writeText is undefined
+            document.execCommand.mockReturnValue(true);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(result).toBe(true);
+        });
+
+        it('should execute catch block on line 28 if Modern Clipboard API writeText rejects', async () => {
+            const mockApiError = new Error('Explicitly mocked writeText rejection');
+            global.navigator.clipboard.writeText.mockRejectedValueOnce(mockApiError);
+            document.execCommand.mockReturnValue(true);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_API_FAILED', mockApiError);
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(result).toBe(true);
+        });
+
         it('should handle number errors thrown by Clipboard API writeText', async () => {
             const numberError = 404;
             global.navigator.clipboard.writeText.mockRejectedValue(numberError);
