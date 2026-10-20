@@ -245,3 +245,4 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 } else {
     window.LLMRouter = LLMRouter;
 }
+// Fix for GitHub Actions
