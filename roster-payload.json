@@ -787,7 +787,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "HARDEN external boundaries against malicious data, poisoned startup configurations, and unvalidated payloads to prevent fatal runtime crashes.",
-    "forge_version": "V87.1",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/First Responder.md",
     "isCustom": true
   },
