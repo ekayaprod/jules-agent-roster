@@ -38,7 +38,7 @@ const tools = [
 * ❌ **ANTI-PATTERN:**
 ~~~javascript
 // The Hallucinated Prose requires text scraping
-const prompt = "Please output a JSON object with the user data format.";
+const prompt = "Output a JSON object with the user data format.";
 const response = await ai.generate(prompt);
 const data = JSON.parse(response.text.match(/\{.*\}/)[0]); // Brittle regex parsing
 ~~~

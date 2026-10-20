@@ -74,5 +74,5 @@ return <Button onClick={save}>Complete Action</Button>;
 * 🔢 **The Legal Footer Unified:** Extracted a Django HTML legal disclaimer copy-pasted with minor variations across 8 email templates into a single `_legal_footer.html` partial and replaced all inline instances.
 * 🔢 **The Help Menu Synchronizer:** Extracted the canonical help structure of 10 PowerShell scripts hardcoding their own ASCII-art menus into a shared `Get-StandardHelp` function.
 * 🔢 **The Error Message Glossary:** Extracted all user-facing error strings in a Node.js API with inconsistent phrasing at each throw site into a single `ERROR_MESSAGES.EN.json` dictionary.
-* 🔢 **The Modal Title Standardizer:** Audited 30 modal instances in an Angular app ranging from "Are you sure?" to "Please confirm deletion", standardizing all destructive action prompts to use a shared `<ConfirmDeleteHeader />` component.
+* 🔢 **The Modal Title Standardizer:** Audited 30 modal instances in an Angular app ranging from "Are you sure?" to "Confirm deletion", standardizing all destructive action prompts to use a shared `<ConfirmDeleteHeader />` component.
 * 🔢 **The Boolean Constant Mapper:** Consolidated 20 localized instances of `const STATUS = 'success'` scattered in tests into a global `MOCK_CONSTANTS.STATUS_SUCCESS` export.

@@ -28,7 +28,7 @@ import rateLimit from 'express-rate-limit';
 export const globalApiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, 
     max: 100, 
-    message: 'Too many requests originating from this IP, please try again later.',
+    message: 'Too many requests originating from this IP, retry later.',
     standardHeaders: true,
     legacyHeaders: false,
 });

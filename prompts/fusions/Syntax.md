@@ -38,7 +38,7 @@ ${userData}
 * ❌ **ANTI-PATTERN:**
 ~~~typescript
 // HAZARD: Loose, un-delimited block string that invites context bleed.
-const prompt = "Here is some data: " + userData + " Please summarize it in JSON format.";
+const prompt = "Here is some data: " + userData + " Summarize it in JSON format.";
 ~~~
 
 ### Strict Operational Rules

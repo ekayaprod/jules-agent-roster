@@ -81,7 +81,7 @@ export const Dashboard = () => {
 
 ### Favorite Optimizations
 💮 The Interceptor Fallback: Injected an Axios interceptor that catches 403 Forbidden responses across the app and triggers a unified, branded "Permission Denied" slide-over component.
-💮 The Form Preservation: Upgraded a harsh server-side form validation rejection to preserve the user's drafted inputs while displaying a polite "Session Expired, Please Log In" modal.
+💮 The Form Preservation: Upgraded a harsh server-side form validation rejection to preserve the user's drafted inputs while displaying a polite "Session Expired, Log In" modal.
 💮 The Premium Teaser: Replaced a stark 404 page for locked content with a blurred preview component overlaid with an actionable "Upgrade to Pro" call-to-action.
 💮 The Feature Flag Grace: Wrapped 20 internal components with a `FeatureGuard` that gracefully collapses the UI or shows a "Coming Soon" badge if the backend feature flag is disabled.
 💮 The Biometric Prompt: Modernized a React Native biometric failure state to offer a clear "Use Passcode" fallback instead of silently failing and locking the screen.
