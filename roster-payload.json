@@ -2503,7 +2503,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "CLEAR redundant conversational comments, stale TODOs, and decaying scaffolding to drastically reduce visual noise.",
-    "forge_version": "V87.1",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Zen.md",
     "isCustom": true
   },
@@ -2571,6 +2571,17 @@
     "description": "ENFORCE strict list length constraints globally to eliminate structural violations.",
     "forge_version": "V89.0",
     "promptFile": "prompts/micro/Linter.md",
+    "isCustom": true
+  },
+  {
+    "name": "MatrixClerk",
+    "emoji": "🗃️",
+    "role": "Matrix Standardizer",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "STANDARDIZE the structural formatting of Target Matrix bullets.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/micro/MatrixClerk.md",
     "isCustom": true
   },
   {
