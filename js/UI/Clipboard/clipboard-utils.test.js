@@ -374,6 +374,22 @@ describe('ClipboardUtils', () => {
             getTelemetrySpy.mockRestore();
         });
 
+        it('should dispatch telemetry event via TelemetryUtils when execCommand throws an error', async () => {
+            delete global.navigator.clipboard;
+            const mockError = new Error('execCommand error');
+            document.execCommand.mockImplementation(() => { throw mockError; });
+
+            const mockTu = { dispatchEvent: jest.fn() };
+            const getTelemetrySpy = jest.spyOn(ClipboardUtils, '_getTelemetryUtils').mockReturnValue(mockTu);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(mockTu.dispatchEvent).toHaveBeenCalledWith("CLIPBOARD_FALLBACK_FAILED", mockError);
+            expect(result).toBe(false);
+
+            getTelemetrySpy.mockRestore();
+        });
+
         it('should silently catch errors if TelemetryUtils is missing during fallback execCommand failure', async () => {
             delete global.navigator.clipboard;
             const mockFallbackError = new Error('execCommand failed');
