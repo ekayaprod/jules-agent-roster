@@ -471,6 +471,29 @@ describe('JulesTerminal', () => {
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
         });
 
+        it('does not dispatch BACKGROUND_FETCH_FAILED telemetry event if loadSources fails and TelemetryUtils is missing during apiKey configuration block', async () => {
+            global.StorageUtils.getItem.mockImplementation((k) => {
+                if (k === 'jules_api_key') return 'valid_key_123';
+                if (k === 'github_api_key') return 'gh_token_123';
+                return null;
+            });
+
+            const mockError = new Error('loadSources mock error');
+            manager.loadSources.mockRejectedValueOnce(mockError);
+
+            jest.spyOn(JulesTerminal, 'getTelemetryUtils').mockReturnValueOnce(null);
+
+            try {
+                await manager.init();
+
+                await Promise.resolve();
+
+                expect(global.TelemetryUtils.dispatchEvent).not.toHaveBeenCalledWith("BACKGROUND_FETCH_FAILED", mockError);
+            } finally {
+                JulesTerminal.getTelemetryUtils.mockRestore();
+            }
+        });
+
         it('does not dispatch BACKGROUND_FETCH_FAILED telemetry event if loadSources fails and TelemetryUtils is missing during loadSources fetch error', async () => {
             global.StorageUtils.getItem.mockReturnValue(null);
 
@@ -522,6 +545,31 @@ describe('JulesTerminal', () => {
                 await Promise.resolve();
 
                 expect(global.TelemetryUtils.dispatchEvent).not.toHaveBeenCalled();
+            } finally {
+                JulesTerminal.getTelemetryUtils.mockRestore();
+            }
+        });
+
+        it('does not dispatch BACKGROUND_FETCH_FAILED telemetry event if loadSources fails and TelemetryUtils is missing during configure block', async () => {
+            global.StorageUtils.getItem.mockReturnValue(null);
+            await manager.init();
+
+            const keyInput = document.getElementById('julesApiKeyInput');
+            keyInput.value = 'new_valid_key';
+            const saveBtn = document.getElementById('saveSettingsBtn');
+
+            const mockError = new Error('loadSources mock error');
+            manager.loadSources.mockRejectedValueOnce(mockError);
+
+            jest.spyOn(JulesTerminal, 'getTelemetryUtils').mockReturnValueOnce(null);
+
+            try {
+                saveBtn.click();
+                await Promise.resolve();
+                await Promise.resolve();
+                await Promise.resolve();
+
+                expect(global.TelemetryUtils.dispatchEvent).not.toHaveBeenCalledWith("BACKGROUND_FETCH_FAILED", mockError);
             } finally {
                 JulesTerminal.getTelemetryUtils.mockRestore();
             }
