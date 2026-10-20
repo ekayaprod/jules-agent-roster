@@ -79,10 +79,10 @@
   {
     "name": "Janitor",
     "emoji": "🧹",
-    "role": "Housekeeping Pruner",
-    "category": "Maintenance",
+    "role": "Pipeline Hygiene",
+    "category": "Infrastructure",
     "tier": "Core",
-    "description": "🧹 PURGE THE HALLWAYS. Strip unused artifacts, orphaned files, and unlinked scripts before they calcify.",
+    "description": "SWEEP temporary artifacts, stale build outputs, abandoned scratchpad scripts, and orphaned dependencies to stop architectural decay.",
     "forge_version": "V89.0",
     "promptFile": "prompts/Janitor.md",
     "isCustom": false
@@ -2503,7 +2503,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "CLEAR redundant conversational comments, stale TODOs, and decaying scaffolding to drastically reduce visual noise.",
-    "forge_version": "V87.1",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Zen.md",
     "isCustom": true
   },
