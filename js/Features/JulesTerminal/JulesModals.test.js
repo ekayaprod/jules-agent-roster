@@ -604,6 +604,27 @@ describe('JulesTerminal', () => {
             expect(mockStatusSpan.textContent).toBe('Needs response');
             expect(mockStatusSpan.onclick).toBe(rollbackState.onclick);
         });
+
+        it('should correctly handle an error during transmit and trigger the full rollback flow', async () => {
+            const error = new Error('Test Error');
+            window.julesAPI.provideInput.mockRejectedValueOnce(error);
+
+            const mockTelemetry = { dispatchEvent: jest.fn() };
+            jest.spyOn(JulesModals, "getTelemetryUtils").mockReturnValue(mockTelemetry);
+
+            const rollbackState = {
+                className: 'term-status status-rollback',
+                textContent: 'Rollback response',
+                onclick: jest.fn()
+            };
+
+            await modals._transmitReply('session-1', 'user reply', mockCloseFn, rollbackState);
+
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to send reply.", "error");
+            expect(mockStatusSpan.className).toBe('term-status status-rollback');
+            expect(mockStatusSpan.textContent).toBe('Rollback response');
+            expect(mockStatusSpan.onclick).toBe(rollbackState.onclick);
+        });
     });
 
     describe('_showKeyError and _clearKeyError', () => {
