@@ -132,6 +132,33 @@ describe('SingularityBespokeBuilder', () => {
       expect(mockTerminal.launchSession).not.toHaveBeenCalled();
     });
 
+    it('should handle terminal launchSession failure gracefully when UI elements are missing', async () => {
+      global.fetch.mockResolvedValueOnce({
+        ok: true,
+        text: () => Promise.resolve('Template with {{UI_MISSION_STATEMENT}}'),
+      });
+
+      mockTerminal.launchSession.mockImplementation(() => {
+        throw new Error('Launch failed');
+      });
+
+      builder.init();
+      builder.elements.missionInput.value = 'Failing Mission';
+      // To test the catch block missing UI elements condition, we need to let the handleForge proceed past the initial mission check.
+      // We will override them right before they are checked in the catch block by doing it in the mock Terminal execution.
+      mockTerminal.launchSession.mockImplementation(() => {
+        builder.elements.errorWrapper = null;
+        builder.elements.missionInput = null;
+        throw new Error('Launch failed');
+      });
+
+      await builder.handleForge();
+
+      expect(mockTerminal.launchSession).toHaveBeenCalled();
+      expect(builder.elements.submitBtn.innerHTML).toBe('🌌 Forge Bespoke Agent');
+      expect(builder.elements.submitBtn.disabled).toBe(false);
+    });
+
     it('should handle terminal launchSession failure and show error UI', async () => {
       global.fetch.mockResolvedValueOnce({
         ok: true,
