@@ -865,6 +865,27 @@ describe('JulesTerminal', () => {
             expect(manager._checkEmptyTerminal).toHaveBeenCalled();
         });
 
+        it('handles launch failure gracefully when btn is null and optimisticBlock is not in parent', async () => {
+            const agent = { name: 'TestAgent', prompt: 'test' };
+            const mockError = new Error('API Error');
+            jest.spyOn(DOMUtils, 'setButtonState');
+            manager._checkEmptyTerminal = jest.fn();
+            manager._createAndInsertSessionBlock = jest.fn().mockReturnValue(document.createElement('div'));
+            global.window.julesAPI.createSession.mockRejectedValue(mockError);
+
+            await manager.launchSession(agent, null);
+
+            await Promise.resolve();
+            await Promise.resolve();
+            await Promise.resolve();
+
+            expect(mockApp.toast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session: API Error'), TOAST_TYPES.ERROR, 20000);
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('JULES_LAUNCH_SESSION_FAILED', expect.any(Error), { sourceName: 'owner/repo' });
+            expect(manager._fetchAndRenderSessions).not.toHaveBeenCalled();
+            expect(DOMUtils.setButtonState).not.toHaveBeenCalled();
+            expect(manager._checkEmptyTerminal).toHaveBeenCalled();
+        });
+
         it('handles launch failure gracefully with missing error message', async () => {
             const agent = { name: 'TestAgent', prompt: 'test' };
             const mockError = new Error(); // Missing error message
