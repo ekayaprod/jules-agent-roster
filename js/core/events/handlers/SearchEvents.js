@@ -1,9 +1,8 @@
 class SearchEvents {
     static bind(app) {
-        const SEARCH_DEBOUNCE_MS = 300;
 
         if (app.elements.searchInput) {
-            const debouncedFilter = PerformanceUtils.debounce((query) => app.searchController?.filterAgents(query), SEARCH_DEBOUNCE_MS);
+            const debouncedFilter = PerformanceUtils.debounce((query) => app.searchController?.filterAgents(query), 300);
             app.elements.searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
         }
 
