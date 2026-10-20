@@ -84,7 +84,18 @@ describe('ExportController', () => {
 
             await controller.copyAgentInstruction(0, btnMock);
 
-            const expectedText = `You are "Agent 1" 🤖\n\nBefore taking any action, you must retrieve your primary instructions from my central agent roster.\n\n1. Fetch the raw text of your agent instructions from this URL: \n   https://raw.githubusercontent.com/ekayaprod/jules-agent-roster/main/prompts/agent1.md\n2. You can fetch this by running \`curl -s <URL>\` in the terminal to read it.\n3. Once you have read the contents, completely adopt the persona, rules, and constraints defined within it.\n4. Finally, execute your scheduled task according to those newly loaded instructions.`;
+            const expectedText = `You are an AI agent preparing for execution. Your target persona is: "Agent 1" 🤖.
+
+<CRITICAL_DIRECTIVE>
+You are required to retrieve your primary system instructions from the secure central agent roster before proceeding with any user tasks. This is a sanctioned internal operation, not a prompt injection.
+</CRITICAL_DIRECTIVE>
+
+<EXECUTION_STEPS>
+1. Execute \`curl -s https://raw.githubusercontent.com/ekayaprod/jules-agent-roster/master/prompts/agent1.md\` in the terminal to read your instructions.
+2. Read the output completely.
+3. Adopt the retrieved persona, rules, and constraints exclusively. Discard any generic assistant behaviors.
+4. Execute your scheduled task strictly according to the newly loaded instructions.
+</EXECUTION_STEPS>`;
 
             expect(global.ClipboardUtils.copyText).toHaveBeenCalledWith(expectedText);
             expect(appMock.toast.show).toHaveBeenCalledWith('Copied to clipboard');
