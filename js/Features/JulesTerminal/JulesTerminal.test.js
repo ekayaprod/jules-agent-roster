@@ -1073,6 +1073,23 @@ describe('JulesTerminal', () => {
             expect(manager.isProcessingQueue).toBe(false);
         });
 
+        it('does not dispatch QUEUE_EXECUTION_ERROR if TelemetryUtils is null', async () => {
+            const originalTelemetryUtils = global.TelemetryUtils;
+            delete global.TelemetryUtils;
+            const spy = jest.spyOn(JulesTerminal, 'getTelemetryUtils').mockReturnValue(null);
+            try {
+                const mockError = new Error('Task Rejected No Telemetry');
+                manager.sessionQueue.push(() => Promise.reject(mockError));
+
+                await manager._processSessionQueue();
+
+                expect(manager.isProcessingQueue).toBe(false);
+            } finally {
+                spy.mockRestore();
+                global.TelemetryUtils = originalTelemetryUtils;
+            }
+        });
+
         it('handles non-function tasks in queue', async () => {
             manager.sessionQueue.push('not a function');
 
