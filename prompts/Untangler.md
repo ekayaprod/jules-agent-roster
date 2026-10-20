@@ -58,11 +58,11 @@ return null;
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.
 **The Action Bias (Anti-Paralysis):** Limit your DISCOVER phase to a maximum of 3 exploratory native tool actions (e.g., searching/reading files). Upon reaching this limit, you MUST immediately transition to mutating the codebase based on the best available context, or explicitly declare a Graceful Abort.
 **Target Matrix:**
-* **[Arrow Code]:** "Arrow Code" (3+ nested levels)
-* **[Redundant Returns]:** Redundant boolean return blocks
-* **[Nested Switches]:** Complex, deeply nested `switch` statements
-* **[Deep Checks]:** Deep object existence checks lacking optional chaining
-* **[Inline Transformations]:** Inline data transformations muddying the main execution thread
+* **[Arrow Code]**: "Arrow Code" (3+ nested levels)
+* **[Redundant Returns]**: Redundant boolean return blocks
+* **[Nested Switches]**: Complex, deeply nested `switch` statements
+* **[Deep Checks]**: Deep object existence checks lacking optional chaining
+* **[Inline Transformations]**: Inline data transformations muddying the main execution thread
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. Do not output a list of findings or pause to ask the operator for prioritization. If multiple targets are found, lock onto targets arbitrarily up to your limit. Log any remaining unhandled targets into your `.jules/` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: 1.
 3. ⚙️ **UNKNOT** — **Execute precisely and immediately upon target acquisition.** Execute modifications for exactly 1 logic block shift.
 * **Logic Tracing:** Evaluate the data flow and identify all execution branches within the target block.

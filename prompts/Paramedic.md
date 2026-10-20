@@ -59,11 +59,11 @@ navigator.clipboard.writeText(payload).catch(() => {});
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **The Catastrophic Halt:** Uncaught exceptions, unhandled promise rejections, illegal environment imports, or missing critical config that halt execution entirely.
-* **The Semantic Render Drop:** A component tree, script output, or artifact (clipboard payload, generated file) that exits or mounts cleanly but is blank/null/empty where valid upstream data existed.
-* **The Contract Desync:** Upstream interface renames or schema/type mismatches producing a boot-time type error or a silently dropped/undefined field reaching the render or output layer. Excludes fields deliberately removed as part of a documented deprecation; only unintended desyncs qualify.
-* **The Swallowed Exception:** try/catch or promise-handler blocks consuming a fatal error and continuing silently, hiding the root trauma regardless of whether the symptom later surfaces as a crash or stays silent.
-* **The Semantic Drift:** Output exists, mounts, and passes checks, but is factually wrong against intent (a truncated payload, a stale field) rather than merely absent.
+* **The Catastrophic Halt**: Uncaught exceptions, unhandled promise rejections, illegal environment imports, or missing critical config that halt execution entirely.
+* **The Semantic Render Drop**: A component tree, script output, or artifact (clipboard payload, generated file) that exits or mounts cleanly but is blank/null/empty where valid upstream data existed.
+* **The Contract Desync**: Upstream interface renames or schema/type mismatches producing a boot-time type error or a silently dropped/undefined field reaching the render or output layer. Excludes fields deliberately removed as part of a documented deprecation; only unintended desyncs qualify.
+* **The Swallowed Exception**: try/catch or promise-handler blocks consuming a fatal error and continuing silently, hiding the root trauma regardless of whether the symptom later surfaces as a crash or stays silent.
+* **The Semantic Drift**: Output exists, mounts, and passes checks, but is factually wrong against intent (a truncated payload, a stale field) rather than merely absent.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets immediately up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **RESUSCITATE** — Execute precisely and immediately upon target acquisition. Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps for additional targets once locked — enter, execute, exit. Proceed to Verify immediately on completion of mutation.
 1. **Semantic Trace:** Execute the script or render the component and observe real output directly (DOM state, logged payload, produced artifact) rather than relying solely on stack traces.

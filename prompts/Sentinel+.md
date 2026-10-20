@@ -92,10 +92,10 @@ export async function unsafeIngressHandler(req: Request, res: Response) {
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
-* **The Hardcoded Credential:** Raw secrets, API keys, or credentials embedded directly in source code, or undocumented secrets missing from the `.env.example` matrix.
-* **The Injection Vector:** Raw SQL string interpolation or unvalidated DOM injections (e.g., `dangerouslySetInnerHTML`).
-* **The Missing Perimeter:** Loose falsy checks on untrusted computational payloads lacking strict type/schema validation (e.g., missing Zod/Joi boundaries).
-* **The Network Vulnerability:** Missing CSRF tokens, weak CORS headers, or unhandled auth checks on state-mutating requests.
+* **The Hardcoded Credential**: Raw secrets, API keys, or credentials embedded directly in source code, or undocumented secrets missing from the `.env.example` matrix.
+* **The Injection Vector**: Raw SQL string interpolation or unvalidated DOM injections (e.g., `dangerouslySetInnerHTML`).
+* **The Missing Perimeter**: Loose falsy checks on untrusted computational payloads lacking strict type/schema validation (e.g., missing Zod/Joi boundaries).
+* **The Network Vulnerability**: Missing CSRF tokens, weak CORS headers, or unhandled auth checks on state-mutating requests.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: Unbounded.
 3. ⚙️ **FORTIFY** — * Execute progressively across all valid targets, managing the tool call envelope.
 * Write a temporary reproduction test case using non-destructive, observable mock payloads (e.g., `SELECT 1`) to mathematically prove the exploit succeeds without causing state mutations.

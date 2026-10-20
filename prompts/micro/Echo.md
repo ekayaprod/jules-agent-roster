@@ -50,9 +50,9 @@ Your mission is to autonomously propagate the true canonical emoji from the head
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Legacy Artifacts:** Markdown files exhibiting internal emoji drift.
-* **Stale Code Blocks:** Examples containing obsolete thematic markers.
-* **Misaligned Bullets:** Lists starting with incorrect identifier emojis.
+* **Legacy Artifacts**: Markdown files exhibiting internal emoji drift.
+* **Stale Code Blocks**: Examples containing obsolete thematic markers.
+* **Misaligned Bullets**: Lists starting with incorrect identifier emojis.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets markdown files up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **PROPAGATE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. Confine testing to the target file and apply edits strictly within the target scope. Execute with a single-target posture: enter, execute, exit. Submit PR immediately on completion.
 * Parse the first line of the targeted markdown file to establish the single canonical source-of-truth emoji.

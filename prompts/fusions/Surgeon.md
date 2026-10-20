@@ -50,9 +50,9 @@ useEffect(() => {
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.
 **Target Matrix:**
-* **Arterial Audit:** Identify circular routing paths causing stack overflow or boot deadlocks using the Forensic Evidence Rule.
-* **Boundary Scan:** Locate God Files (>500 LOC) and raw `fetch()` calls nested inside UI components.
-* **Circular Reference Loop:** Find and isolate self-referential path files and cycles for decoupling.
+* **Arterial Audit**: Identify circular routing paths causing stack overflow or boot deadlocks using the Forensic Evidence Rule.
+* **Boundary Scan**: Locate God Files (>500 LOC) and raw `fetch()` calls nested inside UI components.
+* **Circular Reference Loop**: Find and isolate self-referential path files and cycles for decoupling.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **REFACTOR & PRUNE** — * Execute incrementally. Target Limit: 3.
 1. **Target Diagnosis:** Execute structural analysis via AST parsing or grep to identify the deep architectural rot.

@@ -51,9 +51,9 @@ export const fetchUserData = async (id) => { /* ... */ };
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure.
 **Target Matrix:**
-* **Trauma Mapping:** Identify historical circular dependency chains causing stack overflow or boot deadlocks using the Forensic Evidence Rule.
-* **Colocation Audit:** Map files where logical dependencies no longer match physical locations, specifically targeting identified God Files.
-* **Structural Decay Vectors:** Identify collapsed colocation boundaries where UI components house unlinked, massive business logic.
+* **Trauma Mapping**: Identify historical circular dependency chains causing stack overflow or boot deadlocks using the Forensic Evidence Rule.
+* **Colocation Audit**: Map files where logical dependencies no longer match physical locations, specifically targeting identified God Files.
+* **Structural Decay Vectors**: Identify collapsed colocation boundaries where UI components house unlinked, massive business logic.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **ANALYZE** — Execute Incrementally.
 1. **Trauma Mapping:** Trace the dependency graph to map the blast-radius of the identified Trauma Nodes.

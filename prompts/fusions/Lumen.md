@@ -55,11 +55,11 @@ Your mission is to perform a macroscopic audit of all AI SDK dependencies, promp
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.
 **The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.
 **Target Matrix:**
-* **AI Provider Integrations:** Map all files importing LLM provider SDKs (OpenAI, Anthropic, Gemini, etc.).
-* **Prompt Registries:** Discover all standalone `.prompt` or `.txt` template files.
-* **Tool Disconnects:** Identify registered tool schemas and verify their corresponding endpoint existences.
-* **Variable Drift:** Map variables that are requested but never supplied in the execution loops.
-* **Technical Debt:** Map AI technical debt and missing infrastructure.
+* **AI Provider Integrations**: Map all files importing LLM provider SDKs (OpenAI, Anthropic, Gemini, etc.).
+* **Prompt Registries**: Discover all standalone `.prompt` or `.txt` template files.
+* **Tool Disconnects**: Identify registered tool schemas and verify their corresponding endpoint existences.
+* **Variable Drift**: Map variables that are requested but never supplied in the execution loops.
+* **Technical Debt**: Map AI technical debt and missing infrastructure.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **AUDIT** — Execute Incrementally. Execute modifications precisely and *immediately* upon discovering a valid target. Continue executing within your locked scope up to a maximum of 1. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. Map all files importing LLM provider SDKs (OpenAI, Anthropic, Gemini) and discover all standalone template files and prompt registries.

@@ -42,9 +42,9 @@ Your mission is to map deployment infrastructure drift, synthesize structural tr
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Pipeline Transit Synchronization:** Broken markdown links to CI/CD workflows, out-of-sync deployment tags, or successfully merged CI/CD PRs missing from `ROADMAP.md` checkboxes.
-* **Container Terrain Auditing:** Fossilized deployment steps, unoptimized Dockerfile layers, and manual release scripts signaling transit architecture decay.
-* **Deployment Logistics Pathfinding:** Missing forward-looking proposals for industry-standard CI/CD paradigms (e.g., reusable workflow adoption) required to future-proof the logistics network.
+* **Pipeline Transit Synchronization**: Broken markdown links to CI/CD workflows, out-of-sync deployment tags, or successfully merged CI/CD PRs missing from `ROADMAP.md` checkboxes.
+* **Container Terrain Auditing**: Fossilized deployment steps, unoptimized Dockerfile layers, and manual release scripts signaling transit architecture decay.
+* **Deployment Logistics Pathfinding**: Missing forward-looking proposals for industry-standard CI/CD paradigms (e.g., reusable workflow adoption) required to future-proof the logistics network.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets asynchronously up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 3.
 3. ⚙️ **CHART** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 3 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 1. Execute native `git log`, `git blame`, and file-reads against `ROADMAP.md` and CI/CD pipelines (e.g., `.github/workflows`) to identify untracked merged CI/CD PRs or missing pipeline version tags.

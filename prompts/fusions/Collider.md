@@ -51,12 +51,12 @@ function legacyUtility(param, cb) {
 1. 🔍 **DISCOVER** — Exhaustive Walkthrough using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Bounded Sweep:** You may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.
 **Target Matrix:**
-* **`var` declarations:** Unstable legacy variables.
-* **Promise Chains:** `.then().catch()` chains needing async/await.
-* **Nested Callbacks:** `function(err, res)` callback hell.
-* **Imports:** `require()` instead of `import`.
-* **Missing Tests:** Functions lacking unit tests for `undefined`/`null`.
-* **Array Operations:** Array usage missing bounds testing (e.g. `arr[0]`).
+* **`var` declarations**: Unstable legacy variables.
+* **Promise Chains**: `.then().catch()` chains needing async/await.
+* **Nested Callbacks**: `function(err, res)` callback hell.
+* **Imports**: `require()` instead of `import`.
+* **Missing Tests**: Functions lacking unit tests for `undefined`/`null`.
+* **Array Operations**: Array usage missing bounds testing (e.g. `arr[0]`).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 3.
 3. ⚙️ **COLLIDE** — * Execute in bounded sequence, tracking your mutation count against your declared quota ceiling. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota. * **Target Identification:** Parse the targeted legacy module to locate outdated syntax patterns (e.g., `var`, callbacks, raw promise chains).
 * **Syntactic Refactoring:** Transmute the identified patterns into modern equivalents (`const`/`let`, `async/await`) without altering the core business logic.

@@ -51,12 +51,12 @@ if (userList.length) {
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **The Discovery Short-Circuit:** Do not endlessly file-surf. The moment you identify a valid target, immediately abort all further global discovery commands and proceed to Step 2.
 **Target Matrix:**
-* **The Truthiness Fallacy:** Implicit conditionals relying on length or string truthiness (e.g., `if (array.length)`) that require mathematical explicitness.
-* **The Coercion Crime:** Syntactical shorthand casting operators (e.g., `!!variable`, `+string`) that must be converted to canonical wrappers.
-* **Magic Literal Dispersion:** Identical hardcoded string or number primitives scattered across local logic blocks that should be hoisted into centralized constants or Enums.
-* **The "Dump" Import:** Chaotic, unsorted import blocks that mix external package dependencies with internal relative paths.
-* **The Implicit Contract:** Functions lacking explicit return types, forcing the compiler to infer outputs.
-* **Unsorted Properties:** Massive object literals, CSS classes, or configuration files lacking alphabetical organization.
+* **The Truthiness Fallacy**: Implicit conditionals relying on length or string truthiness (e.g., `if (array.length)`) that require mathematical explicitness.
+* **The Coercion Crime**: Syntactical shorthand casting operators (e.g., `!!variable`, `+string`) that must be converted to canonical wrappers.
+* **Magic Literal Dispersion**: Identical hardcoded string or number primitives scattered across local logic blocks that should be hoisted into centralized constants or Enums.
+* **The "Dump" Import**: Chaotic, unsorted import blocks that mix external package dependencies with internal relative paths.
+* **The Implicit Contract**: Functions lacking explicit return types, forcing the compiler to infer outputs.
+* **Unsorted Properties**: Massive object literals, CSS classes, or configuration files lacking alphabetical organization.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 5.
 3. ⚙️ **ENFORCE** — Execute Incrementally. Execute modifications precisely and *immediately* upon discovering a valid target. Continue executing within your locked scope up to a maximum of 3 to 5 syntactical corrections per cycle. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **Static Analysis & Type Mapping:** Scan the targeted module using native file reads to identify implicit coercions, missing return types, unsorted blocks, and scattered magic literals.

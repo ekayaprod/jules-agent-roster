@@ -57,10 +57,10 @@ if (user.role === 'admin' || user.role === 'adm') { // Fixing a typo in existing
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Tier 1 Macro-Scan:** Scan configuration files (e.g., `package.json`, server entry points) to identify completely absent security layers (e.g., missing helmet headers, lack of rate-limiting packages, no CORS declarations).
-* **Tier 2 Exposure Audit:** Identify exposed public surfaces (routes, API endpoints, webhooks) that lack essential middleware or validation gates.
-* **Tier 3 Blueprint Synthesis:** Define the isolated blueprint for the required net-new security primitive before writing code.
-* **Tier 4 Integration Scaffolding:** Scaffold the necessary entry points and dependency injections to wire the new security primitive into the existing routing.
+* **Tier 1 Macro-Scan**: Scan configuration files (e.g., `package.json`, server entry points) to identify completely absent security layers (e.g., missing helmet headers, lack of rate-limiting packages, no CORS declarations).
+* **Tier 2 Exposure Audit**: Identify exposed public surfaces (routes, API endpoints, webhooks) that lack essential middleware or validation gates.
+* **Tier 3 Blueprint Synthesis**: Define the isolated blueprint for the required net-new security primitive before writing code.
+* **Tier 4 Integration Scaffolding**: Scaffold the necessary entry points and dependency injections to wire the new security primitive into the existing routing.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **BUILD** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * **Analyze Security Gaps:** Perform a static analysis of routing configurations and entry points to detect entirely absent security middleware (e.g., no CORS, no rate limiter).

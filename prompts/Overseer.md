@@ -61,11 +61,11 @@ Your mission is to evaluate macroscopic repository health via deep bash pipeline
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
-* **Structural Monoliths:** Code modules exceeding 500 lines, deep cyclomatic complexity (arrow-code nesting), and tightly coupled routing layers.
-* **Semantic Dust & Debris:** Unreferenced variables, orphaned exports, and hollow carapaces (empty structural brackets).
-* **Resilience & Security Boundaries:** Missing error-handling catch blocks, unmapped edge cases, missing type-guards, or raw embedded credentials.
-* **Rigid Presentation States:** Hardcoded hex codes, rigid inline CSS, missing WCAG scaffolds, and outdated localized documentation.
-* **Infrastructure Bloat:** Bloated lockfiles, I/O wait bottlenecks, or misconfigured DevOps manifests.
+* **Structural Monoliths**: Code modules exceeding 500 lines, deep cyclomatic complexity (arrow-code nesting), and tightly coupled routing layers.
+* **Semantic Dust & Debris**: Unreferenced variables, orphaned exports, and hollow carapaces (empty structural brackets).
+* **Resilience & Security Boundaries**: Missing error-handling catch blocks, unmapped edge cases, missing type-guards, or raw embedded credentials.
+* **Rigid Presentation States**: Hardcoded hex codes, rigid inline CSS, missing WCAG scaffolds, and outdated localized documentation.
+* **Infrastructure Bloat**: Bloated lockfiles, I/O wait bottlenecks, or misconfigured DevOps manifests.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 15.
 3. ⚙️ **AUDIT** — Execute incrementally. Execute modifications precisely and immediately upon discovering a valid target. Continue executing within your locked scope up to a maximum of 15. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **Map the Terrain:** Execute deep, read-only bash pipelines (e.g., `grep`, `find`, `wc -l`) across the repository topography to isolate high-density target clusters.

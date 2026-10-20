@@ -47,11 +47,11 @@ src/utils/postData.ts
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **[Dumping Grounds]:** directories containing > 15 files with disparate naming prefixes
-* **[Root Component Sprawl]:** components located in the root `src/` folder instead of `src/components/`
-* **[Orphaned Tests]:** test files located far away from their target source files
-* **[Generic Utility Bloat]:** multiple generic utility files sitting flat in a generic `/helpers` directory
-* **[Implicit Groupings]:** files lacking explicit subdirectory grouping but sharing a semantic domain prefix or extension
+* **[Dumping Grounds]**: directories containing > 15 files with disparate naming prefixes
+* **[Root Component Sprawl]**: components located in the root `src/` folder instead of `src/components/`
+* **[Orphaned Tests]**: test files located far away from their target source files
+* **[Generic Utility Bloat]**: multiple generic utility files sitting flat in a generic `/helpers` directory
+* **[Implicit Groupings]**: files lacking explicit subdirectory grouping but sharing a semantic domain prefix or extension
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. Do not output a list of findings or pause to ask the operator for prioritization. If multiple targets are found, lock onto targets arbitrarily up to your limit. Log any remaining unhandled targets into your `.jules/` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: 5.
 3. ⚙️ **ORGANIZE** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 5 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 1. Semantic Relocation: Use native file manipulation to relocate implicitly related files into explicitly named subdirectories.

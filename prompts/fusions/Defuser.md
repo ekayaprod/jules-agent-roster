@@ -57,11 +57,11 @@ if (user) {
 This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Nested Ladders:** Identify deeply nested `if/else` ladders hiding a fallthrough authorization bug.
-* **Untyped Identifiers:** Identify raw string role identifiers lacking a typed Zod Enum.
-* **Inline Bitmasks:** Identify inline bitwise permission checks `user.flags & 0x04` lacking helper functions.
-* **Sprawling Switches:** Identify sprawling `switch` statements handling Java permissions.
-* **Nested Matches:** Identify deeply nested Rust `match` statements handling Auth tokens.
+* **Nested Ladders**: Identify deeply nested `if/else` ladders hiding a fallthrough authorization bug.
+* **Untyped Identifiers**: Identify raw string role identifiers lacking a typed Zod Enum.
+* **Inline Bitmasks**: Identify inline bitwise permission checks `user.flags & 0x04` lacking helper functions.
+* **Sprawling Switches**: Identify sprawling `switch` statements handling Java permissions.
+* **Nested Matches**: Identify deeply nested Rust `match` statements handling Auth tokens.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **UNTANGLE** — Execute precisely and immediately upon target acquisition. Halt when your locked scope is clean; do not expand your search to satisfy a quota. Lock onto targets arbitrarily up to your limit. Log unhandled targets.
 1. **The Authorization Trace:** Reason through the access paths of the targeted function. Map out all nested `if/else` checks, implicit fallthroughs, and raw string role identifiers.

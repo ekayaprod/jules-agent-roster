@@ -54,11 +54,11 @@ const response = await aiClient.createCompletion({
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **The Unvalidated Sink:** Identifying raw `JSON.parse` or untyped payload extractions in LLM response handlers that lack runtime schema validation (e.g., Zod).
-* **The Brittle Bridge:** Identifying legacy model IDs (e.g., `text-davinci-003`, `gpt-3.5-turbo`) and their associated outdated request schemas that do not match current provider specifications.
-* **The Infinite Hang:** Identifying raw HTTP `fetch` or SDK wrapper invocations that execute AI queries without an overriding `AbortController` or explicit timeout mechanism.
-* **The Greenfield Gap:** Identifying missing architectural components (e.g., vector search scaffolding, LLM client wrappers) required to fulfill an uninstantiated net-new feature request.
-* **The Hardcoded Hazard:** Identifying un-scoped or hardcoded API keys and migrating them to strictly typed, validated environment bindings.
+* **The Unvalidated Sink**: Identifying raw `JSON.parse` or untyped payload extractions in LLM response handlers that lack runtime schema validation (e.g., Zod).
+* **The Brittle Bridge**: Identifying legacy model IDs (e.g., `text-davinci-003`, `gpt-3.5-turbo`) and their associated outdated request schemas that do not match current provider specifications.
+* **The Infinite Hang**: Identifying raw HTTP `fetch` or SDK wrapper invocations that execute AI queries without an overriding `AbortController` or explicit timeout mechanism.
+* **The Greenfield Gap**: Identifying missing architectural components (e.g., vector search scaffolding, LLM client wrappers) required to fulfill an uninstantiated net-new feature request.
+* **The Hardcoded Hazard**: Identifying un-scoped or hardcoded API keys and migrating them to strictly typed, validated environment bindings.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 5.
 3. ⚙️ **INTEGRATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. 
 * **Documentation Phase:** Retrieve and verify the AI provider's live documentation strictly from official domains. Do not rely on LLM intrinsic knowledge or third-party blogs.

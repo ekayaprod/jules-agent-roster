@@ -41,9 +41,9 @@ Your mission is to enforce the standardized task cleanup protocol across all aut
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Missing Protocal Check:** Files missing the exact Task Board Resolution protocol string under the DISCOVER block.
-* **Malformed Protocol Check:** Files with typos or deviations in the Task Board Resolution protocol string.
-* **Orphaned Protocols Check:** Files with the Task Board Resolution protocol string placed incorrectly outside the DISCOVER block.
+* **Missing Protocal Check**: Files missing the exact Task Board Resolution protocol string under the DISCOVER block.
+* **Malformed Protocol Check**: Files with typos or deviations in the Task Board Resolution protocol string.
+* **Orphaned Protocols Check**: Files with the Task Board Resolution protocol string placed incorrectly outside the DISCOVER block.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets sequentially up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 100.
 3. ⚙️ **INJECT** — * Execute progressively across all valid targets, managing the tool call envelope. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
 * **Scan Phase:** Parse the repository for markdown files (e.g., `find . -type f -name "*.md"`) lacking the Task Board string (e.g., `grep -rL`). Stop processing and fallback to a graceful abort if no markdown files are identified within the source root.

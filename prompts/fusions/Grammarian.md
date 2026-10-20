@@ -52,9 +52,9 @@ export const ERR_NETWORK_TIMEOUT = "We couldn't reach the server. Retry.";
 * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 **Target Matrix:**
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
-* **Hot Paths:** Target toast notifications, error boundaries, empty states, submit buttons.
-* **Cold Paths:** Target internal logger messages, variable names, database column strings.
-* **Inline Elements:** Target inline generic string tags (`<button>Submit</button>`), passive-voice error throw messages (`"An error occurred"`).
+* **Hot Paths**: Target toast notifications, error boundaries, empty states, submit buttons.
+* **Cold Paths**: Target internal logger messages, variable names, database column strings.
+* **Inline Elements**: Target inline generic string tags (`<button>Submit</button>`), passive-voice error throw messages (`"An error occurred"`).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets TypeScript/TSX up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **EXTRACT** — * Execute precisely and immediately upon target acquisition.
 1. Scan UI components and error-handling routines using a `Visual/DOM` execution cadence. Require contrast and screen-reader validation.

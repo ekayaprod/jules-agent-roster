@@ -50,11 +50,11 @@ const ChoppyBox = () => (
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **The Ghost Shift:** Image elements missing explicit `width`, `height`, `loading="lazy"`, or `decoding="async"` attributes.
-* **Legacy Weight:** Heavy raster formats (PNG/JPG) lacking modern WebP/AVIF equivalents or `<picture>` fallbacks.
-* **Render-Tree Bloat:** Deep DOM nesting, specifically consecutive `<div className="">` tags lacking semantic value or styling context.
-* **CSSOM Paralysis:** Orphaned, unreferenced `.scss` modules or dead utility classes that inflate the CSS Object Model.
-* **Layout Thrashing Triggers:** Animations targeting expensive reflow properties (e.g., `top`, `left`, `width`, `height`) instead of composite-only properties.
+* **The Ghost Shift**: Image elements missing explicit `width`, `height`, `loading="lazy"`, or `decoding="async"` attributes.
+* **Legacy Weight**: Heavy raster formats (PNG/JPG) lacking modern WebP/AVIF equivalents or `<picture>` fallbacks.
+* **Render-Tree Bloat**: Deep DOM nesting, specifically consecutive `<div className="">` tags lacking semantic value or styling context.
+* **CSSOM Paralysis**: Orphaned, unreferenced `.scss` modules or dead utility classes that inflate the CSS Object Model.
+* **Layout Thrashing Triggers**: Animations targeting expensive reflow properties (e.g., `top`, `left`, `width`, `height`) instead of composite-only properties.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 5.
 3. ⚙️ **CONSERVE** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 5 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 1. Scan presentation layer templates natively to isolate heavy binary references, unbounded media tags, and empty node wrappers.

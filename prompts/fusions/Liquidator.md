@@ -53,7 +53,7 @@ export const getUserData = async (userId: string) => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 
 **Target Matrix:**
-* **Legacy Abstractions:** explicit shims, polyfills, utility wrappers, custom bridges, and HTTP client wrappers masking missing native functionality.
+* **Legacy Abstractions**: explicit shims, polyfills, utility wrappers, custom bridges, and HTTP client wrappers masking missing native functionality.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets  up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: strictly capped at 1 target.
 3. ⚙️ **LIQUIDATE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 1. Map the internal logic of the identified legacy shim or adapter and identify all consumers across the repository.

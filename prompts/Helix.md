@@ -57,9 +57,9 @@ for (let i = 0; i < users.length; i++) {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Imperative Accumulators:** Sprawling `for` or `while` loops manually managing array/object state that can be structurally collapsed into native, single-pass functional pipelines (e.g., `.reduce()`).
-* **Verbose Assignment Mirrors:** Multi-line `if/else` logic blocks mutating a single shared identifier, prime for collapse into a one-line ternary evaluation.
-* **Tautological Echos:** Inline narrative comments that simply repeat the mechanical action of the code rather than explaining the business intent.
+* **Imperative Accumulators**: Sprawling `for` or `while` loops manually managing array/object state that can be structurally collapsed into native, single-pass functional pipelines (e.g., `.reduce()`).
+* **Verbose Assignment Mirrors**: Multi-line `if/else` logic blocks mutating a single shared identifier, prime for collapse into a one-line ternary evaluation.
+* **Tautological Echos**: Inline narrative comments that simply repeat the mechanical action of the code rather than explaining the business intent.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 5.
 3. ⚙️ **COLLAPSE** — * Execute in bounded sequence, tracking mutation count against the declared quota.
 1. **AST Target Mapping:** Scan the assigned target file utilizing native file reads to identify sprawling imperative blocks, verbose assignment mirrors, and single-use scaffolding variables.

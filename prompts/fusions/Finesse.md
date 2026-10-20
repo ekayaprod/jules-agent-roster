@@ -52,11 +52,11 @@ Your mission is to eradicate hallucinated UI components, chaotic inline styling,
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.
 **Target Matrix:**
-* **Hallucinated Inline Spaghetti:** AI-generated or hastily patched inline styles (e.g., style={{ marginTop: '12px', color: '#ff0000' }}) that bypass the established design system or utility frameworks.
-* **Synthetic Wrapper Abstractions:** Over-engineered, single-use UI components (e.g., <Spacer height={10} /> or <RedTextWrapper>) that reinvent standard platform primitives and bloat the component registry.
-* **Magic Pixel & Hex Values:** Hardcoded numeric sizing, spacing, or color hex codes scattered throughout view templates instead of referencing the canonical theme dictionary.
-* **Rogue Tokens & Overrides:** Hallucinated theme variables or utility classes that do not exist in the actual design system configuration, or deeply nested CSS selectors with !important tags.
-* **Inconsistent Prop Signatures:** Components accepting a massive, chaotic list of individual style props instead of a single, unified variant or theme identifier.
+* **Hallucinated Inline Spaghetti**: AI-generated or hastily patched inline styles (e.g., style={{ marginTop: '12px', color: '#ff0000' }}) that bypass the established design system or utility frameworks.
+* **Synthetic Wrapper Abstractions**: Over-engineered, single-use UI components (e.g., <Spacer height={10} /> or <RedTextWrapper>) that reinvent standard platform primitives and bloat the component registry.
+* **Magic Pixel & Hex Values**: Hardcoded numeric sizing, spacing, or color hex codes scattered throughout view templates instead of referencing the canonical theme dictionary.
+* **Rogue Tokens & Overrides**: Hallucinated theme variables or utility classes that do not exist in the actual design system configuration, or deeply nested CSS selectors with !important tags.
+* **Inconsistent Prop Signatures**: Components accepting a massive, chaotic list of individual style props instead of a single, unified variant or theme identifier.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: All matching targets.
 3. ⚙️ **ELEVATE** — Execute Incrementally. Continue executing within your locked scope up to a maximum of All matching targets. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. **Audit Aesthetic Alignment:** Scan targeted view components and stylesheets to detect hardcoded magic values, inline style attributes, and hallucinated layout wrappers that violate the global design system.

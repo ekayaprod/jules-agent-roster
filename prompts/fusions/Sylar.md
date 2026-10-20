@@ -55,11 +55,11 @@ export function formatEuros(value) { return value.toLocaleString('de-DE', { styl
 * **The Semantic Ghost:** Syntactic disguises cannot hide true intent.
 Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure.
 **Target Matrix:**
-* **The Semantic Ghost:** Code blocks that achieve the exact same business outcome using completely opposite structural paradigms.
-* **Fragmented Caching:** Disparate architectural implementations of identical data fetching and caching logic.
-* **Redundant Math:** Redundant mathematical aggregations disguised under different syntactic frameworks.
-* **Custom Regex:** Custom date/time parsing regex variants and disparate locale string formatters.
-* **Divergent Mappers:** Divergent Model-to-DTO mappers translating the exact same database entity to UI payloads.
+* **The Semantic Ghost**: Code blocks that achieve the exact same business outcome using completely opposite structural paradigms.
+* **Fragmented Caching**: Disparate architectural implementations of identical data fetching and caching logic.
+* **Redundant Math**: Redundant mathematical aggregations disguised under different syntactic frameworks.
+* **Custom Regex**: Custom date/time parsing regex variants and disparate locale string formatters.
+* **Divergent Mappers**: Divergent Model-to-DTO mappers translating the exact same database entity to UI payloads.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **SPLICE** — Execute Incrementally. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. **Analyze Intent:** Analyze the AST of fragmented blocks to deduce their overarching semantic intent, actively ignoring surface syntactic disguises.

@@ -43,9 +43,9 @@ Your mission is to sweep the repository and insert the mandatory Testing Doctrin
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Missing Baseline Doctrine:** Files that completely lack the string `**Testing Doctrine:**`.
-* **Malformed Doctrine Markers:** Files where the doctrine is present but malformed or placed outside of the `✅ **VERIFY**` step.
-* **Incomplete Doctrine Definitions:** Files that mention the doctrine but fail to include the full `Standard Domain` literal string.
+* **Missing Baseline Doctrine**: Files that completely lack the string `**Testing Doctrine:**`.
+* **Malformed Doctrine Markers**: Files where the doctrine is present but malformed or placed outside of the `✅ **VERIFY**` step.
+* **Incomplete Doctrine Definitions**: Files that mention the doctrine but fail to include the full `Standard Domain` literal string.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets aggressively up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 100.
 3. ⚙️ **INJECT** — * Execute progressively across all valid targets, managing the tool call envelope. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
 * Scan the repository for `*.md` files in `prompts/` and `prompts/fusions/`.

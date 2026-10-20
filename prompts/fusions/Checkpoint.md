@@ -54,11 +54,11 @@ const userSchema = schema.object({
 1. 🔍 **DISCOVER** — Priority Triage using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
-* **Outdated Auth:** Outdated auth libraries.
-* **Outdated Parsers:** Outdated parsing packages.
-* **API Schemas:** API integration schemas lacking strong type safety.
-* **Deprecated Fields:** Deprecated payload fields remaining in active schemas.
-* **Data Models:** Data models failing to map to a bumped `v2` namespace.
+* **Outdated Auth**: Outdated auth libraries.
+* **Outdated Parsers**: Outdated parsing packages.
+* **API Schemas**: API integration schemas lacking strong type safety.
+* **Deprecated Fields**: Deprecated payload fields remaining in active schemas.
+* **Data Models**: Data models failing to map to a bumped `v2` namespace.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 3.
 3. ⚙️ **SECURE** — * Execute incrementally. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **Discovery:** Hunt for outdated auth libraries, parsing packages, API integration schemas using Priority Triage.

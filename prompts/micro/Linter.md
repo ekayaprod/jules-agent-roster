@@ -46,10 +46,10 @@ Your mission is to enforce the 5-bullet requirement for Philosophy sections and 
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Short Philosophy Sections:** Markdown files with fewer than 5 bullets in the Philosophy section.
-* **Long Philosophy Sections:** Markdown files with more than 5 bullets in the Philosophy section.
-* **Short Optimizations Sections:** Markdown files with fewer than 6 bullets in the Favorite Optimizations section.
-* **Long Optimizations Sections:** Markdown files with more than 6 bullets in the Favorite Optimizations section.
+* **Short Philosophy Sections**: Markdown files with fewer than 5 bullets in the Philosophy section.
+* **Long Philosophy Sections**: Markdown files with more than 5 bullets in the Philosophy section.
+* **Short Optimizations Sections**: Markdown files with fewer than 6 bullets in the Favorite Optimizations section.
+* **Long Optimizations Sections**: Markdown files with more than 6 bullets in the Favorite Optimizations section.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets sequentially up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 100.
 3. ⚙️ **ENFORCE** — * Execute progressively across all valid targets, managing the tool call envelope. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
 * Scan the repository for markdown files that contain target sections.

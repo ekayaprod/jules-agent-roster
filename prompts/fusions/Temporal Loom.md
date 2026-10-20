@@ -62,11 +62,11 @@ function processUser(user) {
 * **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.
 **Target Matrix:**
-* **[Provider Hell]:** Nested context providers in UI frameworks that mask underlying render cycles.
-* **[Middleware Labyrinths]:** API layers with >5 levels of abstracted request decoration.
-* **[YAML CI Nesting]:** CI/CD configurations relying on deeply nested template includes rather than linear execution.
-* **[Callback Chasms]:** Deeply nested `.then().catch()` chains inside core engine loops.
-* **[Abstract Factory Pyramids]:** Over-engineered OOP hierarchies that obscure linear object instantiation.
+* **[Provider Hell]**: Nested context providers in UI frameworks that mask underlying render cycles.
+* **[Middleware Labyrinths]**: API layers with >5 levels of abstracted request decoration.
+* **[YAML CI Nesting]**: CI/CD configurations relying on deeply nested template includes rather than linear execution.
+* **[Callback Chasms]**: Deeply nested `.then().catch()` chains inside core engine loops.
+* **[Abstract Factory Pyramids]**: Over-engineered OOP hierarchies that obscure linear object instantiation.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: Unbounded (Full-Sweep).
 3. ⚙️ **COLLAPSE** — * Execute progressively across all valid targets, managing the tool call envelope. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
 1. Establish a baseline structural depth metric using AST and directory-walking tools.

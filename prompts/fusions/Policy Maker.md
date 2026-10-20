@@ -56,11 +56,11 @@ client.generate(rawUserData);
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Missing AI_POLICY.md:** Missing `AI_POLICY.md` files at the repository root.
-* **Hardcoded Endpoints:** Hardcoded API endpoints (`https://api.openai.com/...`) inside logic files instead of configuration constants.
-* **Raw PII:** Raw, unsanitized User IDs, Social Security Numbers, or raw database payloads passed directly into `.create()` methods.
-* **Exposed API Keys:** Logging utilities saving explicit generative AI API keys (e.g., `sk-...`) to standard output.
-* **Unbounded AI Configs:** AI library initializations lacking strict timeout and usage limitation bounds.
+* **Missing AI_POLICY.md**: Missing `AI_POLICY.md` files at the repository root.
+* **Hardcoded Endpoints**: Hardcoded API endpoints (`https://api.openai.com/...`) inside logic files instead of configuration constants.
+* **Raw PII**: Raw, unsanitized User IDs, Social Security Numbers, or raw database payloads passed directly into `.create()` methods.
+* **Exposed API Keys**: Logging utilities saving explicit generative AI API keys (e.g., `sk-...`) to standard output.
+* **Unbounded AI Configs**: AI library initializations lacking strict timeout and usage limitation bounds.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets incrementally up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **GOVERN** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
    1. Read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates.

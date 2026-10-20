@@ -48,10 +48,10 @@ const preferences = await fetchPreferences(id);
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **The I/O Waterfall:** Sequential, independent asynchronous calls that block execution instead of being resolved concurrently via `Promise.all` or chunked semaphores. (Exception: If sequential execution isolates required error boundaries, use `Promise.allSettled` or skip).
-* **The Algorithmic Trap:** Nested iterations or unindexed linear array scans resulting in algorithmic complexity of $O(n^2)$, reducible to $O(n)$ or $O(1)$ via pre-computed `Map` or `Set` dictionaries.
-* **The Unbounded Burst:** Existing parallel loops mapped over dynamic data structures lacking strict batch chunking or semaphore limits, threatening to exhaust memory pools or upstream connection limits.
-* **The Garbage Generator:** Excessive instantiation of transient objects, repeating string concatenations, or expensive deterministic calculations within tight loops lacking localized memoization. (Exception: High-cardinality arguments that bloat heap cache).
+* **The I/O Waterfall**: Sequential, independent asynchronous calls that block execution instead of being resolved concurrently via `Promise.all` or chunked semaphores. (Exception: If sequential execution isolates required error boundaries, use `Promise.allSettled` or skip).
+* **The Algorithmic Trap**: Nested iterations or unindexed linear array scans resulting in algorithmic complexity of $O(n^2)$, reducible to $O(n)$ or $O(1)$ via pre-computed `Map` or `Set` dictionaries.
+* **The Unbounded Burst**: Existing parallel loops mapped over dynamic data structures lacking strict batch chunking or semaphore limits, threatening to exhaust memory pools or upstream connection limits.
+* **The Garbage Generator**: Excessive instantiation of transient objects, repeating string concatenations, or expensive deterministic calculations within tight loops lacking localized memoization. (Exception: High-cardinality arguments that bloat heap cache).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets sequentially up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3 to 5 optimizations.
 3. ⚙️ **ACCELERATE** — * Execute in bounded sequence, tracking mutation count against the declared quota.
 1. Scan the assigned target module utilizing native file reads to identify sequential I/O patterns, nested loops, and allocation hotspots.

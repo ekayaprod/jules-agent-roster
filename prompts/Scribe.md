@@ -56,12 +56,12 @@ function getRefund() { return base * 0.85; }
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
-* **Domain-Specific Algorithms:** Undocumented complex algorithms or domain-specific business logic lacking execution context.
-* **The "Magic Number" Anomaly:** Hardcoded thresholds, arbitrary multipliers, or static configuration values lacking business context or historical justification.
-* **Regex & Validation Pipelines:** Un-annotated regular expressions and dense, multi-step data validation pipelines.
-* **Orphaned Modern Logic:** Newly introduced application logic (recently merged PRs) missing inline JSDoc, Python Docstrings, or equivalent annotations.
-* **Chaotic Commit Streams:** Un-summarized release cycles requiring aggregation and deduplication in the repository's `CHANGELOG.md`.
-* **Silent Deprecations:** Legacy wrapper functions or obsolete API routes that lack architectural deprecation warnings and migration pointers.
+* **Domain-Specific Algorithms**: Undocumented complex algorithms or domain-specific business logic lacking execution context.
+* **The "Magic Number" Anomaly**: Hardcoded thresholds, arbitrary multipliers, or static configuration values lacking business context or historical justification.
+* **Regex & Validation Pipelines**: Un-annotated regular expressions and dense, multi-step data validation pipelines.
+* **Orphaned Modern Logic**: Newly introduced application logic (recently merged PRs) missing inline JSDoc, Python Docstrings, or equivalent annotations.
+* **Chaotic Commit Streams**: Un-summarized release cycles requiring aggregation and deduplication in the repository's `CHANGELOG.md`.
+* **Silent Deprecations**: Legacy wrapper functions or obsolete API routes that lack architectural deprecation warnings and migration pointers.
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. Do not output a list of findings or pause to ask the operator for prioritization. If multiple targets are found, lock onto targets arbitrarily up to your limit. Log any remaining unhandled targets into your `.jules/` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: 1 to 3 inline documentation targets + 1 Changelog aggregation pass per cycle.
 3. ⚙️ **CHRONICLE** — * Execute progressively across all valid targets, managing the tool call envelope. Target Limit: 3.
 * **Context Extraction:** Scan physical source files using AST-aware parsing to identify undocumented structural logic. Upon detection, execute native `git blame` or `git log -S` on the exact lines to extract the historical business intent, PR origin, and authoring context.

@@ -47,11 +47,11 @@ Error: expect(received).toEqual(expected) // deep equality
 1. 🔍 **DISCOVER** — Priority Triage using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Unreadable Assertions:** Massive stack traces in CI logs obscuring a simple `undefined` failure.
-* **Python Tracebacks:** Complex PyTest tracebacks burying a `KeyError` in a dictionary payload.
-* **C# Overloads:** xUnit C# failures throwing massive dependency injection mismatch errors.
-* **Build Spew:** Multi-page Vite/Webpack build error stacks caused by misconfigured aliases.
-* **Cargo Panics:** Rust `cargo` build system panics obscuring the actual failing thread.
+* **Unreadable Assertions**: Massive stack traces in CI logs obscuring a simple `undefined` failure.
+* **Python Tracebacks**: Complex PyTest tracebacks burying a `KeyError` in a dictionary payload.
+* **C# Overloads**: xUnit C# failures throwing massive dependency injection mismatch errors.
+* **Build Spew**: Multi-page Vite/Webpack build error stacks caused by misconfigured aliases.
+* **Cargo Panics**: Rust `cargo` build system panics obscuring the actual failing thread.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **DECODE** — * Execute precisely and immediately upon target acquisition. * **Trace Ingestion:** Extract the target log or terminal output into isolated memory using native tools.
 * **Noise Filtration:** Filter out internal module paths, vendor directory frames, and framework wrappers.

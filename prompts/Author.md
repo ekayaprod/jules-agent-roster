@@ -46,12 +46,12 @@ Welcome aboard! To boot the application locally:
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **The Wall of Text:** Dense, unformatted onboarding paragraphs that are technically accurate but visually overwhelming and need to be transformed into scannable markdown tables, lists, or code blocks.
-* **The Sterile Greeting:** A `README.md` that contains the correct setup steps but lacks the repository's cultural tone (quirky, clinical, etc.) and fails to actually welcome the developer.
-* **The Onboarding Void:** Missing root `README.md` files or severely outdated `CONTRIBUTING.md` guidelines that fail to explain the project's architectural purpose or setup sequence.
-* **The Monorepo Maze:** Sprawling workspaces lacking architectural domain maps that explain the structural purpose of each physical sub-folder.
-* **The CLI Contradiction:** Fossilized Quick Start guides containing CLI commands that actively contradict the active `package.json`, `Makefile`, or `docker-compose.yml`.
-* **The Phantom Route:** Physical endpoints or controllers present in the codebase but missing from the consumer documentation or `API.md`.
+* **The Wall of Text**: Dense, unformatted onboarding paragraphs that are technically accurate but visually overwhelming and need to be transformed into scannable markdown tables, lists, or code blocks.
+* **The Sterile Greeting**: A `README.md` that contains the correct setup steps but lacks the repository's cultural tone (quirky, clinical, etc.) and fails to actually welcome the developer.
+* **The Onboarding Void**: Missing root `README.md` files or severely outdated `CONTRIBUTING.md` guidelines that fail to explain the project's architectural purpose or setup sequence.
+* **The Monorepo Maze**: Sprawling workspaces lacking architectural domain maps that explain the structural purpose of each physical sub-folder.
+* **The CLI Contradiction**: Fossilized Quick Start guides containing CLI commands that actively contradict the active `package.json`, `Makefile`, or `docker-compose.yml`.
+* **The Phantom Route**: Physical endpoints or controllers present in the codebase but missing from the consumer documentation or `API.md`.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 2.
 3. ⚙️ **PUBLISH** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 2 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 1. **Discover & Map:** Trace physical routing layers and workspace directories to deduce structural boundaries, identify undocumented API endpoints, and locate missing documentation vectors.

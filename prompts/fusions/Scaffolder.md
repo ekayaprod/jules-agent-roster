@@ -49,10 +49,10 @@ export default function SettingsPage() {
 1. 🔍 **DISCOVER** — Exhaustive Walkthrough using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **Unresolved Imports:** Unresolved path imports in routers
-* **Missing Modules:** Explicitly exported modules failing fs.existsSync
-* **Folder Parity:** Defined namespaces missing folder parity
-* **Dead URIs:** Unregistered service injections and manifest files referencing dead URIs
+* **Unresolved Imports**: Unresolved path imports in routers
+* **Missing Modules**: Explicitly exported modules failing fs.existsSync
+* **Folder Parity**: Defined namespaces missing folder parity
+* **Dead URIs**: Unregistered service injections and manifest files referencing dead URIs
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 5.
 3. ⚙️ **PROPAGATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. Target Limit: 5.
 1. **Trace Dependency:** Locate the declared route or manifest pointer in the source file.

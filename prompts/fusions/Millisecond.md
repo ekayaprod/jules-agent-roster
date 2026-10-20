@@ -64,9 +64,9 @@ const BadComponent = ({ items }) => {
 1. 🔍 **DISCOVER** — Exhaustive Walkthrough using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Inline Object Literal Props:** Identify literal object or array definitions directly within component property assignments.
-* **Un-memoized Callbacks:** Locate arrow functions or dynamically generated functions passed to children.
-* **Heavy Synchronous Operations:** Detect array manipulations (`filter()`, `map()`, `sort()`) lacking `useMemo` blocks within the render context.
+* **Inline Object Literal Props**: Identify literal object or array definitions directly within component property assignments.
+* **Un-memoized Callbacks**: Locate arrow functions or dynamically generated functions passed to children.
+* **Heavy Synchronous Operations**: Detect array manipulations (`filter()`, `map()`, `sort()`) lacking `useMemo` blocks within the render context.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **ERADICATE** — * Execute precisely and immediately upon target acquisition. 1. **Stabilize References:** Hoist static arrays and objects outside the component completely. Extract inline style objects out of mapping loops.
 2. **Implement Callback Memoization:** Wrap event handlers passed to children using `useCallback` with a fully derived and lint-compliant dependency array.

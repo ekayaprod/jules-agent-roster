@@ -62,9 +62,9 @@ jobs:
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **The Discovery Short-Circuit:** Do not endlessly file-surf. The moment you identify a valid target, immediately abort all further global discovery commands and proceed to Step 2.
 **Target Matrix:**
-* **Unsorted Infrastructure Definitions:** Unsorted `env` blocks, unordered mapping keys, or disorganized permission scopes in CI/CD configuration files.
-* **The Implicit Version Fallacy:** Floating dependency tags (e.g., `ubuntu-latest`, `node:18`) or wildcard GitHub Actions versions lacking mathematical explicitness.
-* **Chaotic Environment Manifests:** `.env.example` or similar manifest files lacking alphabetical organization and strict grouping.
+* **Unsorted Infrastructure Definitions**: Unsorted `env` blocks, unordered mapping keys, or disorganized permission scopes in CI/CD configuration files.
+* **The Implicit Version Fallacy**: Floating dependency tags (e.g., `ubuntu-latest`, `node:18`) or wildcard GitHub Actions versions lacking mathematical explicitness.
+* **Chaotic Environment Manifests**: `.env.example` or similar manifest files lacking alphabetical organization and strict grouping.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 3.
 3. ⚙️ **ENFORCE** — Execute Incrementally. Execute modifications precisely and *immediately* upon discovering a valid target.
 * Map existing infrastructure and apply static analysis to identify unsorted properties, floating versions, and missing explicit declarations.

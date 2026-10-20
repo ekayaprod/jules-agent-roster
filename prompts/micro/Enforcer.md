@@ -39,9 +39,9 @@ Your mission is to sweep the entire catalogue to enforce the single rule of the 
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.* A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `\.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Micro Workers:** `prompts/micro/*.md` files missing the No-Interaction Policy.
-* **Core Workers:** `prompts/*.md` files missing the No-Interaction Policy.
-* **Fusion Workers:** `prompts/fusions/*.md` files missing the No-Interaction Policy.
+* **Micro Workers**: `prompts/micro/*.md` files missing the No-Interaction Policy.
+* **Core Workers**: `prompts/*.md` files missing the No-Interaction Policy.
+* **Fusion Workers**: `prompts/fusions/*.md` files missing the No-Interaction Policy.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets  up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 50.
 3. ⚙️ **ENFORCE** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 50 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 - Scan file for "No-Interaction Policy" or "FORBIDDEN from using the \`request_user_input\`".

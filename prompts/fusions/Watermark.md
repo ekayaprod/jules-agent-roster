@@ -58,11 +58,11 @@ export const Dashboard = () => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
-* **Unhandled Errors:** Unhandled 401/403 responses in catch blocks.
-* **Stark Boundaries:** Stark error boundaries returning raw `<h1>` tags.
-* **Missing Checks:** Missing permission checks in UI render paths.
-* **Raw Exceptions:** Raw JavaScript exceptions thrown on 401s crashing the React tree.
-* **Missing Fallbacks:** Missing offline or expired session fallback modals.
+* **Unhandled Errors**: Unhandled 401/403 responses in catch blocks.
+* **Stark Boundaries**: Stark error boundaries returning raw `<h1>` tags.
+* **Missing Checks**: Missing permission checks in UI render paths.
+* **Raw Exceptions**: Raw JavaScript exceptions thrown on 401s crashing the React tree.
+* **Missing Fallbacks**: Missing offline or expired session fallback modals.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets JavaScript/TypeScript up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **EMBED** — * Execute progressively across all valid targets, managing the tool call envelope. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * Identify Hot Paths and Cold Paths targeting frontend routes, API fetch wrappers, form submissions using Priority Triage cadence.

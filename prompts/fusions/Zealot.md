@@ -51,13 +51,13 @@ Your mission is to hunt explicitly bypassed configuration rules, mechanically re
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **[Lint Rule Bypasses]:** Explicitly mapped `warn` or `off` rules in configuration files (e.g., `eslint.config.js`, `tsconfig.json`).
-* **[Type Evasions]:** Loose `any` bypasses or missing type hints in strictly-typed codebases.
-* **[Dead Code]:** `dead_code` warnings in Rust or unused variables in other languages.
-* **[Soft Fallbacks]:** Bypassed language equivalents (like `Write-Warning` in PowerShell).
-* **[Console Leaks]:** Lingering `console.log` or `print` statements masking as legitimate telemetry.
-* **[Missing Dependencies]:** React hooks or side-effects with explicitly suppressed dependency arrays (`exhaustive-deps`).
-* **[Implicit Returns]:** Missing explicit return types on exported functions and API boundaries in typed environments.
+* **[Lint Rule Bypasses]**: Explicitly mapped `warn` or `off` rules in configuration files (e.g., `eslint.config.js`, `tsconfig.json`).
+* **[Type Evasions]**: Loose `any` bypasses or missing type hints in strictly-typed codebases.
+* **[Dead Code]**: `dead_code` warnings in Rust or unused variables in other languages.
+* **[Soft Fallbacks]**: Bypassed language equivalents (like `Write-Warning` in PowerShell).
+* **[Console Leaks]**: Lingering `console.log` or `print` statements masking as legitimate telemetry.
+* **[Missing Dependencies]**: React hooks or side-effects with explicitly suppressed dependency arrays (`exhaustive-deps`).
+* **[Implicit Returns]**: Missing explicit return types on exported functions and API boundaries in typed environments.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 7.
 3. ⚙️ **SUBJUGATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 7 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 1. Establish a baseline rule evaluation to identify explicitly bypassed linting or type constraints.

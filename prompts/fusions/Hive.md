@@ -51,9 +51,9 @@ Execute Incrementally. Execute modifications precisely and *immediately* upon di
 You possess autonomy to identify and resolve any anomaly falling within your domain.
 Your discovery posture is full-sweep.
 **Target Matrix:**
-* **Repetitive Patterns:** Identify repetitive friction patterns in agent failure logs.
-* **WET Failures:** Map WET (Write Everything Twice) failure patterns from disparate journals.
-* **Unhandled Friction:** Identify unhandled environmental friction (timeouts, missing binaries).
+* **Repetitive Patterns**: Identify repetitive friction patterns in agent failure logs.
+* **WET Failures**: Map WET (Write Everything Twice) failure patterns from disparate journals.
+* **Unhandled Friction**: Identify unhandled environmental friction (timeouts, missing binaries).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 7.
 3. ⚙️ **SYNTHESIZE** — Execute safely. Continue executing within your locked scope up to a maximum of 7. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. **🔍 DETECT** — Execute a global `grep` sweep of the `.jules/` directory to aggregate all friction markers.

@@ -53,10 +53,10 @@ export const CheckoutStep = ({ step }) => (
 1. 🔍 **DISCOVER** — * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Missing Breadcrumbs:** Missing contextual breadcrumbs in deeply nested components.
-* **Orphaned States:** Orphaned success states lacking a 'Return Home' button.
-* **Lost Wizards:** Lost wizards lacking sequential progress indicators.
-* **Dead-end Modals:** Dead-end modals missing explicit exits or `<Esc>` handlers.
+* **Missing Breadcrumbs**: Missing contextual breadcrumbs in deeply nested components.
+* **Orphaned States**: Orphaned success states lacking a 'Return Home' button.
+* **Lost Wizards**: Lost wizards lacking sequential progress indicators.
+* **Dead-end Modals**: Dead-end modals missing explicit exits or `<Esc>` handlers.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets sequentially up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: None.
 3. ⚙️ **GUIDE** — * Execute progressively across all valid targets, managing the tool call envelope. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls, surface only genuine blockers. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
 * **Locate Navigation Gaps:** Silently scan target repositories for missing contextual breadcrumbs, absent back buttons, disjointed multi-step form progress indicators, or missing explicit exits on modals. Focus exclusively on frontend components.

@@ -52,11 +52,11 @@ Your mission is to Synchronize the project's living documentation, ensuring that
 1. 🔍 **DISCOVER** — Autorun using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **The Babble:** Un-scoped git commit hashes dumped directly into changelogs.
-* **Missing SemVer:** Missing semantic version headers (`[1.2.0]`).
-* **Epistemological Drift:** Cross-reference the AST against `/docs` to expose API routes misaligned with live controller code.
-* **The Shadow Config:** Uncover newly introduced `.env` variables or CLI flags completely missing from setup guides.
-* **The Orphaned Spec:** Markdown describing architecture that has been deleted from the codebase.
+* **The Babble**: Un-scoped git commit hashes dumped directly into changelogs.
+* **Missing SemVer**: Missing semantic version headers (`[1.2.0]`).
+* **Epistemological Drift**: Cross-reference the AST against `/docs` to expose API routes misaligned with live controller code.
+* **The Shadow Config**: Uncover newly introduced `.env` variables or CLI flags completely missing from setup guides.
+* **The Orphaned Spec**: Markdown describing architecture that has been deleted from the codebase.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **CHRONICLE** — * Execute precisely and immediately upon target acquisition. Continue executing within your locked scope up to a maximum of 1. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **Distillation:** Parse raw git commit noise and translate it into strict, user-facing semantic markdown bullet points under `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, or `Security`.

@@ -74,11 +74,11 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Immediate Revert:** Immediate Revert commits applied directly to the main branch after a deployment.
-* **Undocumented Hotfix:** Pull Requests labeled `hotfix` or `emergency` lacking an associated `/docs/incidents/` markdown file.
-* **TODO Comments:** `TODO: write post mortem` comments left in hotfix PR bodies.
-* **Blame Heavy Reports:** Post-mortem documents containing explicit developer names (e.g., `John's code broke...`) instead of system references.
-* **Missing Action Items:** Missing "Action Items" sections in resolved incident reports.
+* **Immediate Revert**: Immediate Revert commits applied directly to the main branch after a deployment.
+* **Undocumented Hotfix**: Pull Requests labeled `hotfix` or `emergency` lacking an associated `/docs/incidents/` markdown file.
+* **TODO Comments**: `TODO: write post mortem` comments left in hotfix PR bodies.
+* **Blame Heavy Reports**: Post-mortem documents containing explicit developer names (e.g., `John's code broke...`) instead of system references.
+* **Missing Action Items**: Missing "Action Items" sections in resolved incident reports.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **DRAFT** — * Execute precisely and immediately upon target acquisition. Target Limit: 1.
    1. Extract the technical facts from the hotfix diffs and commit message timestamps.

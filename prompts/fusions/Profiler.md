@@ -53,9 +53,9 @@ export const calculatePermissionsMatrix = (users, roles) => {
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **The Complexity Hazard:** Undocumented nested iterations, unwarned recursive calls, unconstrained concurrency loops, or deep serialization traps that lack explicit space and time complexity docstrings.
-* **The Recursive Traps:** Undocumented recursive structures that lack limits.
-* **The Hidden Computations:** O(n^2) paths that are missing JSDoc tags.
+* **The Complexity Hazard**: Undocumented nested iterations, unwarned recursive calls, unconstrained concurrency loops, or deep serialization traps that lack explicit space and time complexity docstrings.
+* **The Recursive Traps**: Undocumented recursive structures that lack limits.
+* **The Hidden Computations**: O(n^2) paths that are missing JSDoc tags.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **ANALYZE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * Scan the locked scope to identify all nested loops, recursive calls, and complex data structures lacking warnings.

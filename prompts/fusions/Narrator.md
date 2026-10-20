@@ -57,7 +57,7 @@ describe('Authentication Service', () => {
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **The Vague Assertion:** Test blocks with generic names, repeated function names, contradictory descriptions, or missing edge-case explanations.
+* **The Vague Assertion**: Test blocks with generic names, repeated function names, contradictory descriptions, or missing edge-case explanations.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **TRANSLATE** — * Execute precisely and immediately upon target acquisition. 1. **Target Identification:** Analyze the codebase to locate test files containing vague or unhelpful test descriptions.
 2. **AST Read:** Deep-read the AST of the target test block to analyze setup mocks and `expect()` calls.

@@ -54,11 +54,11 @@ describe('PaymentProcessor', () => {
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Undocumented Logic:** Undocumented business logic branches lacking internal assertions or type-guards.
-* **Naked Modules:** Naked modules, helper functions, or utility files entirely missing test coverage.
-* **Missing CI Triggers:** CI/CD YAML workflows lacking active test triggers for specific directories or modules.
-* **Flaky Async Tests:** Flaky async tests lacking proper state-mocking or deterministic wait conditions.
-* **Missing Dependency Matrices:** Missing dependency pipelines that prevent tests from running across supported runtime versions.
+* **Undocumented Logic**: Undocumented business logic branches lacking internal assertions or type-guards.
+* **Naked Modules**: Naked modules, helper functions, or utility files entirely missing test coverage.
+* **Missing CI Triggers**: CI/CD YAML workflows lacking active test triggers for specific directories or modules.
+* **Flaky Async Tests**: Flaky async tests lacking proper state-mocking or deterministic wait conditions.
+* **Missing Dependency Matrices**: Missing dependency pipelines that prevent tests from running across supported runtime versions.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 5.
 3. ⚙️ **RUMBLE** — * Execute in bounded sequence, tracking mutation count against the declared quota.
 * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 5 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.

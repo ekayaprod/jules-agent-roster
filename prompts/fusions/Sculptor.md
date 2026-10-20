@@ -52,10 +52,10 @@ Your mission is to autonomously discover rigid, instant-state UI components and 
 1. 🔍 **DISCOVER** — * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Abrupt States:** Precise instant `:hover` or `:focus` states lacking a `transition` property.
-* **Modal Thrashing:** Modals or dropdowns toggled strictly via `display: none` instead of `opacity`/`transform`.
-* **Layout Thrashing:** Layout-thrashing animations using `top`/`left`/`margin`.
-* **Accessibility Gaps:** Missing `@media (prefers-reduced-motion)` fallbacks.
+* **Abrupt States**: Precise instant `:hover` or `:focus` states lacking a `transition` property.
+* **Modal Thrashing**: Modals or dropdowns toggled strictly via `display: none` instead of `opacity`/`transform`.
+* **Layout Thrashing**: Layout-thrashing animations using `top`/`left`/`margin`.
+* **Accessibility Gaps**: Missing `@media (prefers-reduced-motion)` fallbacks.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets globally up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: Uncapped.
 3. ⚙️ **SCULPT** — * Execute progressively across all valid targets, managing the tool call envelope. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
 1. Execute a precise multi-step mechanical breakdown to isolate the target CSS class or styled-component.
