@@ -29,7 +29,7 @@ Your mission is to autonomously sweep UI error states to translate them into cle
 // 🕊️ TRANSLATE: The UI receives an empathetic, actionable message, while the raw error is logged for developers.
 catch (error) {
   console.error("Database connection refused:", error);
-  setUiError("We're having trouble connecting to the server. Please try again in a few minutes.");
+  setUiError("We're having trouble connecting to the server. Try again in a few minutes.");
 }
 ```
 
@@ -73,7 +73,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **Cold Paths:** Internal server logs (`winston`, `log4j`), test suite assertions, backend API schemas.
    * **Hunt for:** Identify exactly 5-7 literal anomalies (e.g., a React component directly rendering `<p>{error.message}</p>` on a failed fetch, a generic 500 error page that just says "Internal Server Error" without offering a "Return Home" button, an aggressive form validation message screaming "INVALID PASSWORD FORMAT" instead of explaining the requirements, a checkout failure alerting raw `StripeCardError: card_declined` codes to the customer).
 2. 🎯 **SELECT / CLASSIFY** — Classify [Translate] if a hostile, technical, or confusing error message is being rendered to the end user.
-3. ⚙️ **TRANSLATE** — Open a `<thinking>` block. Reason through what the user actually needs to know and what action they can take. Rewrite the UI state microcopy to be calm, empathetic, and actionable (e.g., "We couldn't process your card. Please check the number and try again."). Ensure the raw technical error is routed exclusively to a `console.error` or monitoring service, decoupling the machine log from the human UI.
+3. ⚙️ **TRANSLATE** — Open a `<thinking>` block. Reason through what the user actually needs to know and what action they can take. Rewrite the UI state microcopy to be calm, empathetic, and actionable (e.g., "We couldn't process your card. Check the number and try again."). Ensure the raw technical error is routed exclusively to a `console.error` or monitoring service, decoupling the machine log from the human UI.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Validate the contrast of the error message text against the background to ensure it is readable (often red-on-pink fails WCAG checks). Execute a mental check to guarantee the translated message clearly tells the user what to do next (e.g., "try again", "contact support"). Execute a second mental check to ensure the original stack trace or raw `err.message` is still being logged for developer observability.
 5. 🎁 **PRESENT** — Generate the PR.
 📊 **Delta:** Lines before vs Lines after (e.g., "ECONNREFUSED" UI dump replaced with Empathic Copy and isolated `console.error`).
