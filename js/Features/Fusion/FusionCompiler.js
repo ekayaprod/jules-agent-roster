@@ -38,15 +38,11 @@ const FusionCompiler = function (agents, customAgents, fusionMatrix = {}) {
 
   const fusionMatrixMap = normalizeKeys(fusionMatrix);
 
-  const invertedFusionMatrixMap = {};
-  for (const key in fusionMatrixMap) {
-    if (Object.prototype.hasOwnProperty.call(fusionMatrixMap, key)) {
-      const fusionName = fusionMatrixMap[key];
-      if (!invertedFusionMatrixMap[fusionName]) {
-        invertedFusionMatrixMap[fusionName] = key;
-      }
-    }
-  }
+  // 🧬 COLLAPSE: Collapsed sprawling imperative loop into a dense reduce pipeline.
+  const invertedFusionMatrixMap = Object.entries(fusionMatrixMap).reduce((acc, [key, fusionName]) => {
+    if (!acc[fusionName]) acc[fusionName] = key;
+    return acc;
+  }, {});
 
   const customAgentsMap = customAgents || {};
 

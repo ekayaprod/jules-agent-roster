@@ -186,16 +186,14 @@ class RosterApp {
     // ⚡ Bolt+: Extracted redundant DOM queries outside of loops and cached the references on initialization.
     this.categoryElements = {};
     this.categoryLookup = {};
-    this.categoryKeys = [];
-    // ⚡ Bolt+: Replaced Object.keys().forEach with a direct for...in lookup to eliminate array allocations on app startup.
-    for (const key in CONFIG.categories) {
-        if (Object.prototype.hasOwnProperty.call(CONFIG.categories, key)) {
-            this.categoryKeys.push(key);
-            const gridId = CONFIG.categories[key];
-            this.categoryElements[key] = document.getElementById(gridId);
-            this.categoryLookup[gridId] = key;
-        }
-    }
+    // 🧬 COLLAPSE: Collapsed imperative accumulator into a single-pass reduce pipeline.
+    this.categoryKeys = Object.keys(CONFIG.categories).reduce((acc, key) => {
+        acc.push(key);
+        const gridId = CONFIG.categories[key];
+        this.categoryElements[key] = document.getElementById(gridId);
+        this.categoryLookup[gridId] = key;
+        return acc;
+    }, []);
 
     // Cache static elements used frequently during high-frequency events or initialization
     const staticIds = [
