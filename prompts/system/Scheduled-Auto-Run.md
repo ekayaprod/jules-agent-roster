@@ -14,7 +14,7 @@ defined in Auto-Forge.md using the following targeting configuration:
 
 - **TARGET_FILE_OVERRIDE:** ""
 
-If `TARGET_FILE_OVERRIDE` is empty, Auto-Forge Step 1: Target Identification & Locking locates the next valid target via
+If `TARGET_FILE_OVERRIDE` is empty, Auto-Forge Step 1: Target Identification & Locking (locates the next valid target via
 the Target Sorting Rule (defined in Auto-Forge Step 1: Target Identification & Locking). Proceed immediately with the target file.
 
 **Strict Toolchain Mandate:** Edit the target Markdown natively and run only the validation scripts named in Auto-Forge Step 5: Terminal Output.

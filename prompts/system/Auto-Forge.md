@@ -28,7 +28,7 @@ CRITICAL: Execute all logic shifts directly via native file editing on the Markd
 - Resolve the domain and Archetype: for Tier: Core, run Forge-Procedure Module 6: The Domain Extrapolation Procedure (Pillar Reasoning) (Steps 1–4); for Tier: Fusion and Tier: Mythic, route to one Structural Base Profile (Forge-Procedure Module 1: The 8 Structural Base Profiles). For Tier: Mythic, preserve its boundary-breaking mechanics (Master-Forge Phase 1: Diagnostic Routing & Extraction (Mythic Exemption)).
 - Apply the Data Sanitization Filter (Master-Forge Phase 1: Diagnostic Routing & Extraction): list the legacy mechanics worth retaining.
 - **Drift Audit:** Classify every discrepancy between the legacy worker and the resolved domain as Narrowing or Incoherence (Master-Forge Phase 2: Legacy Intelligence & Drift Analysis). You may keep this ledger in an in-memory variable, or write it to a temporary artifact file (e.g., `drift_audit.txt`) to avoid context dropping, **provided you delete the temporary file before the final commit.**
-- Run Forge-Procedure Module 7: The Worker Verification Checklist Part A: Structural Checks against the legacy file. Every FAIL is an upgrade work-item.
+- Run Forge-Procedure Module 7: The Worker Verification Checklist (Part A: Structural Checks) against the legacy file. Every FAIL is an upgrade work-item.
 
 ## Step 3: Direct Syntactic Upgrade
 - Ensure you have read `prompts/system/Creative-Procedure.md` to load the exact `<!-- WORKER_TEMPLATE_START -->` block structure into context.
@@ -39,7 +39,7 @@ CRITICAL: Execute all logic shifts directly via native file editing on the Markd
 - **Version Bump:** Update the `forge_version` frontmatter to match the `CURRENT_FORGE_VERSION` defined in `Master-Forge.md`.
 
 ## Step 4: The Efficacy Audit
-- Run Forge-Procedure Module 7: The Worker Verification Checklist Part B: Efficacy Checks (Component Diff and Mandatory Audits) comparing your modified Markdown against the original legacy file, then rerun Part A on the modified file. To avoid plan review rejections for vague abstract tasks, this audit MUST be structured as specific actionable tool calls (e.g., writing a Python diff script or actively using `read_file` to perform the comparisons in context) rather than abstract mental steps.
+- Run Forge-Procedure Module 7: The Worker Verification Checklist (Part B: Efficacy Checks, Component Diff and Mandatory Audits) comparing your modified Markdown against the original legacy file, then rerun Part A on the modified file. To avoid plan review rejections for vague abstract tasks, this audit MUST be structured as specific actionable tool calls (e.g., writing a Python diff script or actively using `read_file` to perform the comparisons in context) rather than abstract mental steps.
 - On any FAIL, repair in place and rerun the failing check. After two repair loops, revert the specific change that still fails, keep the legacy text there, and list it under "Flagged, not changed" in the PR.
 - The updated file must result in a more capable, coherent, and domain-specific agent than the legacy variant.
 
