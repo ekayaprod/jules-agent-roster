@@ -2563,6 +2563,17 @@
     "isCustom": true
   },
   {
+    "name": "Label Stripper",
+    "emoji": "🧽",
+    "role": "Label Stripper",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "STRIP prohibited bold labels from Philosophy and Favorite Optimizations sections.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/micro/LabelStripper.md",
+    "isCustom": true
+  },
+  {
     "name": "Linter",
     "emoji": "📏",
     "role": "List Enforcer",
