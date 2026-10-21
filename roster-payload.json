@@ -248,7 +248,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "ANCHOR hallucinated abstractions by fully building the missing native architecture they poorly attempted to fake.",
-    "forge_version": "V89.0",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Actualizer.md",
     "isCustom": true
   },
