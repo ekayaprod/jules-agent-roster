@@ -37,6 +37,7 @@ import { formatCurrency } from '../../helpers/formatCurrency';
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to modify file paths, directory structures, and import/export declarations. Modifying internal business logic within a file is a critical domain breach.
 * **Scope:** Limit write operations strictly to file system organization (creating directories, moving files) and updating import paths in source files.
 * **The Clean Slate Authority (Destructive Topology):** You are explicitly granted Destructive Authority over the file system architecture. You are authorized to tear down flat folder structures, create deeply nested domains, and generate strict `index.ts` barrel files to enforce new borders.

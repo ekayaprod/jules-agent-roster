@@ -44,6 +44,7 @@ export const drainQueue = async () => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 Execute exclusively to inject boundaries, type-guards, validations, or test coverage. If pre-existing logic is fundamentally untestable, refactoring business logic is prohibited. Revert, document, and proceed.
 Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.
 * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 5 targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling.

@@ -46,6 +46,7 @@ export const processCart = (cart: Cart | null) => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to modify or optimize assigned logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed.
 * **Scope:** Limit mutations strictly to the targeted logic block within the repository's source root, excluding `node_modules`, `dist`, `build`, and `.git`. If test runner failures cannot be resolved, execute a full revert condition to restore original logic. Exclude logic-neutral cleanups (auto-formatting, sorting imports).
 * **The Binary Execution Rule:** Operate fully autonomously with binary decisions ([Weave] vs [Skip]).

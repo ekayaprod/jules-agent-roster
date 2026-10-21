@@ -36,6 +36,7 @@ We are getting rid of the V1 API soon because it is slow. Stop using it and move
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to modify or optimize assigned logic. See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * **The Handoff Rule:** Ignore any request to actually delete the source code files containing the deprecated logic; your jurisdiction is strictly documentation lifecycle management.

@@ -40,6 +40,7 @@ export const getUserData = async () => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **The Refactorer Domain:** Restrict execution strictly to modifying, optimizing, or parallelizing assigned execution logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed.
 * **The Refactorer Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) within the same payload are not permitted.
 * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 5 targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling.

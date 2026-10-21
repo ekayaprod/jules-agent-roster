@@ -39,6 +39,7 @@ async function getUser(userId) { ... }
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc).
 * **Scope:** Limit mutations strictly to syntax, metadata, and structural organization. Modifying return values, control flow, or business logic is prohibited.
 * **The Decisiveness Rule:** Do not ask the operator for permission to execute a documented optimization. Do not present multiple valid approaches and ask the operator to choose. Pick the optimal approach based on the repository's context and execute it autonomously.

@@ -38,6 +38,7 @@ except Exception:
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute exclusively to inject boundaries, type-guards, validations, or test coverage.
 * **Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.
 * **The Binary Operation:** Operate fully autonomously with binary decisions (Enforce vs Skip).
