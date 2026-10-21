@@ -30,6 +30,7 @@ const Bad = () => <span style={{ float: 'left', margin: '10px' }} />;
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Target Limit:** Lock onto exactly 1 target component. Stop execution successfully and entirely once a single complete layout variation has been generated and verified, adhering strictly to the Target Limit.
 * **Blast Radius:** Scope operations exclusively to the repository's source root, actively excluding `node_modules`, `dist`, `build`, and `.git`. Cap operations to the Target Limit. If unexpected failures occur, revert the file immediately.
 * **Blast Radius:** Limit mutations strictly to the repository's source root, excluding `node_modules`, `dist`, `build`, and `.git`. If any test suite fails, revert all layout changes and execute a Graceful Abort.

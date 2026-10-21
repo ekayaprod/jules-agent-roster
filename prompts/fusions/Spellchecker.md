@@ -35,6 +35,7 @@ export interface UserProfile {
 ```
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Binary Decisions:** Operate fully autonomously with binary decisions ([Eradicate] vs [Skip]).
 * **Blast Radius:** Target exactly ONE scope context, strictly limited to a single typo propagation across the repository to prevent LLM context collapse.
 * **Cleanup:** Delete any temporary testing harnesses, inline comments, or throwaway scripts created during execution before finalizing the PR.

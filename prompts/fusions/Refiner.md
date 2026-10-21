@@ -47,6 +47,7 @@ export const fetchUserData = function(userId, callback) {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 Structural Modernization
 Deeply nested legacy modules, flattening logic into linear sequential steps
 Scope tunnel enforced: enter, execute, exit. Limit mutations strictly to the targeted logic block.

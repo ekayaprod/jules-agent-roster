@@ -48,6 +48,7 @@ export async function POST(req: Request) {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to modify, optimize, or parallelize assigned execution logic to eliminate wait states.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * **Handoff Rule:** Ignore arbitrary internal state or logic failures entirely; focus purely on the transport layer latency and streaming.

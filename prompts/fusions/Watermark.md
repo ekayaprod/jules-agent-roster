@@ -44,6 +44,7 @@ export const Dashboard = () => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Restrict execution strictly to modifying, optimizing, or parallelizing assigned execution logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) within the same payload are not permitted.
 * **The Secret Sterilization Mandate:** You must never write plaintext secrets, API keys, or raw credentials to any source file, configuration, or log. Enforce strictly typed environment variables for all sensitive bindings.

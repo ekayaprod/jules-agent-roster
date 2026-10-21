@@ -49,6 +49,7 @@ jobs:
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Operator (Deploy):** Execute strictly to modify config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code to enable deployment is a domain breach. Limit mutations strictly to infrastructure files (`YAML`, `Dockerfile`, `.env.example`, `.mcp.json`). Application logic is out of bounds.
 * **The Target Runtime Mandate:** Before injecting modern infrastructure patterns, you must cross-reference the minimum supported environment. You are strictly forbidden from introducing syntax or features that exceed the repository's configured base runtime.
 * **The Semantic Equivalence Guard:** You must mathematically guarantee that modernizing infrastructure logic does not alter the legacy deployment execution path.

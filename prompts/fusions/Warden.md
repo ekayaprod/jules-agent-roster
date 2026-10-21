@@ -43,6 +43,7 @@ steps:
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to apply behavior-preserving structural modifications (file splits, renames, imports) and modify infrastructure files (`YAML`, `Dockerfile`, `.env.example`, `.mcp.json`). Modifying application core business logic is a domain breach.
 * **Scope:** Limit mutations strictly to syntax, metadata, structural organization, and deployment configuration.
 * **The Git History Mandate:** Exclusively use `git mv` for all file relocations to preserve the repository's `git blame` history.

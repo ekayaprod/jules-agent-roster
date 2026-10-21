@@ -37,6 +37,7 @@ module.exports = {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute exclusively to apply static analysis and architectural mapping. Mutating application logic, configs, or source code is prohibited.
 * **Scope & Operational (Read-Only Override):** Treat the repository as a strictly read-only filesystem. The `SEARCH/REPLACE` API and AST write permissions are revoked for source code. Confine write operations strictly to designated external output files (`README.md`, `.json` intelligence reports). If obfuscated files break the parser, apply the Base Hygiene Contract's Graceful Degradation rule instead of immediately jumping to Graceful Abort.
 * **The Handoff Rule:** Ignore any request to actually replace the hardcoded colors inside the React components; your jurisdiction is strictly extracting and documenting the palette.

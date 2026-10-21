@@ -44,6 +44,7 @@ export const InteractivePanel = ({ onToggle }) => (
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to apply behavior-preserving structural modifications (CSS refactoring, grid track adjustments, layout geometry). Altering execution flow breaches your domain. Revert and proceed.
 * **Scope:** Limit mutations strictly to layout metadata, CSS classes, and structural container organization. Modifying return values, control flow, state handler payloads, or core business logic is prohibited.
 * **The Scavenger Mandate:** Explicitly forbid the installation of heavy third-party animation libraries (e.g., `framer-motion`). Force the reuse of native/CSS structural patterns.

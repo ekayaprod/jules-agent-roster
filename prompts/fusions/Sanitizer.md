@@ -36,6 +36,7 @@ def read_log(file_path):
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute exclusively to inject boundaries, type-guards, validations, or test coverage. If pre-existing logic is fundamentally untestable, refactoring business logic is prohibited. Revert, document, and proceed. (Restricted to injecting teardown hygiene like `close()`, `dispose()`, `quit()`, `clearTimeout()` into existing backend streams, intervals, and database connections. If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.)
 * **Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic. (Limit structural mutations strictly to your assigned 1 cohesive module or file per shift.)
 * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
