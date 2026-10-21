@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
-const PromptParser = require('../../js/Utils/prompt/prompt-parser.js');
+const PromptParser = require('./prompt-parser.js');
 
 describe('Agent Structural Integrity - Adversarial Verification', () => {
 
     test('Agent file contains strict deterministic structural boundaries for Markdown rendering', () => {
-        const fileContent = fs.readFileSync(path.join(__dirname, 'Creative-Procedure.md'), 'utf-8');
+        const fileContent = fs.readFileSync(path.join(__dirname, '../../../prompts/system/Creative-Procedure.md'), 'utf-8');
 
         // Assert explicitly that the template start marker exists
         expect(fileContent).toContain('<!-- WORKER_TEMPLATE_START -->');
