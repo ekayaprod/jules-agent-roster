@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const PromptParser = require('../../js/Utils/prompt/prompt-parser.js');
+const PromptParser = require('./prompt-parser.js');
 
 describe('System Prompts Adversarial Injection Boundaries', () => {
 
