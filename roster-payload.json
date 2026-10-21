@@ -776,7 +776,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "FORTIFY application surfaces against prompt injection and hallucinated payloads.",
-    "forge_version": "V87.1",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Firewall.md",
     "isCustom": true
   },
