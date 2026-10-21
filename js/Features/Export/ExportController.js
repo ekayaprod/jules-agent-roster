@@ -133,20 +133,17 @@ You are required to retrieve your primary system instructions from the secure ce
     const CONCURRENCY_LIMIT = 5;
     let index = 0;
 
-    const workers = Array(Math.min(CONCURRENCY_LIMIT, agentsList.length)).fill(0).map(async () => {
+    // 🧬 COLLAPSE: Extracted deeply nested anonymous callback into named local for stack trace readability.
+    const processBatch = async () => {
       while (index < agentsList.length) {
         const agent = agentsList[index++];
         if (agent && agent.prompt === undefined) {
           const url = AgentUtils.getPromptUrl(agent);
-          const prompt = await this.app.agentRepo.fetchPrompt(
-            agent.name,
-            url,
-            MESSAGES.NO_PROTOCOL_DATA
-          );
-          agent.prompt = prompt;
+          agent.prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, MESSAGES.NO_PROTOCOL_DATA);
         }
       }
-    });
+    };
+    const workers = Array(Math.min(CONCURRENCY_LIMIT, agentsList.length)).fill(0).map(processBatch);
 
     await Promise.all(workers);
   }
@@ -200,14 +197,8 @@ You are required to retrieve your primary system instructions from the secure ce
   async downloadCustomAgents(btn) {
     const header = FormatUtils.CUSTOM_ROSTER_HEADER;
 
-    let agentsToCheck = [];
-    if (this.app.customAgents) {
-      for (const key in this.app.customAgents) {
-        if (Object.prototype.hasOwnProperty.call(this.app.customAgents, key)) {
-          agentsToCheck.push(this.app.customAgents[key]);
-        }
-      }
-    }
+    // 🧬 COLLAPSE: Collapsed sprawling imperative accumulator into highly dense, declarative functional pipeline.
+    let agentsToCheck = this.app.customAgents ? Object.values(this.app.customAgents) : [];
 
     if (btn) btn.disabled = true;
     await this._fetchMissingPrompts(agentsToCheck);

@@ -37,11 +37,8 @@ class FusionIndex {
     const storedKeys = StorageUtils.getJsonArrayItem(this.storageKey, 'FUSION_INDEX_PARSE_FAILED');
     this.unlockedKeys = new Set(storedKeys ?? []);
     this.unlockedAgents = new Set();
-    for (const key of this.unlockedKeys) {
-      if (typeof key === 'string') {
-        this._addUnlockedAgentsFromKey(key);
-      }
-    }
+    // 🧬 COLLAPSE: Converted imperative loop to functional pipeline.
+    Array.from(this.unlockedKeys).forEach(key => typeof key === 'string' && this._addUnlockedAgentsFromKey(key));
   }
 
   /**
@@ -114,14 +111,8 @@ class FusionIndex {
     grid.className = 'fusion-shelf-grid';
     container.appendChild(grid);
 
-    // Render slots for all custom agents without grouping
-    // ⚡ Bolt+: Eliminated unnecessary closure and array allocations from Object.entries().forEach() by using a direct for...in loop
-    const sortedKeys = [];
-    for (const key in customAgentsSafe) {
-      if (Object.prototype.hasOwnProperty.call(customAgentsSafe, key) && customAgentsSafe[key] !== '') {
-        sortedKeys.push(key);
-      }
-    }
+    // 🧬 COLLAPSE: Collapsed sprawling imperative logic into highly dense, declarative functional pipelines.
+    const sortedKeys = Object.keys(customAgentsSafe).filter(key => customAgentsSafe[key] !== '');
 
     sortedKeys.sort((a, b) => {
       const nameA = customAgentsSafe[a] || a;
@@ -255,13 +246,11 @@ class FusionIndex {
    */
   unlockAll() {
     if (this.customAgents) {
-      for (const key in this.customAgents) {
-        if (!Object.prototype.hasOwnProperty.call(this.customAgents, key)) continue;
+      // 🧬 COLLAPSE: Converted imperative loop to functional pipeline.
+      Object.keys(this.customAgents).forEach(key => {
         this.unlockedKeys.add(key);
-        if (typeof key === 'string') {
-          this._addUnlockedAgentsFromKey(key);
-        }
-      }
+        if (typeof key === 'string') this._addUnlockedAgentsFromKey(key);
+      });
       this.saveState();
       this.render();
     }
