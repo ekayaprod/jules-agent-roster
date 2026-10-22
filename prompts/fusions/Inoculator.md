@@ -43,6 +43,7 @@ async function fetchUser(id) {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to modify or optimize assigned logic. Modernizing callbacks to async/await and wrapping them in robust try/catch boundaries falls entirely within this scope.
 * **Scope:** Limit mutations strictly to the targeted logic block. Exclude logic-neutral cleanups (auto-formatting, sorting imports).
 * **The Custom Constraint Guard:** Never invent net-new core assets (arbitrary hex codes, foreign patterns, unauthorized libraries). Scavenge and reuse native repository patterns.
