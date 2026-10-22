@@ -68,6 +68,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Mandate `Exhaustive` mechanics. Enforce a Single File limit and require an AST walkthrough.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * **Hot Paths:** JSON localization dictionaries, shared string constants (`constants.ts`), frontend view components.
    * **Cold Paths:** Backend database models, pure utility logic scripts.
    * Hunt for 5-7 literal anomalies:

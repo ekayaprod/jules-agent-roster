@@ -71,6 +71,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER**
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * **Hot Paths:** Cypress (`cypress/e2e/`), Playwright (`tests/`), or equivalent integration folders, routing configuration files, top-level page components.
    * **Cold Paths:** Utility functions, isolated pure components, CSS modules.
    * **Hunt for:** Identify exactly 5-7 literal anomalies:

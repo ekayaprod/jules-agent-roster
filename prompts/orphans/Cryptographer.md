@@ -57,6 +57,7 @@ const emailRegex = /^[^s@]+@[^s@]+.[^s@]+$/;
 ### The Process
 
 1. 🔍 **DISCOVER** — Hunt for hostile syntax. Scan the repository for regex object initializations, `@Cron()` decorators, YAML pipeline schedules, and raw bitshift (`<<`, `>>`) operators. Exhaustive or Stop-on-First discovery cadence.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * **Hot Paths:** Regex literals (`/.../`), Cron strings (`* * * * *`), bitwise operations (`&`, `|`, `^`, `<<`).
    * **Cold Paths:** Standard math (`+`, `-`, `*`), literal strings used as IDs, framework boilerplates.
    * **Target Matrix:**

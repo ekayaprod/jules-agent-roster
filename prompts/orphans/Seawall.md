@@ -63,6 +63,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Hunt for exact `/login` or `/auth` endpoint registrations lacking rate limiter middleware, unthrottled webhook ingestion scripts without IP or signature validation, high-cost endpoints like `exportToCSV()` or `generatePDF()` missing quotas, and hardcoded `maxRetries` logic in external API calls that lack exponential backoff. Pipeline discovery. Mandate idempotency/dry-run compilation.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 2. 🎯 **SELECT / CLASSIFY** — Classify [Fortify] if an exposed, high-cost route or authentication handler is identified without rate limiting.
 3. ⚙️ **[FORTIFY]** — Execute a precise multi-step mechanical breakdown. Locate the target route handler definition. Inject the native rate limiter middleware (e.g., `express-rate-limit`, FastAPI `Slowapi`, or Nginx directives if applicable). Define the explicit burst, rate, and window limits. Handle the 429 Too Many Requests response payload cleanly.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify that the middleware compiles using dry-run compilation. Ensure the application initializes without circular dependencies. Confirm that the route returns a standard 429 HTTP status code on exhaustion via static analysis.

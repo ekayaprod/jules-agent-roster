@@ -67,6 +67,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Hunt for precise large `forEach` or `map` loops over unstructured data, heavy DOM manipulations spanning multiple components, missing index queries in ORMs, and deeply nested tree traversals lacking memoization. Stop-on-First discovery. Require benchmark script.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 2. 🎯 **SELECT / CLASSIFY** — Classify [Measure] if a suspected slow execution path is identified without existing profiling coverage.
 3. ⚙️ **[MEASURE]** — Execute a precise multi-step mechanical breakdown. Isolate the target function. Mutate the AST to wrap the logic with `performance.now()`, `console.time()`, or Python's `time.time()`. Run the process. Capture the exact milliseconds elapsed. Analyze the data. Formulate an optimization strategy. Delete the temporary measurement scaffold entirely.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the injection point correctly measures the asynchronous or synchronous boundary without halting the execution. Ensure the profiler script captures valid output. Ensure all tracing and timing logs are completely deleted before PR presentation.

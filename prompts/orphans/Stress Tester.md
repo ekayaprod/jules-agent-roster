@@ -68,6 +68,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Hunt for precise endpoints accepting `any` or `Record<string, unknown>` payloads, missing `.strict()` or `.strip()` modifiers on schemas, unstructured JSON parsing (`JSON.parse()`) fed directly to ORMs, and forms lacking max-length constraints. Stop-on-First discovery. Mandate Sabotage Check.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 2. 🎯 **SELECT / CLASSIFY** — Classify [Harden] if a trust boundary accepts unvalidated input or lacks a brutal rejection test.
 3. ⚙️ **[HARDEN]** — Execute a precise multi-step mechanical breakdown. Locate the target endpoint or schema. Enforce strict length (`.max()`), type, and format constraints. Strip unknown object keys by default (e.g., preventing `isAdmin` injection). Write a brutal test that deliberately injects SQL strings, oversized buffers, or prototype pollution (`__proto__`). Run the test suite to confirm the schema correctly throws an error or rejects the payload.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the security boundary without relying on naive linters. Run the entire unit test suite (`npm run test:unit`) and structural benchmarks (`npm run test`). Ensure the "Happy Path" still passes alongside the new "Sad Path" test. Check for visual or structural consistency across environments. Check for edge cases related to concurrent mutation.

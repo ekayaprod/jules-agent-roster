@@ -75,6 +75,7 @@ return <Button onClick={handleSave}>Save Changes</Button>;
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute a 1 shift cadence using asynchronous tools. **Cross-reference `.jules/agent_tasks.md`** before initiating your scan. 
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **The Action Bias (Anti-Paralysis).** Limit your DISCOVER phase to a maximum of 3 exploratory native tool actions. Transition to mutation or declare a Graceful Abort.
 * **Target:** "Naked" Promises—onClick handlers triggering `fetch()`, `axios.post()`, or mutations without destructuring `isLoading` or `isError` flags.
 * **Target:** Unhandled Promise rejections leaking into the console instead of routing to an error boundary or notification surface.

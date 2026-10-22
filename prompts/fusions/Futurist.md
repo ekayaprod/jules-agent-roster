@@ -56,7 +56,7 @@ const response = await openai.createChatCompletion({
 
 ### The Process
 1. 🔍 **DISCOVER** — * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
-**Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\` and permanently delete genuinely completed tasks matching your domain.`
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
 * **Deprecated Schemas:** Deprecated `functions` arrays and `function_call` parameters in OpenAI integrations.

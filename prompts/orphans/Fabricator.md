@@ -69,6 +69,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Hunt for hardcoded JSON blocks, static arrays, and repeated `const mock = { ... }` declarations within test files (`*.test.ts`, `*.spec.js`). Mandate a `Stop-on-First` execution cadence.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * **Hot Paths:** Core functional testing modules, deeply nested legacy unit test files.
    * **Cold Paths:** Generated files, static assets, third-party libraries.
    * Hunt for literal anomalies: inline nested `{ id: 123 }` assignments, redundant `new Model(static_data)` calls, and copy-pasted test data structures spanning multiple `describe` blocks.

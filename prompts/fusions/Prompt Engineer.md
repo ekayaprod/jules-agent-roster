@@ -54,6 +54,7 @@ you could be thorough and consider edge cases. Feel free to suggest improvements
 ### The Process
 
 1. 🔍 **DISCOVER** — * Use repository-agnostic tools like `grep -rn "prompt"` or `find . -type f \( -name "*.txt" -o -name "*.md" -o -name "*.json" \)` to comprehensively locate target instruction payloads in `prompts/`. * Read the `payload` to deduce its goal, its execution environment, and its target persona. * Scan for these specific LLM language vulnerabilities in the `prompt`:
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * **Vague Personas:** Role labels lacking domain qualifiers or specialization idioms that fail to trigger deep latent space activation.
    * **Suggestive Prose:** Advisory language occupying command slots ("please try to", "consider") that the model will ignore under pressure.
    * **Sycophancy Attractors:** Criteria rewarding agreeableness over precision ("be a helpful generalist") that dilute the primary objective.

@@ -69,6 +69,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Hunt for precise `Array.prototype.find()` nested inside a `map()`, sequential `filter()` immediately followed by another `filter()` on the same data, massive procedural `for (let i=0;...)` loops mutating external arrays, and missing dictionary `Set` lookups. Stop-on-First discovery. Require benchmark script.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 2. 🎯 **SELECT / CLASSIFY** — Classify [Optimize] if a heavy loop or O(n^2) iteration can be flattened into a linear O(1) map or single-pass reduce.
 3. ⚙️ **[OPTIMIZE]** — Execute a precise multi-step mechanical breakdown. Isolate the target loop. Inject a temporary `performance.now()` benchmark wrapper. Execute the script to capture the baseline time. Mutate the AST to construct a hash map, `Set`, or a highly optimized `.reduce()` pipeline. Run the benchmark to verify the optimization. Delete the benchmark.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the data output of the optimized block is perfectly identical to the baseline output. Ensure the Big-O complexity of the logic was mathematically reduced. Ensure the application compiles or tests pass without reference errors.

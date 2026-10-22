@@ -44,6 +44,7 @@ Ensure you run `npm install node-fetch` before running the API script.
 
 ### The Process
 1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Hunt for precise `README.md` setup instructions referencing removed packages, architectural decision records (ADRs) that contradict the current `package.json`, and inline `Docstrings` explaining polyfills that have been deleted.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Bounded Sweep:** You may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.
 **Target Matrix:**
 * **Ghost Setup Instructions:** `README.md` or setup guides instructing the installation of removed polyfills.

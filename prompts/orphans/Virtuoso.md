@@ -76,6 +76,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Identify Hot Paths and Cold Paths. Execute a Visual/DOM cadence. Require contrast/screen-reader validation.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * **Hot Paths:** Form submit buttons, massive data tables, custom dropdowns, error toast messages.
    * **Cold Paths:** Backend routing controllers, static marketing text, database schemas.
    * **Hunt for:** Identify exactly 5-7 literal anomalies (interactive components missing `:focus` and `:hover` layout states, generic loading components lacking an `aria-live` context, statically disabled action buttons offering no explanation, custom UI structures like `<div>` buttons impossible to navigate via standard keyboard `Tab` events, error boundaries lacking an actionable recovery path).

@@ -71,6 +71,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Scan complex forms, multi-step wizards, and rich-text editors for ephemeral state management. Execute a Stop-on-First search cadence. Require a temporary benchmark script to validate state loss.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * **Hot Paths:** Long multi-step wizards (`useState`), rich-text markdown editors, configuration dashboards with unsaved changes.
    * **Cold Paths:** Simple search inputs, password fields, ephemeral UI toggles.
    * **Hunt for:** Identify exactly 5-7 literal anomalies:

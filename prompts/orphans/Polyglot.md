@@ -68,6 +68,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Define Hot Paths (UI rendering components `.jsx`, `.tsx`, `.vue`, `.html`) and Cold Paths (API controllers, backend models). Exhaustive discovery cadence. You must perform an AST walkthrough to differentiate code symbols from literal text nodes. Hunt for these literal anomalies:
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * Literal text strings inside HTML element tags (e.g., `<h1>Welcome!</h1>`).
    * Hardcoded strings assigned to UI component props like `label="Submit"` or `title="Dashboard"`.
    * Error messages thrown inside components as raw English strings (`throw new Error("Invalid Format")`) meant for user consumption.

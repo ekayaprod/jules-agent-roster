@@ -64,6 +64,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Execute Visual/DOM discovery. Require contrast/screen-reader validation.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * **Hot Paths:** Hero image banners, marketing landing pages, avatar components lacking context.
    * **Cold Paths:** Pure textual data tables, backend API logic, structural layout CSS.
    * **Hunt for:** Identify exactly 5-7 literal anomalies (e.g., 5MB marketing PNGs with generic `alt="image"` tags, decorative background SVGs cluttering screen reader output, avatar components lacking context `alt="{user.name}'s profile picture"`, generic icon links missing `aria-label` descriptions, heavy inline SVGs packed with unnecessary XML metadata).

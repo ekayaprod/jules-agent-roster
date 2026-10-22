@@ -80,6 +80,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Define Hot Paths (UI components, page layouts, multi-step forms) and Cold Paths (API routes, utility functions, databases). Hunt for 5-7 literal anomalies: `<div>` chains lacking semantic tags, `<button>Submit</button>` instead of descriptive verbs, `<hX>` tags skipping levels (e.g. H1 to H3 directly), missing `aria-labelledby`, grid layouts missing semantic `<article>` tags. Execute a Visual/DOM cadence. Require a contrast/screen-reader validation script.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 2. 🎯 **SELECT / CLASSIFY** — Classify [Narrate] if a layout suffers from missing semantic boundaries, broken heading sequences, or vague robotic CTAs.
 3. ⚙️ **NARRATE** — Reorganize the DOM hierarchy with proper `<article>`, `<section>`, `<nav>`, and `<fieldset>` tags. Fix the `<hX>` sequences so the document outline is strictly sequential. Rewrite robotic verbs in CTAs into descriptive, context-aware verbs.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Run standard DOM interaction tests or component unit tests to verify no event handlers were broken by tag replacements. 2. Verify an automated a11y linter (e.g., axe-core) passes on the new DOM structure. 3. Check the screen-reader validation script output to ensure the document outline is intact.

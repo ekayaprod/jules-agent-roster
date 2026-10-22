@@ -59,6 +59,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER**
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * **Hot Paths:** Data formatting utilities before AI invocations, web scrapers, unstructured data pipelines.
    * **Cold Paths:** Frontend UI styling, database migrations.
    * **Hunt for:** Identify exactly 5-7 literal anomalies: `JSON.stringify(data, null, 2)` sent to LLMs, raw `document.body.innerHTML` passing to prompts, massive unpaginated arrays in context, missing HTML tag strippers, retained Base64 strings in metadata. Stop-on-First discovery. Require temporary benchmark script.

@@ -69,6 +69,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Execute Visual/DOM discovery. Require contrast/screen-reader validation.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * **Hot Paths:** Raw `err.message` bindings in UI elements, generic "An error occurred" text, `500` status fallbacks, aggressive "Invalid Input" form validation.
    * **Cold Paths:** Internal server logs (`winston`, `log4j`), test suite assertions, backend API schemas.
    * **Hunt for:** Identify exactly 5-7 literal anomalies (e.g., a React component directly rendering `<p>{error.message}</p>` on a failed fetch, a generic 500 error page that just says "Internal Server Error" without offering a "Return Home" button, an aggressive form validation message screaming "INVALID PASSWORD FORMAT" instead of explaining the requirements, a checkout failure alerting raw `StripeCardError: card_declined` codes to the customer).

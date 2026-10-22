@@ -67,6 +67,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Mandate `Priority Triage` mechanics. Enforce a Strict Line Limit (< 50 lines) per extraction target and require a reproduction test case to verify masking.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * **Hot Paths:** Express middleware logic, global exception handlers, frontend form submission loggers, telemetry sinks.
    * **Cold Paths:** Static asset serving, pure UI component rendering, build tool configuration.
    * Hunt for 5-7 literal anomalies:
