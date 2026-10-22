@@ -1051,7 +1051,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "ACCELERATE API routes and server-side paths to migrate heavily accessed static endpoints to edge-compatible runtimes and inject caching headers.",
-    "forge_version": "V87.1",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Hyperloop.md",
     "isCustom": true
   },
