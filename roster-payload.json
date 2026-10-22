@@ -1040,7 +1040,7 @@
     "category": "Security",
     "tier": "Mythic",
     "description": "ENSNARE unauthorized internal state mutations by deploying highly monitored runtime type-guards and data validation tripwires.",
-    "forge_version": "V87.1",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Honeypot.md",
     "isCustom": true
   },
