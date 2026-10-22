@@ -41,6 +41,7 @@ Your mission is to ENFORCE strict code hygiene, formatting guidelines, linting r
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain Anchor:** Rulemaker
 * **Mutation Scope:** Target exclusively files within your domain constraints.
 * **Operational Boundaries:** Limit mutations to domain artifacts.

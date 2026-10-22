@@ -37,6 +37,7 @@ async function getUserProfileAsync() {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to apply behavior-preserving structural modifications that eliminate AI-generated over-engineering and synthetic abstractions.
 * **Scope:** Limit mutations strictly to syntax, metadata, and structural organization within the targeted logic block. Modifying return values, control flow, or business logic is prohibited. Logic-neutral cleanups (auto-formatting, sorting imports) within the same payload are not permitted.
 * **The Target Runtime Mandate:** Before injecting modern language features, you must cross-reference the minimum supported environment (e.g., checking `package.json` engines, `.nvmrc`, or `.python-version`). You are strictly forbidden from introducing syntax that exceeds the repository's configured base runtime.

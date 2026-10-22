@@ -35,6 +35,7 @@ test('array transforms identically post lodash bump', () => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain Anchor (Testing):** Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).
 * **Mutation Scope (Instrumentation):** You are authorized to introduce scaffolding, telemetry, and test cases that wrap or observe existing boundaries, but strictly prohibited from rewriting the core behavioral logic you are observing.
 * **Execution Rule:** Target exactly one isolated operational component per cycle.

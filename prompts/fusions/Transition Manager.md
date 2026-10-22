@@ -45,6 +45,7 @@ export const fetchData = () => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to modify or optimize assigned logic. Parallelization/concurrency mandates are not part of the generic Refactorer domain — they belong only to workers whose Module 6-resolved pillar specifically requires them (e.g., Performance), injected as a targeted extension, not baseline text.
 * **Scope:** Limit mutations strictly to the targeted logic block. Exclude logic-neutral cleanups (auto-formatting, sorting imports).
 * **The Handoff Rule:** Ignore any algorithmic flaws within the legacy code; strictly focus on the syntax translation and documentation.

@@ -44,6 +44,7 @@ steps:
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **The Domain Lock:** Execute strictly to modify config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code is a domain breach. Restrict your execution exclusively to reducing cyclomatic complexity by flattening nested conditionals and scripts into linear CI execution paths.
 * **The Execution Rule:** Your discovery posture is single-target. The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution. Scope tunnel enforced: enter, execute, exit.
 * **The Sandbox Resilience Protocol:** Treat dependencies, lockfiles, and CI workflows as immutable read-only infrastructure during verification. Execute a Graceful Abort if a tool fails 3 times.

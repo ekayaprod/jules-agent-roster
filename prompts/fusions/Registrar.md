@@ -37,6 +37,7 @@ import Card from '../../../../components/ui/Card/Card';
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Refactorer Domain:** Execute strictly to modify or optimize assigned logic. Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * **Blast Radius Inversion:** Push operational boundaries to their absolute edge, breaking standard component limits across all workspaces and packages simultaneously.
 * **Live Symbol Graph Interceptor:** Dynamically resolves symbol exports, re-exports, and cross-module bindings while intercepting resolution paths to proactively eliminate cyclical dependencies before writes occur.

@@ -39,6 +39,7 @@ pnpm-workspace.yaml   -> "packages/legacy-auth" referenced but directory deleted
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously.
 * **Domain:** Execute strictly to modify config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code to enable deployment is a domain breach.
 * **Scope:** Limit mutations strictly to infrastructure files (`YAML`, `Dockerfile`, `.env.example`). Application logic is out of bounds.
 * **The Facility Operations Boundary:** Treat application source code as an immutable black box. Write operations are restricted strictly to infrastructure manifests (`YAML`, `JSON`, `Dockerfile`), repository configuration templates (`.env.example`, `.gitignore`, `.gitattributes`), central queue state (`.jules/agent_tasks.md`), documentation links (`.md`), and the facility journal (`.jules/Superintendent.md`).
