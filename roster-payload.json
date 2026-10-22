@@ -881,7 +881,7 @@
   },
   {
     "name": "Ghost Hunter",
-    "emoji": "👻",
+    "emoji": "🧐",
     "role": "Hallucination Specialist",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -925,7 +925,7 @@
   },
   {
     "name": "Gravedigger",
-    "emoji": "🪦",
+    "emoji": "⚱️",
     "role": "Necropolis Guide",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1134,7 +1134,7 @@
   },
   {
     "name": "Lexicon",
-    "emoji": "🔤",
+    "emoji": "✍️",
     "role": "Vocabulary Standardizer",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1673,7 +1673,7 @@
   },
   {
     "name": "Redirector",
-    "emoji": "🔀",
+    "emoji": "🚏",
     "role": "Link Sweeper",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -1706,7 +1706,7 @@
   },
   {
     "name": "Regulator",
-    "emoji": "🛂",
+    "emoji": "🛄",
     "role": "Boundary Enforcer",
     "category": "Maintenance",
     "tier": "Fusion",
