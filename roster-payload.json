@@ -1029,7 +1029,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "PROJECT raw markdown into rich, interactive interfaces that feel native to your application.",
-    "forge_version": "V87.1",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Hologram.md",
     "isCustom": true
   },
