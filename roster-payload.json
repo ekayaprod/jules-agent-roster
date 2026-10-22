@@ -1370,7 +1370,7 @@
     "category": "Fusion",
     "tier": "Fusion",
     "description": "ELIMINATE AI-hallucinated synchronous waterfalls and structurally padding loops to mathematically accelerate application throughput.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Overdrive.md",
     "isCustom": true
   },
