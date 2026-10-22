@@ -2520,7 +2520,7 @@
   },
   {
     "name": "Board Clerk",
-    "emoji": "📋",
+    "emoji": "📌",
     "role": "Board Clerk",
     "category": "Micro",
     "tier": "Core",
@@ -2564,7 +2564,7 @@
   },
   {
     "name": "Label Stripper",
-    "emoji": "🧽",
+    "emoji": "🧼",
     "role": "Label Stripper",
     "category": "Micro",
     "tier": "Core",
@@ -2586,7 +2586,7 @@
   },
   {
     "name": "MatrixClerk",
-    "emoji": "🗃️",
+    "emoji": "📎",
     "role": "Matrix Standardizer",
     "category": "Micro",
     "tier": "Core",
@@ -2597,7 +2597,7 @@
   },
   {
     "name": "Test Clerk",
-    "emoji": "🧪",
+    "emoji": "🌡️",
     "role": "Doctrine Enforcer",
     "category": "Micro",
     "tier": "Core",
