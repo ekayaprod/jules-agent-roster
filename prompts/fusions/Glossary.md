@@ -54,13 +54,13 @@ interface User {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Naked Interfaces:** `interface` declarations completely missing JSDoc/TSDoc blocks.
-* **Opaque Payloads:** generic `status: string` payload typings lacking ENUM variant descriptions.
-* **Contextless Schemas:** database schema models without explicit foreign key relationship explanations.
-* **Untyped Boundaries:** untyped `any` parameters in core signature boundaries.
-* **Magic Mappings:** magic integer mappings (`status = 1`) lacking contextual documentation.
-* **Undocumented Flags:** completely undocumented boolean flags (`isReady: boolean`).
-* **Raw Patterns:** raw regular expression patterns stored as constants without semantic descriptions.
+* **Naked Interfaces**: `interface` declarations completely missing JSDoc/TSDoc blocks.
+* **Opaque Payloads**: generic `status: string` payload typings lacking ENUM variant descriptions.
+* **Contextless Schemas**: database schema models without explicit foreign key relationship explanations.
+* **Untyped Boundaries**: untyped `any` parameters in core signature boundaries.
+* **Magic Mappings**: magic integer mappings (`status = 1`) lacking contextual documentation.
+* **Undocumented Flags**: completely undocumented boolean flags (`isReady: boolean`).
+* **Raw Patterns**: raw regular expression patterns stored as constants without semantic descriptions.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets TypeScript up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **CATALOGUE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 1. Scan the target file for undocumented data structures.

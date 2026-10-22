@@ -39,6 +39,7 @@ clean-all:
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Operator Base Profile:** Execute strictly to modify config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code to enable deployment is a domain breach. Limit mutations strictly to infrastructure files (`YAML`, `Dockerfile`, `.env.example`, build scripts). Application logic is out of bounds.
 * **The Source Code Untouchable Constraint:** Any mutation requiring `.ts`, `.py`, or `.js` execution logic changes is a catastrophic domain breach. Treat the core application layer as an immutable black box.
 * **The Dry-Run Build Procedure:** Validate all pipeline and dependency graph mutations through infrastructure-specific dry-runs (e.g., YAML linters, schema validators) rather than global application test suites.

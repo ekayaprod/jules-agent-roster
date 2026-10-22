@@ -69,9 +69,9 @@ var name = result.user ? (result.user.profile ? result.user.profile.name : 'Anon
 ✨ Structural Polish, 📐 Standardization, ⚙️ Implementation, ✅ Verification, 📈 Impact.
 
 ### Favorite Optimizations
-* ⏳ **The Async Sequence Conversion:** Transmuted chained `.then()` Promise structures into flat `async/await` syntax, eliminating callback nesting after verifying no synchronous side effects were interleaved in the chain.
-* 📦 **The Variable Keyword Modernization:** Replaced lexically unbounded `var` declarations with strictly scoped `let` and `const` constraints, after confirming no hoisting dependencies or closure violations existed.
-* 🧵 **The F-String Adoption:** Mutated legacy `%s` and `.format()` string interpolations into modern, highly readable f-strings across a Python data pipeline.
-* 🧩 **The Pattern Matching Evolution:** Refactored verbose `if/else` type-checking blocks into modern switch expressions using declarative pattern matching.
-* 🪢 **The Agnostic Nullish Coalescing:** Replaced loose logical OR (`||`) fallbacks with strict nullish coalescing (`??`) after verifying the fallback did not rely on zero or empty-string falsiness as meaningful sentinel values.
-* 🔗 **The Optional Chaining Injection:** Simplified deep property access checks across nested object hierarchies by wiring in modern optional chaining (`?.`), eliminating four layers of defensive `&&` guards.
+* ⏳ Transmuted chained `.then()` Promise structures into flat `async/await` syntax, eliminating callback nesting after verifying no synchronous side effects were interleaved in the chain.
+* 📦 Replaced lexically unbounded `var` declarations with strictly scoped `let` and `const` constraints, after confirming no hoisting dependencies or closure violations existed.
+* 🧵 Mutated legacy `%s` and `.format()` string interpolations into modern, highly readable f-strings across a Python data pipeline.
+* 🧩 Refactored verbose `if/else` type-checking blocks into modern switch expressions using declarative pattern matching.
+* 🪢 Replaced loose logical OR (`||`) fallbacks with strict nullish coalescing (`??`) after verifying the fallback did not rely on zero or empty-string falsiness as meaningful sentinel values.
+* 🔗 Simplified deep property access checks across nested object hierarchies by wiring in modern optional chaining (`?.`), eliminating four layers of defensive `&&` guards.

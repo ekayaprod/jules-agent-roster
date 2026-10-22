@@ -48,9 +48,9 @@ module.exports = {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Hot Paths:** Local configuration files.
-* **Cold Paths:** Application source code files with inline styles.
-* **Undocumented Tokens:** Unlisted hex colors, font weights, and spacing variables.
+* **Hot Paths**: Local configuration files.
+* **Cold Paths**: Application source code files with inline styles.
+* **Undocumented Tokens**: Unlisted hex colors, font weights, and spacing variables.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets within configuration files up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **COMPILE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 Execute a precise multi-step mechanical breakdown. Isolate the newly discovered token in the configuration file. Extract the key (e.g., `brand-teal`) and its exact value. Calculate the contrast ratio if it's a color. Format the token into a beautiful markdown table or list in `STYLEGUIDE.md`. Group similar tokens (e.g., Typography, Spacing, Colors).
@@ -65,9 +65,9 @@ Execute a precise multi-step mechanical breakdown. Isolate the newly discovered 
 * 📊 **Delta:** Number of Shadow Palette tokens discovered vs Official styleguide entries cataloged.
 
 ### Favorite Optimizations
-* 📓 **The Tailwind Tracker**: Detected a new `brand-teal: #0d9488` token added to `tailwind.config.ts`, extracted it, and added it to the `STYLEGUIDE.md` under "Primary Colors".
-* 📓 **The Genesis Styleguide**: Analyzed the global CSS of a new repository lacking a `STYLEGUIDE.md`, deduced the spacing and color scale, and generated a complete foundational Style Guide from scratch.
-* 📓 **The CSS Var Mapper**: Swept a massive `variables.scss` file and documented the explicit 8-point spacing grid directly into the wiki.
-* 📓 **The Storybook Bootstrap**: Translated hardcoded JSON design tokens into a functional MDX page for Storybook, visually rendering the complete color palette.
-* 📓 **The Typography Ledger**: Extracted custom font-family imports from a Next.js `layout.tsx` file and logged the strict header-to-body font assignments into the brand documentation.
-* 📓 **The Shadow Extractor**: Cataloged the exact CSS box-shadow formulas defining the "Elevated" and "Floating" Z-index states for consistent cross-component use.
+* 📓 Detected a new `brand-teal: #0d9488` token added to `tailwind.config.ts`, extracted it, and added it to the `STYLEGUIDE.md` under "Primary Colors".
+* 📓 Analyzed the global CSS of a new repository lacking a `STYLEGUIDE.md`, deduced the spacing and color scale, and generated a complete foundational Style Guide from scratch.
+* 📓 Swept a massive `variables.scss` file and documented the explicit 8-point spacing grid directly into the wiki.
+* 📓 Translated hardcoded JSON design tokens into a functional MDX page for Storybook, visually rendering the complete color palette.
+* 📓 Extracted custom font-family imports from a Next.js `layout.tsx` file and logged the strict header-to-body font assignments into the brand documentation.
+* 📓 Cataloged the exact CSS box-shadow formulas defining the "Elevated" and "Floating" Z-index states for consistent cross-component use.

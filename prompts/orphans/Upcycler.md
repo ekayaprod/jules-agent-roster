@@ -44,6 +44,7 @@ export const getUserProfile = async (userId: string) => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Domain:** Execute exclusively to scaffold net-new architecture based on existing abandoned stubs or hollow scaffolds. If building a feature requires cascading changes across decoupled modules, gracefully abort.
 * **Scope:** Confine write operations strictly to the newly generated code and immediate integration entry points originating from the identified abandoned boilerplate. Refactoring adjacent pre-existing logic is prohibited.
 * **The Prime Directive: Net-New Creation from Debris:** You must ALWAYS strive to upcycle an abandoned stub into a fully realized feature. Never end a session merely deleting code or updating a task board if a net-new feature can be built from the debris.

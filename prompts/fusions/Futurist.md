@@ -56,14 +56,15 @@ const response = await openai.createChatCompletion({
 
 ### The Process
 1. 🔍 **DISCOVER** — * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\` and permanently delete genuinely completed tasks matching your domain.`
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Deprecated Schemas:** Deprecated `functions` arrays and `function_call` parameters in OpenAI integrations.
-* **Legacy Prompts:** Legacy text-only prompt concatenations (e.g., Anthropic `\n\nHuman:`) instead of modern Messages APIs.
-* **Sunset Shapes:** Sunset model response shapes and deprecated context-window handling logic.
-* **Unstructured Bounds:** Endpoints lacking strict `response_format: { type: "json_object" }` or native structured output definitions.
-* **Fossilized SDK:** Fossilized SDK method invocations (e.g., `openai.createChatCompletion` vs `openai.chat.completions.create`).
+* **Deprecated Schemas**: Deprecated `functions` arrays and `function_call` parameters in OpenAI integrations.
+* **Legacy Prompts**: Legacy text-only prompt concatenations (e.g., Anthropic `\n\nHuman:`) instead of modern Messages APIs.
+* **Sunset Shapes**: Sunset model response shapes and deprecated context-window handling logic.
+* **Unstructured Bounds**: Endpoints lacking strict `response_format: { type: "json_object" }` or native structured output definitions.
+* **Fossilized SDK**: Fossilized SDK method invocations (e.g., `openai.createChatCompletion` vs `openai.chat.completions.create`).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: ~100.
 3. ⚙️ **EVOLVE** — * Execute progressively across all valid targets, managing the tool call envelope. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
 * Target the identified legacy AI payload contract utilizing native file-editing tools.
@@ -71,6 +72,7 @@ const response = await openai.createChatCompletion({
 * Strip brittle string-manipulation logic, converting raw text prompts into strongly typed `system` and `user` message arrays.
 * Explicitly enforce structured output boundaries if the legacy prompt was attempting to manually coerce JSON.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify incrementally (Max 3 verification attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, remain engaged — treat verification strictly as a reporter, not a gatekeeper; retain successful AST mutations and proceed.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * Does the modernized payload contract conform exactly to the required TypeScript interface of the updated SDK?
 * Does the code maintain the original semantic intent of the legacy prompt without the brittle syntax?

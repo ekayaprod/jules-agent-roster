@@ -49,6 +49,7 @@ Deleted because it is no longer used in the codebase.
 
 ### The Process
 1. 🔍 **DISCOVER** — asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure. **The Prune-First Protocol:** read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **Legacy Prefixes:** Files or directories prefixed with `old_`, `legacy_`, or `v1_` that have zero active cross-imports.

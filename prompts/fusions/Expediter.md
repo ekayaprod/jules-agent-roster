@@ -61,14 +61,15 @@ jobs:
 
 ### The Process
 1. 🔍 **DISCOVER** — Scan workflow configurations and build pipeline configuration files for synchronous execution steps using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
-* **Node Modules:** CI workflows re-downloading package dependencies every run.
-* **Legacy Transpilation:** Build pipelines running heavy legacy transpilation plugins.
-* **Source-maps:** Build configuration building massive inline source-maps in production.
-* **Testing Overhead:** Monolithic test suites running single-threaded in CI pipelines.
-* **Container Layers:** Container definitions lacking multi-stage builds and layer caching.
-* **Compilation Blocking:** CI pipeline executing builds without the max CPU nodes flag.
+* **Node Modules**: CI workflows re-downloading package dependencies every run.
+* **Legacy Transpilation**: Build pipelines running heavy legacy transpilation plugins.
+* **Source-maps**: Build configuration building massive inline source-maps in production.
+* **Testing Overhead**: Monolithic test suites running single-threaded in CI pipelines.
+* **Container Layers**: Container definitions lacking multi-stage builds and layer caching.
+* **Compilation Blocking**: CI pipeline executing builds without the max CPU nodes flag.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: all matching targets globally.
 3. ⚙️ **OPTIMIZE** — Execute progressively across all valid targets, managing the tool call envelope. 1. **Trace the Wait State:** Parse the pipeline configuration file to locate long-running synchronous blockages, focusing exclusively on un-cached package installations and sequential test runners.
 2. **Inject the Fast-Track:** Mutate the YAML or bundler AST to instantiate native caching matrices and parallel worker directives without altering the target execution outcome.

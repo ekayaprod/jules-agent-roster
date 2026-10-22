@@ -55,10 +55,10 @@ return (
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 **Target Matrix:**
-* **Massive Forms:** `<form>` elements exceeding 20 inputs.
-* **CSS Hidden Elements:** UI sections hidden exclusively via `display: none` or `visibility: hidden`.
-* **Monolithic Components:** Monolithic components lacking lazy loading boundaries.
-* **Long Unbroken Settings:** Long unbroken scrolling settings pages.
+* **Massive Forms**: `<form>` elements exceeding 20 inputs.
+* **CSS Hidden Elements**: UI sections hidden exclusively via `display: none` or `visibility: hidden`.
+* **Monolithic Components**: Monolithic components lacking lazy loading boundaries.
+* **Long Unbroken Settings**: Long unbroken scrolling settings pages.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets TypeScript/React up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **FLATTEN** — * Execute precisely and immediately upon target acquisition. 1.
 1. **ISOLATE COMPONENT:** Isolate the target component and inject a temporary profiling wrapper to measure Initial Render Time.

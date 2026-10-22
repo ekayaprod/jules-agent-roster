@@ -39,10 +39,11 @@ const supabase = createClient("https://example.supabase.co", "eyJhbGciOiJIUzI1Ni
 
 ### The Process
 1. 🔍 **DISCOVER** — async **State Ingestion:** Read `.jules/journal_security.md`. Log only persistent architectural context for future `Security` runs, not exhaustive execution steps. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Cryptographic Token:** `eyJhbGciOi` (JWT headers) or MongoDB connection strings `mongodb+srv://`.
-* **Provider Keys:** `sk_live_` (Stripe keys), `xoxb-` (Slack tokens), hardcoded AWS `AKIA` access keys.
-* **Literal Variables:** Any hardcoded secret lacking semantic warnings and proper architectural abstraction.
+* **Cryptographic Token**: `eyJhbGciOi` (JWT headers) or MongoDB connection strings `mongodb+srv://`.
+* **Provider Keys**: `sk_live_` (Stripe keys), `xoxb-` (Slack tokens), hardcoded AWS `AKIA` access keys.
+* **Literal Variables**: Any hardcoded secret lacking semantic warnings and proper architectural abstraction.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 5.
 3. ⚙️ **AUDIT** —  Continue executing within your locked scope up to a maximum of 5. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * Delete the literal secret from the source code.

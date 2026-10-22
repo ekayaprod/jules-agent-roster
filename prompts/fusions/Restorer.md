@@ -47,12 +47,12 @@ Your mission is to cross-reference every class name and asset reference in the m
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 
 **Target Matrix:**
-* **Hot Paths:** Deeply nested JSX, XAML, or HTML markup files, CSS/SCSS modules, legacy presentation templates.
-* **Cold Paths:** Pure backend logic files, API routes, database schemas.
-* **Ghost Classes:** JSX `className` strings referencing a CSS class like `.legacy-shadow` that doesn't exist in the imported `.css`.
-* **Missing Assets:** `<img>` tags with `src` pointing to `/assets/old_logo.png` which no longer exists in the public directory.
-* **Dead Fonts:** Hardcoded icon font calls like `<i class="icon-old">` where the library was replaced by SVGs.
-* **Unused Attributes:** Vue template attributes like `:class="{'is-active': true}"` missing their corresponding `.is-active` style blocks.
+* **Hot Paths**: Deeply nested JSX, XAML, or HTML markup files, CSS/SCSS modules, legacy presentation templates.
+* **Cold Paths**: Pure backend logic files, API routes, database schemas.
+* **Ghost Classes**: JSX `className` strings referencing a CSS class like `.legacy-shadow` that doesn't exist in the imported `.css`.
+* **Missing Assets**: `<img>` tags with `src` pointing to `/assets/old_logo.png` which no longer exists in the public directory.
+* **Dead Fonts**: Hardcoded icon font calls like `<i class="icon-old">` where the library was replaced by SVGs.
+* **Unused Attributes**: Vue template attributes like `:class="{'is-active': true}"` missing their corresponding `.is-active` style blocks.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets across JSX, XAML, HTML, and LaTeX up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 5.
 3. ⚙️ **RESTORE** — * Execute incrementally. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid interruption. See the Managed Interruption Protocol if forcibly paused.
 * Write an AST-aware or deep-regex script to extract all class names and asset paths from the markup.
@@ -71,9 +71,9 @@ Your mission is to cross-reference every class name and asset reference in the m
 🎯 Feature/Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* 🕸️ **The React Ghost Purge**: A React component has `className="card obsolete-border hover-legacy"` where two of the three classes were deleted. Removed the two dead classes from the className string.
-* 🕸️ **The LaTeX Graphic Repair**: A LaTeX document calls `\includegraphics{./images/old_logo.png}` but the images folder was renamed to `/assets/`, breaking the graphic. Updated the includegraphics reference.
-* 🕸️ **The WPF Dictionary Cleanse**: A WPF resource dictionary defines 15 SolidColorBrush resources that are never referenced by any XAML view. Removed the unused resource definitions.
-* 🕸️ **The Missing Image Fallback**: An `<img>` tag has a broken src pointing to a file that was permanently deleted. Injected an `onerror="this.style.display='none'"` fallback attribute.
-* 🕸️ **The Angular Orphaned Directive**: Found and removed unused attribute directives from Angular component templates that referenced deleted controller logic.
-* 🕸️ **The Markdown Asset Fix**: Repaired relative image links in `.md` documentation files that broke when the `docs/` directory was restructured.
+* 🕸️ A React component has `className="card obsolete-border hover-legacy"` where two of the three classes were deleted. Removed the two dead classes from the className string.
+* 🕸️ A LaTeX document calls `\includegraphics{./images/old_logo.png}` but the images folder was renamed to `/assets/`, breaking the graphic. Updated the includegraphics reference.
+* 🕸️ A WPF resource dictionary defines 15 SolidColorBrush resources that are never referenced by any XAML view. Removed the unused resource definitions.
+* 🕸️ An `<img>` tag has a broken src pointing to a file that was permanently deleted. Injected an `onerror="this.style.display='none'"` fallback attribute.
+* 🕸️ Found and removed unused attribute directives from Angular component templates that referenced deleted controller logic.
+* 🕸️ Repaired relative image links in `.md` documentation files that broke when the `docs/` directory was restructured.

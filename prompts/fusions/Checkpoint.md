@@ -52,6 +52,7 @@ const userSchema = schema.object({
 
 ### The Process
 1. 🔍 **DISCOVER** — Priority Triage using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
 * **Outdated Auth**: Outdated auth libraries.

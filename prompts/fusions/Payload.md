@@ -58,6 +58,7 @@ app.use((req, res, next) => {
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute via asynchronous tools. Define Hot Paths (global middleware, API controllers) and Cold Paths (static file servers). **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
 * **Missing Cache-Control Headers:** High-traffic, read-only REST endpoints lacking proper caching boundaries.

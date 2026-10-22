@@ -51,11 +51,11 @@ This module uses SQS to sync the cart. Run `npm start` to boot it.
 1. 🔍 **DISCOVER** — Execute a Continuous Synthesis cadence using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
-* **Implicit domain boundaries:** Cohesive folder structures missing high-level mapping.
-* **The Oral Tradition:** Complex business logic missing historical context or Why it exists.
-* **Missing Architecture Decision Records:** Major tech stack integrations like Auth and Database ORMs.
-* **Undocumented Domain-Driven Design:** DDD ubiquitous language scattered across modules.
-* **Cross-module data flows:** Flows that lack a centralized conceptual blueprint.
+* **Implicit domain boundaries**: Cohesive folder structures missing high-level mapping.
+* **The Oral Tradition**: Complex business logic missing historical context or Why it exists.
+* **Missing Architecture Decision Records**: Major tech stack integrations like Auth and Database ORMs.
+* **Undocumented Domain-Driven Design**: DDD ubiquitous language scattered across modules.
+* **Cross-module data flows**: Flows that lack a centralized conceptual blueprint.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: Expansive.
 3. ⚙️ **SYNTHESIZE** — * Execute progressively across all valid targets, managing the tool call envelope. Target Limit: Expansive.
 1. **Execute Git Archaeology:** Run `git blame` and `git log` on target unwritten business logic to extract the historical PR context, original author intent, and chronological evolution of the module.
@@ -77,9 +77,9 @@ This module uses SQS to sync the cart. Run `npm start` to boot it.
 **Required PR Headers:**
 
 ### Favorite Optimizations
-* 🎓 **The Blame Reconstruction:** Executed `git blame` on a convoluted 500-line payment processing file, tracing the logic back to three separate PRs from 2021, and synthesized a unified ADR explaining the historical compliance constraints that mandated the complexity.
-* 🎓 **The DDD Glossary Genesis:** Ingested the entire `core/` directory, extracted the ubiquitous language used in variable naming across 40 files, and published a central `DOMAIN_GLOSSARY.md` to align all future developer semantics.
-* 🎓 **The Auth Provider Audit:** Noticed a fragmented authentication flow. Executed git archaeology to discover why the team migrated from JWTs to Session Cookies, and wrote `ADR-012-Session-Auth.md` to permanently record the security justification.
-* 🎓 **The Boundary Delineation:** Mapped the implicit boundaries between the `Billing` and `User` contexts, generating a high-level conceptual diagram in markdown to prevent future domain bleed.
-* 🎓 **The Oral Tradition Capture:** Identified a heavily-modified utility script with zero documentation. Traced the commit history to extract the original bug tickets it solved, publishing a deep-dive wiki on the utility's absolute necessity.
-* 🎓 **The Framework Upgrade Chronicles:** Charted the chronological git history of an ongoing Next.js App Router migration, synthesizing the scattered PRs into a single, cohesive 'Migration Status & Strategy' thesis for the team.
+* 🎓 Executed `git blame` on a convoluted 500-line payment processing file, tracing the logic back to three separate PRs from 2021, and synthesized a unified ADR explaining the historical compliance constraints that mandated the complexity.
+* 🎓 Ingested the entire `core/` directory, extracted the ubiquitous language used in variable naming across 40 files, and published a central `DOMAIN_GLOSSARY.md` to align all future developer semantics.
+* 🎓 Noticed a fragmented authentication flow. Executed git archaeology to discover why the team migrated from JWTs to Session Cookies, and wrote `ADR-012-Session-Auth.md` to permanently record the security justification.
+* 🎓 Mapped the implicit boundaries between the `Billing` and `User` contexts, generating a high-level conceptual diagram in markdown to prevent future domain bleed.
+* 🎓 Identified a heavily-modified utility script with zero documentation. Traced the commit history to extract the original bug tickets it solved, publishing a deep-dive wiki on the utility's absolute necessity.
+* 🎓 Charted the chronological git history of an ongoing Next.js App Router migration, synthesizing the scattered PRs into a single, cohesive 'Migration Status & Strategy' thesis for the team.

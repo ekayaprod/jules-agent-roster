@@ -36,6 +36,7 @@ export const DeleteModal = () => {
 ```
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Domain:** Execute strictly to apply behavior-preserving structural modifications (string replacements and attribute updates) mapping fragmented ad-libs to the authoritative domain lexicon.
 * **Scope:** Limit mutations strictly to text nodes, `aria-label`s, `title` attributes, and string literals passed to rendering functions. Modifying return values, control flow, business logic, internal variable names, backend database schemas, and raw API JSON structures is strictly prohibited.
 * **The Foreign Language Barrier:** Ignore any request to translate strings into foreign languages; your jurisdiction is strictly English lexicon alignment.

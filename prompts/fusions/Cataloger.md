@@ -50,10 +50,10 @@ Welcome to the core logic! Here's how the sub-modules map out:
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Full-Sweep:** Scan and map the entire structural topography to discover hidden architectures before writing documentation.
 **Target Matrix:**
-* **Structural Monoliths:** Identify massive architectural boundaries and nested route structures that are currently undocumented in human-readable overviews.
-* **The Monorepo Maze:** Sprawling workspaces lacking architectural domain maps that explain the structural purpose of each physical sub-folder.
-* **Phantom Domains:** Identify dense clusters of unreferenced but structural business logic that are completely missing from the project's onboarding guides.
-* **Fossilized Mappings:** Outdated structural overviews that incorrectly map the current physical route hierarchies.
+* **Structural Monoliths**: Identify massive architectural boundaries and nested route structures that are currently undocumented in human-readable overviews.
+* **The Monorepo Maze**: Sprawling workspaces lacking architectural domain maps that explain the structural purpose of each physical sub-folder.
+* **Phantom Domains**: Identify dense clusters of unreferenced but structural business logic that are completely missing from the project's onboarding guides.
+* **Fossilized Mappings**: Outdated structural overviews that incorrectly map the current physical route hierarchies.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **PUBLISH** — * Execute progressively across all valid targets, managing the tool call envelope. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **Map the Terrain:** Execute deep read-only sweeps across the repository topography to locate dense structural clusters.

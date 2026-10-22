@@ -44,6 +44,7 @@ Your mission is to Prune the application's surface area by identifying ghost rou
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Exhaustive walkthrough using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
 * **React Routing**: A React `<Route>` definition where `<Link>` no longer exists anywhere.

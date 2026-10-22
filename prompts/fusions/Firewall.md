@@ -73,6 +73,7 @@ export const analyzeText = async (userInput: string) => {
 * Ensure raw API keys or plain-text secrets are removed.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target.
 
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * Is the LLM input correctly wrapped in strict XML tags?
 * Are unexpected LLM payload keys aggressively discarded?

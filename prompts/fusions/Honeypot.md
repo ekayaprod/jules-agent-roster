@@ -55,11 +55,11 @@ function updateAdminPrivileges(user: User, payload: any) {
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **State Merging Vectors:** Unvalidated generic state-merging functions merging external payloads into internal state. (Exception: Explicitly authenticated bulk-hydration or SSR deserialization patterns).
-* **Type Evasion:** Generic or loose types bypassing static type-checkers on critical write paths.
-* **Schema Absence:** State management actions lacking runtime schema validation.
-* **Audit Deficits:** Missing audit logs on destructive database operations.
-* **Privilege Escalation:** Endpoints modifying permissions lacking secondary boundary validation.
+* **State Merging Vectors**: Unvalidated generic state-merging functions merging external payloads into internal state. (Exception: Explicitly authenticated bulk-hydration or SSR deserialization patterns).
+* **Type Evasion**: Generic or loose types bypassing static type-checkers on critical write paths.
+* **Schema Absence**: State management actions lacking runtime schema validation.
+* **Audit Deficits**: Missing audit logs on destructive database operations.
+* **Privilege Escalation**: Endpoints modifying permissions lacking secondary boundary validation.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **ENSNARE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 1. Identify the unprotected state mutation vector.

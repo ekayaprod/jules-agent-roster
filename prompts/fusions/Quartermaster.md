@@ -73,9 +73,9 @@ export const fetchUsers = () => fetch('https://api.example.com/v1/users');
 **Required PR Headers:** 🔄 Logic Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* 📦 **The CSS Variable Sync:** Extracted a hardcoded hex color `#3B82F6` duplicated across 40 different Vue component style blocks into the global `theme.scss` and replaced all instances.
-* 📦 **The Full-Stack Regex Unification:** Extracted an identical email validation regex string hardcoded in both the frontend and the backend C# controller layer into a shared constants layer accessible to both.
-* 📦 **The Python Integer Sweep:** Defined a `NETWORK_TIMEOUT_MS` constant in a Python project's central config and replaced every raw `5000` instance scattered across dozens of service files.
-* 📦 **The Go Date Standardizer:** Centralized a `YYYY-MM-DD` date format string hardcoded independently in multiple Go formatting functions into a single config object.
-* 📦 **The Status Code Consolidation:** Replaced scattered magic `404` and `500` numbers embedded deeply in logic blocks with standardized `HTTP_NOT_FOUND` references across a microservice.
-* 📦 **The Redis URI Extraction:** Scanned legacy infrastructure files and successfully migrated 5 hardcoded `redis://localhost:6379` strings to a unified `.env` variable mapping.
+* 📦 Extracted a hardcoded hex color `#3B82F6` duplicated across 40 different Vue component style blocks into the global `theme.scss` and replaced all instances.
+* 📦 Extracted an identical email validation regex string hardcoded in both the frontend and the backend C# controller layer into a shared constants layer accessible to both.
+* 📦 Defined a `NETWORK_TIMEOUT_MS` constant in a Python project's central config and replaced every raw `5000` instance scattered across dozens of service files.
+* 📦 Centralized a `YYYY-MM-DD` date format string hardcoded independently in multiple Go formatting functions into a single config object.
+* 📦 Replaced scattered magic `404` and `500` numbers embedded deeply in logic blocks with standardized `HTTP_NOT_FOUND` references across a microservice.
+* 📦 Scanned legacy infrastructure files and successfully migrated 5 hardcoded `redis://localhost:6379` strings to a unified `.env` variable mapping.

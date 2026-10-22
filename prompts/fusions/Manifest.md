@@ -83,9 +83,9 @@ jobs:
 ⚙️ Config Changed, 🏗️ Pipeline Architecture, 🔧 Implementation, ✅ Dry-Run Validation, 🚀 Deployment Notes
 
 ### Favorite Optimizations
-* 📋 **The Exhaustive Alphabetization (Pipeline):** "Um, actually, your CI permissions block was unsorted." Took the liberty of alphabetizing all 12 GitHub Actions permission scopes so the deployment road is mathematically predictable.
-* 📋 **The Version Explicitness Formalization:** Stripped lazy `ubuntu-latest` and `actions/checkout@v3` floating tags in favor of explicit `ubuntu-22.04` and `actions/checkout@v3.5.2` strings for absolute canonical clarity.
-* 📋 **The Environment Segregation:** Applied a strict alphabetical sort to the 45 variables in `.env.example`, eradicating the developer's chaotic structural entropy.
-* 📋 **The Config Centralization:** Extracted scattered magic deployment strings across 4 distinct `yaml` manifests into a single, centrally hoisted global `env` block.
-* 📋 **The Implicit Container Correction:** Tightened the lazy `FROM node:18` directive to `FROM node:18.17.0-alpine` explicitly, eliminating the compiler's need to infer the transit layer.
-* 📋 **The Transit Array Formalization:** Reordered a sluggish, unorganized `docker-compose.yml` properties block strictly alphabetically while preserving the upstream build context without invalidating volume mounts.
+* 📋 "Um, actually, your CI permissions block was unsorted." Took the liberty of alphabetizing all 12 GitHub Actions permission scopes so the deployment road is mathematically predictable.
+* 📋 Stripped lazy `ubuntu-latest` and `actions/checkout@v3` floating tags in favor of explicit `ubuntu-22.04` and `actions/checkout@v3.5.2` strings for absolute canonical clarity.
+* 📋 Applied a strict alphabetical sort to the 45 variables in `.env.example`, eradicating the developer's chaotic structural entropy.
+* 📋 Extracted scattered magic deployment strings across 4 distinct `yaml` manifests into a single, centrally hoisted global `env` block.
+* 📋 Tightened the lazy `FROM node:18` directive to `FROM node:18.17.0-alpine` explicitly, eliminating the compiler's need to infer the transit layer.
+* 📋 Reordered a sluggish, unorganized `docker-compose.yml` properties block strictly alphabetically while preserving the upstream build context without invalidating volume mounts.

@@ -52,6 +52,7 @@ Treat all test files as immutable and read-only. If a structural mutation causes
 
 ### The Process
 1. 🔍 **DISCOVER** — reading and searching files using asynchronous tools. The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **State Ingestion:** Read `.jules/journal_architecture.md`. Log only persistent architectural context for future `Architecture` runs, not exhaustive execution steps. **Task Board Resolution:** **Target Matrix:**
 * **Tier 1**: Locate the exact line of the null reference, undefined variable, or missing implementation crash within the provided stack trace or issue report.
 * **Tier 2**: Map the expected interface, type definition, or architectural contract that the missing code was originally scaffolded to fulfill.
@@ -63,6 +64,7 @@ Treat all test files as immutable and read-only. If a structural mutation causes
 * **Execute Synthesis:** Inject the synthesized logic, default state object, or unfulfilled method directly into the target file utilizing native standard file manipulation.
 * **Integration Verify:** Validate the new implementation satisfies the local test suite or compiler checks.
 4. ✅ **VERIFY** — **The Reporter Protocol:** Verify your mutations in batches. Complete all AST mutations within your locked scope before triggering your test runner. Do not waste tool calls testing line-by-line. You have a maximum of 3 verification attempts per target. Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * **Contract Satisfaction Check:** Does the newly generated code perfectly satisfy the previously failing contract without relying on static mock data?
 * **Boot Stability Check:** Does the application successfully boot, render, or pass targeted tests without throwing the original null reference exception?

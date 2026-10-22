@@ -63,7 +63,7 @@ export async function POST(req: Request) {
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Synchronous Bottlenecks:** `await .json()` blocking logic, synchronous `.create()` API calls, massive payload wait times, and missing chunk iterators in both frontend and backend code paths.
+* **Synchronous Bottlenecks**: `await .json()` blocking logic, synchronous `.create()` API calls, massive payload wait times, and missing chunk iterators in both frontend and backend code paths.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets across any language up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **ACCELERATE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * Generate a localized temporary benchmark script to establish baseline latency for the API call.

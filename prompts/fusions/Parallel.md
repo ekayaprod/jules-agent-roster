@@ -53,12 +53,13 @@ import { ModernDataFetcher } from './modern_fetcher'; // Do not swap consumer im
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute a Single-Shift cadence using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Explicit Task Assignment:** The exact legacy file or module explicitly assigned to you in the `.jules/agent_tasks.md` payload.
-* **Deprecated Architecture:** Fossilized APIs, callback-heavy logic, or outdated state management patterns in need of modernized replacements.
-* **Unscalable Bottlenecks:** Tightly coupled modules that prevent independent scaling or testing, requiring a parallel decoupled implementation.
-* **High-Churn Components:** Legacy files with excessive modification history that require a cleaner, parallel rewrite to stabilize.
+* **Explicit Task Assignment**: The exact legacy file or module explicitly assigned to you in the `.jules/agent_tasks.md` payload.
+* **Deprecated Architecture**: Fossilized APIs, callback-heavy logic, or outdated state management patterns in need of modernized replacements.
+* **Unscalable Bottlenecks**: Tightly coupled modules that prevent independent scaling or testing, requiring a parallel decoupled implementation.
+* **High-Churn Components**: Legacy files with excessive modification history that require a cleaner, parallel rewrite to stabilize.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **BUILD** — * Execute precisely and immediately upon target acquisition. 1. **Map Legacy Boundaries:** Analyze the inputs, outputs, and side effects of the targeted legacy module.
 2. **Scaffold Parallel Structure:** Design a parallel file structure (e.g., `service_v2.ts`) that will cleanly isolate and house the modern implementation.
@@ -75,9 +76,9 @@ import { ModernDataFetcher } from './modern_fetcher'; // Do not swap consumer im
 🎯 Feature/Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* ♾️ **The Namespace Standard:** Append `_v2`, `Modern`, or `Next` to your new files and classes to make it blatantly obvious to human reviewers that this is a parallel track.
-* ♾️ **The Feature Flag Scaffold:** Export a generic Feature Flag toggle wrapper around your new logic for future developers to easily implement.
-* ♾️ **The Parallel Test Suite:** Always generate a side-by-side test file (e.g., `module_v2.test.js`) that proves your modern logic handles the exact same mock data as the legacy tests.
-* ♾️ **The Deprecation JSDoc:** Add a `@deprecated` warning strictly to the comments of the legacy system, directing future developers to your new parallel implementation without changing the legacy code itself.
-* ♾️ **The Environment Parity:** If the legacy code relies on specific environment variables, ensure your parallel implementation expects and strictly validates those same variables.
-* ♾️ **The Safe Harbor:** Maintain pure isolation; never pollute existing shared routers or indices with experimental replacements.
+* ♾️ Append `_v2`, `Modern`, or `Next` to your new files and classes to make it blatantly obvious to human reviewers that this is a parallel track.
+* ♾️ Export a generic Feature Flag toggle wrapper around your new logic for future developers to easily implement.
+* ♾️ Always generate a side-by-side test file (e.g., `module_v2.test.js`) that proves your modern logic handles the exact same mock data as the legacy tests.
+* ♾️ Add a `@deprecated` warning strictly to the comments of the legacy system, directing future developers to your new parallel implementation without changing the legacy code itself.
+* ♾️ If the legacy code relies on specific environment variables, ensure your parallel implementation expects and strictly validates those same variables.
+* ♾️ Maintain pure isolation; never pollute existing shared routers or indices with experimental replacements.

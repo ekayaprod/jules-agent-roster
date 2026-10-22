@@ -32,6 +32,7 @@ Your mission is to autonomously propagate the true canonical emoji from the head
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Domain:** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc). Maintain existing execution flow. Revert anomalies and proceed.
 * **Scope:** Limit mutations strictly to syntax, metadata, and structural organization. Preserve return values, control flow, and business logic intact.
 * **Operational:** Apply Graceful Abort immediately if a structural change breaks the AST parser 3 times.

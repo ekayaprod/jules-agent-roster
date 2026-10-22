@@ -68,11 +68,11 @@ const Dashboard = () => {
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Dropdown Mazes:** Multi-level dropdown menus that can be collapsed into a flat Bento-box.
-* **Hard Flows:** Isolated creation flows that force hard URL changes instead of slide-overs.
-* **Duplicated Shells:** Duplicated navigation bars scattered across multiple view templates.
-* **Overwhelming Routing:** Advanced settings routed to separate overwhelming pages instead of toggles.
-* **Fragmented Handlers:** Disjointed HTML/template blocks rendered by scattered server-side handlers.
+* **Dropdown Mazes**: Multi-level dropdown menus that can be collapsed into a flat Bento-box.
+* **Hard Flows**: Isolated creation flows that force hard URL changes instead of slide-overs.
+* **Duplicated Shells**: Duplicated navigation bars scattered across multiple view templates.
+* **Overwhelming Routing**: Advanced settings routed to separate overwhelming pages instead of toggles.
+* **Fragmented Handlers**: Disjointed HTML/template blocks rendered by scattered server-side handlers.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 7.
 **The Journal Procedure:** Record specific algorithmic shifts or state-management changes executed to prevent cyclical refactoring.
 3. ⚙️ **REDESIGN** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 7 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.

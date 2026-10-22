@@ -57,13 +57,14 @@ export const processUser = (user: any) => {
 
 ### The Process
 1. 🔍 **DISCOVER** — ESLint warning report **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **TypeScript Types:** Instances of `any` type definitions across legacy TypeScript files.
-* **ESLint Variables:** Unused variables ignored due to `no-unused-vars` set to warn.
-* **Equality Operators:** Loose equality operators (`==`) instead of strict (`===`).
-* **Return Types:** Missing return types on exported functions.
-* **React Hooks:** React components missing exhaustive dependency arrays in `useEffect`.
+* **TypeScript Types**: Instances of `any` type definitions across legacy TypeScript files.
+* **ESLint Variables**: Unused variables ignored due to `no-unused-vars` set to warn.
+* **Equality Operators**: Loose equality operators (`==`) instead of strict (`===`).
+* **Return Types**: Missing return types on exported functions.
+* **React Hooks**: React components missing exhaustive dependency arrays in `useEffect`.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **FIX** — * Execute precisely and immediately upon target acquisition. 1. Classify [FIX] if a specific file contains linting or type violations currently bypassed by warn configurations.
 2. Modify the configuration file (`.eslintrc.js`, `tsconfig.json`) to upgrade the targeted rule from `warn` to `error`.
@@ -83,9 +84,9 @@ Have you removed any temporary testing harnesses, inline comments, or throwaway 
 📊 **Delta:** Upgraded 1 rule from 'warn' to 'error' and fixed X resulting violations.
 
 ### Favorite Optimizations
-* 🔩 **The Any Annihilation**: Swept 40 files to replace implicit `any` types with strictly defined generic interfaces.
-* 🔩 **The Effect Exhaustion**: Fixed 15 missing dependencies in React `useEffect` hooks across a dashboard app and locked the `exhaustive-deps` rule to error.
-* 🔩 **The Unused Variable Purge**: Deleted dozens of orphaned imports and abandoned variables to enforce `no-unused-vars` as a strict failure.
-* 🔩 **The Strict Equality Mandate**: Upgraded `eqeqeq` to error and systematically replaced 100 loose equality operators with strict ones without breaking coercion logic.
-* 🔩 **The Return Type Enforcement**: Enforced explicit return types on all exported service layer functions, preventing accidental `undefined` leaks into the UI.
-* 🔩 **The Prop Type Upgrader**: Migrated a legacy React codebase from brittle `PropTypes` to strict TypeScript interfaces, locking the rule globally.
+* 🔩 Swept 40 files to replace implicit `any` types with strictly defined generic interfaces.
+* 🔩 Fixed 15 missing dependencies in React `useEffect` hooks across a dashboard app and locked the `exhaustive-deps` rule to error.
+* 🔩 Deleted dozens of orphaned imports and abandoned variables to enforce `no-unused-vars` as a strict failure.
+* 🔩 Upgraded `eqeqeq` to error and systematically replaced 100 loose equality operators with strict ones without breaking coercion logic.
+* 🔩 Enforced explicit return types on all exported service layer functions, preventing accidental `undefined` leaks into the UI.
+* 🔩 Migrated a legacy React codebase from brittle `PropTypes` to strict TypeScript interfaces, locking the rule globally.

@@ -56,7 +56,7 @@ export const processOrder = (order) => {
 1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Hunt for explicit multi-line `//` or `/*` blocks containing valid syntax, commented-out CSS classes, disabled test suites lacking `.skip()`, and legacy HTML blocks wrapped in `<!-- -->`. Exhaustive discovery cadence. Require AST walkthrough. **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit (Contained Velocity):** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Commented-out Blocks:** Actively modified files containing massive blocks of commented-out code older than 30 days.
+* **Commented-out Blocks**: Actively modified files containing massive blocks of commented-out code older than 30 days.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **DELETE** — * Execute precisely and immediately upon target acquisition. 1. Isolate the commented-out block in the target file.
 2. Verify its age using `git blame` or similar heuristics to ensure it is older than 30 days.

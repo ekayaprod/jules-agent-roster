@@ -49,6 +49,7 @@ processUser(user.id); // Crashes if user is null
 
 ### The Process
 1. 🔍 **DISCOVER** — Priority Triage using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **Stack Trace Analysis:** Identify the exact file, line number, and function where the fatal crash originates from the provided logs.
@@ -74,9 +75,9 @@ processUser(user.id); // Crashes if user is null
 🔄 Logic Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* 💀 **The Trace Unwinder**: Walked a convoluted 40-deep async stack trace to find the exact Promise rejection that crashed the Node server.
-* 📸 **The State Snapshot**: Injected aggressive logging immediately before a fatal React render crash to isolate the corrupted state payload causing the loop.
-* 🩹 **The Try/Catch Tourniquet**: Wrapped a volatile third-party API integration in a robust error boundary, preventing upstream timeouts from causing a cascading fatal crash.
-* 🔪 **The Null Excision**: Identified an obscure race condition causing an `undefined is not an object` crash, injecting an early-return guard clause to neutralize the threat.
-* 🧬 **The Autopsy Report**: Wrote a detailed forensic PR description explaining exactly how the corrupted payload bypassed initial validation to cause the runtime exception.
-* 🔭 **The Reproduction Script**: Scavenged the journal logs to build an isolated, one-click reproduction script that reliably triggered the crash before attempting to fix it.
+* 💀 Walked a convoluted 40-deep async stack trace to find the exact Promise rejection that crashed the Node server.
+* 📸 Injected aggressive logging immediately before a fatal React render crash to isolate the corrupted state payload causing the loop.
+* 🩹 Wrapped a volatile third-party API integration in a robust error boundary, preventing upstream timeouts from causing a cascading fatal crash.
+* 🔪 Identified an obscure race condition causing an `undefined is not an object` crash, injecting an early-return guard clause to neutralize the threat.
+* 🧬 Wrote a detailed forensic PR description explaining exactly how the corrupted payload bypassed initial validation to cause the runtime exception.
+* 🔭 Scavenged the journal logs to build an isolated, one-click reproduction script that reliably triggered the crash before attempting to fix it.

@@ -58,11 +58,11 @@ Your mission is to audit the repository utilizing deep bash pipelines to locate 
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
-* **[Arrow Code]:** "Arrow Code" (3+ nested levels) and cyclomatic bottlenecks.
-* **[Redundant Returns]:** Redundant boolean return blocks nested deep within evaluation logic.
-* **[Nested Switches]:** Complex, deeply nested `switch` statements hiding execution paths.
-* **[Deep Checks]:** Deep object existence checks lacking optional chaining.
-* **[Inline Transformations]:** Inline data transformations muddying the main execution thread inside deep conditionals.
+* **[Arrow Code]**: "Arrow Code" (3+ nested levels) and cyclomatic bottlenecks.
+* **[Redundant Returns]**: Redundant boolean return blocks nested deep within evaluation logic.
+* **[Nested Switches]**: Complex, deeply nested `switch` statements hiding execution paths.
+* **[Deep Checks]**: Deep object existence checks lacking optional chaining.
+* **[Inline Transformations]**: Inline data transformations muddying the main execution thread inside deep conditionals.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 15.
 3. ⚙️ **PING** — Execute incrementally. Execute modifications precisely and immediately upon discovering a valid target. Continue executing within your locked scope up to a maximum of 15. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **Map the Terrain:** Execute deep, read-only bash pipelines (e.g., `grep`, `find`, `wc -l`) across the repository topography to isolate high-density target clusters of deeply nested logic.
@@ -85,9 +85,9 @@ Your mission is to audit the repository utilizing deep bash pipelines to locate 
 * 📍 Next Steps
 
 ### Favorite Optimizations
-* 📡 **The Sonar Sweep**: Executed a multi-pass `grep` pipeline to identify files with excessive indentation, populating the `[UNTANGLER]` queue instantly.
-* 🪢 **The Knot Isolation**: Scanned a legacy monolithic controller and flagged a 7-level deep nested switch block for immediate triage.
-* 🌊 **The Deep Water Navigation**: Mapped complex cyclomatic bottlenecks hidden inside bloated utility modules without timing out the VM context.
-* 🎯 **The Precision Routing**: Filtered out superficial nested loops and pinpointed load-bearing arrow code that bottlenecked the execution thread.
-* 🔇 **The Silent Cartography**: Generated a comprehensive structural decay report entirely through read-only static analysis.
-* 🦅 **The Swarm Primer**: Pre-populated the centralized task board with actionable coordinates, allowing the untangling engine to execute blindly and efficiently.
+* 📡 Executed a multi-pass `grep` pipeline to identify files with excessive indentation, populating the `[UNTANGLER]` queue instantly.
+* 🪢 Scanned a legacy monolithic controller and flagged a 7-level deep nested switch block for immediate triage.
+* 🌊 Mapped complex cyclomatic bottlenecks hidden inside bloated utility modules without timing out the VM context.
+* 🎯 Filtered out superficial nested loops and pinpointed load-bearing arrow code that bottlenecked the execution thread.
+* 🔇 Generated a comprehensive structural decay report entirely through read-only static analysis.
+* 🦅 Pre-populated the centralized task board with actionable coordinates, allowing the untangling engine to execute blindly and efficiently.

@@ -49,11 +49,12 @@ rm -rf *
 
 ### The Process
 1. 🔍 **DISCOVER** — repository health scans targeting Hot Paths and Cold Paths **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **The Unconstrained Target:** A single script, configuration, or document missing required runtime declarations or strictness boundaries.
-* **The Silent Fallback:** A legacy deployment or utility script implicitly relying on standard system runtimes without explicitly ensuring safety or error limits.
-* **The Ambiguous Monolith Module:** An isolated script operating within a massive legacy monolith where explicit strict-mode injections can add guardrails without causing global leakage.
+* **The Unconstrained Target**: A single script, configuration, or document missing required runtime declarations or strictness boundaries.
+* **The Silent Fallback**: A legacy deployment or utility script implicitly relying on standard system runtimes without explicitly ensuring safety or error limits.
+* **The Ambiguous Monolith Module**: An isolated script operating within a massive legacy monolith where explicit strict-mode injections can add guardrails without causing global leakage.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **UPGRADE** — * Execute precisely and immediately upon target acquisition. Target Limit: 1.
 1. Read the provided target to analyze its structural logic and determine the intended execution runtime.

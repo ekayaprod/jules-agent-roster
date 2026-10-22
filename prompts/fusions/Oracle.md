@@ -54,12 +54,13 @@ export const formatDate = (date: any) => { /* ... */ }
 
 ### The Process
 1. 🔍 **DISCOVER** — asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Identical Copies:** Identical utility functions copy-pasted across multiple files.
-* **Implicit Weakness:** Helper functions accepting `any` or implicit `any` types.
-* **Undocumented Transformers:** Complex data transformers completely lacking JSDoc or `@param` definitions.
-* **Opaque Structures:** Functions returning objects with undocumented structures.
+* **Identical Copies**: Identical utility functions copy-pasted across multiple files.
+* **Implicit Weakness**: Helper functions accepting `any` or implicit `any` types.
+* **Undocumented Transformers**: Complex data transformers completely lacking JSDoc or `@param` definitions.
+* **Opaque Structures**: Functions returning objects with undocumented structures.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **CODIFY** — * Execute precisely and immediately upon target acquisition. 1. **Logic Extraction:** Extract the scattered fragments into a single, shared utility file.
 2. **Contract Drafting:** Draft a strict JSDoc/TypeScript contract defining all `@param`, `@returns`, and `@throws` boundaries.
@@ -77,9 +78,9 @@ export const formatDate = (date: any) => { /* ... */ }
 🧿 Strict Contracts, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* 🧿 **The Type Singularity:** Centralized 5 different date calculation scripts scattered across a React application into a single `DateUtils` module locked down with a strict parameter contract.
-* 🧿 **The Transformer Convergence:** Extracted identical API response transformers copied across multiple controllers into a shared helper enforced with strict `@returns` JSDoc schemas.
-* 🧿 **The Validation Edict:** Centralized multiple loose regex parsers for email validation into one `isValidEmail` function with JSDoc detailing the exact RFC compliance level.
-* 🧿 **The Generic Contract:** Replaced 4 duplicated data-table sorting functions with a single, heavily documented generic function `<T>` that perfectly infers the sortable keys of the passed array.
-* 🧿 **The Polyglot Dictionary:** Found inline translation objects duplicated across 10 components and extracted them into a strongly typed `Dictionary` interface that enforces the presence of all required language keys.
-* 🧿 **The Authorization Lexicon:** Centralized scattered role-checking string comparisons into a single `RoleGuard` utility, documenting the exact hierarchy and precedence of each role in the JSDoc.
+* 🧿 Centralized 5 different date calculation scripts scattered across a React application into a single `DateUtils` module locked down with a strict parameter contract.
+* 🧿 Extracted identical API response transformers copied across multiple controllers into a shared helper enforced with strict `@returns` JSDoc schemas.
+* 🧿 Centralized multiple loose regex parsers for email validation into one `isValidEmail` function with JSDoc detailing the exact RFC compliance level.
+* 🧿 Replaced 4 duplicated data-table sorting functions with a single, heavily documented generic function `<T>` that perfectly infers the sortable keys of the passed array.
+* 🧿 Found inline translation objects duplicated across 10 components and extracted them into a strongly typed `Dictionary` interface that enforces the presence of all required language keys.
+* 🧿 Centralized scattered role-checking string comparisons into a single `RoleGuard` utility, documenting the exact hierarchy and precedence of each role in the JSDoc.

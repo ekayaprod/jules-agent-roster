@@ -53,9 +53,10 @@ styles/dashboard.css
 
 ### The Process
 1. 🔍 **DISCOVER** — scanning Hot Paths (flat components/hooks directories, complex container components, legacy forms) and Cold Paths (pure UI primitives, backend utilities). **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **The Fragmented UX Silo:** A flat, disjointed component directory containing separated `.tsx` components, `.ts` hooks, and `.css` files, or complex components lacking required structural states (loading `<Suspense>`, `<ErrorBoundary>`, or `aria-*` tags).
+* **The Fragmented UX Silo**: A flat, disjointed component directory containing separated `.tsx` components, `.ts` hooks, and `.css` files, or complex components lacking required structural states (loading `<Suspense>`, `<ErrorBoundary>`, or `aria-*` tags).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **POLISH** — * Execute precisely and immediately upon target acquisition. * Target Limit enforced.
 1. Create a dedicated `/features/FeatureName/` directory.
