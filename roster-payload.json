@@ -2605,16 +2605,5 @@
     "forge_version": "V89.0",
     "promptFile": "prompts/micro/TestClerk.md",
     "isCustom": true
-  },
-  {
-    "name": "Version Clerk",
-    "emoji": "🔖",
-    "role": "Version Standardizer",
-    "category": "Micro",
-    "tier": "Core",
-    "description": "UPDATE legacy `forge_version` tags to the current system standard `V89.0`.",
-    "forge_version": "V89.0",
-    "promptFile": "prompts/micro/VersionClerk.md",
-    "isCustom": true
   }
 ]
