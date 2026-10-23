@@ -2552,6 +2552,17 @@
     "isCustom": true
   },
   {
+    "name": "Header Stripper",
+    "emoji": "🪚",
+    "role": "Header Stripper",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "STRIP legacy Memory & Triage headers from worker configurations.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/micro/HeaderStripper.md",
+    "isCustom": true
+  },
+  {
     "name": "Iconographer",
     "emoji": "🔣",
     "role": "Symbology Curator",
