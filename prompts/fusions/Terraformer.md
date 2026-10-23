@@ -61,9 +61,9 @@ export const MarketingPage = () => (
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Hot Paths:** Flat `/public` directories, legacy `static/` folders, deeply nested UI components referencing relative assets.
-* **Cold Paths:** API route handlers, backend middleware.
-* **Hunt for:** Identify exactly 5-7 literal anomalies: `../public/`, unoptimized `.png` file sizes > 1MB, flattened lists of >50 `.svg` files, orphaned assets not referenced in AST, absolute `/static/` paths without domain resolution. Require idempotency/dry-run compilation.
+* **Hot Paths**: Flat `/public` directories, legacy `static/` folders, deeply nested UI components referencing relative assets.
+* **Cold Paths**: API route handlers, backend middleware.
+* **Hunt for**: Identify exactly 5-7 literal anomalies: `../public/`, unoptimized `.png` file sizes > 1MB, flattened lists of >50 `.svg` files, orphaned assets not referenced in AST, absolute `/static/` paths without domain resolution. Require idempotency/dry-run compilation.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **RESHAPE** — * Execute precisely and immediately upon target acquisition. Continue executing within your locked scope up to a maximum of 1.
 * **Dry Run Mapping:** Perform a dry-run execution mapping the current asset paths and their exact global references across the codebase.

@@ -52,11 +52,11 @@ return await db.clients.find(userId);
 1. 🔍 **DISCOVER** — scheduled execution **State Ingestion:** Read `.jules/journal_hygiene.md`. Log only persistent architectural context for future `Hygiene` runs, not exhaustive execution steps. **Task Board Resolution:** * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Parameter Mixups:** user vs account parameter mixups
-* **Function Prefixes:** fetch vs get vs retrieve function prefixes
-* **Pluralization:** pluralization mismatches like itemsList vs items
-* **Ambiguous Declarations:** ambiguous data variable declarations
-* **Boolean Prefixes:** is_ vs has_ boolean prefix inconsistencies
+* **Parameter Mixups**: user vs account parameter mixups
+* **Function Prefixes**: fetch vs get vs retrieve function prefixes
+* **Pluralization**: pluralization mismatches like itemsList vs items
+* **Ambiguous Declarations**: ambiguous data variable declarations
+* **Boolean Prefixes**: is_ vs has_ boolean prefix inconsistencies
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 3.
 3. ⚙️ **STANDARDIZE** — * Execute in bounded sequence, tracking mutation count against the declared quota. Target Limit: 3.
 1. 🔍 Parse the Abstract Syntax Tree (AST) to identify naming drift and synonymous variables.

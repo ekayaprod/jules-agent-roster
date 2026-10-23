@@ -65,11 +65,11 @@ export const processHugePayload = (data) => {
 **The Prune-First Protocol:** read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates.
 * **The Discovery Short-Circuit:** The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution.
 **Target Matrix:**
-* **Massive Loops:** Massive `for/while` loop iterations (>1000 items) inside UI components.
-* **Heavy Parsing:** Heavy `JSON.parse()` calls of massive string payloads.
-* **Client-Side Crypto:** Client-side cryptographic hashing blocking the UI.
-* **Pixel Manipulation:** Complex image or canvas pixel manipulation on the main thread.
-* **Document Parsing:** Large CSV or Excel parsing functions.
+* **Massive Loops**: Massive `for/while` loop iterations (>1000 items) inside UI components.
+* **Heavy Parsing**: Heavy `JSON.parse()` calls of massive string payloads.
+* **Client-Side Crypto**: Client-side cryptographic hashing blocking the UI.
+* **Pixel Manipulation**: Complex image or canvas pixel manipulation on the main thread.
+* **Document Parsing**: Large CSV or Excel parsing functions.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **ACCELERATE** —  * Execute precisely and immediately upon target acquisition. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **Baseline Benchmark:** Establish a baseline via a temporary benchmark script measuring the synchronous execution time.

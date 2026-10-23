@@ -54,10 +54,10 @@ test('mounts', () => {
 **Task Board Resolution:** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself.
 Cross-reference `.jules/worker_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.
 **Target Matrix:**
-* **Missing Focus/Aria:** Look for components without focus-visible or aria-disabled handling on buttons.
-* **Dropdown Keyboard Handlers:** Look for dropdowns lacking Esc or <Tab> keyboard handlers.
-* **Aria Expanded Toggle:** Look for components without aria-expanded toggle states.
-* **Mounts Test Only:** Look for components with test('mounts') as the only assertion.
+* **Missing Focus/Aria**: Look for components without focus-visible or aria-disabled handling on buttons.
+* **Dropdown Keyboard Handlers**: Look for dropdowns lacking Esc or <Tab> keyboard handlers.
+* **Aria Expanded Toggle**: Look for components without aria-expanded toggle states.
+* **Mounts Test Only**: Look for components with test('mounts') as the only assertion.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **POLISH** —  Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **POLISH:** Inject the missing interaction logic (e.g., `aria-hidden`, keyboard `onKeyDown` listeners) directly into the component. Immediately write strict unit tests (e.g., React Testing Library) simulating `userEvent.tab()` and `userEvent.click()`, asserting the component correctly toggles visual and semantic states.

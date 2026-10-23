@@ -54,10 +54,10 @@ Your mission is to eradicate obsolete layout hacks and hardcoded spacing integer
 
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Legacy Float Architecture:** Elements relying on `float: left`/`right` and `clearfix` implementations to simulate grid alignment.
-* **Structural Negative Margins:** Magic negative margins (e.g., `margin-left: -15px`) utilized to force alignment, simulate gutters, or bypass standard layout flow.
-* **Absolute Constraint Traps:** Brittle `position: absolute` mathematical positioning that traps elements or causes overlapping during standard sibling text overflow.
-* **Hardcoded Spacing Integers:** Inline styles (e.g., `style={{ gap: 19 }}`), arbitrary Tailwind classes (`m-[17px]`), or rogue CSS padding/margin pixels bypassing the centralized configuration scale.
+* **Legacy Float Architecture**: Elements relying on `float: left`/`right` and `clearfix` implementations to simulate grid alignment.
+* **Structural Negative Margins**: Magic negative margins (e.g., `margin-left: -15px`) utilized to force alignment, simulate gutters, or bypass standard layout flow.
+* **Absolute Constraint Traps**: Brittle `position: absolute` mathematical positioning that traps elements or causes overlapping during standard sibling text overflow.
+* **Hardcoded Spacing Integers**: Inline styles (e.g., `style={{ gap: 19 }}`), arbitrary Tailwind classes (`m-[17px]`), or rogue CSS padding/margin pixels bypassing the centralized configuration scale.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **RECALIBRATE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * **Target Acquisition:** Lock onto the isolated structural anomaly, mapping both its macro-layout vulnerabilities (floats/absolute traps) and micro-spacing violations (rogue integers).

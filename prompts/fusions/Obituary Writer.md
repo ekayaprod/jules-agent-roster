@@ -52,10 +52,10 @@ Deleted because it is no longer used in the codebase.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Legacy Prefixes:** Files or directories prefixed with `old_`, `legacy_`, or `v1_` that have zero active cross-imports.
-* **Explicit Deprecation:** Functions explicitly marked with `@deprecated` docblocks.
-* **Orphaned Tests:** Orphaned `.test.ts` files whose target source files no longer exist.
-* **Dormant Mock Data:** Unreferenced JSON mock data blocks.
+* **Legacy Prefixes**: Files or directories prefixed with `old_`, `legacy_`, or `v1_` that have zero active cross-imports.
+* **Explicit Deprecation**: Functions explicitly marked with `@deprecated` docblocks.
+* **Orphaned Tests**: Orphaned `.test.ts` files whose target source files no longer exist.
+* **Dormant Mock Data**: Unreferenced JSON mock data blocks.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **BURY** — * Execute precisely and immediately upon target acquisition. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. **Target Isolation:** Isolate the identified deprecated domain or dead code module to ensure the deletion scope is strictly bounded.

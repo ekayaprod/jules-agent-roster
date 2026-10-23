@@ -61,9 +61,9 @@ const processAnalytics = async (data, filters) => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Heavy Computational Pipelines:** Functions executing expensive `.filter().map()` chains or regex parsing before validating the input state.
-* **O(n²) Nested Iterations:** Arrays utilizing `.find()` or `.filter()` nested inside another `.map()` or sequential `for` loop.
-* **Un-profiled Logic Blocks:** Massive loops, heavy DOM updates, or un-memoized tree traversals lacking baseline performance measurement.
+* **Heavy Computational Pipelines**: Functions executing expensive `.filter().map()` chains or regex parsing before validating the input state.
+* **O(n²) Nested Iterations**: Arrays utilizing `.find()` or `.filter()` nested inside another `.map()` or sequential `for` loop.
+* **Un-profiled Logic Blocks**: Massive loops, heavy DOM updates, or un-memoized tree traversals lacking baseline performance measurement.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets within exactly ONE scope context (single file/workflow) up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **OVERHAUL** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 1. Isolate the target computational pipeline and inject a temporary high-fidelity `performance.now()`, `console.time()`, or APM wrapper around it to capture baseline telemetry.

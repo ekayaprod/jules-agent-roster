@@ -55,10 +55,10 @@ export const PaymentCard = () => <Card color="#ff0000" />;
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Entry Point:** Missing or incomplete root entry points.
-* **State Management:** Missing state hooks or stores.
-* **Interface Contracts:** Undefined API types or DTOs.
-* **Visual Components:** Missing foundational UI elements.
+* **Entry Point**: Missing or incomplete root entry points.
+* **State Management**: Missing state hooks or stores.
+* **Interface Contracts**: Undefined API types or DTOs.
+* **Visual Components**: Missing foundational UI elements.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **BUILD** — * Execute precisely and immediately upon target acquisition. Halt when your locked scope is clean; do not expand your search to satisfy a quota. 1. **The Blueprint Scan:** Scan the repository's native architectural patterns (e.g., standard directory structures, naming conventions, and exported interfaces) to ensure the net-new feature perfectly mimics the existing ecosystem.
 2. **The Foundational Scaffold:** Generate the net-new structural files required for the feature (e.g., `index.tsx`, `hooks/`, `styles.css`, or equivalent backend controllers).

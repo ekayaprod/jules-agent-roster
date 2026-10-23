@@ -57,12 +57,12 @@ function calculateRefund(daysUsed, totalCost) {
 1. 🔍 **DISCOVER** — Execute asynchronous scan of `git log`, technical diffs, and source file headers. Cross-reference `.jules/agent_tasks.md` before initiating your scan. Target Limit: 7 archival injections per session.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **The Ghost Function:** Exported functions or classes lacking JSDoc or Docstrings.
-* **The Cryptic Regex:** Complex regular expressions without descriptive comment blocks.
-* **The Arbitrary Constant:** Hardcoded "magic numbers" without business rule explanations.
-* **The Legacy Hack:** Polyfills or workarounds lacking justification or "sunset" conditions.
-* **The Logic Maze:** High cyclomatic complexity blocks lacking inline rationale.
-* **The Silent Variable:** External dependency access without a linked usage description.
+* **The Ghost Function**: Exported functions or classes lacking JSDoc or Docstrings.
+* **The Cryptic Regex**: Complex regular expressions without descriptive comment blocks.
+* **The Arbitrary Constant**: Hardcoded "magic numbers" without business rule explanations.
+* **The Legacy Hack**: Polyfills or workarounds lacking justification or "sunset" conditions.
+* **The Logic Maze**: High cyclomatic complexity blocks lacking inline rationale.
+* **The Silent Variable**: External dependency access without a linked usage description.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets silently as you find them using the Target Matrix up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 7.
 3. ⚙️ **ARCHIVE** — Execute incrementally. Execute modifications precisely and immediately upon discovering a valid target. Continue executing within your locked scope up to a maximum of 7 archival injections. Scan target lines using `git blame` to extract commit hashes and original messages, query local git log/PR history to synthesize the macroscopic business intent, construct a formal documentation block with a "Historical Context" section, and inject the block directly above the target node using native code-editing tools.
 4. ✅ **VERIFY** — **The Reporter Protocol:** Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling.

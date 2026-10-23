@@ -59,10 +59,10 @@ export const getUserData = async () => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **Scattered Raw Parsing:** Raw, un-try-catched `JSON.parse` or `json.loads` calls.
-* **Naked Network Requests:** Naked `fetch` or `axios` requests without `.catch` handlers.
-* **Unsafe DOM/Storage Access:** Direct `localStorage.getItem` access without null checks.
-* **Duplicate Timeout Logic:** Scattered file system read operations or duplicate timeout/retry logic hardcoded into individual service methods.
+* **Scattered Raw Parsing**: Raw, un-try-catched `JSON.parse` or `json.loads` calls.
+* **Naked Network Requests**: Naked `fetch` or `axios` requests without `.catch` handlers.
+* **Unsafe DOM/Storage Access**: Direct `localStorage.getItem` access without null checks.
+* **Duplicate Timeout Logic**: Scattered file system read operations or duplicate timeout/retry logic hardcoded into individual service methods.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 5 targets.
 3. ⚙️ **QUARANTINE** — * Execute in bounded sequence, tracking mutation count against the declared quota.
 1. Extract the duplicated, unprotected code blocks.

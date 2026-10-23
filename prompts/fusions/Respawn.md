@@ -61,7 +61,7 @@ jobs:
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Legacy Deployment Artifact:** Identify failing, drift-heavy CI/CD pipelines, Dockerfiles, orchestration configs, or brittle shell deployments requiring structural replacement.
+* **Legacy Deployment Artifact**: Identify failing, drift-heavy CI/CD pipelines, Dockerfiles, orchestration configs, or brittle shell deployments requiring structural replacement.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **REROLL** — * Execute precisely and immediately upon target acquisition. Target Limit: 1.
 1. **Extract & Map Constraints:** Parse the existing deployment artifact strictly to map its core operational requirements (exposed ports, required environment variables, build actions).

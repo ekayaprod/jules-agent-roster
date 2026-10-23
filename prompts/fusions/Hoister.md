@@ -56,11 +56,11 @@ export const UserProfile = ({ user }) => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Pure Logic Trapped:** `const helper = () => {}` inside a render function.
-* **Regex Heavy:** heavy `new RegExp()` literals inside a `while` loop.
-* **Static Arrays:** static arrays defined inside an API handler.
-* **Fake Memoization:** `useCallback` wrapping a math function without dependencies.
-* **Complex Callbacks:** complex string formatting logic inside a map callback.
+* **Pure Logic Trapped**: `const helper = () => {}` inside a render function.
+* **Regex Heavy**: heavy `new RegExp()` literals inside a `while` loop.
+* **Static Arrays**: static arrays defined inside an API handler.
+* **Fake Memoization**: `useCallback` wrapping a math function without dependencies.
+* **Complex Callbacks**: complex string formatting logic inside a map callback.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **HOIST** — Execute precisely and immediately upon target acquisition. Target Limit: 1.
 1. **Extraction Phase:** Extract the trapped logic or static object to the module level (top of the file, outside the function definition).

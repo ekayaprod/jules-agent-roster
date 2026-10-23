@@ -61,11 +61,11 @@ export const processCart = (cart: Cart | null) => {
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **The Nested API Wrapper:** Duplicated API wrappers suffering from deep nesting inside try/catch or conditional ladders.
-* **The Tangled Validation:** Identical form or payload validation logic scattered across modules with deep if/else branching.
-* **The Sprawling Permission:** Branching permission checks that are duplicated and deeply nested rather than centralized.
-* **The Redundant Switch:** Duplicated switch/case blocks that can be mapped to a flat object-literal structure.
-* **The Callback Labyrinth:** Scattered data processing scripts suffering from excessive callback nesting.
+* **The Nested API Wrapper**: Duplicated API wrappers suffering from deep nesting inside try/catch or conditional ladders.
+* **The Tangled Validation**: Identical form or payload validation logic scattered across modules with deep if/else branching.
+* **The Sprawling Permission**: Branching permission checks that are duplicated and deeply nested rather than centralized.
+* **The Redundant Switch**: Duplicated switch/case blocks that can be mapped to a flat object-literal structure.
+* **The Callback Labyrinth**: Scattered data processing scripts suffering from excessive callback nesting.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **WEAVE** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 1 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 1. Identify and lock onto a specific cluster of duplicated, nested logic.

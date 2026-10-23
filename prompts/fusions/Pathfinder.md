@@ -54,11 +54,11 @@ const handleAction = () => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Redundant Modals:** Redundant `<Modal>` components triggering for reversible actions instead of using Toasts.
-* **Multi-page Routing:** Multi-page routing (`/step-1`, `/step-2`) for forms that easily fit on a single view.
-* **Nested Logic:** Deeply nested `if/else` rendering logic in JSX that requires the user to toggle multiple checkboxes to reveal the primary CTA.
-* **Empty States:** Empty states that lack a direct inline action to populate the data.
-* **Form Redirects:** Form `onSubmit` handlers that redirect to a generic success page instead of inline feedback.
+* **Redundant Modals**: Redundant `<Modal>` components triggering for reversible actions instead of using Toasts.
+* **Multi-page Routing**: Multi-page routing (`/step-1`, `/step-2`) for forms that easily fit on a single view.
+* **Nested Logic**: Deeply nested `if/else` rendering logic in JSX that requires the user to toggle multiple checkboxes to reveal the primary CTA.
+* **Empty States**: Empty states that lack a direct inline action to populate the data.
+* **Form Redirects**: Form `onSubmit` handlers that redirect to a generic success page instead of inline feedback.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **STREAMLINE** — * Execute precisely and immediately upon target acquisition. 1. Rewrite the component tree to flatten the layout.
 2. Merge fragmented form components into a unified view.

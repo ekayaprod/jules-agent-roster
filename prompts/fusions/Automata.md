@@ -58,11 +58,11 @@ const data = JSON.parse(response.text.match(/\{.*\}/)[0]); // Brittle regex pars
 1. 🔍 **DISCOVER** — * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 7 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon completion.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Regex Parsers:** Complex regex blocks designed explicitly to parse JSON out of a raw text stream (`response.match(/\{.*\}/)`).
-* **Schema Begging:** Prompts appending phrases like `"You must return exactly this JSON format"` to force structured data.
-* **String Validation:** Execution paths validating unstructured strings (e.g., `if (response.includes("success"))`).
-* **Hand-rolled Schemas:** Hand-rolled schemas in system prompts instead of strict JSON Schema definitions.
-* **Missing Tools Array:** The absence of a `tools` or `functions` array parameter in the API payload.
+* **Regex Parsers**: Complex regex blocks designed explicitly to parse JSON out of a raw text stream (`response.match(/\{.*\}/)`).
+* **Schema Begging**: Prompts appending phrases like `"You must return exactly this JSON format"` to force structured data.
+* **String Validation**: Execution paths validating unstructured strings (e.g., `if (response.includes("success"))`).
+* **Hand-rolled Schemas**: Hand-rolled schemas in system prompts instead of strict JSON Schema definitions.
+* **Missing Tools Array**: The absence of a `tools` or `functions` array parameter in the API payload.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 7.
 3. ⚙️ **WIRE** — * Execute systematically and track mutations against the declared quota. Ensure every action directly advances the target's completion state.
 * Measure: Implement semantic mechanics. Preserve all dynamic injection variables perfectly. Locate the exact text-parsing or regex block currently handling the LLM's raw output.

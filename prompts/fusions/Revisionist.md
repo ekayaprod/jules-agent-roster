@@ -52,11 +52,11 @@ async function getUser(userId) { ... }
 1. 🔍 **DISCOVER** — * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Hot Paths:** Core functional modules, legacy utility classes, deeply nested JSDoc definitions.
-* **Cold Paths:** Generated files, static assets, purely configuration JSONs.
-* **Misleading Types:** A `@param {string}` JSDoc type placed directly above a function receiving an `id: number`.
-* **Misleading Connections:** An inline comment `// Connects to MySQL` above a `MongoClient.connect()` call.
-* **Misleading Returns:** C# XML `<returns>` blocks claiming an array when the signature returns a single object.
+* **Hot Paths**: Core functional modules, legacy utility classes, deeply nested JSDoc definitions.
+* **Cold Paths**: Generated files, static assets, purely configuration JSONs.
+* **Misleading Types**: A `@param {string}` JSDoc type placed directly above a function receiving an `id: number`.
+* **Misleading Connections**: An inline comment `// Connects to MySQL` above a `MongoClient.connect()` call.
+* **Misleading Returns**: C# XML `<returns>` blocks claiming an array when the signature returns a single object.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **SWEEP** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 1. 🔍 **DETECT** — Write an AST traversal script (or manually navigate the tree) to match docstrings to their associated function signatures.

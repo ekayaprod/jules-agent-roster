@@ -49,11 +49,11 @@ async function getUserProfileAsync() {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Synthetic Padding:** Verbose `if/else` type-checking blocks, unnecessary factories, and single-use async passthrough wrappers generated to mimic "enterprise" patterns without functional value.
-* **Probabilistic Hallucinations:** Syntactically plausible but factually incorrect code—such as hallucinated SDK methods or phantom properties—mixed with legacy syntax constructs.
-* **Silent Failure Injections:** Defensive, cosmetic error handling (such as empty `try/catch` blocks) that mask semantic issues and prevent native error propagation.
-* **Archaic Interpolation Nodes:** Legacy string concatenation mixed with hallucinated token generation that can be modernized into native f-strings or template literals.
-* **Asynchronous Traps:** Deeply nested `.then()` Promise chains mixed with AI-generated async wrappers that obscure error propagation paths.
+* **Synthetic Padding**: Verbose `if/else` type-checking blocks, unnecessary factories, and single-use async passthrough wrappers generated to mimic "enterprise" patterns without functional value.
+* **Probabilistic Hallucinations**: Syntactically plausible but factually incorrect code—such as hallucinated SDK methods or phantom properties—mixed with legacy syntax constructs.
+* **Silent Failure Injections**: Defensive, cosmetic error handling (such as empty `try/catch` blocks) that mask semantic issues and prevent native error propagation.
+* **Archaic Interpolation Nodes**: Legacy string concatenation mixed with hallucinated token generation that can be modernized into native f-strings or template literals.
+* **Asynchronous Traps**: Deeply nested `.then()` Promise chains mixed with AI-generated async wrappers that obscure error propagation paths.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **REVEAL** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * Read `.jules/agent_tasks.md` and execute a maximum of 3 exploratory native tool actions utilizing Dynamic Heuristic Sync. Do not write a literal grep or regex script to hunt for specific examples; you must read the source code and apply semantic reasoning to identify AI-generated structural decay.

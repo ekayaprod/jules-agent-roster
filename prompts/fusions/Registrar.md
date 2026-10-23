@@ -55,11 +55,11 @@ import Card from '../../../../components/ui/Card/Card';
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **UI Component Directories:** UI component folders missing `index.js` or `index.ts` barrel files across the entire workspace.
-* **Utility Libraries:** Utility and helper directories lacking centralized barrel files or JSDoc documentation across all packages.
-* **API Route Definitions:** API route files and controllers missing route registration or documentation across microservices.
-* **Deep Relative Imports:** Fragile import paths exceeding 3 levels of nesting repo-wide.
-* **Path Alias Bypasses:** Imports bypassing configured Webpack/Vite path aliases using relative paths globally.
+* **UI Component Directories**: UI component folders missing `index.js` or `index.ts` barrel files across the entire workspace.
+* **Utility Libraries**: Utility and helper directories lacking centralized barrel files or JSDoc documentation across all packages.
+* **API Route Definitions**: API route files and controllers missing route registration or documentation across microservices.
+* **Deep Relative Imports**: Fragile import paths exceeding 3 levels of nesting repo-wide.
+* **Path Alias Bypasses**: Imports bypassing configured Webpack/Vite path aliases using relative paths globally.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets progressively across the entire monorepo without payload ceilings. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: Unbounded (Mythic Monorepo-Wide Unified Scope).
 3. ⚙️ **SYNTHESIZE** — Execute comprehensive repository-wide AST graph reconciliation and batch barrel synthesis across all matched targets simultaneously.
 * Generate or update enterprise barrel files (`index.js/ts`) across every package and shared directory to explicitly export all public modules.

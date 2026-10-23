@@ -50,10 +50,10 @@ Write a changelog based on the recent commits.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Release Formatting Rules:** The exact structural patterns historically used in the repository's `CHANGELOG.md` (header hierarchy, categorization rules, version string formats, and bullet point stylings).
-* **Ticket Grouping Logic:** Recurring ticket ID prefix patterns (e.g., `[BIL-123]`, `feat(auth):`) and the unwritten rules dictating how they map to specific public-facing epics or sections.
-* **Milestone & Tag Enforcement:** The semantic relationships between `git log` release tags (SemVer), branch names, and GitHub/Jira milestone declarations used to bundle commits.
-* **Proprietary Shorthand Translation:** Internal developer abbreviations, backend acronyms, and commit shorthand that require translation into product-audience release notes.
+* **Release Formatting Rules**: The exact structural patterns historically used in the repository's `CHANGELOG.md` (header hierarchy, categorization rules, version string formats, and bullet point stylings).
+* **Ticket Grouping Logic**: Recurring ticket ID prefix patterns (e.g., `[BIL-123]`, `feat(auth):`) and the unwritten rules dictating how they map to specific public-facing epics or sections.
+* **Milestone & Tag Enforcement**: The semantic relationships between `git log` release tags (SemVer), branch names, and GitHub/Jira milestone declarations used to bundle commits.
+* **Proprietary Shorthand Translation**: Internal developer abbreviations, backend acronyms, and commit shorthand that require translation into product-audience release notes.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets based on highest historical repetition up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **CODIFY** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * Isolate exactly one dominant, repetitive manual drafting process that can be fully eliminated by codifying its mechanics into a single meta-prompt.

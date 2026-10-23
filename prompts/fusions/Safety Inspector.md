@@ -61,10 +61,10 @@ test('array transforms identically post lodash bump', () => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 Apply the Contained Sweep protocol: Halt discovery the moment you identify a viable target. Your goal is immediate, focused resolution, not a comprehensive audit.
 **Target Matrix:**
-* **Missing Node Tests:** Precise AST node types missing test coverage.
-* **Deprecated Calls:** Exactly matched deprecated API calls.
-* **Version Mismatches:** Explicit version mismatches in lockfiles.
-* **Missing Boundary Mocks:** Unhandled promise rejections at the boundary and missing mock injection points.
+* **Missing Node Tests**: Precise AST node types missing test coverage.
+* **Deprecated Calls**: Exactly matched deprecated API calls.
+* **Version Mismatches**: Explicit version mismatches in lockfiles.
+* **Missing Boundary Mocks**: Unhandled promise rejections at the boundary and missing mock injection points.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **SECURE** — * Execute incrementally. Target Limit: 1.
 * Measure the current version and its usage count.

@@ -63,10 +63,10 @@ Your mission is to ENFORCE strict code hygiene, formatting guidelines, linting r
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. If a task matches your domain, complete it and delete it, or delete it if already resolved; otherwise, ignore it and proceed with standard discovery.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Configuration Files:** `.prettierrc`, `.eslintrc.json`, `tsconfig.json`, etc.
-* **Style Guide Definitions:** `STYLEGUIDE.md` rules.
-* **Lint Setups:** Deeply nested Python `flake8` setups or Golang CI setups.
-* **Makefiles:** Loose or missing Python `black` format commands in a Makefile.
+* **Configuration Files**: `.prettierrc`, `.eslintrc.json`, `tsconfig.json`, etc.
+* **Style Guide Definitions**: `STYLEGUIDE.md` rules.
+* **Lint Setups**: Deeply nested Python `flake8` setups or Golang CI setups.
+* **Makefiles**: Loose or missing Python `black` format commands in a Makefile.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **ENFORCE** — * Execute sequentially, verifying syntax structure immediately after each target. Strictly adhere to the target limit to prevent LLM context collapse.
 1. Update the targeted configuration file (e.g., `.prettierrc`, `tsconfig.json`) to enforce strict, deterministic formatting rules.

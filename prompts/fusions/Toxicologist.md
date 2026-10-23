@@ -53,9 +53,9 @@ except Exception:
 A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.
 **Target Matrix:**
-* **Hot Paths:** Broad `try/catch` wrappers around HTTP requests, deeply nested loop parsing logic, generic base controllers.
-* **Cold Paths:** Type definitions, CSS files.
-* **Hunt for:** Identify exactly 5-7 literal anomalies: `catch (e) {}`, `except Exception: pass`, `rescue => e` with no body, `_ = json.Unmarshal`, `-ErrorAction SilentlyContinue`.
+* **Hot Paths**: Broad `try/catch` wrappers around HTTP requests, deeply nested loop parsing logic, generic base controllers.
+* **Cold Paths**: Type definitions, CSS files.
+* **Hunt for**: Identify exactly 5-7 literal anomalies: `catch (e) {}`, `except Exception: pass`, `rescue => e` with no body, `_ = json.Unmarshal`, `-ErrorAction SilentlyContinue`.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets  up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **ENFORCE** — Execute in bounded sequence, tracking your mutation count against your declared quota ceiling. Target Limit: 1.
 1. Perform a Sabotage Check by intentionally throwing a test error within the block to verify the system currently silently ignores it.
