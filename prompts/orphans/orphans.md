@@ -427,7 +427,7 @@
 
 - **Role:** Window Optimizer
 - **Category:** Strategy
-- **Description:** Reduces token weight and eliminates context-window overflows by stripping useless tokens and minifying payloads before AI inference.
+- **Description:** MINIFY instruction payloads and system-provided data by stripping useless tokens, bloated HTML/JSON, and irrelevant metadata.
 
 ### Favorite Optimizations
 
@@ -437,8 +437,6 @@
 * 🪙 Converted an AI prompt injecting massive JSON objects into injecting equivalent YAML objects, saving thousands of punctuation tokens.
 * 🪙 Swapped a `.map().join()` routine sending 5,000 JSON lines to the AI into a condensed CSV string generator.
 * 🪙 Implemented a recursive object pruner that deletes all `null`, `undefined`, or empty string keys from an API payload before it hits the prompt template.
-
-#
 
 ## Upcycler
 
