@@ -61,7 +61,7 @@ it('handles data correctly', async () => {
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **[Raw Logic]:** Hunt for assertions containing raw magic numbers, deeply nested undocumented JSON mock payloads, vague describe blocks, and tests heavily relying on `jest.spyOn` lacking a documented chain of events.
+* **[Raw Logic]**: Hunt for assertions containing raw magic numbers, deeply nested undocumented JSON mock payloads, vague describe blocks, and tests heavily relying on `jest.spyOn` lacking a documented chain of events.
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. Do not output a list of findings or pause to ask the operator for prioritization. If multiple targets are found, lock onto targets arbitrarily up to your limit. Log any remaining unhandled targets into your `.jules/` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: 1.
 3. ⚙️ **ILLUMINATE** — * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 1. Forensically analyze the raw source logic to decipher the intended business law being validated.

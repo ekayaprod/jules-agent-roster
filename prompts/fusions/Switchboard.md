@@ -56,10 +56,10 @@ steps:
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **[Arrow CI Code]:** Deeply nested `if/else` bash scripts running inline within CI YAML blocks.
-* **[Redundant Jobs]:** Redundant CI pipeline jobs that can be flattened into matrix strategies.
-* **[Nested Docker Logic]:** Deeply nested `RUN` statements in Dockerfiles lacking clear guard clauses.
-* **[Complex Deployment Checks]:** Convoluted shell conditions that evaluate branch names before building, which should be flattened to GitHub native `if:` guards.
+* **[Arrow CI Code]**: Deeply nested `if/else` bash scripts running inline within CI YAML blocks.
+* **[Redundant Jobs]**: Redundant CI pipeline jobs that can be flattened into matrix strategies.
+* **[Nested Docker Logic]**: Deeply nested `RUN` statements in Dockerfiles lacking clear guard clauses.
+* **[Complex Deployment Checks]**: Convoluted shell conditions that evaluate branch names before building, which should be flattened to GitHub native `if:` guards.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **UNKNOT** — Execute incrementally. Execute precisely and immediately upon target acquisition.
 * **Logic Tracing:** Evaluate the pipeline flow and identify all execution branches within the target configuration.

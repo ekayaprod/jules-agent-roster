@@ -63,11 +63,11 @@ export const processPayment = (status) => {
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
-* **Dead Return Guards:** Code blocks sitting immediately below an unconditional `return`, `throw`, or `break` statement.
-* **Hardcoded Boolean Gates:** `if (false)` or equivalent hardcoded boolean logic gates protecting massive unused modules.
-* **Unused Assignments:** Variables or constants declared and assigned a value but never actually read or returned.
-* **Orphaned Functions:** Internal file functions or classes completely unreferenced by the module's main export.
-* **Dormant CSS Classes:** Dormant CSS classes that no HTML element currently references.
+* **Dead Return Guards**: Code blocks sitting immediately below an unconditional `return`, `throw`, or `break` statement.
+* **Hardcoded Boolean Gates**: `if (false)` or equivalent hardcoded boolean logic gates protecting massive unused modules.
+* **Unused Assignments**: Variables or constants declared and assigned a value but never actually read or returned.
+* **Orphaned Functions**: Internal file functions or classes completely unreferenced by the module's main export.
+* **Dormant CSS Classes**: Dormant CSS classes that no HTML element currently references.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 5.
 3. ⚙️ **PRUNE** — * Execute incrementally. Target Limit: 5.
 1. **Analyze Control Flow:** Perform an AST walkthrough to explicitly prove the target path cannot execute.

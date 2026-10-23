@@ -52,9 +52,9 @@ Authentication is handled by the auth module. It checks the database and returns
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **[Undocumented Middlewares]:** Implicit pub/sub event emitters lacking consumption mapping.
-* **[Scattered Handlers]:** Nested router handlers and disjointed celery task chains.
-* **[Hot and Cold Paths]:** Precise cross-file callback handoffs.
+* **[Undocumented Middlewares]**: Implicit pub/sub event emitters lacking consumption mapping.
+* **[Scattered Handlers]**: Nested router handlers and disjointed celery task chains.
+* **[Hot and Cold Paths]**: Precise cross-file callback handoffs.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **UNTANGLE** — * Execute in bounded sequence, tracking mutation count against the declared quota. Ensure mutations do not exceed the set target limit.
 1. Execute a precise multi-step mechanical breakdown.

@@ -74,11 +74,11 @@ export const ProductCard = ({ id }) => (
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **The Unprimed Anchor:** Standard `<a>` tags or framework-native `<Link>` components lacking explicitly defined prefetch attributes.
-* **The Pagination Void:** "Next" or "Previous" buttons in list views missing hover-intent or viewport-intent preloading.
-* **The Dense Artery:** Highly populated sidebar navigation menus or mega-menus that trigger synchronous latency upon click.
-* **The Heavy Grid:** Data-intensive cards or grid components where clicking routes the user to a detail view requiring a fresh JSON payload.
-* **The Infinite Boundary:** The terminal element in an infinite-scroll list lacking an `IntersectionObserver` prefetch trigger for the next data chunk.
+* **The Unprimed Anchor**: Standard `<a>` tags or framework-native `<Link>` components lacking explicitly defined prefetch attributes.
+* **The Pagination Void**: "Next" or "Previous" buttons in list views missing hover-intent or viewport-intent preloading.
+* **The Dense Artery**: Highly populated sidebar navigation menus or mega-menus that trigger synchronous latency upon click.
+* **The Heavy Grid**: Data-intensive cards or grid components where clicking routes the user to a detail view requiring a fresh JSON payload.
+* **The Infinite Boundary**: The terminal element in an infinite-scroll list lacking an `IntersectionObserver` prefetch trigger for the next data chunk.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 7.
 3. ⚙️ **ANTICIPATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 7 targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling.
 1. Identify the Intent Surface: Scan the AST for valid targets within the matrix and map the appropriate human intent signal to the component.

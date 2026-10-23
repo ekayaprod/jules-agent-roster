@@ -52,11 +52,11 @@ import { FormatDate } from "./Utils/dateFormatter";
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Target Matrix:**
-* **Lexical Collisions:** Mixed casing paradigms cohabitating within the exact same bounded context or domain folder.
-* **Framework Routing Violations:** Capitalization or naming anomalies that silently break implicit file-system routers.
-* **Test Harness Asymmetry:** Chaotic, inconsistent, or missing test file suffixes/prefixes that cause native CI runners to silently drop test suites.
-* **Export Misalignment:** Physical disk file names that wildly diverge from their primary default or named AST export.
-* **Asset Suffix Orphans:** Isolated styling, environment, or utility files missing required structural suffixes.
+* **Lexical Collisions**: Mixed casing paradigms cohabitating within the exact same bounded context or domain folder.
+* **Framework Routing Violations**: Capitalization or naming anomalies that silently break implicit file-system routers.
+* **Test Harness Asymmetry**: Chaotic, inconsistent, or missing test file suffixes/prefixes that cause native CI runners to silently drop test suites.
+* **Export Misalignment**: Physical disk file names that wildly diverge from their primary default or named AST export.
+* **Asset Suffix Orphans**: Isolated styling, environment, or utility files missing required structural suffixes.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: strictly capped at ALL matching targets globally. Stop scanning only when the entire repository has been successfully mapped and all matches exhausted. If an unexpected crash occurs, stop execution, save progress, and submit a PR.
 3. ⚙️ **STANDARDIZE** — * Execute progressively across all valid targets, managing the tool call envelope. 1. Map the Blast Radius: Execute an AST walkthrough to map internal string references. Strictly ignore third-party vendor directories (e.g., node modules), auto-generated API clients, and dynamically compiled distribution folders.
 2. Physical Disk Alignment: Standardize physical file names to match the structural blueprint of their parent directory. You must execute `git mv` on every violating file to ensure the casing change is properly registered by version control and bypasses case-insensitive OS conflicts.

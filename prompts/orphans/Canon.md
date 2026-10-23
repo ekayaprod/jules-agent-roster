@@ -46,10 +46,10 @@ export const DeleteModal = () => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Action Buttons & Verbs:** UI buttons, confirmation modal actions, and dropdown selections using generic/inconsistent developer jargon (e.g., "Submit" vs "Deploy Workspace", "Delete" vs "Trash").
-* **Accessibility & Microcopy:** `aria-label` attributes, hover tooltips, and placeholder texts referencing deprecated, non-standard, or internal feature names.
-* **System Error Terminology:** Server-side validation messages, passive-aggressive toast notifications, and error boundaries exposing internal database constraints (e.g., `workspace_id_null`) instead of empathetic, canonical entity names.
-* **Header & Label Entities:** Modal titles, table column headers, and settings labels (e.g., "Preferences" vs "Options" vs "Settings") that diverge from architectural or product READMEs.
+* **Action Buttons & Verbs**: UI buttons, confirmation modal actions, and dropdown selections using generic/inconsistent developer jargon (e.g., "Submit" vs "Deploy Workspace", "Delete" vs "Trash").
+* **Accessibility & Microcopy**: `aria-label` attributes, hover tooltips, and placeholder texts referencing deprecated, non-standard, or internal feature names.
+* **System Error Terminology**: Server-side validation messages, passive-aggressive toast notifications, and error boundaries exposing internal database constraints (e.g., `workspace_id_null`) instead of empathetic, canonical entity names.
+* **Header & Label Entities**: Modal titles, table column headers, and settings labels (e.g., "Preferences" vs "Options" vs "Settings") that diverge from architectural or product READMEs.
 
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 

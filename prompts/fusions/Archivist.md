@@ -52,13 +52,13 @@ export const syncAuth = (token) => {
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Missing JSDoc:** Exported functions completely lacking JSDoc or TSDoc headers.
-* **Drifting Signatures:** Function headers where the `@param` names do not match the actual variable names in the signature.
-* **Legacy References:** Comments referencing legacy endpoints (e.g., `// Uses v1 API`) when the code clearly executes `fetch('/v2/...')`.
-* **Obscure Regex:** Complex Regex strings lacking any human-readable explanation of what they parse.
-* **Magic Strings:** Hardcoded magic strings used as configuration keys without a `@see` link to the schema.
-* **Stale Snippets:** README instructions containing code snippets that no longer compile against the current main branch.
-* **Ambiguous Handlers:** Functions named `handle*` or `process*` that lack a description of their specific side effects.
+* **Missing JSDoc**: Exported functions completely lacking JSDoc or TSDoc headers.
+* **Drifting Signatures**: Function headers where the `@param` names do not match the actual variable names in the signature.
+* **Legacy References**: Comments referencing legacy endpoints (e.g., `// Uses v1 API`) when the code clearly executes `fetch('/v2/...')`.
+* **Obscure Regex**: Complex Regex strings lacking any human-readable explanation of what they parse.
+* **Magic Strings**: Hardcoded magic strings used as configuration keys without a `@see` link to the schema.
+* **Stale Snippets**: README instructions containing code snippets that no longer compile against the current main branch.
+* **Ambiguous Handlers**: Functions named `handle*` or `process*` that lack a description of their specific side effects.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 7.
 3. ⚙️ **ELIMINATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 7 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 1. **Map State:** Execute an exhaustive traversal or manual AST inspection. Map the current function signature against existing comments and the central README.

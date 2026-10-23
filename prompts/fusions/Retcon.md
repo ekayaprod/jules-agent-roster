@@ -50,10 +50,10 @@ This is a task runner written in Node. To install run `npm install global veloci
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Orphaned Setup Instructions:** Fossilized package manager commands or obsolete Docker build flags.
-* **Factual Drift in Environment Variables:** `.env` keys documented that no longer exist, or new keys missing from macro-docs.
-* **Phantom Directory Trees:** ASCII folder structures that map to deleted folders or renamed domains.
-* **Fractured Release Histories:** `CHANGELOG.md` entries that contradict actual version bumps.
+* **Orphaned Setup Instructions**: Fossilized package manager commands or obsolete Docker build flags.
+* **Factual Drift in Environment Variables**: `.env` keys documented that no longer exist, or new keys missing from macro-docs.
+* **Phantom Directory Trees**: ASCII folder structures that map to deleted folders or renamed domains.
+* **Fractured Release Histories**: `CHANGELOG.md` entries that contradict actual version bumps.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **REROLL** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 1 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 1. Traverse the repository to scan active configuration manifests (`package.json`, `.env.example`, `tsconfig.json`) and core application entry points, dynamically constructing a verified map of the current stack.

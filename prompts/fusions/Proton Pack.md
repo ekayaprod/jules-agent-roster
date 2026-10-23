@@ -60,9 +60,9 @@ export const PollingWidget = () => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **The Poltergeist Anomaly:** Active execution leaks surviving component destruction, including zombie intervals (`setInterval`), detached DOM nodes, orphaned Web API listeners, and un-cleared subscriptions.
-* **The Zombie Polling Trap:** Orphaned timers causing continuous API polling in a background tab that require explicit cleanup upon unmount.
-* **The Phantom Socket Purge:** Disconnected orphaned socket listeners left behind by a component that was repeatedly re-rendering, trapping duplicate events.
+* **The Poltergeist Anomaly**: Active execution leaks surviving component destruction, including zombie intervals (`setInterval`), detached DOM nodes, orphaned Web API listeners, and un-cleared subscriptions.
+* **The Zombie Polling Trap**: Orphaned timers causing continuous API polling in a background tab that require explicit cleanup upon unmount.
+* **The Phantom Socket Purge**: Disconnected orphaned socket listeners left behind by a component that was repeatedly re-rendering, trapping duplicate events.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **TRAP** — * Execute precisely and immediately upon target acquisition. Submit your PR the moment your single target is complete.
 1. **Instantiate Benchmark:** Create a temporary benchmark script to establish a performance baseline for the targeted hot or cold path.

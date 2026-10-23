@@ -50,9 +50,9 @@ export const renderComment = (rawHtml: string) => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **DOM Injection Vectors:** Raw payload sinks rendering directly to the browser (e.g., `dangerouslySetInnerHTML`, `v-html`).
-* **Database Execution Vectors:** Unparameterized string interpolations directly executing in the database layer (e.g., `WHERE id = ${req.params.id}`).
-* **Shell Execution Vectors:** System-level processes receiving unfiltered user input (e.g., raw `exec()` commands without escape wrappers).
+* **DOM Injection Vectors**: Raw payload sinks rendering directly to the browser (e.g., `dangerouslySetInnerHTML`, `v-html`).
+* **Database Execution Vectors**: Unparameterized string interpolations directly executing in the database layer (e.g., `WHERE id = ${req.params.id}`).
+* **Shell Execution Vectors**: System-level processes receiving unfiltered user input (e.g., raw `exec()` commands without escape wrappers).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **PURIFY** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 1. Parse the AST to precisely locate the vulnerable payload mapping and its execution sink.

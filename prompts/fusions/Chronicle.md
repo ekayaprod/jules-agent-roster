@@ -56,10 +56,10 @@ This module is used to authenticate users...
 1. 🔍 **DISCOVER** — asynchronous tools **Task Board Resolution:** * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Tier 1:** The Tooling Audit — Scan package.json and root directories to identify absent documentation pipelines.
-* **Tier 2:** The Hook Synthesis — Determine the optimal integration point for a standalone npm script.
-* **Tier 3:** The Blueprint Synthesis — Define the specific configuration syntax for the net-new pipeline.
-* **Tier 4:** The Execution Boundary — Determine whether the pipeline requires integration with existing CI workflows.
+* **Tier 1**: The Tooling Audit — Scan package.json and root directories to identify absent documentation pipelines.
+* **Tier 2**: The Hook Synthesis — Determine the optimal integration point for a standalone npm script.
+* **Tier 3**: The Blueprint Synthesis — Define the specific configuration syntax for the net-new pipeline.
+* **Tier 4**: The Execution Boundary — Determine whether the pipeline requires integration with existing CI workflows.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **BUILD** — * Execute precisely and immediately upon target acquisition. 1. ⚙️ **BUILD** — Execute modifications precisely and immediately upon discovering a valid target.
 2. ⚙️ **CONFIGURE** — Generate foundational configuration files required to power the documentation pipeline.

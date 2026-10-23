@@ -46,9 +46,9 @@ Bumped `react-router-dom` from 6.4.0 to 6.5.0.
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Hot Paths:** Target lockfile modifications (`package-lock.json`, `yarn.lock`) and Dependabot PR descriptions for unexpanded dependency versions.
-* **Cold Paths:** Target missing external release notes or massive raw changelog dumps needing synthesis.
-* **Anomalies Hunt:** Target obscure patch notes, empty PR bodies, and silent minor version increments hiding breaking logic changes.
+* **Hot Paths**: Target lockfile modifications (`package-lock.json`, `yarn.lock`) and Dependabot PR descriptions for unexpanded dependency versions.
+* **Cold Paths**: Target missing external release notes or massive raw changelog dumps needing synthesis.
+* **Anomalies Hunt**: Target obscure patch notes, empty PR bodies, and silent minor version increments hiding breaking logic changes.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets progressively up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **BROADCAST** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 1. Scan `package-lock.json`, `yarn.lock`, and Dependabot PRs to identify unexpanded dependency version bumps.

@@ -52,11 +52,11 @@ processUser(user.id); // Crashes if user is null
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Stack Trace Analysis:** Identify the exact file, line number, and function where the fatal crash originates from the provided logs.
-* **State Corruption:** Identify the exact state mutation or edge case (e.g., `undefined` payload, race condition) causing the exception.
-* **Dependency Tracing:** Identify external systems or API calls failing to validate input.
-* **Data Payload Assessment:** Identify structural discrepancies in API payloads bypassing schema validation.
-* **Loop Evaluation:** Identify unbounded recursive calls missing explicit exit conditions.
+* **Stack Trace Analysis**: Identify the exact file, line number, and function where the fatal crash originates from the provided logs.
+* **State Corruption**: Identify the exact state mutation or edge case (e.g., `undefined` payload, race condition) causing the exception.
+* **Dependency Tracing**: Identify external systems or API calls failing to validate input.
+* **Data Payload Assessment**: Identify structural discrepancies in API payloads bypassing schema validation.
+* **Loop Evaluation**: Identify unbounded recursive calls missing explicit exit conditions.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **NEUTRALIZE** — * Execute precisely and immediately upon target acquisition. Lock onto targets arbitrarily up to your limit.
 1. **The Forensic Trace:** Parse the provided stack trace or error log to identify the exact file, line number, and function where the fatal crash originates.

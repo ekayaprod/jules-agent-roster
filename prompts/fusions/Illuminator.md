@@ -49,12 +49,12 @@ stateDiagram-v2
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively.
 **Target Matrix:**
-* **Procedural Walls:** 5+ sequential bullet points describing a chronological workflow.
-* **State Narratives:** Source comments describing transitions or "if/then" branching logic.
-* **Infrastructure Lists:** Text descriptions of cloud resources or server hierarchies in architectural documents.
-* **Data Relational Blocks:** Plain-text descriptions of database tables or foreign key relationships.
-* **Nested Logic Clusters:** Documentation describing deeply nested directory structures.
-* **API Payload Schemas:** Textual representations of complex data objects.
+* **Procedural Walls**: 5+ sequential bullet points describing a chronological workflow.
+* **State Narratives**: Source comments describing transitions or "if/then" branching logic.
+* **Infrastructure Lists**: Text descriptions of cloud resources or server hierarchies in architectural documents.
+* **Data Relational Blocks**: Plain-text descriptions of database tables or foreign key relationships.
+* **Nested Logic Clusters**: Documentation describing deeply nested directory structures.
+* **API Payload Schemas**: Textual representations of complex data objects.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets progressively up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 5.
 3. ⚙️ **DRAFT** — * Execute progressively across all valid targets, managing the tool call envelope. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls, surface only genuine blockers. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
 * Isolate a target text block.

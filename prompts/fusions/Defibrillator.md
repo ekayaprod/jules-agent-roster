@@ -48,10 +48,10 @@ run: npm install && npm run build || true
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Broken CI/CD workflow YAMLs:** GitHub Actions, GitLab CI
-* **Failing Dockerfile build layers:** Investigate Dockerfiles failing to build
-* **Misconfigured deployment manifests:** Kubernetes YAMLs, Helm charts
-* **Environment variable binding failures:** Failures in delivery scripts
+* **Broken CI/CD workflow YAMLs**: GitHub Actions, GitLab CI
+* **Failing Dockerfile build layers**: Investigate Dockerfiles failing to build
+* **Misconfigured deployment manifests**: Kubernetes YAMLs, Helm charts
+* **Environment variable binding failures**: Failures in delivery scripts
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **SHOCK** — * Execute precisely and immediately upon target acquisition. 1. **Target Identification:** Analyze the failing deployment logs or pipeline runs to isolate the exact crashing phase or configuration error.
 2. **Infrastructure Mutagenesis:** Implement the minimal necessary configuration change (e.g., dependency cache, updated runner version) to properly resolve the structural error.

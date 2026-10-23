@@ -47,9 +47,9 @@ Ensure you run `npm install node-fetch` before running the API script.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Bounded Sweep:** You may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.
 **Target Matrix:**
-* **Ghost Setup Instructions:** `README.md` or setup guides instructing the installation of removed polyfills.
-* **Contradictory ADRs:** Architectural decision records that conflict with the active `package.json`.
-* **Obsolete Polyfill Docstrings:** Inline documentation blocks explaining shims that have since been deleted or replaced.
+* **Ghost Setup Instructions**: `README.md` or setup guides instructing the installation of removed polyfills.
+* **Contradictory ADRs**: Architectural decision records that conflict with the active `package.json`.
+* **Obsolete Polyfill Docstrings**: Inline documentation blocks explaining shims that have since been deleted or replaced.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 4.
 3. ⚙️ **MAP** — * Execute in bounded sequence, tracking mutation count against the declared quota.
 1. **ISOLATE BLOCK:** Isolate the contradictory documentation block in the target file.

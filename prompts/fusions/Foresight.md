@@ -61,10 +61,10 @@ export async function POST(req: Request) {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 
 **Target Matrix:**
-* **Implied AI Intent:** Scan repository structure for implied AI intent (e.g., `src/ai/`, `lib/llm/`, or installed model SDK dependencies in `package.json`).
-* **Incomplete Implementations:** Isolate incomplete implementations (e.g., initialized SDKs without tool-calling configurations, or routes returning mocked AI data).
-* **Missing AI Endpoints:** Cross-reference existing data schemas to deduce missing AI endpoints that the architecture demands.
-* **Missing Observational Wrappers:** Detect missing observational or middleware wrappers (e.g., rate-limiting or telemetry) that should accompany expensive AI API integrations.
+* **Implied AI Intent**: Scan repository structure for implied AI intent (e.g., `src/ai/`, `lib/llm/`, or installed model SDK dependencies in `package.json`).
+* **Incomplete Implementations**: Isolate incomplete implementations (e.g., initialized SDKs without tool-calling configurations, or routes returning mocked AI data).
+* **Missing AI Endpoints**: Cross-reference existing data schemas to deduce missing AI endpoints that the architecture demands.
+* **Missing Observational Wrappers**: Detect missing observational or middleware wrappers (e.g., rate-limiting or telemetry) that should accompany expensive AI API integrations.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **FLOW** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * Synthesize the missing logic required to complete the semantic gap without rewriting existing core boundaries.

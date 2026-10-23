@@ -60,10 +60,10 @@ export const getUserProfile = async (userId: string) => {
 This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Tier 1 — The Abandoned Scaffold:** Unresolved `TODO` tags, empty UI component stubs, and mock data placeholders intended for real endpoints that were never completed.
-* **Tier 2 — Latent Contamination:** Database schemas without UI consumers, and API routes that return empty responses or hardcoded variables.
-* **Tier 3 — Forgotten State:** Abandoned agent scratchpads or temporary scripts that can be upcycled into permanent, production-ready internal tools.
-* **Tier 4 — Observability Gaps:** Missing global error boundaries, loading state scaffolds, and fallback UIs where only happy-path stubs currently exist.
+* **Tier 1 — The Abandoned Scaffold**: Unresolved `TODO` tags, empty UI component stubs, and mock data placeholders intended for real endpoints that were never completed.
+* **Tier 2 — Latent Contamination**: Database schemas without UI consumers, and API routes that return empty responses or hardcoded variables.
+* **Tier 3 — Forgotten State**: Abandoned agent scratchpads or temporary scripts that can be upcycled into permanent, production-ready internal tools.
+* **Tier 4 — Observability Gaps**: Missing global error boundaries, loading state scaffolds, and fallback UIs where only happy-path stubs currently exist.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **UPCYCLE** — Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion. Execute precisely and immediately upon target acquisition.
 1. Parse `.jules/agent_tasks.md` and read the repository root directory structure to index potential file-level abandoned scaffolds or forgotten scratchpad assets.

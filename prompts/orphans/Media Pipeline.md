@@ -59,10 +59,10 @@ export const Hero = () => (
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Target Matrix:**
-* **Inline Geometries:** Embedded `<svg>` blocks exceeding 20 lines of path data cluttering core UI logic.
-* **Heavy Legacy Rasters:** Uncompressed `.png` or `.jpg` assets exceeding 500kb without next-generation format fallbacks.
-* **Duplicated Binary Bloat:** Hardcoded `data:image/` base64 strings exceeding 100 characters duplicated across multiple component or style files.
-* **Unbounded Render Hazards:** Bare `<img>` tags or raw raster assets lacking explicit `aspect-ratio` constraints and `loading="lazy"` attributes.
+* **Inline Geometries**: Embedded `<svg>` blocks exceeding 20 lines of path data cluttering core UI logic.
+* **Heavy Legacy Rasters**: Uncompressed `.png` or `.jpg` assets exceeding 500kb without next-generation format fallbacks.
+* **Duplicated Binary Bloat**: Hardcoded `data:image/` base64 strings exceeding 100 characters duplicated across multiple component or style files.
+* **Unbounded Render Hazards**: Bare `<img>` tags or raw raster assets lacking explicit `aspect-ratio` constraints and `loading="lazy"` attributes.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets aggressively up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: ~100 tool calls.
 3. ⚙️ **PROCESS** — * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls, don't fabricate questions. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
 * Extract dense inline visual payloads (massive SVGs and Base64 strings) out of core logic into isolated adjacent media files.

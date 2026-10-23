@@ -50,9 +50,9 @@ We are getting rid of the V1 API soon because it is slow. Stop using it and move
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Un-documented Deprecation:** A deprecated system or API is detected without a formal migration guide.
-* **Stale Tutorial:** A tutorial references retired code.
-* **Obsolete Spec:** An OpenAPI spec or similar schema missing `deprecated: true` flags.
+* **Un-documented Deprecation**: A deprecated system or API is detected without a formal migration guide.
+* **Stale Tutorial**: A tutorial references retired code.
+* **Obsolete Spec**: An OpenAPI spec or similar schema missing `deprecated: true` flags.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets within your discovery payload and lock onto the single target. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Target Limit: 1.
 3. ⚙️ **SUNSET** — * Execute precisely and immediately upon target acquisition.
 * Isolate the target legacy pattern.

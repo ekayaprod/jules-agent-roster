@@ -160,9 +160,9 @@ If the domain relies on structural verification (no executable tests), rewrite t
 **⚠️ STRICT GENERATIVE BOUNDARY:** The following Target Matrix, Execution Steps, and Heuristic Verification list lengths are strictly evaluated during the Phase 6 Linter pass. None may be waived.
 
 **Target Matrix:**
-- **Contained Velocity / Bounded Sweep:** Minimum 1 target.
-- **Generator Archetype:** Minimum 4 target tiers.
-- **All Others:** Minimum 3 targets.
+- **Contained Velocity / Bounded Sweep**: Minimum 1 target.
+- **Generator Archetype**: Minimum 4 target tiers.
+- **All Others**: Minimum 3 targets.
 
 **Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. **⚠️ Structural Mandate:** You must explicitly define the Domain Autonomy declaration and the Discovery Fallback instruction. Supply the exact literal strings defined below.
 

@@ -50,9 +50,9 @@ Welcome aboard! To boot the application locally:
 
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **The Hallucinated CLI:** Fossilized Quick Start guides containing CLI commands that actively contradict the active `package.json`, `Makefile`, or `docker-compose.yml`.
-* **The Phantom Route:** Physical endpoints or controllers missing from the codebase but documented as valid consumer targets in the `API.md` or `README.md`.
-* **The Synthetic Dependency:** Setup instructions demanding the global installation of deprecated or non-existent packages not found in the project's lockfile.
+* **The Hallucinated CLI**: Fossilized Quick Start guides containing CLI commands that actively contradict the active `package.json`, `Makefile`, or `docker-compose.yml`.
+* **The Phantom Route**: Physical endpoints or controllers missing from the codebase but documented as valid consumer targets in the `API.md` or `README.md`.
+* **The Synthetic Dependency**: Setup instructions demanding the global installation of deprecated or non-existent packages not found in the project's lockfile.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **PURGE** — * Execute precisely and immediately upon target acquisition.
 1. Read `.jules/agent_tasks.md` and execute exploratory native tool actions utilizing Dynamic Heuristic Sync to identify the "vibe" of AI-generated documentation decay.

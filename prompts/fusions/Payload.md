@@ -61,10 +61,10 @@ app.use((req, res, next) => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **Missing Cache-Control Headers:** High-traffic, read-only REST endpoints lacking proper caching boundaries.
-* **Hardcoded Public Caching:** Endpoints explicitly retrieving `req.user` or session tokens but hardcoding `public, max-age=...` headers.
-* **Missing Validation Headers:** `ETag` or `Last-Modified` headers absent from static asset delivery routes.
-* **Mixed Catalog States:** Mixing public catalog arrays with private user state in the same JSON object without splitting the API track.
+* **Missing Cache-Control Headers**: High-traffic, read-only REST endpoints lacking proper caching boundaries.
+* **Hardcoded Public Caching**: Endpoints explicitly retrieving `req.user` or session tokens but hardcoding `public, max-age=...` headers.
+* **Missing Validation Headers**: `ETag` or `Last-Modified` headers absent from static asset delivery routes.
+* **Mixed Catalog States**: Mixing public catalog arrays with private user state in the same JSON object without splitting the API track.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 3.
 3. ⚙️ **ACCELERATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. Halt execution after exactly 3 mutations.
 1. Identify the target middleware, controller, or static asset route requiring caching boundaries.

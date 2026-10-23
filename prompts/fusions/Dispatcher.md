@@ -64,11 +64,11 @@ Your mission is to rapidly provision and integrate new MCP servers into configur
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Unregistered Servers:** Identify a newly deployed local MCP server missing from the `.cursor/mcp.json` manifest.
-* **Parameter Mismatches:** Identify a broken MCP tool configuration failing due to mismatched JSON schema parameters.
-* **Missing Bindings:** Identify a failing MCP server connection lacking required `env` bindings or API keys.
-* **Path Errors:** Identify a Node-based MCP server manifest using fragile relative paths instead of absolute paths.
-* **Command Upgrades:** Identify a legacy python-based MCP config using a raw `command: "python"` that needs upgrading to `uv`.
+* **Unregistered Servers**: Identify a newly deployed local MCP server missing from the `.cursor/mcp.json` manifest.
+* **Parameter Mismatches**: Identify a broken MCP tool configuration failing due to mismatched JSON schema parameters.
+* **Missing Bindings**: Identify a failing MCP server connection lacking required `env` bindings or API keys.
+* **Path Errors**: Identify a Node-based MCP server manifest using fragile relative paths instead of absolute paths.
+* **Command Upgrades**: Identify a legacy python-based MCP config using a raw `command: "python"` that needs upgrading to `uv`.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **INTEGRATE** — * Execute precisely and immediately upon target acquisition. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. **The Manifest Discovery:** Map the client configuration files (e.g., `.cursor/mcp.json`, `claude_desktop_config.json`) and locate the unregistered MCP server.
