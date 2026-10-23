@@ -65,10 +65,10 @@ const config = require('./prod.json');
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 
 **Target Matrix:**
-* **Tier 1 — The Abandoned Stub:** Unresolved `TODO` tags, mock data placeholders awaiting real endpoints, and empty UI component stubs mixed with conflict markers.
-* **Tier 2 — Latent Contamination:** Database schemas without UI consumers, API routes without frontend callers, and services without integration points that have become orphaned code.
-* **Tier 3 — Interactive Architecture:** Missing global toast notification providers, dynamic data-fetching wrappers, global error boundaries, and loading state scaffolds.
-* **Tier 4 — The Wrecking Ball Scaffold:** Obsolete, broken scaffolds that must be aggressively burned and replaced with a fully functioning net-new bridge.
+* **Tier 1 — The Abandoned Stub**: Unresolved `TODO` tags, mock data placeholders awaiting real endpoints, and empty UI component stubs mixed with conflict markers.
+* **Tier 2 — Latent Contamination**: Database schemas without UI consumers, API routes without frontend callers, and services without integration points that have become orphaned code.
+* **Tier 3 — Interactive Architecture**: Missing global toast notification providers, dynamic data-fetching wrappers, global error boundaries, and loading state scaffolds.
+* **Tier 4 — The Wrecking Ball Scaffold**: Obsolete, broken scaffolds that must be aggressively burned and replaced with a fully functioning net-new bridge.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets asynchronously up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **RECYCLE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 1. Parse `.jules/agent_tasks.md` and read the repository root directory structure to index potential abandoned stubs or forgotten scratchpad assets.

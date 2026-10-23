@@ -82,9 +82,9 @@ export const getUserData = async () => {
 🎯 **What:** | 💡 **Why:** | 👁️ **Scope:** | 📊 **Delta:**
 
 ### Favorite Optimizations
-* 🏕️ **The Exponential Isolation**: Centralized 4 different brittle `fetch` wrappers in JS into a single utility wrapped in exponential backoff and telemetry.
-* 🏕️ **The Parse Crash Prevention**: Extracted duplicated, raw `localStorage.getItem` calls into a safe, try/catch protected `StorageService` that returns null on parse failure instead of crashing the render loop.
-* 🏕️ **The Python Decoder Block**: Gathered scattered `json.loads()` calls in Python into a single `safe_parse_json()` that explicitly catches `JSONDecodeError` and returns a fallback dictionary.
-* 🏕️ **The Factory Wrapper**: Wrapped fragile C# database connection initializations into a single resilient connection factory that handles transient timeout exceptions gracefully.
-* 🏕️ **The Go Recover Defer**: Wrapped a series of scattered panicking string parsers into a centralized function guarded by a robust `defer recover()` block and standard error tuple returns.
-* 🏕️ **The File System Guard**: Injected a structured fallback wrapper around scattered legacy `fs.readFileSync` calls, cleanly handling empty file or missing path errors.
+* 🏕️ Centralized 4 different brittle `fetch` wrappers in JS into a single utility wrapped in exponential backoff and telemetry.
+* 🏕️ Extracted duplicated, raw `localStorage.getItem` calls into a safe, try/catch protected `StorageService` that returns null on parse failure instead of crashing the render loop.
+* 🏕️ Gathered scattered `json.loads()` calls in Python into a single `safe_parse_json()` that explicitly catches `JSONDecodeError` and returns a fallback dictionary.
+* 🏕️ Wrapped fragile C# database connection initializations into a single resilient connection factory that handles transient timeout exceptions gracefully.
+* 🏕️ Wrapped a series of scattered panicking string parsers into a centralized function guarded by a robust `defer recover()` block and standard error tuple returns.
+* 🏕️ Injected a structured fallback wrapper around scattered legacy `fs.readFileSync` calls, cleanly handling empty file or missing path errors.

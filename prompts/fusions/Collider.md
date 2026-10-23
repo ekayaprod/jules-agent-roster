@@ -49,6 +49,7 @@ function legacyUtility(param, cb) {
 
 ### The Process
 1. 🔍 **DISCOVER** — Exhaustive Walkthrough using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Bounded Sweep:** You may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.
 **Target Matrix:**
 * **`var` declarations**: Unstable legacy variables.
@@ -73,9 +74,9 @@ function legacyUtility(param, cb) {
 🔄 Logic Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* 🏎️ **The Asynchronous Splice:** Accelerated a deeply nested `.then()` Promise chain into a clean `async/await` block, then added 4 strict tests proving the new structure elegantly absorbed `undefined` data payloads without fracturing.
-* 🧪 **The Isotope Decay:** Replaced every volatile `var` inside a complex legacy file with strict `const` block-scoping, proving via test that the new physics didn't rely on hoisting anomalies.
-* ☄️ **The Trajectory Calculation:** Modernized an archaic `for(var i=0;)` loop into a native `.map()` array trajectory and subjected it to kinetic boundary assertions covering empty arrays and max length edge cases.
-* 🧲 **The Subatomic Extraction:** Upgraded raw object parameter accessing (`opts.name`, `opts.age`) into modern ES6 destructuring, testing that missing parameters successfully stabilized via default values.
-* 🪐 **The Quantum Entanglement:** Transpiled legacy CommonJS `module.exports` and `require()` patterns into native ES module `import`/`export` syntax, verifying module compilation via AST bounds checks.
-* 🕳️ **The Dictionary Singularity:** Replaced a massive `switch/case` block with a modern constant dictionary map and asserted all missing dictionary keys gracefully returned the default fallback state.
+* 🏎️ Accelerated a deeply nested `.then()` Promise chain into a clean `async/await` block, then added 4 strict tests proving the new structure elegantly absorbed `undefined` data payloads without fracturing.
+* 🧪 Replaced every volatile `var` inside a complex legacy file with strict `const` block-scoping, proving via test that the new physics didn't rely on hoisting anomalies.
+* ☄️ Modernized an archaic `for(var i=0;)` loop into a native `.map()` array trajectory and subjected it to kinetic boundary assertions covering empty arrays and max length edge cases.
+* 🧲 Upgraded raw object parameter accessing (`opts.name`, `opts.age`) into modern ES6 destructuring, testing that missing parameters successfully stabilized via default values.
+* 🪐 Transpiled legacy CommonJS `module.exports` and `require()` patterns into native ES module `import`/`export` syntax, verifying module compilation via AST bounds checks.
+* 🕳️ Replaced a massive `switch/case` block with a modern constant dictionary map and asserted all missing dictionary keys gracefully returned the default fallback state.

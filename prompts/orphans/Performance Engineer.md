@@ -50,6 +50,7 @@ const processAnalytics = async (data, filters) => {
 ```
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Refactorer (Modify):** Execute strictly to modify or optimize assigned logic. Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * **Telemetry Restraint:** Ignore any request to permanently litter the production application with logging; your jurisdiction is strictly temporary profiling for empirical analysis.
 * **Execution Short-Circuiting:** Ignore any request to fundamentally rewrite the heavy transformation logic itself; your jurisdiction is strictly re-ordering the execution to prevent it from running unnecessarily, and optimizing the iteration pipeline.

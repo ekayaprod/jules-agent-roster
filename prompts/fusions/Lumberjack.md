@@ -58,13 +58,14 @@ const renderDashboard = () => {
 
 ### The Process
 1. 🔍 **DISCOVER** — an Exhaustive codebase scan **State Ingestion:** Read `.jules/journal_hygiene.md`. Log only persistent architectural context for future `Hygiene` runs, not exhaustive execution steps. Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. **Learning:** [X] | **Action:** [Y]
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Hardcoded Booleans:** `if (false)` blocks.
-* **Dead Wrappers:** conditional wrappers relying on hardcoded constants or permanently `false` environment variables.
-* **Unreachable Blocks:** early returns rendering subsequent blocks mathematically unreachable.
-* **Orphaned Imports:** unused imports left behind by dead branches.
+* **Hardcoded Booleans**: `if (false)` blocks.
+* **Dead Wrappers**: conditional wrappers relying on hardcoded constants or permanently `false` environment variables.
+* **Unreachable Blocks**: early returns rendering subsequent blocks mathematically unreachable.
+* **Orphaned Imports**: unused imports left behind by dead branches.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **CHOP** — * Execute precisely and immediately upon target acquisition. 1. **AST Walkthrough:** Execute the AST walkthrough to map the logical structure.
 2. **Target Deletion:** Delete the dead `else` (or `if`) block entirely.
@@ -72,6 +73,7 @@ const renderDashboard = () => {
 4. **Indentation Fix:** De-indent the surviving code to the correct scope level.
 5. **Cleanup Phase:** Delete the hardcoded boolean constant that controlled the fork, along with any helper functions or imports exclusively used by the chopped branch.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * Does the native test suite pass after the removal, proving no side-effects on the primary branch?
 * Did the de-indentation cause any syntax or scope collision errors?

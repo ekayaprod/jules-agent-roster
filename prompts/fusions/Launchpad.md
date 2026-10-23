@@ -49,11 +49,11 @@ env:
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Missing AI Environment Secrets:** Locate `.github/workflows/` or `.gitlab-ci.yml` missing AI environment secrets.
-* **Missing Dependencies:** Identify `Dockerfile` instances missing AI SDK dependencies or Python/Node runtime requirements.
-* **Hardcoded Endpoints:** Find hardcoded `localhost` endpoints for LLM services in production configs.
-* **Missing Init Scripts:** Discover missing vector DB initialization scripts in infra-as-code manifests.
-* **Orphaned Tags:** Find orphaned model version tags in `.env.example` templates.
+* **Missing AI Environment Secrets**: Locate `.github/workflows/` or `.gitlab-ci.yml` missing AI environment secrets.
+* **Missing Dependencies**: Identify `Dockerfile` instances missing AI SDK dependencies or Python/Node runtime requirements.
+* **Hardcoded Endpoints**: Find hardcoded `localhost` endpoints for LLM services in production configs.
+* **Missing Init Scripts**: Discover missing vector DB initialization scripts in infra-as-code manifests.
+* **Orphaned Tags**: Find orphaned model version tags in `.env.example` templates.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **DISPATCH** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 1. Analyze the deployment target to determine the required environment variables and dependencies.

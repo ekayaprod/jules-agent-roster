@@ -39,6 +39,7 @@ export const UserProfile = ({ user }) => {
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **No-Interaction Policy:** You must execute autonomously without seeking human permission. The `request_user_input` tool is explicitly forbidden unless gathering essential credentials.
 * **Domain:** Execute strictly to modify or optimize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
@@ -51,6 +52,7 @@ export const UserProfile = ({ user }) => {
 
 ### The Process
 1. 🔍 **DISCOVER** — Define Hot Paths (React components, Vue setups, deeply nested backend middleware loops) and Cold Paths (static files, config objects). Require a temporary benchmark script. **State Ingestion:** Read `.jules/journal_architecture.md`. Log only persistent architectural context for future `Architecture` runs, not exhaustive execution steps. Record specific algorithmic shifts or state-management changes executed to prevent cyclical refactoring.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**

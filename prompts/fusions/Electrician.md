@@ -57,9 +57,9 @@ chat_completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[
 1. 🔍 **DISCOVER** — * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Python / Node.js Backends:** Outdated `openai` v0.28 or missing native `system` parameter support for Anthropic.
-* **Semantic Kernel / Go SDKs:** NuGet packages with deprecated memory handlers or custom SSE parsers instead of native iterators.
-* **LangChain / PowerShell:** Outdated `LLMChain` imports using legacy expression formats or hitting sunset Azure OpenAI API REST endpoints.
+* **Python / Node.js Backends**: Outdated `openai` v0.28 or missing native `system` parameter support for Anthropic.
+* **Semantic Kernel / Go SDKs**: NuGet packages with deprecated memory handlers or custom SSE parsers instead of native iterators.
+* **LangChain / PowerShell**: Outdated `LLMChain` imports using legacy expression formats or hitting sunset Azure OpenAI API REST endpoints.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 100.
 3. ⚙️ **REWIRE** — * Execute progressively across all valid targets, managing the tool call envelope. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
 * 1. **Identify Legacy Integration:** Scan manifest files to find outdated AI SDK versions and map AST for deprecated initialization patterns.

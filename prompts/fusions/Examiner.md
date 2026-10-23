@@ -42,6 +42,7 @@ expect(api.fetchData).toHaveBeenCalledWith(42, true);
 
 ### The Process
 1. 🔍 **DISCOVER** — Exhaustive Walkthrough using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Bounded Sweep:** You may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.
 **Target Matrix:**
 * **Deleted Elements**: Tests (e.g., `*.test.js`, `*.spec.ts`) asserting against deleted, renamed, or modified DOM elements
@@ -55,6 +56,7 @@ expect(api.fetchData).toHaveBeenCalledWith(42, true);
 4. Apply the Deletion Protocol if applicable to cleanly drop obsolete test modules.
 5. Retain your valid AST modifications.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify your mutations in bounded batches. You have a maximum of 3 verification attempts per target. Halt execution upon reaching your declared quota ceiling.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 1. **Strict Alignment Check:** Does the updated test pass exclusively against the target source file in isolation using targeted CLI commands (e.g., `jest path/to/test.js` or `pytest -k test_name`)?
 2. **Native Validation Check:** Does the test runner output a clean green pass for the specific file?

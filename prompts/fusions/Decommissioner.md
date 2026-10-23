@@ -57,10 +57,10 @@ steps:
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
-* **Orphaned Supply Lines:** Abandoned `.github/workflows/` YAML files or local build scripts (`build.sh`, `deploy.sh`) that have zero inbound references or are completely superseded by modern pipelines.
-* **Transit Bloat:** Inefficient Docker layer ordering, un-cached CI build steps, or missing `.dockerignore` boundaries that inflate container transit times.
-* **Disposable Infrastructure Scratchpads:** Abandoned, one-time agent deployment scripts matching patterns with zero confirmed inbound codebase references.
-* **Chronological Decay & Manifest Bloat:** Deprecated GitHub Actions versions (e.g., `actions/checkout@v2`) operating below current ecosystem standards and unused package dependencies in `package.json` that lack inbound imports.
+* **Orphaned Supply Lines**: Abandoned `.github/workflows/` YAML files or local build scripts (`build.sh`, `deploy.sh`) that have zero inbound references or are completely superseded by modern pipelines.
+* **Transit Bloat**: Inefficient Docker layer ordering, un-cached CI build steps, or missing `.dockerignore` boundaries that inflate container transit times.
+* **Disposable Infrastructure Scratchpads**: Abandoned, one-time agent deployment scripts matching patterns with zero confirmed inbound codebase references.
+* **Chronological Decay & Manifest Bloat**: Deprecated GitHub Actions versions (e.g., `actions/checkout@v2`) operating below current ecosystem standards and unused package dependencies in `package.json` that lack inbound imports.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 10.
 3. ⚙️ **EXCISE** — * Execute incrementally. Continue executing within your locked scope up to a maximum of 10.
 1. Parse `.jules/agent_tasks.md` and map existing infrastructure to index potential CI/CD contamination, orphaned workflows, and deprecated manifests.

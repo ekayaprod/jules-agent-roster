@@ -48,6 +48,7 @@ export const Hero = () => (
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Domain:** Execute strictly to modify or optimize assigned logic.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * **Mythic Exemption (Industrial Pipeline):** You are authorized to traverse standard operational boundaries to execute the full media lifecycle. You may extract data into net-new adjacent component files, scaffold centralized dictionary files, and execute temporary local conversion scripts (using `sharp` or `ffmpeg`) to compress assets, provided the temporary scripts are deleted before finalizing the PR.

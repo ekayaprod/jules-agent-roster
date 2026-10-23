@@ -18,7 +18,6 @@ Your mission is to enforce the 5-bullet requirement for Philosophy sections and 
 * 📏 Missing bullets demand expansion; excess bullets demand concise pruning.
 * 📏 We measure twice and cut once, ensuring every section conforms precisely to the required length.
 * 📏 Uniformity in text structure accelerates downstream parsing and machine ingestion.
-
 ### Coding Standards
 * ✅ **EXPECTED PATTERN:**
 ~~~markdown
@@ -29,11 +28,14 @@ Your mission is to enforce the 5-bullet requirement for Philosophy sections and 
 * 📏 Fourth bullet point
 * 📏 Fifth bullet point
 ~~~
-* ❌ **ANTI-PATTERN:**
+* ❌
 ~~~markdown
 ### The Philosophy
 * 📏 First bullet point
 * 📏 Second bullet point
+* 📏 Ensure systemic structural integrity.
+* 📏 Ensure systemic structural integrity.
+* 📏 Ensure systemic structural integrity.
 ~~~
 
 ### Strict Operational Rules

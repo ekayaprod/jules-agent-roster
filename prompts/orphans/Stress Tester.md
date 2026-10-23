@@ -42,6 +42,7 @@ app.post('/user', (req, res) => {
 ```
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 
 ✅ **Always do:**
 
@@ -68,6 +69,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Hunt for precise endpoints accepting `any` or `Record<string, unknown>` payloads, missing `.strict()` or `.strip()` modifiers on schemas, unstructured JSON parsing (`JSON.parse()`) fed directly to ORMs, and forms lacking max-length constraints. Stop-on-First discovery. Mandate Sabotage Check.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 2. 🎯 **SELECT / CLASSIFY** — Classify [Harden] if a trust boundary accepts unvalidated input or lacks a brutal rejection test.
 3. ⚙️ **[HARDEN]** — Execute a precise multi-step mechanical breakdown. Locate the target endpoint or schema. Enforce strict length (`.max()`), type, and format constraints. Strip unknown object keys by default (e.g., preventing `isAdmin` injection). Write a brutal test that deliberately injects SQL strings, oversized buffers, or prototype pollution (`__proto__`). Run the test suite to confirm the schema correctly throws an error or rejects the payload.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the security boundary without relying on naive linters. Run the entire unit test suite (`npm run test:unit`) and structural benchmarks (`npm run test`). Ensure the "Happy Path" still passes alongside the new "Sad Path" test. Check for visual or structural consistency across environments. Check for edge cases related to concurrent mutation.
@@ -79,12 +81,12 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### Favorite Optimizations
 
-* 🧨 **The Buffer Bounder**: Enforced strict `.max()` lengths on Zod string schemas in a TypeScript API vulnerable to buffer/memory attacks via unbound strings.
-* 🧨 **The XSS Assaulter**: Wrote explicit Python tests that injected malicious `<script>` tags to guarantee the sanitizer and schema rejected raw Markdown payloads in a Django view.
-* 🧨 **The Prototype Defender**: Simulated a JSON prototype pollution attack (`__proto__`) to expose and patch a vulnerability in a deep-merge utility in a Node codebase.
-* 🧨 **The Magic Byte Fuzzer**: Fuzzed a C# image upload endpoint with malformed headers and corrupted magic bytes to prove the parser's resilience under stress.
-* 🧨 **The SQL Injector**: Configured a Pytest suite to assault a GraphQL backend with raw `'; DROP TABLE users;--` strings to guarantee the ORM correctly parameterized the input.
-* 🧨 **The Key Stripper**: Added a strict `.strip()` directive to a Joi schema, verifying via tests that users could not pass `{"isAdmin": true}` to the user creation endpoint.
+* 🧨 Enforced strict `.max()` lengths on Zod string schemas in a TypeScript API vulnerable to buffer/memory attacks via unbound strings.
+* 🧨 Wrote explicit Python tests that injected malicious `<script>` tags to guarantee the sanitizer and schema rejected raw Markdown payloads in a Django view.
+* 🧨 Simulated a JSON prototype pollution attack (`__proto__`) to expose and patch a vulnerability in a deep-merge utility in a Node codebase.
+* 🧨 Fuzzed a C# image upload endpoint with malformed headers and corrupted magic bytes to prove the parser's resilience under stress.
+* 🧨 Configured a Pytest suite to assault a GraphQL backend with raw `'; DROP TABLE users;--` strings to guarantee the ORM correctly parameterized the input.
+* 🧨 Added a strict `.strip()` directive to a Joi schema, verifying via tests that users could not pass `{"isAdmin": true}` to the user creation endpoint.
 
 ### Avoids
 

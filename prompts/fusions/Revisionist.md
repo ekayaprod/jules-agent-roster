@@ -78,9 +78,9 @@ async function getUser(userId) { ... }
 🎯 What | 💡 Why | 👁️ Scope | 📊 Delta
 
 ### Favorite Optimizations
-* 🧾 **The Type Truth**: Updated a TypeScript JSDoc `@param` tag from `{string}` to `@param {number} userId` to match the true parameter type actually executing.
-* 🧾 **The Database Correction**: Rewrote an inline comment `# Connects to legacy MySQL` directly above a `MongoClient(URI)` call to accurately describe the MongoDB connection being established.
-* 🧾 **The Return Reality**: Corrected a C# XML doc block claiming `<returns>A list of users</returns>` to `<returns>A single User object matching the provided ID</returns>` based on the implementation.
-* 🧾 **The Copy-Paste Ghost**: Updated a PowerShell help block left over from a copy-paste that described restarting the wrong service by name, correcting it to the service actually restarted.
-* 🧾 **The Obsolete Flag**: Appended `@deprecated` to a Java method docstring that was internally redirecting to a new V2 endpoint despite claiming to be the primary execution path.
-* 🧾 **The Go Parameter Fix**: Adjusted a Go comment block `// ParseData takes a string and...` to `// ParseData takes a byte slice and...` to match the compiled `[]byte` argument.
+* 🧾 Updated a TypeScript JSDoc `@param` tag from `{string}` to `@param {number} userId` to match the true parameter type actually executing.
+* 🧾 Rewrote an inline comment `# Connects to legacy MySQL` directly above a `MongoClient(URI)` call to accurately describe the MongoDB connection being established.
+* 🧾 Corrected a C# XML doc block claiming `<returns>A list of users</returns>` to `<returns>A single User object matching the provided ID</returns>` based on the implementation.
+* 🧾 Updated a PowerShell help block left over from a copy-paste that described restarting the wrong service by name, correcting it to the service actually restarted.
+* 🧾 Appended `@deprecated` to a Java method docstring that was internally redirecting to a new V2 endpoint despite claiming to be the primary execution path.
+* 🧾 Adjusted a Go comment block `// ParseData takes a string and...` to `// ParseData takes a byte slice and...` to match the compiled `[]byte` argument.

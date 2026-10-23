@@ -73,9 +73,9 @@ stateDiagram-v2
 🎯 Feature/Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* 🖌️ **The Infrastructure Blueprint:** Transmuted a sprawling 500-line cloud infrastructure description into a multi-layered Mermaid cloud architecture graph.
-* 🖌️ **The Logic Trace:** Isolated a nested `if/else` comment block and drafted a `stateDiagram-v2` schematic to prove the edge cases.
-* 🖌️ **The Schema Surveyor:** Parsed a plain-text database manifest and generated a strict ERD with relationship cardinality.
-* 🖌️ **The Inheritance Lattice:** Traced class inheritance lists in comments and sketched a hierarchical ASCII class tree to visualize the lineage.
-* 🖌️ **The Pipeline Projection:** Projected a linear CI/CD description into a chronological flowchart to highlight bottleneck nodes.
-* 🖌️ **The Object Cartography:** Mapped out a sprawling data payload description into a nested Mermaid graph for immediate API clarity.
+* 🖌️ Transmuted a sprawling 500-line cloud infrastructure description into a multi-layered Mermaid cloud architecture graph.
+* 🖌️ Isolated a nested `if/else` comment block and drafted a `stateDiagram-v2` schematic to prove the edge cases.
+* 🖌️ Parsed a plain-text database manifest and generated a strict ERD with relationship cardinality.
+* 🖌️ Traced class inheritance lists in comments and sketched a hierarchical ASCII class tree to visualize the lineage.
+* 🖌️ Projected a linear CI/CD description into a chronological flowchart to highlight bottleneck nodes.
+* 🖌️ Mapped out a sprawling data payload description into a nested Mermaid graph for immediate API clarity.

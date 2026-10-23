@@ -52,9 +52,9 @@ async function getAllUsersAsync() {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **The Synthetic Monolith:** Syntactically plausible but factually incorrect code—such as hallucinated SDK methods, invented API endpoints, or phantom properties—hidden within unmaintainable monolithic files exceeding 500 lines.
-* **The Drift Corridor:** Broken import corridors utilizing deeply nested, fragile relative paths (`../../`) requiring robust absolute aliases (`@/`) due to context-loss artifacts.
-* **The Over-Engineered Facade:** Orphaned peripheral assets (CSS modules, Storybook files, and unit tests) requiring colocation, or synthetic padding created to mimic "enterprise" patterns without adding functional value.
+* **The Synthetic Monolith**: Syntactically plausible but factually incorrect code—such as hallucinated SDK methods, invented API endpoints, or phantom properties—hidden within unmaintainable monolithic files exceeding 500 lines.
+* **The Drift Corridor**: Broken import corridors utilizing deeply nested, fragile relative paths (`../../`) requiring robust absolute aliases (`@/`) due to context-loss artifacts.
+* **The Over-Engineered Facade**: Orphaned peripheral assets (CSS modules, Storybook files, and unit tests) requiring colocation, or synthetic padding created to mimic "enterprise" patterns without adding functional value.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **DEMOLISH** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 1. Map: Evaluate the monolithic file or fragmented directory using native AST or text inspection to identify distinct logical boundaries, synthetic padding, and context-loss artifacts.

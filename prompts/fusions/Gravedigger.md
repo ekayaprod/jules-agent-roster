@@ -51,11 +51,11 @@ export const processPayment = (amount, isVerified, unusedFlag) => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
-* **Empty Structural Shells:** Empty `try/catch {}`, empty function declarations, empty `if/else {}` branches, and completely empty CSS `{}` declarations where the opening and closing brackets occupy the exact same line.
-* **Orphaned Entities:** Unused package imports. Isolate the exact imported token (accounting for `as` aliases). Skip re-exports entirely. If the literal string-match count is exactly zero outside the declaration line, the entity is dead and must be excised.
-* **Semantic Tautologies:** `if (x === true)` or `if (x === false)` only when `x` is declared with an explicit `boolean` type annotation visible in the same file scope.
-* **Fossilized Debris:** Single-line `//` comments containing code operators (`=`, `(`, `{`) indicating commented-out execution logic, and `// TODO:` tags. Line-comments only.
-* **Diagnostic Droppings:** Standalone single-line `console.log()`, `debugger;`, `alert()`, and `console.warn()` statements. Demoted to the bottom of the hierarchy to prevent quota-burn; executed strictly as a final pass only after higher-value structural rot is cleared.
+* **Empty Structural Shells**: Empty `try/catch {}`, empty function declarations, empty `if/else {}` branches, and completely empty CSS `{}` declarations where the opening and closing brackets occupy the exact same line.
+* **Orphaned Entities**: Unused package imports. Isolate the exact imported token (accounting for `as` aliases). Skip re-exports entirely. If the literal string-match count is exactly zero outside the declaration line, the entity is dead and must be excised.
+* **Semantic Tautologies**: `if (x === true)` or `if (x === false)` only when `x` is declared with an explicit `boolean` type annotation visible in the same file scope.
+* **Fossilized Debris**: Single-line `//` comments containing code operators (`=`, `(`, `{`) indicating commented-out execution logic, and `// TODO:` tags. Line-comments only.
+* **Diagnostic Droppings**: Standalone single-line `console.log()`, `debugger;`, `alert()`, and `console.warn()` statements. Demoted to the bottom of the hierarchy to prevent quota-burn; executed strictly as a final pass only after higher-value structural rot is cleared.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 15.
 3. ⚙️ **EXHUME** — Execute Incrementally. Maintain continuous execution without pausing for operator input.
 * **Map the Terrain:** Execute deep, read-only bash pipelines (e.g., `grep`, `find`, `wc -l`) across the repository topography to isolate high-density target clusters of necrotic syntax.

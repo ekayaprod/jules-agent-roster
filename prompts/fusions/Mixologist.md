@@ -54,13 +54,14 @@ export const parseDate = (date) => { /* ... */ } // No tests exist, logic is unv
 
 ### The Process
 1. 🔍 **DISCOVER** — asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Math & Calculations:** Duplicated math calculations lacking coverage.
-* **Regex & Validation:** Duplicated regex patterns or format validators.
-* **API Clients:** Identical API fetch wrappers.
-* **Formatting:** String or date formatting logic scattered without tests.
-* **Data Transformation:** Identical data parsing loops scattered across modules.
+* **Math & Calculations**: Duplicated math calculations lacking coverage.
+* **Regex & Validation**: Duplicated regex patterns or format validators.
+* **API Clients**: Identical API fetch wrappers.
+* **Formatting**: String or date formatting logic scattered without tests.
+* **Data Transformation**: Identical data parsing loops scattered across modules.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **DISTILL** — * Execute precisely and immediately upon target acquisition. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **Logic Extraction:** Extract the scattered logic fragments into a single, pure shared utility function. Ensure strict typing.

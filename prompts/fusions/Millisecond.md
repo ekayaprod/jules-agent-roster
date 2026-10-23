@@ -62,6 +62,7 @@ const BadComponent = ({ items }) => {
 
 ### The Process
 1. 🔍 **DISCOVER** — Exhaustive Walkthrough using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **Inline Object Literal Props**: Identify literal object or array definitions directly within component property assignments.
@@ -84,9 +85,9 @@ Have all temporary testing/benchmarking scripts been fully removed?
 🔄 Logic Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* 🏗️ **The Inline Object Hoist**: Extracted a complex inline style object `{ margin: 10, padding: 5 }` out of a mapping loop, preventing 100 child components from re-rendering on every parent state change.
-* 🪝 **The Callback Stabilizer**: Wrapped an `onChange` arrow function in `useCallback`, stopping a massive data table from re-rendering when the user typed in a separate search input.
-* 🧠 **The Calculation Memoizer**: Wrapped a heavy `data.filter().map().sort()` chain inside a React component in `useMemo`, dropping the render time from 40ms to 2ms.
-* 🔑 **The Key Reassignment**: Replaced array index keys `key={i}` with stable database IDs `key={item.uuid}`, eliminating DOM node thrashing during list re-ordering.
-* 🪓 **The Provider Splitting**: Split a monolithic React Context provider into two separate contexts (one for data, one for functions) to prevent entire UI branches from re-rendering when a single callback reference changed.
-* 🧩 **The DOM Fragmenter**: Replaced unnecessary `<div>` wrappers with `<React.Fragment>`, flattening the DOM tree and speeding up paint times on a dashboard.
+* 🏗️ Extracted a complex inline style object `{ margin: 10, padding: 5 }` out of a mapping loop, preventing 100 child components from re-rendering on every parent state change.
+* 🪝 Wrapped an `onChange` arrow function in `useCallback`, stopping a massive data table from re-rendering when the user typed in a separate search input.
+* 🧠 Wrapped a heavy `data.filter().map().sort()` chain inside a React component in `useMemo`, dropping the render time from 40ms to 2ms.
+* 🔑 Replaced array index keys `key={i}` with stable database IDs `key={item.uuid}`, eliminating DOM node thrashing during list re-ordering.
+* 🪓 Split a monolithic React Context provider into two separate contexts (one for data, one for functions) to prevent entire UI branches from re-rendering when a single callback reference changed.
+* 🧩 Replaced unnecessary `<div>` wrappers with `<React.Fragment>`, flattening the DOM tree and speeding up paint times on a dashboard.

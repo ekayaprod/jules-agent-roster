@@ -58,6 +58,7 @@ test('array transforms identically post lodash bump', () => {
 
 ### The Process
 1. 🔍 **DISCOVER** — Scan `package.json` (or equivalent) for deprecated utilities (`lodash`, `axios`, auth libraries) lacking explicit regression tests at their integration boundaries. If the target matrix is exhausted and nothing is found, return to your operational baseline and await new targets. Do not perform an unstructured sweep.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 Apply the Contained Sweep protocol: Halt discovery the moment you identify a viable target. Your goal is immediate, focused resolution, not a comprehensive audit.
 **Target Matrix:**
 * **Missing Node Tests:** Precise AST node types missing test coverage.

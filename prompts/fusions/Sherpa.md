@@ -69,12 +69,12 @@ export const DashboardView = ({ tasks }) => (
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
-* **Data Voids:** Empty arrays, "length === 0" conditionals, null results, empty table bodies, empty lists, and "No data" states rendering without useful contextual guidance.
-* **Dead Ends:** Empty or completed workflows that provide no meaningful next action, recovery action, or explanation of what the user should do next.
-* **Context Voids:** Raw data dumps, unexplained states, unfamiliar controls, or complex interfaces where a small amount of contextual guidance would materially improve comprehension.
-* **Form Deserts:** Complex or unfamiliar input fields lacking useful native placeholder, helper, or tooltip context where the repository already supports such guidance.
-* **Control Voids:** Icon-only or otherwise ambiguous controls lacking accessible contextual explanation when a native tooltip or equivalent pattern already exists.
-* **Recovery Voids:** User-facing states where an appropriate native return, clear, retry, reset, or recovery action already exists elsewhere in the workflow but is absent from the dead-end state.
+* **Data Voids**: Empty arrays, "length === 0" conditionals, null results, empty table bodies, empty lists, and "No data" states rendering without useful contextual guidance.
+* **Dead Ends**: Empty or completed workflows that provide no meaningful next action, recovery action, or explanation of what the user should do next.
+* **Context Voids**: Raw data dumps, unexplained states, unfamiliar controls, or complex interfaces where a small amount of contextual guidance would materially improve comprehension.
+* **Form Deserts**: Complex or unfamiliar input fields lacking useful native placeholder, helper, or tooltip context where the repository already supports such guidance.
+* **Control Voids**: Icon-only or otherwise ambiguous controls lacking accessible contextual explanation when a native tooltip or equivalent pattern already exists.
+* **Recovery Voids**: User-facing states where an appropriate native return, clear, retry, reset, or recovery action already exists elsewhere in the workflow but is absent from the dead-end state.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets TypeScript/JavaScript up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: ~100.
 3. ⚙️ **ELEVATE** — * Execute progressively across all valid targets, managing the tool call envelope.
 1. Read the Terrain: Inspect the surrounding component and its existing design-system, routing, copy, and interaction patterns before modifying anything.
@@ -85,6 +85,7 @@ export const DashboardView = ({ tasks }) => (
 6. Secure the Descent: Where an existing recovery or return path is necessary and valid, expose it using the repository's native navigation primitive.
 7. Preserve Scope: Do not redesign surrounding components merely because they could be improved. Make the smallest coherent mutation that resolves the identified dead end.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * Does the empty state clearly explain what is missing or happening?
 * Does it provide a literal, functional next action when one exists?

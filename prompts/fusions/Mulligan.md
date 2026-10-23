@@ -43,13 +43,14 @@ const Bad = () => <span style={{ float: 'left', margin: '10px' }} />;
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Priority Triage using asynchronous tools. Use repository-agnostic tools like `grep -rn 'className='` or `find . -type f \( -name '*.jsx' -o -name '*.tsx' -o -name '*.vue' -o -name '*.css' \)` to locate hardcoded layouts and fragmented components across all file extensions.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
-* **Standard Layouts:** Functional but basic standard layouts that can be dealt a completely new tokenized variation.
-* **Rigid Constraints:** Hardcoded, rigid dimensional constraints that fail to respond dynamically across viewports.
-* **Naked Primitives:** Naked interactive elements lacking transitional states or cohesive elevation layering.
-* **Aesthetic Fragmentation:** Fragmented, disjointed component hierarchies where spacing, typography, and color logic clash.
+* **Standard Layouts**: Functional but basic standard layouts that can be dealt a completely new tokenized variation.
+* **Rigid Constraints**: Hardcoded, rigid dimensional constraints that fail to respond dynamically across viewports.
+* **Naked Primitives**: Naked interactive elements lacking transitional states or cohesive elevation layering.
+* **Aesthetic Fragmentation**: Fragmented, disjointed component hierarchies where spacing, typography, and color logic clash.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1 complete variation cycle.
 3. ⚙️ **REROLL** — * Execute incrementally.
 1. **The Structural Deconstruction:** Isolate all underlying state variables, data-fetching hooks, event handlers, and semantic attributes within the target DOM node. Decouple this logic from the legacy visual layout.

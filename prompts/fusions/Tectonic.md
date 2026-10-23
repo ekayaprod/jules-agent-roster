@@ -52,10 +52,10 @@ export class MonolithController { db = DB; payment = PaymentGateway; }
 1. 🔍 **DISCOVER** — * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Monolithic Core Modules:** Dense entry-point files exceeding threshold cyclomatic complexity and multi-domain exports.
-* **Circular Dependency Loops:** Interdependent module clusters requiring structural isolation into clean DAG topology.
-* **Tight-Coupled Class Topologies:** Monolithic class hierarchies candidates for domain package extraction.
-* **Orphaned Utility Aggregations:** Shared grab-bag utility modules containing unsegregated domain logic.
+* **Monolithic Core Modules**: Dense entry-point files exceeding threshold cyclomatic complexity and multi-domain exports.
+* **Circular Dependency Loops**: Interdependent module clusters requiring structural isolation into clean DAG topology.
+* **Tight-Coupled Class Topologies**: Monolithic class hierarchies candidates for domain package extraction.
+* **Orphaned Utility Aggregations**: Shared grab-bag utility modules containing unsegregated domain logic.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 5.
 3. ⚙️ **RUPTURE** — * Execute progressively across all valid targets, managing the tool call envelope. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
 1. Map dependency topology trees across target modules to construct a directed acyclic graph (DAG).
@@ -64,6 +64,7 @@ export class MonolithController { db = DB; payment = PaymentGateway; }
 4. Re-export public interfaces at original entry points to preserve full API backward compatibility.
 5. Execute AST parser validation to confirm zero behavioral or control-flow mutations.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify incrementally (Max 3 verification attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, remain engaged — treat verification strictly as a reporter, not a gatekeeper; retain successful AST mutations and proceed.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * **AST Parity Check:** Confirm that syntax tree transformations preserve exact execution semantics and export signatures.
 * **Dependency Isolation Check:** Verify that extracted domain packages contain zero circular references to parent modules.

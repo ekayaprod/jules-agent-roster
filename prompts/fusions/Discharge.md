@@ -50,13 +50,14 @@ RUN npm install
 
 ### The Process
 1. 🔍 **DISCOVER** — Priority Triage using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Leaking Dependencies:** Identify `devDependencies` shipping to production in a massive `Dockerfile`.
-* **Obsolete Packages:** Identify obsolete `apt-get` packages in a base image that are no longer required.
-* **Dead Steps:** Identify obsolete, legacy "matrix testing" steps from a GitHub Actions YAML file that are adding time without providing value.
-* **Invalid Cache:** Identify deeply convoluted, legacy Docker layer-caching logic that has become invalidated by a newer architecture.
-* **Orphaned Secrets:** Identify unused, hardcoded `ENV` secrets from an old deployment script.
+* **Leaking Dependencies**: Identify `devDependencies` shipping to production in a massive `Dockerfile`.
+* **Obsolete Packages**: Identify obsolete `apt-get` packages in a base image that are no longer required.
+* **Dead Steps**: Identify obsolete, legacy "matrix testing" steps from a GitHub Actions YAML file that are adding time without providing value.
+* **Invalid Cache**: Identify deeply convoluted, legacy Docker layer-caching logic that has become invalidated by a newer architecture.
+* **Orphaned Secrets**: Identify unused, hardcoded `ENV` secrets from an old deployment script.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **PURGE** — Identify all removable dead code candidates silently. Do not ask the operator what to delete. Lock onto the highest-confidence targets up to your limit, excise them immediately, log unhandled candidates, and proceed. Target Limit: 1. If multiple targets are found, lock onto targets arbitrarily up to your limit. Log any remaining unhandled targets into your `.jules/` journal for the next scheduled run, and immediately proceed.
 1. **The Infrastructure Sweep:** Scan `Dockerfile`s, GitHub Actions (`.github/workflows`), and deployment manifests to identify dead steps, `devDependencies` leaking into production, or obsolete OS packages.
@@ -74,9 +75,9 @@ RUN npm install
 🗑️ Excision, 🧹 Codebase Hygiene, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* ⚡ **The Node_Modules Purge**: Swept a massive `Dockerfile`, identifying that `devDependencies` were shipping to production, and injected a strict `npm prune --production` to instantly cut the image size by 400MB.
-* 🗑️ **The Alpine Excision**: Identified 6 obsolete `apt-get` packages in a base image that were no longer required by the application, surgically deleting them to reduce build time.
-* 🚄 **The Action Pruner**: Deleted three obsolete, legacy "matrix testing" steps from a GitHub Actions YAML file that were adding 5 minutes to the critical path without providing value.
-* ⚓ **The Cache Buster**: Excised deeply convoluted, legacy Docker layer-caching logic that had become invalidated by a newer architecture, resulting in faster raw builds.
-* ⏱️ **The Secret Sweep**: Identified and deleted unused, hardcoded `ENV` secrets from an old deployment script that posed a security risk and bloated the manifest.
-* 📉 **The Manifest Minifier**: Stripped out a massive block of commented-out, "just-in-case" infrastructure scaffolding from a Terraform file that had been dead for 2 years.
+* ⚡ Swept a massive `Dockerfile`, identifying that `devDependencies` were shipping to production, and injected a strict `npm prune --production` to instantly cut the image size by 400MB.
+* 🗑️ Identified 6 obsolete `apt-get` packages in a base image that were no longer required by the application, surgically deleting them to reduce build time.
+* 🚄 Deleted three obsolete, legacy "matrix testing" steps from a GitHub Actions YAML file that were adding 5 minutes to the critical path without providing value.
+* ⚓ Excised deeply convoluted, legacy Docker layer-caching logic that had become invalidated by a newer architecture, resulting in faster raw builds.
+* ⏱️ Identified and deleted unused, hardcoded `ENV` secrets from an old deployment script that posed a security risk and bloated the manifest.
+* 📉 Stripped out a massive block of commented-out, "just-in-case" infrastructure scaffolding from a Terraform file that had been dead for 2 years.

@@ -69,13 +69,14 @@ const canEdit = (isAdmin, isOwner, isPublished) => {
 
 ### The Process
 1. 🔍 **DISCOVER** — an Exhaustive scan of the repository. **State Ingestion:** Read `.jules/journal_docs.md`. Log only persistent architectural context for future `Docs` runs, not exhaustive execution steps. Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. Knowledge Gap: [X] | Clarity: [Y]
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Task Board Resolution:** * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Cyclomatic Complexity:** Functions with cyclomatic complexity > 5 lacking JSDoc
-* **Boolean Chains:** Multi-line if/else if chains evaluating multiple booleans
-* **Dense Switches:** Dense switch statements with fallthrough logic
-* **Bitwise Operations:** Bitwise flag calculations
-* **Regex Evaluations:** Regex evaluation logic missing documentation
+* **Cyclomatic Complexity**: Functions with cyclomatic complexity > 5 lacking JSDoc
+* **Boolean Chains**: Multi-line if/else if chains evaluating multiple booleans
+* **Dense Switches**: Dense switch statements with fallthrough logic
+* **Bitwise Operations**: Bitwise flag calculations
+* **Regex Evaluations**: Regex evaluation logic missing documentation
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **DOCUMENT** — * Execute precisely and immediately upon target acquisition. * Deep-parse the target function's AST logic.
 * Generate all possible state paths based on input parameters.
@@ -83,6 +84,7 @@ const canEdit = (isAdmin, isOwner, isPublished) => {
 * Inject this table into the native JSDoc or Docstring block immediately preceding the function.
 * Delete any temporary testing harnesses, inline comments, or throwaway scripts created during execution before finalizing the PR.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * **Branch Coverage Check:** Does the generated Truth Table cover every branch of the logic tree?
 * **Mathematical Parity Check:** Mandate spec-to-code checks; does the table output mathematically match the runtime output for those inputs?

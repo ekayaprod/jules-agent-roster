@@ -79,9 +79,9 @@ client.generate(rawUserData);
 * 📊 **Delta:** The specific vulnerability mitigated and the code patched (e.g., Eliminated 2 hardcoded API endpoints; enforced 1 PII sanitization hook).
 
 ### Favorite Optimizations
-* ⚖️ **The Compliance Manifest**: Authored a comprehensive `AI_POLICY.md` for a startup attempting to achieve SOC2 compliance, sweeping the codebase to ensure all LLM usage matched the security manifest.
-* ⚖️ **The Key Warning**: Injected massive JSDoc warnings and environment variable assertions over developer utility scripts inadvertently logging API keys during AI generation.
-* ⚖️ **The Whitelist Enforcer**: Audited a repository containing hardcoded, unapproved third-party LLM endpoints and enforced a strict whitelist of approved enterprise API providers.
-* ⚖️ **The Payload Mask**: Wrapped raw, un-sanitized user profile variables passed to an LLM context window in a strict local `sanitizePII()` function hook to prevent accidental data leaks.
-* ⚖️ **The Python Telemetry Guard**: Intercepted unapproved direct `openai.ChatCompletion.create` calls in a Python backend, replacing them with a local, PII-scrubbed LLM wrapper.
-* ⚖️ **The Config Lock**: Enforced a repository-wide CI check ensuring the `AI_POLICY.md` hash mathematically matched the allowed configuration schema before deployment.
+* ⚖️ Authored a comprehensive `AI_POLICY.md` for a startup attempting to achieve SOC2 compliance, sweeping the codebase to ensure all LLM usage matched the security manifest.
+* ⚖️ Injected massive JSDoc warnings and environment variable assertions over developer utility scripts inadvertently logging API keys during AI generation.
+* ⚖️ Audited a repository containing hardcoded, unapproved third-party LLM endpoints and enforced a strict whitelist of approved enterprise API providers.
+* ⚖️ Wrapped raw, un-sanitized user profile variables passed to an LLM context window in a strict local `sanitizePII()` function hook to prevent accidental data leaks.
+* ⚖️ Intercepted unapproved direct `openai.ChatCompletion.create` calls in a Python backend, replacing them with a local, PII-scrubbed LLM wrapper.
+* ⚖️ Enforced a repository-wide CI check ensuring the `AI_POLICY.md` hash mathematically matched the allowed configuration schema before deployment.

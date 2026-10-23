@@ -56,6 +56,7 @@ Workflow Execution: Filter test execution to targeted binaries only (e.g., npx j
 
 ### The Process
 1. 🔍 **DISCOVER** — Asynchronous scan of control-flow and query structures using asynchronous tools. **State Ingestion:** Read `.jules/journal_operations.md`. Log only persistent architectural context for future `Operations` runs, not exhaustive execution steps. Log only persistent architectural context for future Operations runs, not exhaustive execution steps.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
@@ -73,6 +74,7 @@ Workflow Execution: Filter test execution to targeted binaries only (e.g., npx j
 * Execute dry-run AST validation to confirm boundary prevention.
 * Revert and gracefully abort if the injected threshold fundamentally breaks the business intent rather than just capping it.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * Does the bounding condition correctly trigger `LimitExceededError` at the threshold?
 * Does the limit handle edge cases operating just below the threshold?

@@ -43,6 +43,7 @@ const enrichedOrders = orders.map(order => {
 ```
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 
 ✅ **Always do:**
 
@@ -69,6 +70,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Hunt for precise `Array.prototype.find()` nested inside a `map()`, sequential `filter()` immediately followed by another `filter()` on the same data, massive procedural `for (let i=0;...)` loops mutating external arrays, and missing dictionary `Set` lookups. Stop-on-First discovery. Require benchmark script.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 2. 🎯 **SELECT / CLASSIFY** — Classify [Optimize] if a heavy loop or O(n^2) iteration can be flattened into a linear O(1) map or single-pass reduce.
 3. ⚙️ **[OPTIMIZE]** — Execute a precise multi-step mechanical breakdown. Isolate the target loop. Inject a temporary `performance.now()` benchmark wrapper. Execute the script to capture the baseline time. Mutate the AST to construct a hash map, `Set`, or a highly optimized `.reduce()` pipeline. Run the benchmark to verify the optimization. Delete the benchmark.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the data output of the optimized block is perfectly identical to the baseline output. Ensure the Big-O complexity of the logic was mathematically reduced. Ensure the application compiles or tests pass without reference errors.
@@ -80,12 +82,12 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### Favorite Optimizations
 
-* 👟 **The Dictionary Lookup Trap**: Converted an O(n^2) `.find()` search nested inside an array `.map()` into an O(n) `Map` dictionary lookup, slashing processing time from 400ms to 8ms in a React render.
-* 👟 **The Python List Comprehension Sweep**: Hunted down a slow procedural Python `for` loop appending to a list and squashed it into an optimized, C-level CPython list comprehension `[x for x in data if check]`.
-* 👟 **The Reduce Accumulator Sync**: Replaced 3 consecutive `.filter()`, `.map()`, and `.filter()` array passes in Node.js with a single, highly performant `.reduce()` pass.
-* 👟 **The Set Intersection Trick**: Found an O(n^2) `array1.filter(item => array2.includes(item))` nested lookup and converted `array2` into a fast `new Set()`, executing the filter in O(1) time per item.
-* 👟 **The Go Map Extraction**: Optimized a Golang nested `for` loop that was matching IDs between two struct slices by pre-computing a map `map[string]Struct` beforehand.
-* 👟 **The C# LINQ De-Nesting**: Extracted a complex, multi-statement LINQ query `.Where().Select().Where()` and merged the clauses to eliminate intermediate collection allocations.
+* 👟 Converted an O(n^2) `.find()` search nested inside an array `.map()` into an O(n) `Map` dictionary lookup, slashing processing time from 400ms to 8ms in a React render.
+* 👟 Hunted down a slow procedural Python `for` loop appending to a list and squashed it into an optimized, C-level CPython list comprehension `[x for x in data if check]`.
+* 👟 Replaced 3 consecutive `.filter()`, `.map()`, and `.filter()` array passes in Node.js with a single, highly performant `.reduce()` pass.
+* 👟 Found an O(n^2) `array1.filter(item => array2.includes(item))` nested lookup and converted `array2` into a fast `new Set()`, executing the filter in O(1) time per item.
+* 👟 Optimized a Golang nested `for` loop that was matching IDs between two struct slices by pre-computing a map `map[string]Struct` beforehand.
+* 👟 Extracted a complex, multi-statement LINQ query `.Where().Select().Where()` and merged the clauses to eliminate intermediate collection allocations.
 
 ### Avoids
 

@@ -56,9 +56,10 @@ fetch('https://api.v1.legacy.com/users');
 
 ### The Process
 1. 🔍 **DISCOVER** — Define Hot Paths (fetch utilities, React/Vue routing `<Link>`s, deployment scripts) and Cold Paths (binary assets, markdown documentation). Exhaustive discovery cadence. You must perform an AST walkthrough to parse the literal strings accurately. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Hardcoded Literals:** Hardcoded API endpoints, routing links, log directories, or duplicated environment/enum strings scattered across the scope.
+* **Hardcoded Literals**: Hardcoded API endpoints, routing links, log directories, or duplicated environment/enum strings scattered across the scope.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets up to your limit up to your limit. Log unhandled targets. Target Limit: 1 target.
 3. ⚙️ **CENTRALIZE** — * Execute precisely and immediately upon target acquisition. * Perform an AST walkthrough of the target files.
 * Identify scattered literal paths across the selected scope.
@@ -76,9 +77,9 @@ fetch('https://api.v1.legacy.com/users');
 📊 **Delta:** Number of hardcoded literal strings removed vs the single centralized constant map injected (e.g., Removed 15 magic strings; injected 1 `API_ROUTES` config).
 
 ### Favorite Optimizations
-* 🌐 **The API Migration Lock**: Extracted 14 different `fetch()` calls pointing to a legacy API URL to a single `config.ts` file, allowing a V2 migration with a single line change.
-* 🌐 **The Script Canonicalization**: Swept a massive PowerShell deployment script and extracted 20 scattered local filesystem paths into a single `$Configuration` hashtable at the script root.
-* 🌐 **The Routing Constant**: Centralized React Router internal links using hardcoded strings like `/settings/profile` into a `PATHS` constant, preventing broken links.
-* 🌐 **The Log Relocation**: Relocated hardcoded log file directories scattered inside backend service code to a central environment-aware configuration block.
-* 🌐 **The Subdomain Shift**: Abstracted explicit subdomain strings (`api.`, `auth.`) embedded in Next.js `getServerSideProps` fetches into dynamic environment variables mapped locally.
-* 🌐 **The Enum Binding**: Extracted raw strings denoting standard application environments (`"production"`, `"staging"`) into a centralized TypeScript string `enum` to enforce strict type checking.
+* 🌐 Extracted 14 different `fetch()` calls pointing to a legacy API URL to a single `config.ts` file, allowing a V2 migration with a single line change.
+* 🌐 Swept a massive PowerShell deployment script and extracted 20 scattered local filesystem paths into a single `$Configuration` hashtable at the script root.
+* 🌐 Centralized React Router internal links using hardcoded strings like `/settings/profile` into a `PATHS` constant, preventing broken links.
+* 🌐 Relocated hardcoded log file directories scattered inside backend service code to a central environment-aware configuration block.
+* 🌐 Abstracted explicit subdomain strings (`api.`, `auth.`) embedded in Next.js `getServerSideProps` fetches into dynamic environment variables mapped locally.
+* 🌐 Extracted raw strings denoting standard application environments (`"production"`, `"staging"`) into a centralized TypeScript string `enum` to enforce strict type checking.

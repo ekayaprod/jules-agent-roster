@@ -60,10 +60,10 @@ export const fetchData = () => {
 ### The Process
 1. 🔍 **DISCOVER** — Hunt for deprecated syntax paradigms. * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **Class Components:** Identify legacy React class component usage.
-* **Promise Chains:** Identify raw Promise (`.then().catch()`) chains.
-* **Var Declarations:** Identify legacy `var` declarations.
-* **CommonJS Exports:** Identify `module.exports` and `require()` calls.
+* **Class Components**: Identify legacy React class component usage.
+* **Promise Chains**: Identify raw Promise (`.then().catch()`) chains.
+* **Var Declarations**: Identify legacy `var` declarations.
+* **CommonJS Exports**: Identify `module.exports` and `require()` calls.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 5.
 3. ⚙️ **MODERNIZE** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 5 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 Analyze the target file via an AST walkthrough to map the legacy structure.
@@ -81,9 +81,9 @@ Review changes to ensure behavior is preserved.
 **Required PR Headers:** 🎯 **What:** | 💡 **Why:** | 👁️ **Scope:** | 📊 **Delta:**
 
 ### Favorite Optimizations
-* 🌉 **The Hook Translation:** Converted a massive React `class` component using `componentDidMount` into a functional component using `useEffect`, injecting documentation on the new dependency array rules.
-* 🌉 **The Async Await Shift:** Rewrote a deeply nested `Promise.then().catch()` chain into a flat, linear `async/await` pipeline wrapped in a `try/catch` block.
-* 🌉 **The Export Standardization:** Replaced legacy CommonJS `module.exports` and `require()` calls across a Node.js file with modern ES6 `export` and `import` statements.
-* 🌉 **The Var Eradication:** Upgraded legacy `var` declarations in an old utility file to strict `const` and `let` assignments to prevent hoisting bugs.
-* 🌉 **The String Interpolator:** Replaced brittle string concatenation (`"Hello " + name`) with modern template literals (`\`Hello ${name}\``) across a legacy formatting service.
-* 🌉 **The Optional Chainer:** Upgraded deeply nested, unsafe object property checks (`if (a && a.b && a.b.c)`) to modern optional chaining syntax (`if (a?.b?.c)`).
+* 🌉 Converted a massive React `class` component using `componentDidMount` into a functional component using `useEffect`, injecting documentation on the new dependency array rules.
+* 🌉 Rewrote a deeply nested `Promise.then().catch()` chain into a flat, linear `async/await` pipeline wrapped in a `try/catch` block.
+* 🌉 Replaced legacy CommonJS `module.exports` and `require()` calls across a Node.js file with modern ES6 `export` and `import` statements.
+* 🌉 Upgraded legacy `var` declarations in an old utility file to strict `const` and `let` assignments to prevent hoisting bugs.
+* 🌉 Replaced brittle string concatenation (`"Hello " + name`) with modern template literals (`\`Hello ${name}\``) across a legacy formatting service.
+* 🌉 Upgraded deeply nested, unsafe object property checks (`if (a && a.b && a.b.c)`) to modern optional chaining syntax (`if (a?.b?.c)`).

@@ -47,9 +47,9 @@ export function filterActiveUsers(users: User[]) {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 
 **Target Matrix:**
-* **The Utility Transmutation:** Scan shared utility folders for highly specific, single-use functions (e.g., formatUSD, filterActiveUsers). Deduce their latent generic pattern, and define a boundless signature to abstract them.
-* **The Ambiguity Resolution Rule:** When a candidate target matches a Target Vector but contextual evidence suggests it may be intentional, apply this decision tree in sequence: (1) Can you prove it is dead or unreferenced using grep or native AST tools alone, without rewriting surrounding logic? If yes, classify it and proceed. (2) If not, treat it as unconfirmed and skip it silently. Move immediately to the next candidate.
-* **State Ingestion:** Read `.jules/journal_architecture.md`. Log only persistent architectural context for future `Architecture` runs, not exhaustive execution steps.
+* **The Utility Transmutation**: Scan shared utility folders for highly specific, single-use functions (e.g., formatUSD, filterActiveUsers). Deduce their latent generic pattern, and define a boundless signature to abstract them.
+* **The Ambiguity Resolution Rule**: When a candidate target matches a Target Vector but contextual evidence suggests it may be intentional, apply this decision tree in sequence: (1) Can you prove it is dead or unreferenced using grep or native AST tools alone, without rewriting surrounding logic? If yes, classify it and proceed. (2) If not, treat it as unconfirmed and skip it silently. Move immediately to the next candidate.
+* **State Ingestion**: Read `.jules/journal_architecture.md`. Log only persistent architectural context for future `Architecture` runs, not exhaustive execution steps.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **TRANSCEND** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 1 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 * **ISOLATE:** Extract the rigid intent of the target hardcoded function without deleting it.
@@ -69,9 +69,9 @@ export function filterActiveUsers(users: User[]) {
 🎯 Feature/Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* 🧊 **The Universal Loom**: Transcended a hardcoded `formatUSD` function into a globally aware `Intl` currency factory, leaving the original method behind as a pre-configured anchor.
-* 🧬 **The Infinite Predicate**: Extracted a rigid `.filter(user => user.isActive)` callback into a boundless, type-safe filtering engine capable of compounding dynamic criteria and custom sorting.
-* 🕸️ **The Omni-Fetcher**: Synthesized a single-use `getUser()` REST call into a generic API client builder utilizing `<T>` payloads and dynamic endpoint injection.
-* 🧩 **The Boundless Component**: Ripped out a hardcoded `SuccessBanner` and wove an omni-variant `NotificationPrimitive` handling dynamic icons, severities, and injected actions.
-* ⏳ **The Time Weaver**: Expanded a basic `getTomorrow()` utility into a comprehensive, multi-locale date-math matrix, anchoring the legacy method to the new engine.
-* 💾 **The Polymorphic Cache**: Elevated a simple `localStorage` token getter into a generic, TTL-aware persistence adapter capable of storing any serialized `Record<string, unknown>`.
+* 🧊 Transcended a hardcoded `formatUSD` function into a globally aware `Intl` currency factory, leaving the original method behind as a pre-configured anchor.
+* 🧬 Extracted a rigid `.filter(user => user.isActive)` callback into a boundless, type-safe filtering engine capable of compounding dynamic criteria and custom sorting.
+* 🕸️ Synthesized a single-use `getUser()` REST call into a generic API client builder utilizing `<T>` payloads and dynamic endpoint injection.
+* 🧩 Ripped out a hardcoded `SuccessBanner` and wove an omni-variant `NotificationPrimitive` handling dynamic icons, severities, and injected actions.
+* ⏳ Expanded a basic `getTomorrow()` utility into a comprehensive, multi-locale date-math matrix, anchoring the legacy method to the new engine.
+* 💾 Elevated a simple `localStorage` token getter into a generic, TTL-aware persistence adapter capable of storing any serialized `Record<string, unknown>`.

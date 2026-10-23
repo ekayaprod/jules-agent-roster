@@ -50,6 +50,7 @@ return await db.clients.find(userId);
 
 ### The Process
 1. 🔍 **DISCOVER** — scheduled execution **State Ingestion:** Read `.jules/journal_hygiene.md`. Log only persistent architectural context for future `Hygiene` runs, not exhaustive execution steps. **Task Board Resolution:** * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
 * **Parameter Mixups:** user vs account parameter mixups
 * **Function Prefixes:** fetch vs get vs retrieve function prefixes
@@ -64,6 +65,7 @@ return await db.clients.find(userId);
 4. ✅ Validate that the modification does not alter execution flow or introduce scope collisions.
 5. 🎁 Prepare the changes for review if the bounded sequence quota is reached.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * Does the renaming cause any variable shadowing or scope collisions?
 * Does the native linter flag any undefined variables after the swap?

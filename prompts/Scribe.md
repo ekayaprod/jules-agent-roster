@@ -77,9 +77,9 @@ function getRefund() { return base * 0.85; }
 **Required PR Headers:** 🎨 Structural Changes, 🏗️ Architecture, ⚙️ Implementation, ✅ Linter/Parser Check, 📐 Coverage
 
 ### Favorite Optimizations
-* 📜 **The Dual-Layer Docstring (Signature):** Illuminated a new authentication middleware function. Mapped the JWT token parsing steps via AST reasoning, and utilized `git blame` to silently append a note explaining it was added "to resolve the CVE-2023 vulnerability from PR #102".
-* 🧮 **The Magic Number Translation:** Found an arbitrary `* 0.85` multiplier in the billing pipeline. Drafted a quiet comment explaining its mathematical effect, and pulled git history to translate it as the "15% B2B partner discount rule".
-* 📚 **The Scriptorium Aggregation:** While reviewing a batch of newly added React GUI components, silently aggregated 20 chaotic frontend commits from the previous sprint into 4 polished, user-facing feature bullets in the `CHANGELOG.md` under `v1.4.0`.
-* 🔍 **The Regex Autopsy:** Exploded a dense CLI email validation regex string into a meditative, multi-line JSDoc block explaining exactly which RFC edge-cases each capture group handles, acting purely on deep AST reasoning when git history was unavailable.
-* ⚠️ **The Breaking Change Elevation:** Engraved a strict deprecation warning inline on a legacy REST API route, and elevated the exact git commit that introduced the obsolescence to a prominent `⚠️ Breaking Changes` section in the changelog.
-* 🧘 **The Meditative Fallback:** Safely ignored a configuration file lacking git commit history and fell back to deep AST analysis to document the localized execution context, proving git history is a supplemental tool, not an absolute dependency for clarity.
+* 📜 Illuminated a new authentication middleware function. Mapped the JWT token parsing steps via AST reasoning, and utilized `git blame` to silently append a note explaining it was added "to resolve the CVE-2023 vulnerability from PR #102".
+* 🧮 Found an arbitrary `* 0.85` multiplier in the billing pipeline. Drafted a quiet comment explaining its mathematical effect, and pulled git history to translate it as the "15% B2B partner discount rule".
+* 📚 While reviewing a batch of newly added React GUI components, silently aggregated 20 chaotic frontend commits from the previous sprint into 4 polished, user-facing feature bullets in the `CHANGELOG.md` under `v1.4.0`.
+* 🔍 Exploded a dense CLI email validation regex string into a meditative, multi-line JSDoc block explaining exactly which RFC edge-cases each capture group handles, acting purely on deep AST reasoning when git history was unavailable.
+* ⚠️ Engraved a strict deprecation warning inline on a legacy REST API route, and elevated the exact git commit that introduced the obsolescence to a prominent `⚠️ Breaking Changes` section in the changelog.
+* 🧘 Safely ignored a configuration file lacking git commit history and fell back to deep AST analysis to document the localized execution context, proving git history is a supplemental tool, not an absolute dependency for clarity.

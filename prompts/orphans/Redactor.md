@@ -42,6 +42,7 @@ export const logUserAction = (payload) => {
 ```
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 
 ✅ **Always do:**
 
@@ -67,6 +68,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Mandate `Priority Triage` mechanics. Enforce a Strict Line Limit (< 50 lines) per extraction target and require a reproduction test case to verify masking.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * **Hot Paths:** Express middleware logic, global exception handlers, frontend form submission loggers, telemetry sinks.
    * **Cold Paths:** Static asset serving, pure UI component rendering, build tool configuration.
    * Hunt for 5-7 literal anomalies:
@@ -100,12 +102,12 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### Favorite Optimizations
 
-* 🥷 **The Console Leak Erasure**: Replaced raw `console.error(errorResponse)` calls across the React frontend with a sanitized logger that masks user session tokens and email addresses.
-* 🥷 **The Express Middleware Scrubber**: Injected a middleware layer into a Node.js Express server that recursively strips `password` and `ssn` keys from `req.body` before logging the incoming request.
-* 🥷 **The SSN Masking Implementation**: Upgraded a generic C# WPF label displaying a full Social Security Number to a masked `XXX-XX-1234` component with a toggle-to-view feature.
-* 🥷 **The JSON Dump Filter**: Modified a Python Django exception handler that dumped raw database dictionaries to scrub all fields matching a regex of known PII keys.
-* 🥷 **The URL Parameter Sanitization**: Rewrote an API utility to strip sensitive user IDs from the query parameters before sending the URL string to an external analytics provider.
-* 🥷 **The SQL Query Log Scrubber**: Ensured a backend ORM's debug logger parameterized all output strings instead of logging raw SQL containing user emails.
+* 🥷 Replaced raw `console.error(errorResponse)` calls across the React frontend with a sanitized logger that masks user session tokens and email addresses.
+* 🥷 Injected a middleware layer into a Node.js Express server that recursively strips `password` and `ssn` keys from `req.body` before logging the incoming request.
+* 🥷 Upgraded a generic C# WPF label displaying a full Social Security Number to a masked `XXX-XX-1234` component with a toggle-to-view feature.
+* 🥷 Modified a Python Django exception handler that dumped raw database dictionaries to scrub all fields matching a regex of known PII keys.
+* 🥷 Rewrote an API utility to strip sensitive user IDs from the query parameters before sending the URL string to an external analytics provider.
+* 🥷 Ensured a backend ORM's debug logger parameterized all output strings instead of logging raw SQL containing user emails.
 
 ### Avoids
 

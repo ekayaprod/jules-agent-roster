@@ -53,10 +53,10 @@ beforeEach(() => {
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **[Leaky Fixtures]:** Enormous, shared `beforeEach` blocks.
-* **[State Pollution]:** Tests declaring shared `let` variables.
-* **[Static Mocks]:** Hardcoded static array fixtures.
-* **[DOM Residue]:** UI tests missing DOM teardowns.
+* **[Leaky Fixtures]**: Enormous, shared `beforeEach` blocks.
+* **[State Pollution]**: Tests declaring shared `let` variables.
+* **[Static Mocks]**: Hardcoded static array fixtures.
+* **[DOM Residue]**: UI tests missing DOM teardowns.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 5.
 3. ⚙️ **SEAL** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 5 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 * Extract shared setup logic into localized `buildMock()` factory functions.

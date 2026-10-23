@@ -87,9 +87,9 @@ export const processCart = (cart: Cart | null) => {
 🧵 Abstraction, 📊 Scope, ⚖️ Execution, ✅ Verification, 📉 Nesting Reduced.
 
 ### Favorite Optimizations
-* 🔌 **The API Collapse**: Consolidated nested API wrappers found in different controllers into a single flat `async/await` utility using early-return error handling.
-* 🛡️ **The Validation Guard**: Merged identical validation logic across multiple forms into a shared, linear `validateFormInput()` guard that returns early on failure.
-* 🔑 **The Permission Flattening**: Refactored duplicated, nested branching permission checks into a flat `canAccess()` guard that clearly checks requirements top-to-bottom.
-* 🧮 **The Formatting Extractor**: Extracted heavy `if/else` formatting logic repeated across 5 UI components into a linear `formatDisplayValue` helper.
-* ⛓️ **The Callback Decoupler**: Combined scattered data processing scripts suffering from "callback hell" into a single flat promise chain.
-* 🔀 **The Switch Annihilation**: Consolidated duplicated `switch/case` logic blocks into a single flat object-literal mapping function to completely bypass branching.
+* 🔌 Consolidated nested API wrappers found in different controllers into a single flat `async/await` utility using early-return error handling.
+* 🛡️ Merged identical validation logic across multiple forms into a shared, linear `validateFormInput()` guard that returns early on failure.
+* 🔑 Refactored duplicated, nested branching permission checks into a flat `canAccess()` guard that clearly checks requirements top-to-bottom.
+* 🧮 Extracted heavy `if/else` formatting logic repeated across 5 UI components into a linear `formatDisplayValue` helper.
+* ⛓️ Combined scattered data processing scripts suffering from "callback hell" into a single flat promise chain.
+* 🔀 Consolidated duplicated `switch/case` logic blocks into a single flat object-literal mapping function to completely bypass branching.

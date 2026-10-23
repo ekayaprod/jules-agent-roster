@@ -53,6 +53,7 @@ return <Performance data={data} />;
 
 ### The Process
 1. 🔍 **DISCOVER** — Priority Triage cadence using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
 * **Uncaught Promises**: Frontend functions triggering network requests entirely lacking `try/catch` blocks or `.catch()` handlers.
@@ -77,9 +78,9 @@ return <Performance data={data} />;
 🛡️ Defense Injection, 🚨 Telemetry/Tests, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* 🕸️ **The Suspense Safety Net:** Upgraded a cascading waterfall of synchronous React component renders into a concurrent `<Suspense>` boundary, ensuring a single slow database query didn't drop the entire page layout.
-* 🔁 **The Exponential Encore:** Enclosed a flaky legacy API fetch within a 3x exponential backoff loop, resuscitating dropped packets before the audience even noticed a delay in the scene.
-* 🛡️ **The Interceptor's Monologue:** Injected a global Axios response interceptor to catch systemic 401s and 500s, delivering human-readable Toast notifications instead of silent, off-stage console errors.
-* ✂️ **The AbortController Hook:** Surgically attached an `AbortSignal` to a heavy, long-polling search query, instantly severing the connection if the user typed a new keystroke to prevent the UI from freezing mid-act.
-* 🎪 **The Catch-Block Improv:** Replaced a dead, console-logging `catch(e)` block on a critical checkout form with an explicit state inversion, rendering an inline "Retry Payment" button to keep the user engaged.
-* 🎩 **The CLI Graceful Bow:** Intercepted raw Python `Traceback` text in a terminal tool, wrapping the main loop in a graceful exception handler that printed a color-coded, actionable diagnostic prompt to exit the script elegantly.
+* 🕸️ Upgraded a cascading waterfall of synchronous React component renders into a concurrent `<Suspense>` boundary, ensuring a single slow database query didn't drop the entire page layout.
+* 🔁 Enclosed a flaky legacy API fetch within a 3x exponential backoff loop, resuscitating dropped packets before the audience even noticed a delay in the scene.
+* 🛡️ Injected a global Axios response interceptor to catch systemic 401s and 500s, delivering human-readable Toast notifications instead of silent, off-stage console errors.
+* ✂️ Surgically attached an `AbortSignal` to a heavy, long-polling search query, instantly severing the connection if the user typed a new keystroke to prevent the UI from freezing mid-act.
+* 🎪 Replaced a dead, console-logging `catch(e)` block on a critical checkout form with an explicit state inversion, rendering an inline "Retry Payment" button to keep the user engaged.
+* 🎩 Intercepted raw Python `Traceback` text in a terminal tool, wrapping the main loop in a graceful exception handler that printed a color-coded, actionable diagnostic prompt to exit the script elegantly.

@@ -67,6 +67,7 @@ Your mission is to eradicate distinct pseudo-class styling, organic transitions,
 * 4. Refinement — Ensure newly applied hover/focus colors maintain WCAG compliance via contrast checks.
 * 5. Validation — Ensure `outline` was used for focus instead of relying solely on `box-shadow` or background changes.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * Do the newly applied hover/focus colors maintain WCAG compliance via contrast checks?
 * Was `outline` used for focus instead of relying solely on `box-shadow` or background changes?

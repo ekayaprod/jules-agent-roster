@@ -42,6 +42,7 @@ Your mission is to eradicate obsolete layout hacks and hardcoded spacing integer
 ```
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Domain:** Execute strictly to modify or optimize assigned logic.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * **The Handoff Rule:** Ignore JavaScript event handlers and conditional rendering state. Confine structural rewrites strictly to geometric space, CSS properties, and DOM container elements.

@@ -53,6 +53,7 @@ const messages = [
 
 ### The Process
 1. 🔍 **DISCOVER** — Semantic using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. If a task matches your domain, complete it and delete it, or delete it if already resolved; otherwise, ignore it and proceed with standard discovery.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
 * **Zero-Shot Integrations**: Zero-shot system prompts lacking example arrays.

@@ -51,13 +51,14 @@ test('user checkout flow', async () => {
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Test Suite Triage using asynchronous tools. 
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **The Flaky Monolith:** Massive integration test files riddled with arbitrary `sleep()` loops, non-deterministic race conditions, and random CI failures.
-* **The Over-Mocked Shell:** Test suites where every external dependency, internal state, and library function is mocked, resulting in tautological assertions that don't test actual behavior.
-* **State-Leaking Suites:** Tests with deeply nested, mutated `beforeEach` and `afterEach` blocks that cause cascading environmental cross-contamination between test cases.
-* **The Coverage Illusion:** Fossilized test files that achieve high line coverage solely by invoking functions without asserting any meaningful domain contracts, error boundaries, or edge cases.
+* **The Flaky Monolith**: Massive integration test files riddled with arbitrary `sleep()` loops, non-deterministic race conditions, and random CI failures.
+* **The Over-Mocked Shell**: Test suites where every external dependency, internal state, and library function is mocked, resulting in tautological assertions that don't test actual behavior.
+* **State-Leaking Suites**: Tests with deeply nested, mutated `beforeEach` and `afterEach` blocks that cause cascading environmental cross-contamination between test cases.
+* **The Coverage Illusion**: Fossilized test files that achieve high line coverage solely by invoking functions without asserting any meaningful domain contracts, error boundaries, or edge cases.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **REROLL** — * Execute precisely and immediately upon target acquisition. Target Limit: 1.
 1. **Contract Extraction:** Map the core behavioral contracts, side-effects, and critical I/O paths of the target source file to determine the true assertions required.

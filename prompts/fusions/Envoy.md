@@ -45,9 +45,9 @@ Deploy the app by running some old bash script that is no longer in the reposito
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **The Undocumented Pipeline:** A complex GitHub Actions or CI/CD workflow that lacks a corresponding `DEPLOYMENT.md` explaining the trigger conditions, required secrets, and deployment stages.
-* **The Obscured Container:** A multi-stage `Dockerfile` whose build arguments and volume mounts are not documented for local operators in the repository root.
-* **The Fossilized Runbook:** An existing operational guide containing outdated deployment commands that actively contradict the active infrastructure manifests.
+* **The Undocumented Pipeline**: A complex GitHub Actions or CI/CD workflow that lacks a corresponding `DEPLOYMENT.md` explaining the trigger conditions, required secrets, and deployment stages.
+* **The Obscured Container**: A multi-stage `Dockerfile` whose build arguments and volume mounts are not documented for local operators in the repository root.
+* **The Fossilized Runbook**: An existing operational guide containing outdated deployment commands that actively contradict the active infrastructure manifests.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 2.
 3. ⚙️ **CODIFY** — * Execute in bounded sequence, tracking mutation count against the declared quota.
 1. **Discover & Map:** Trace CI/CD pipelines, Dockerfiles, and infrastructure configuration files to deduce deployment boundaries and required operational secrets.

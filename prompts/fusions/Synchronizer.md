@@ -65,10 +65,10 @@ export const App = () => (
 A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **Dependency Bumps:** Hunt for precise `package.json` or `requirements.txt` dependencies trailing behind major stable releases.
-* **Deprecated API Usage:** Deprecated import paths triggering linter warnings.
-* **Removed Signatures:** Removed method signatures in active use.
-* **Obsolete Configs:** Obsolete configuration schemas.
+* **Dependency Bumps**: Hunt for precise `package.json` or `requirements.txt` dependencies trailing behind major stable releases.
+* **Deprecated API Usage**: Deprecated import paths triggering linter warnings.
+* **Removed Signatures**: Removed method signatures in active use.
+* **Obsolete Configs**: Obsolete configuration schemas.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets generically up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **MIGRATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. Target Limit: 1.
 * Isolate the target dependency.
