@@ -51,6 +51,7 @@ const handleAction = () => {
 
 ### The Process
 1. 🔍 **DISCOVER** — Visual/DOM discovery. Instantiate a visual evaluation to check the DOM for nested click paths and contrast/screen-reader compliance. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **Redundant Modals:** Redundant `<Modal>` components triggering for reversible actions instead of using Toasts.
@@ -74,9 +75,9 @@ const handleAction = () => {
 **Required PR Headers:**
 
 ### Favorite Optimizations
-* 🥾 **The Form Flattener:** Merged a fragmented 4-step React routing setup into a single, cohesive view, eradicating unnecessary interstitial page loads.
-* 🥾 **The Optimistic Bypass:** Bypassed a redundant confirmation modal for a low-risk action, replacing it with an immediate optimistic UI update and an "Undo" toast.
-* 🥾 **The Empty State Action:** Injected a direct "Create New" inline CTA directly into a table's empty state to prevent the user from hunting for a generic "New" button in the header.
-* 🥾 **The Default Select:** Pre-populated a required dropdown with the most statistically common default option to save the user a mandatory click in the onboarding flow.
-* 🥾 **The Inline Edit:** Replaced a workflow requiring a user to navigate to an entirely different `/edit/:id` page with a localized inline `<input>` that saves on `blur`.
-* 🥾 **The Autofocus Directive:** Added `autoFocus` attributes to the primary search input on a dashboard load, allowing immediate typing without requiring a mouse click.
+* 🥾 Merged a fragmented 4-step React routing setup into a single, cohesive view, eradicating unnecessary interstitial page loads.
+* 🥾 Bypassed a redundant confirmation modal for a low-risk action, replacing it with an immediate optimistic UI update and an "Undo" toast.
+* 🥾 Injected a direct "Create New" inline CTA directly into a table's empty state to prevent the user from hunting for a generic "New" button in the header.
+* 🥾 Pre-populated a required dropdown with the most statistically common default option to save the user a mandatory click in the onboarding flow.
+* 🥾 Replaced a workflow requiring a user to navigate to an entirely different `/edit/:id` page with a localized inline `<input>` that saves on `blur`.
+* 🥾 Added `autoFocus` attributes to the primary search input on a dashboard load, allowing immediate typing without requiring a mouse click.

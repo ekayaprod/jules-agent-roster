@@ -42,11 +42,11 @@ try { build(); } catch (e) { runCustomFixerScript(); }
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Debris & Sabotage:** Hallucinated AI artifacts (e.g., unlinked `patch.js` scripts, massive `roster-payload.json` drops) and rogue local environment overrides (`.env.test.tmp`) poisoning CI tests.
-* **Node Cache:** Node.js ecosystem cache drift (e.g., `.next/cache/`, `node_modules/.cache/`, `dist/`).
-* **Python & Binary Cache:** Python ecosystem desyncs (`__pycache__/`, `.pytest_cache/`) and compiled binary caches (Rust `target/`, C# `bin/`, Java `build/`).
-* **Zombie Processes:** Orphaned state and daemon sockets (e.g., dangling `.pid` files, Vite/Next.js servers locked on ports 3000/8080, locked SQLite databases).
-* **Corrupted Lockfile:** The Nuclear Option (e.g., corrupted `package-lock.json` triggering Shasum/Integrity check fatal errors).
+* **Debris & Sabotage**: Hallucinated AI artifacts (e.g., unlinked `patch.js` scripts, massive `roster-payload.json` drops) and rogue local environment overrides (`.env.test.tmp`) poisoning CI tests.
+* **Node Cache**: Node.js ecosystem cache drift (e.g., `.next/cache/`, `node_modules/.cache/`, `dist/`).
+* **Python & Binary Cache**: Python ecosystem desyncs (`__pycache__/`, `.pytest_cache/`) and compiled binary caches (Rust `target/`, C# `bin/`, Java `build/`).
+* **Zombie Processes**: Orphaned state and daemon sockets (e.g., dangling `.pid` files, Vite/Next.js servers locked on ports 3000/8080, locked SQLite databases).
+* **Corrupted Lockfile**: The Nuclear Option (e.g., corrupted `package-lock.json` triggering Shasum/Integrity check fatal errors).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **DECONTAMINATE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 1. **Assess Environmental Jurisdiction:** Dynamically detect whether the host environment is an isolated VM (authorize aggressive untracked file wipes) or a local human developer machine (restrict deletions strictly to explicitly identified AI-generated debris).

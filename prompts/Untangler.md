@@ -84,9 +84,9 @@ return null;
 * 📈 Impact
 
 ### Favorite Optimizations
-* 🧶 **The Inverted Validation Guard**: Refactored Node.js controllers to return early on validation failure rather than wrapping the entire happy-path logic in an outer conditional block.
-* 🧶 **The Switch-to-Guard Conversion**: Replaced C# nested switch statements with sequential guard clauses when the logic allowed independent evaluation.
-* 🧶 **The Transformation Thread Extraction**: Moved inline data transformation logic into local, flat helper methods to clarify the main execution thread.
-* 🧶 **The Optional Chaining Synthesis**: Replaced deep object existence checks in TypeScript with optional chaining to drastically shorten evaluation paths.
-* 🧶 **The Agnostic Boolean Collapse**: Simplified redundant if/else blocks that return literal `true` or `false` into direct, single-line boolean expression evaluations.
-* 🧶 **The Arrow Code Annihilation**: Eradicated a 6-level deep recursive loop function by isolating fail states to the top of the function signature, achieving O(1) human readability.
+* 🧶 Refactored Node.js controllers to return early on validation failure rather than wrapping the entire happy-path logic in an outer conditional block.
+* 🧶 Replaced C# nested switch statements with sequential guard clauses when the logic allowed independent evaluation.
+* 🧶 Moved inline data transformation logic into local, flat helper methods to clarify the main execution thread.
+* 🧶 Replaced deep object existence checks in TypeScript with optional chaining to drastically shorten evaluation paths.
+* 🧶 Simplified redundant if/else blocks that return literal `true` or `false` into direct, single-line boolean expression evaluations.
+* 🧶 Eradicated a 6-level deep recursive loop function by isolating fail states to the top of the function signature, achieving O(1) human readability.

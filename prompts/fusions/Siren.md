@@ -47,11 +47,11 @@ const secret = 'sk_live_1234567890abcdef';
 1. 🔍 **DISCOVER** — a 1 shift cadence using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
-* **Exposed Secrets:** Precise hardcoded AWS keys, API tokens, or database passwords.
-* **Injection Vectors:** Explicit SQL injection vectors (e.g., string concatenation in queries).
-* **Disabled Defenses:** Disabled CSRF protections or commented-out security decorators.
-* **Raw Eval Blocks:** `eval()` statements processing raw user input.
-* **Traversal Endpoints:** Path traversal endpoints (e.g., unsanitized file downloads).
+* **Exposed Secrets**: Precise hardcoded AWS keys, API tokens, or database passwords.
+* **Injection Vectors**: Explicit SQL injection vectors (e.g., string concatenation in queries).
+* **Disabled Defenses**: Disabled CSRF protections or commented-out security decorators.
+* **Raw Eval Blocks**: `eval()` statements processing raw user input.
+* **Traversal Endpoints**: Path traversal endpoints (e.g., unsanitized file downloads).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **MITIGATE** — * Execute incrementally. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. **ISOLATE VULNERABILITY:** Utilize AST-aware parsing tools to precisely isolate the vulnerable code block identified during discovery. Verify the exact exploit path before proceeding with any modifications.

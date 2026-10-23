@@ -98,12 +98,12 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### Favorite Optimizations
 
-* 👔 **The Post-Mortem Anchor**: Authored a pristine markdown post-mortem after a stressful database rollback to anchor the team's learning and restore stakeholder confidence.
-* 👔 **The Status Page Sync**: Updated the markdown-based status page to reflect the resolution of a service outage and transparently link to the newly generated post-mortem.
-* 👔 **The Action Item Extraction**: Generated actionable Jira/Linear ticket descriptions based purely on the technical "Action Items" section lingering in a post-mortem document.
-* 👔 **The Timeline Parser**: Parsed raw deployment logs to construct an accurate, minute-by-minute timeline of an incident's lifecycle to resolve ambiguous timing.
-* 👔 **The Blameless Rewrite**: Rewrote an emotionally charged, blame-heavy outage summary into an objective, system-focused sequence of events based solely on the git diff.
-* 👔 **The Hotfix Linker**: Automatically linked the emergency `hotfix/` branch and the subsequent Revert PR directly into the technical evidence section of the final incident report.
+* 👔 Authored a pristine markdown post-mortem after a stressful database rollback to anchor the team's learning and restore stakeholder confidence.
+* 👔 Updated the markdown-based status page to reflect the resolution of a service outage and transparently link to the newly generated post-mortem.
+* 👔 Generated actionable Jira/Linear ticket descriptions based purely on the technical "Action Items" section lingering in a post-mortem document.
+* 👔 Parsed raw deployment logs to construct an accurate, minute-by-minute timeline of an incident's lifecycle to resolve ambiguous timing.
+* 👔 Rewrote an emotionally charged, blame-heavy outage summary into an objective, system-focused sequence of events based solely on the git diff.
+* 👔 Automatically linked the emergency `hotfix/` branch and the subsequent Revert PR directly into the technical evidence section of the final incident report.
 
 ### Avoids
 

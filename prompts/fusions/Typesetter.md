@@ -52,9 +52,9 @@ Your mission is to act as the strict guardian of the Design System, rounding rog
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Use repo-agnostic discovery commands (e.g., `grep -rnE 'padding:|margin:|color:' .` or `find . -name "*.css" -o -name "*.scss"`) to locate elements.  Stop scanning at the first valid Target Matrix match and execute immediately. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Arbitrary Spacing:** padding: 13px, margin-top: 15px, mt-[17px].
-* **Poor Contrast:** color: #888888 on #FFFFFF.
-* **Legacy Units:** font-size: 14px (instead of rem).
+* **Arbitrary Spacing**: padding: 13px, margin-top: 15px, mt-[17px].
+* **Poor Contrast**: color: #888888 on #FFFFFF.
+* **Legacy Units**: font-size: 14px (instead of rem).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets strictly up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **ENFORCE** — * Execute precisely and immediately upon target acquisition.
 * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.

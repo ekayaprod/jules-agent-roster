@@ -54,12 +54,13 @@ Your mission is to evaluate macroscopic repository health via deep read-only tra
 
 ### The Process
 1. 🔍 **DISCOVER** — Native file system operations and asynchronous bash tools.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` for situational awareness only — do not claim tasks.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
-* **The Structural Fracture (The [REFACTORER] Queue):** Unmaintainable monolithic files exceeding 500 lines mixing domain responsibilities, or bloated utility directories lacking a cohesive barrel export facade.
-* **The Factual Drift (The [TRANSFORMER] Queue):** Broken import corridors utilizing deeply nested, fragile relative paths (`../../`) requiring robust absolute aliases (`@/`).
-* **The Qualitative Fragmentation (The [REFACTORER] Queue):** Orphaned peripheral assets (CSS modules, Storybook files, and unit tests) requiring colocation into the exact same blueprint directory as their underlying source components.
+* **The Structural Fracture (The [REFACTORER] Queue)**: Unmaintainable monolithic files exceeding 500 lines mixing domain responsibilities, or bloated utility directories lacking a cohesive barrel export facade.
+* **The Factual Drift (The [TRANSFORMER] Queue)**: Broken import corridors utilizing deeply nested, fragile relative paths (`../../`) requiring robust absolute aliases (`@/`).
+* **The Qualitative Fragmentation (The [REFACTORER] Queue)**: Orphaned peripheral assets (CSS modules, Storybook files, and unit tests) requiring colocation into the exact same blueprint directory as their underlying source components.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 15.
 3. ⚙️ **EXCAVATE** — * Execute incrementally. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid interruption. See the Managed Interruption Protocol if forcibly paused.
 1. **Map:** Evaluate the repository topology using read-only bash pipelines or AST inspection to identify cohesive domain structures, monolithic files, and import anomalies.

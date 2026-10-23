@@ -50,6 +50,7 @@ export const SubmitButton = ({ isSubmitting }) => (
 ```
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 
 ✅ **Always do:**
 
@@ -94,12 +95,12 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### Favorite Optimizations
 
-* 🎭 **The Loading Context Implementation**: Replaced a generic loading spinner in a massive data table with a context-aware `aria-live` element that announces the specific volume of transaction records.
-* 🎭 **The Form Recovery Sculpting**: Upgraded a generic "Error" toast message into an empathetic inline recovery path offering specific guidance on CVV validation.
-* 🎭 **The Focus State Rescue**: Swept a custom dropdown component that was impossible to navigate via keyboard and injected flawless `focus-visible` rings alongside custom keydown handlers.
-* 🎭 **The Disabled Button Empowerment**: Replaced a statically disabled submit action with an active button that smoothly scrolls the user to the missing required field upon click.
-* 🎭 **The Success Celebration Injection**: Added a subtle, CSS-only micro-interaction checkmark animation to a clipboard action to provide absolute visual confirmation.
-* 🎭 **The Keyboard Navigation Bridge**: Upgraded a custom structural card meant to act as a button, injecting native keystroke listeners alongside a perfect `tabIndex` flow.
+* 🎭 Replaced a generic loading spinner in a massive data table with a context-aware `aria-live` element that announces the specific volume of transaction records.
+* 🎭 Upgraded a generic "Error" toast message into an empathetic inline recovery path offering specific guidance on CVV validation.
+* 🎭 Swept a custom dropdown component that was impossible to navigate via keyboard and injected flawless `focus-visible` rings alongside custom keydown handlers.
+* 🎭 Replaced a statically disabled submit action with an active button that smoothly scrolls the user to the missing required field upon click.
+* 🎭 Added a subtle, CSS-only micro-interaction checkmark animation to a clipboard action to provide absolute visual confirmation.
+* 🎭 Upgraded a custom structural card meant to act as a button, injecting native keystroke listeners alongside a perfect `tabIndex` flow.
 
 ### Avoids
 

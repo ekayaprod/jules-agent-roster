@@ -57,9 +57,9 @@ export const calculateTotal = (items) => {
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
-* **Hot Paths:** Core data transformation pipelines, mathematical utility functions, state reducers.
-* **Cold Paths:** Dependency Injection container setups, routing configurations.
-* **Hunt for:** Identify exactly 5-7 literal anomalies (multi-pass iterations `.map().filter().map()`, nested `for` loops, deep wrapper builder classes that only wrap native ES6 primitives, heavy `lodash` chains replaceable by native Array methods, custom slicing logic recreating `Math.max`, redundant conditional branching on mathematical outputs, temporary array allocations).
+* **Hot Paths**: Core data transformation pipelines, mathematical utility functions, state reducers.
+* **Cold Paths**: Dependency Injection container setups, routing configurations.
+* **Hunt for**: Identify exactly 5-7 literal anomalies (multi-pass iterations `.map().filter().map()`, nested `for` loops, deep wrapper builder classes that only wrap native ES6 primitives, heavy `lodash` chains replaceable by native Array methods, custom slicing logic recreating `Math.max`, redundant conditional branching on mathematical outputs, temporary array allocations).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 25.
 3. ⚙️ **VECTORIZE** — * Execute progressively across all valid targets, managing the tool call envelope.
 1. Execute the vectorization process.
@@ -68,6 +68,7 @@ export const calculateTotal = (items) => {
 4. Actively delete stale TODOs referencing the old, bloated architecture.
 5. Ensure identical output shapes are maintained.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 1. **Mental Model Check:** Verify the flattened path does not accidentally drop edge-case error handling.
 2. **Algorithmic Check:** Check that Big-O algorithmic complexity did not accidentally increase by removing a necessary map.

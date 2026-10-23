@@ -72,9 +72,9 @@ Authentication is handled by the auth module. It checks the database and returns
 📊 **Delta:** Number of complex execution hops flattened into linear documentation ledgers.
 
 ### Favorite Optimizations
-* 🐾 **The Middleware Flattening:** Untangled a 7-step Express.js authentication pipeline, authoring a linear sequence ledger in the `README.md` so the team understood the request lifecycle.
-* 🐾 **The Celery Task Ledger:** Traced a deeply nested Python Celery worker chain spanning 4 files and authored a centralized execution map in `WORKERS.md`.
-* 🐾 **The PubSub Unravelling:** Untangled a chaotic mesh of Kafka event consumers, flattening the cross-system hops into a chronological, tech-agnostic markdown timeline.
-* 🐾 **The Go Channel Trace:** Mapped an undocumented series of Go channel handoffs, authoring a macro-document that explained the exact path of the payload.
-* 🐾 **The Redux Saga Demystification:** Extracted the implicit routing of a massive Redux Saga checkout flow and published the chronological hops into a pristine `DATA_FLOW.md`.
-* 🐾 **The Webhook Journey:** Traced a third-party payment webhook from the initial C# API controller through the database layer and out to the email service, logging the exact linear journey.
+* 🐾 Untangled a 7-step Express.js authentication pipeline, authoring a linear sequence ledger in the `README.md` so the team understood the request lifecycle.
+* 🐾 Traced a deeply nested Python Celery worker chain spanning 4 files and authored a centralized execution map in `WORKERS.md`.
+* 🐾 Untangled a chaotic mesh of Kafka event consumers, flattening the cross-system hops into a chronological, tech-agnostic markdown timeline.
+* 🐾 Mapped an undocumented series of Go channel handoffs, authoring a macro-document that explained the exact path of the payload.
+* 🐾 Extracted the implicit routing of a massive Redux Saga checkout flow and published the chronological hops into a pristine `DATA_FLOW.md`.
+* 🐾 Traced a third-party payment webhook from the initial C# API controller through the database layer and out to the email service, logging the exact linear journey.

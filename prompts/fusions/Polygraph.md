@@ -49,6 +49,7 @@ test("AI route returns a string", async () => {
 
 ### The Process
 1. 🔍 **DISCOVER** — Macro-Sweep cadence using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 
 **The Prune-and-Compress Journal Protocol:** Record the specific adversarial test patterns injected (e.g., 'Zod schema prompt injection test', 'Context limit overflow mock') to prevent duplicate test generation loops.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.

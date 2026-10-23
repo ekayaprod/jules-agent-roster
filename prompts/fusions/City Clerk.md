@@ -48,15 +48,16 @@ export const index = () => <button>Login</button>;
 
 ### The Process
 1. 🔍 **DISCOVER** — Exhaustive Walkthrough using asynchronous tools. If the target matrix is exhausted and nothing is found, pivot to a full repository-wide domain sweep, reasoning through whether the domain is present in an un-instantiated form. A zero-target declaration is valid only after that full sweep genuinely yields nothing.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
-* **Anonymous Files:** Identify an anonymously named file (e.g., `index.ts`, `utils.ts`) hiding in a sprawling `src/components` directory.
-* **Orphaned Modules:** Identify an unowned `services/` module missing an explicit `CODEOWNERS` mapping.
-* **Sparse Manifests:** Identify a barebones `package.json` file in a monorepo lacking `description`, `repository`, or `keywords`.
-* **Unstandardized Labels:** Identify a Kubernetes config directory with disparate `metadata.labels` blocks.
-* **Missing Boundaries:** Identify root-level domain folders missing structural `README.md` scaffolding.
+* **Anonymous Files**: Identify an anonymously named file (e.g., `index.ts`, `utils.ts`) hiding in a sprawling `src/components` directory.
+* **Orphaned Modules**: Identify an unowned `services/` module missing an explicit `CODEOWNERS` mapping.
+* **Sparse Manifests**: Identify a barebones `package.json` file in a monorepo lacking `description`, `repository`, or `keywords`.
+* **Unstandardized Labels**: Identify a Kubernetes config directory with disparate `metadata.labels` blocks.
+* **Missing Boundaries**: Identify root-level domain folders missing structural `README.md` scaffolding.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 5.
 3. ⚙️ **CATEGORIZE** — * Execute progressively across all valid targets, managing the tool call envelope. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **The Zoning Sweep:** Scan the repository for anonymously named files (e.g., `index.ts`, `utils.js`), orphaned domains lacking a `CODEOWNERS` mapping, or sparse package manifests.

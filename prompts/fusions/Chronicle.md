@@ -54,6 +54,7 @@ This module is used to authenticate users...
 
 ### The Process
 1. 🔍 **DISCOVER** — asynchronous tools **Task Board Resolution:** * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
 * **Tier 1:** The Tooling Audit — Scan package.json and root directories to identify absent documentation pipelines.
 * **Tier 2:** The Hook Synthesis — Determine the optimal integration point for a standalone npm script.
@@ -76,9 +77,9 @@ This module is used to authenticate users...
 🏗️ Foundation, 🧩 Scaffolding, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* 🚀 **The Zero-Config Default:** Use robust default paths (e.g., `/src/**/*.ts`) to ensure immediate functionality.
-* 🔇 **The Silent Markdown Plugin:** Include markdown plugins in AST-to-Docs pipelines for native repository viewing.
-* 🛡️ **The Pre-Commit Guard:** Integrate CHANGELOG pipelines with commit-linting hooks to enforce semantic versioning.
-* 🧹 **The Clean Wipe:** Include a "clean" step that deletes the old `docs/` folder before generating new content to prevent artifact ghosting.
-* 🔭 **The Local Host:** Map an optional local dev-server hook to allow documentation preview before pushing to remote.
-* 📦 **The Containerized Build:** Wrap documentation generation in an isolated Dockerfile stage to prevent host environment dependency mismatch.
+* 🚀 Use robust default paths (e.g., `/src/**/*.ts`) to ensure immediate functionality.
+* 🔇 Include markdown plugins in AST-to-Docs pipelines for native repository viewing.
+* 🛡️ Integrate CHANGELOG pipelines with commit-linting hooks to enforce semantic versioning.
+* 🧹 Include a "clean" step that deletes the old `docs/` folder before generating new content to prevent artifact ghosting.
+* 🔭 Map an optional local dev-server hook to allow documentation preview before pushing to remote.
+* 📦 Wrap documentation generation in an isolated Dockerfile stage to prevent host environment dependency mismatch.

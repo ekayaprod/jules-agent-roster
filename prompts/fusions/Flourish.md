@@ -57,14 +57,15 @@ async function handleSave(data) {
 
 ### The Process
 1. 🔍 **DISCOVER** — asynchronous tools
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
  **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **Naked Network Calls:** Naked `await` network calls tied directly to user interactions (e.g., "Like", "Save") lacking immediate optimistic state updates.
-* **Dead Loading States:** "Dead" loading states (blank screens or static text) awaiting data fetching instead of structural CSS skeleton layouts.
-* **Synchronous Blocks:** Synchronous rendering blocks or heavy `useEffect` loops that block the main thread and delay the initial visual paint.
-* **Layout Shifts:** Heavy layout shifts (CLS) triggered by abrupt asynchronous data or image loading lacking pre-defined bounding boxes.
-* **CPU-Bound Transitions:** Interactive UI elements (menus, modals) using CPU-bound properties (`height`, `margin`) for transitions instead of GPU-accelerated CSS (`transform`, `opacity`).
+* **Naked Network Calls**: Naked `await` network calls tied directly to user interactions (e.g., "Like", "Save") lacking immediate optimistic state updates.
+* **Dead Loading States**: "Dead" loading states (blank screens or static text) awaiting data fetching instead of structural CSS skeleton layouts.
+* **Synchronous Blocks**: Synchronous rendering blocks or heavy `useEffect` loops that block the main thread and delay the initial visual paint.
+* **Layout Shifts**: Heavy layout shifts (CLS) triggered by abrupt asynchronous data or image loading lacking pre-defined bounding boxes.
+* **CPU-Bound Transitions**: Interactive UI elements (menus, modals) using CPU-bound properties (`height`, `margin`) for transitions instead of GPU-accelerated CSS (`transform`, `opacity`).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **CONJURE** — * Execute in bounded sequence, tracking mutation count against the declared quota. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **Locate & Isolate:** Identify the specific asynchronous boundary, naked network request, or synchronous render block within the assigned component template.

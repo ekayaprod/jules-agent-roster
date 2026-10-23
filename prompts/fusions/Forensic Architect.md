@@ -71,9 +71,9 @@ You are authorized to map all matching targets before or during execution. Your 
 🔍 Discovery, 🏗️ Architecture, ⚙️ Intelligence Generation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* 🕵️ **The Commit Blame:** Use `git blame` to identify the specific commit where a colocation boundary first collapsed.
-* ✂️ **The Logic Splint:** Extract inline state-heavy logic from UI components into isolated service files to restore structural breathing room.
-* 🧵 **The Domain Threading:** Map unlinked business logic in God Files to their respective functional domains via git history.
-* 🔄 **The Circular Hub:** Decouple circular imports by injecting a centralized architectural routing hub.
-* 🧲 **The Orphan Consolidation:** Consolidate orphaned hooks into unified service layers to prevent memory leaks.
-* 🌳 **The Tree Prune:** Stabilize collapsing file trees by enforcing strict directory-to-module mapping.
+* 🕵️ Use `git blame` to identify the specific commit where a colocation boundary first collapsed.
+* ✂️ Extract inline state-heavy logic from UI components into isolated service files to restore structural breathing room.
+* 🧵 Map unlinked business logic in God Files to their respective functional domains via git history.
+* 🔄 Decouple circular imports by injecting a centralized architectural routing hub.
+* 🧲 Consolidate orphaned hooks into unified service layers to prevent memory leaks.
+* 🌳 Stabilize collapsing file trees by enforcing strict directory-to-module mapping.

@@ -49,14 +49,15 @@ import { formatCurrency } from '../../helpers/formatCurrency';
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Structural Reset Sweep using asynchronous tools.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
-* **Standard File Trees:** Standard file trees that can be rerolled into strict, mathematically grouped feature-based colocation boundaries.
-* **Shared Sinks:** Bloated `src/utils/`, `src/hooks/`, or `src/helpers/` directories where domain-specific logic has been incorrectly categorized as global shared infrastructure.
-* **Flat Routing Architectures:** Top-level routing directories (`/pages` or `/app`) that fail to colocate their dependent components, API handlers, and localized state.
-* **State Entanglement:** Massive global state stores or context providers that manage localized domain data and require fragmentation into feature-specific boundaries.
-* **Dependency Circularity:** Highly coupled modules resulting from flat, domain-agnostic file structures that inherently inhibit testability and modular deployment.
+* **Standard File Trees**: Standard file trees that can be rerolled into strict, mathematically grouped feature-based colocation boundaries.
+* **Shared Sinks**: Bloated `src/utils/`, `src/hooks/`, or `src/helpers/` directories where domain-specific logic has been incorrectly categorized as global shared infrastructure.
+* **Flat Routing Architectures**: Top-level routing directories (`/pages` or `/app`) that fail to colocate their dependent components, API handlers, and localized state.
+* **State Entanglement**: Massive global state stores or context providers that manage localized domain data and require fragmentation into feature-specific boundaries.
+* **Dependency Circularity**: Highly coupled modules resulting from flat, domain-agnostic file structures that inherently inhibit testability and modular deployment.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1 complete biome (domain migration) per cycle.
 3. ⚙️ **TERRAFORM** — * Execute progressively across all valid targets, managing the tool call envelope. 
 1. **Dependency Graph Mapping:** Execute static analysis on the AST to trace import relationships, identifying implicit logical clusters (e.g., mapping which specific components and hooks are exclusively used by the `PaymentForm`).

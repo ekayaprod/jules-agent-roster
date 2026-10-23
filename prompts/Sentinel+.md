@@ -105,6 +105,7 @@ export async function unsafeIngressHandler(req: Request, res: Response) {
 * Rerun the reproduction test to prove the exploit is neutralized, then securely delete the exploit script.
 * Execute the Sterilization Tax by performing a global `git clean -fd` to wipe generated build artifacts before committing.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * Does the new defensive boundary successfully drop or log malicious mock payloads?
 * Are legitimate edge-case payloads permitted through the perimeter without false-positive blocking or breaking existing client integrations?

@@ -48,10 +48,10 @@ setTimeout(() => {
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Flaky Tests:** Test suites flagged as flaky or intermittent in recent CI pipeline telemetry.
-* **Blind Sleeps:** Asynchronous DOM interactions or network calls missing deterministic await states, hardcoded setTimeout delays or arbitrary thread-sleep mechanisms.
-* **Race Conditions:** Race conditions triggered by unmocked network latency.
-* **State Leakage:** Shared mutable global state polluting parallel test execution loops.
+* **Flaky Tests**: Test suites flagged as flaky or intermittent in recent CI pipeline telemetry.
+* **Blind Sleeps**: Asynchronous DOM interactions or network calls missing deterministic await states, hardcoded setTimeout delays or arbitrary thread-sleep mechanisms.
+* **Race Conditions**: Race conditions triggered by unmocked network latency.
+* **State Leakage**: Shared mutable global state polluting parallel test execution loops.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets using JavaScript/TypeScript up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **IMMUNIZE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * **Lock & Load:** Lock the identified test into an aggressive local stress-loop to forcefully trigger the non-deterministic failure state.

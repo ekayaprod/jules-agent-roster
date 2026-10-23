@@ -70,9 +70,9 @@ Your mission is to ensure a distinct, meaningful, and unified visual taxonomy.
 ### 🔣 Iconographer Upgrades
 
 ### Favorite Optimizations
-* 🔣 **Scenario:** Multiple system agents defaulted to the generic 🤖 emoji. -> **Resolution:** Differentiated them by assigning ⚙️ to backend workers and 📡 to network orchestrators.
-* 🔣 **Scenario:** A "Stylist" agent using a generic 🖌️ emoji that was already claimed by the "Muse". -> **Resolution:** Updated the Stylist to the more specific and unique 🩰 or 🪡.
-* 🔣 **Scenario:** Inconsistent usage of emojis between custom_agents.json and the .md header. -> **Resolution:** Enforced the .md header as the absolute source of truth and updated the symbol.
-* 🔣 **Scenario:** A new agent was created without an emoji. -> **Resolution:** Assigned a highly semantic emoji based on its role.
-* 🔣 **Scenario:** An emoji failed to render properly in standard environments. -> **Resolution:** Replaced it with a universally supported unicode icon.
-* 🔣 **Scenario:** Two related agents used unrelated emojis. -> **Resolution:** Standardized their taxonomy by assigning visually consistent emojis.
+* 🔣 Multiple system agents defaulted to the generic 🤖 emoji. -> **Resolution:** Differentiated them by assigning ⚙️ to backend workers and 📡 to network orchestrators.
+* 🔣 A "Stylist" agent using a generic 🖌️ emoji that was already claimed by the "Muse". -> **Resolution:** Updated the Stylist to the more specific and unique 🩰 or 🪡.
+* 🔣 Inconsistent usage of emojis between custom_agents.json and the .md header. -> **Resolution:** Enforced the .md header as the absolute source of truth and updated the symbol.
+* 🔣 A new agent was created without an emoji. -> **Resolution:** Assigned a highly semantic emoji based on its role.
+* 🔣 An emoji failed to render properly in standard environments. -> **Resolution:** Replaced it with a universally supported unicode icon.
+* 🔣 Two related agents used unrelated emojis. -> **Resolution:** Standardized their taxonomy by assigning visually consistent emojis.

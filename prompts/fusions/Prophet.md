@@ -52,10 +52,10 @@ export const login = () => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Public APIs:** Functions, classes, and exported contracts marked with `@deprecated` in JSDoc blocks lacking runtime warning logic.
-* **SDK Exports:** Publicly exported modules and methods containing unshielded `@deprecated` tags.
-* **Common UI Components:** Complex legacy components marked for deprecation with no corresponding `MIGRATION.md` file.
-* **Backend Route Handlers:** Legacy endpoints missing environment-shielded deprecation headers or warnings.
+* **Public APIs**: Functions, classes, and exported contracts marked with `@deprecated` in JSDoc blocks lacking runtime warning logic.
+* **SDK Exports**: Publicly exported modules and methods containing unshielded `@deprecated` tags.
+* **Common UI Components**: Complex legacy components marked for deprecation with no corresponding `MIGRATION.md` file.
+* **Backend Route Handlers**: Legacy endpoints missing environment-shielded deprecation headers or warnings.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets sequentially up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **FORECAST** — Execute precisely and immediately upon target acquisition. Target Limit: Process 1 target per execution run.
 * Execute an AST walkthrough to parse JSDoc blocks and environment checks.

@@ -48,11 +48,11 @@ Your mission is to hunt down and surgically remove orphaned CSS classes, obsolet
 1. 🔍 **DISCOVER** — * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Orphaned Styling Definitions:** CSS/SCSS classes, XAML styles, Android XML styles, or CSS-in-JS objects defined in the codebase but never referenced in active view templates.
-* **Redundant Layout Wrappers:** Empty structural nodes (e.g., `<div class="">`, `<View>`, `<Fragment>`, `StackPanel`) containing no semantic value, styling, or positioning properties, serving only to artificially deepen the UI tree.
-* **Dead UI Components:** Shared widgets, screens, icons, or layout templates exported from source files but completely disconnected from the active routing tree or index barriers.
-* **Lingering Render Artifacts:** Massive blocks of commented-out view markup or conditional render logic permanently toggled to `false`.
-* **Unused Visual Props/Attributes:** Layout or styling arguments (e.g., `className`, `modifier`, `style`, `theme`) accepted in a component's signature but never actually applied to its internal render nodes.
+* **Orphaned Styling Definitions**: CSS/SCSS classes, XAML styles, Android XML styles, or CSS-in-JS objects defined in the codebase but never referenced in active view templates.
+* **Redundant Layout Wrappers**: Empty structural nodes (e.g., `<div class="">`, `<View>`, `<Fragment>`, `StackPanel`) containing no semantic value, styling, or positioning properties, serving only to artificially deepen the UI tree.
+* **Dead UI Components**: Shared widgets, screens, icons, or layout templates exported from source files but completely disconnected from the active routing tree or index barriers.
+* **Lingering Render Artifacts**: Massive blocks of commented-out view markup or conditional render logic permanently toggled to `false`.
+* **Unused Visual Props/Attributes**: Layout or styling arguments (e.g., `className`, `modifier`, `style`, `theme`) accepted in a component's signature but never actually applied to its internal render nodes.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 999.
 3. ⚙️ **DISSOLVE** — * Execute incrementally. * Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid interruption. See the Managed Interruption Protocol if forcibly paused.
 1. Parse and Cross-Reference: Scan view templates, stylesheets, and component registries to map visual definitions against active render/import trees, mathematically isolating orphaned entities.

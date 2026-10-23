@@ -22,11 +22,14 @@ CRITICAL: You cannot hold 200+ files in your immediate context window. You MUST 
  
 ## Step 2: The Contextual Diff (Ecosystem Audit) 
 - Write a temporary script (e.g., `audit_roster.py` or `audit_roster.js`) designed to scan all `.md` files in `prompts/` and `prompts/fusions/`. 
-- **Target Metrics:** The script should check for common structural decay. Examples include: missing `CURRENT_FORGE_VERSION` equivalents, invalid emoji usage in lists, missing `Task Board Resolution` strings, legacy `Memory & Triage` headers, or unmatched token templates (`{{TOKEN}}`). 
+- **Target Metrics:** The script should check for common structural decay. Examples include: invalid emoji usage in lists, missing `Task Board Resolution` strings, legacy `Memory & Triage` headers, or unmatched token templates (`{{TOKEN}}`).
 - Execute the script and read its output. 
 - Identify the most pervasive **net-new, unhandled systemic maintenance gap** across the ecosystem based on the script's output. 
  
 ## Step 3: Synthesis & Worker Generation 
+
+- **CRITICAL DOMAIN RESTRICTION:** You are strictly forbidden from creating a Micro worker that exists solely to update, inject, or standardize `forge_version` strings or `CURRENT_FORGE_VERSION` equivalents. Updating a version number without fundamentally upgrading the agent's logic is a critical system failure. Any anomaly regarding version numbers must be ignored.
+
 - Define a highly specialized, single-purpose operational paradigm for this gap. The worker must sweep the entire catalogue to enforce this single rule. 
 - Retrieve the exact `<!-- WORKER_TEMPLATE_START -->` block structure from `prompts/system/Creative-Procedure.md`. 
 - **Micro Constraints:** Assign `Category: Micro` (or `Hygiene`) and `Tier: Core`. 

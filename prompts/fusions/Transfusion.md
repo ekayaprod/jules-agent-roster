@@ -54,10 +54,10 @@ export const fetchUserPreferences = (userId) => {
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **Legacy Utility Modules:** Identify utility functions making implicit references to global state.
-* **API Client Wrappers:** Locate stateful singletons or direct imports within data fetching layers.
-* **SSR React Components:** Target components secretly accessing browser-specific globals like `window.`.
-* **Data Transformers:** Find pure data functions contaminated by mid-function `process.env.` reads.
+* **Legacy Utility Modules**: Identify utility functions making implicit references to global state.
+* **API Client Wrappers**: Locate stateful singletons or direct imports within data fetching layers.
+* **SSR React Components**: Target components secretly accessing browser-specific globals like `window.`.
+* **Data Transformers**: Find pure data functions contaminated by mid-function `process.env.` reads.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 5.
 3. ⚙️ **PURIFY** — * Execute in bounded sequence, tracking mutation count against the declared quota.
 * Perform an AST walkthrough of the target module to map all implicit global accesses.

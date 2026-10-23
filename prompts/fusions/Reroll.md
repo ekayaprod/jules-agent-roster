@@ -64,13 +64,14 @@ export function extractQueryParams(urlStr) {
 
 ### The Process
 1. 🔍 **DISCOVER** — Scheduled Background Sweep. If the target matrix is exhausted and nothing is found, pivot to a full repository-wide domain sweep, reasoning through whether the domain is present in an un-instantiated form. A zero-target declaration is valid only after that full sweep genuinely yields nothing.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
-* **The Sunk-Cost Loop:** Heavily patched logic blocks identified via `git log` showing chronic instability, cyclical rollbacks, or constant "fix/patch" commits.
-* **The Legacy Bottleneck:** Functional algorithmic loops that can be rerolled into modern, hyper-optimized native language primitives.
-* **The Dead-Weight Wrapper:** Convoluted, deeply nested parsing layers or bloated legacy abstractions that serve no active architectural purpose and silently swallow errors.
+* **The Sunk-Cost Loop**: Heavily patched logic blocks identified via `git log` showing chronic instability, cyclical rollbacks, or constant "fix/patch" commits.
+* **The Legacy Bottleneck**: Functional algorithmic loops that can be rerolled into modern, hyper-optimized native language primitives.
+* **The Dead-Weight Wrapper**: Convoluted, deeply nested parsing layers or bloated legacy abstractions that serve no active architectural purpose and silently swallow errors.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 3.
 3. ⚙️ **REROLL** — * Execute progressively across all valid targets, managing the tool call envelope. Continue executing within your locked scope up to a maximum of 3 architectural rerolls per cycle. Halt when your locked scope is clean; do not expand your search repository-wide merely to satisfy a quota.
 1. Scour the repository utilizing `git log` history and test runner output to identify redundant, inefficient, or functionally broken logic blocks.

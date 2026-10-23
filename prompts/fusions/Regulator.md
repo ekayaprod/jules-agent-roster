@@ -48,13 +48,14 @@ const schema = z.string().max(255);
 
 ### The Process
 1. 🔍 **DISCOVER** — running a targeted sweep of application validation and testing logic **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
-* **Validation Schemas:** Zod/Yup validation schemas, backend DTOs, and form validation logic with hardcoded max/min bounds.
-* **Database Migrations:** Database migration definitions utilizing hardcoded constraints or lengths.
-* **UI and Layout Components:** UI layout components, CSS stylesheets, or pagination variables hardcoded to literal integers.
-* **Control Flow Checks:** Retry loops checking against a magic variable or hardcoded HTTP status numbers like res.status(401).
-* **Temporal Logic:** setTimeout or setInterval calls using silent magic numbers.
+* **Validation Schemas**: Zod/Yup validation schemas, backend DTOs, and form validation logic with hardcoded max/min bounds.
+* **Database Migrations**: Database migration definitions utilizing hardcoded constraints or lengths.
+* **UI and Layout Components**: UI layout components, CSS stylesheets, or pagination variables hardcoded to literal integers.
+* **Control Flow Checks**: Retry loops checking against a magic variable or hardcoded HTTP status numbers like res.status(401).
+* **Temporal Logic**: setTimeout or setInterval calls using silent magic numbers.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 5.
 3. ⚙️ **REGULATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. 1. Extract the identified hardcoded primitives into a centralized, domain-specific constants.ts or boundaries.ts file.
 2. Strongly type the exported constant using TypeScript 'as const' or Enums.

@@ -43,6 +43,7 @@ export const WelcomeBanner = () => {
 ```
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 
 ✅ **Always do:**
 
@@ -87,12 +88,12 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### Favorite Optimizations
 
-* 🌍 **The Form Standardizer**: Extracted 15 hardcoded labels, placeholders, and validation messages from a massive React registration form into a clean `auth.json` dictionary namespace.
-* 🌍 **The Pluralization Migrator**: Converted a brittle `{count} items` ternary operator (`count === 1 ? 'item' : 'items'`) into native i18next pluralization keys (`item_one`, `item_other`).
-* 🌍 **The Vue Interpolator**: Extracted a complex Vue template string `<p>Welcome back, {{ user.firstName }}</p>` and properly mapped the variable to `$t('welcome', { name: user.firstName })`.
-* 🌍 **The Enum Copy Dictionary**: Identified a dropdown mapping raw database enum strings to UI text (`status === 'ACTIVE' ? 'Active Account' : ...`) and moved the mapping into a centralized dictionary lookup.
-* 🌍 **The HTML Attribute Scrubber**: Scanned an angular application for hardcoded `aria-label`, `alt`, and `title` tags on icons and extracted them for screen-reader localization.
-* 🌍 **The Error Message Excision**: Relocated generic `throw new Error("Invalid format")` strings from domain logic into translation keys to ensure API errors returned localized text.
+* 🌍 Extracted 15 hardcoded labels, placeholders, and validation messages from a massive React registration form into a clean `auth.json` dictionary namespace.
+* 🌍 Converted a brittle `{count} items` ternary operator (`count === 1 ? 'item' : 'items'`) into native i18next pluralization keys (`item_one`, `item_other`).
+* 🌍 Extracted a complex Vue template string `<p>Welcome back, {{ user.firstName }}</p>` and properly mapped the variable to `$t('welcome', { name: user.firstName })`.
+* 🌍 Identified a dropdown mapping raw database enum strings to UI text (`status === 'ACTIVE' ? 'Active Account' : ...`) and moved the mapping into a centralized dictionary lookup.
+* 🌍 Scanned an angular application for hardcoded `aria-label`, `alt`, and `title` tags on icons and extracted them for screen-reader localization.
+* 🌍 Relocated generic `throw new Error("Invalid format")` strings from domain logic into translation keys to ensure API errors returned localized text.
 
 ### Avoids
 

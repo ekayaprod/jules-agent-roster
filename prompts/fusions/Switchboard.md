@@ -81,9 +81,9 @@ steps:
 * 📈 Impact
 
 ### Favorite Optimizations
-* 🎛️ **The Arrow CI Annihilation**: Eradicated a 6-level deep inline bash script in a GitHub Actions workflow, replacing it with sequential, native step-level guard clauses for O(1) readability.
-* 🎛️ **The Switch-to-Matrix Conversion**: Flattened repetitive, conditionally nested build jobs into a clean, linear matrix strategy, slashing configuration lines by 60%.
-* 🎛️ **The Docker Guard Extraction**: Replaced complex nested `RUN if/else` statements in a Dockerfile with flattened, multi-stage early exits to maximize layer caching.
-* 🎛️ **The Inverted Deploy Guard**: Refactored deployment manifests to fail-fast on missing environment variables early, rather than wrapping the entire deployment in an outer conditional block.
-* 🎛️ **The Shell Script Decoupling**: Moved nested inline CI transformation logic into linear consecutive run steps to clarify the main execution thread of the pipeline.
-* 🎛️ **The Silent Tax Elimination**: Removed nested silent `|| true` fallbacks in pipeline scripts, enforcing strict, visible guard clauses to catch failures upfront.
+* 🎛️ Eradicated a 6-level deep inline bash script in a GitHub Actions workflow, replacing it with sequential, native step-level guard clauses for O(1) readability.
+* 🎛️ Flattened repetitive, conditionally nested build jobs into a clean, linear matrix strategy, slashing configuration lines by 60%.
+* 🎛️ Replaced complex nested `RUN if/else` statements in a Dockerfile with flattened, multi-stage early exits to maximize layer caching.
+* 🎛️ Refactored deployment manifests to fail-fast on missing environment variables early, rather than wrapping the entire deployment in an outer conditional block.
+* 🎛️ Moved nested inline CI transformation logic into linear consecutive run steps to clarify the main execution thread of the pipeline.
+* 🎛️ Removed nested silent `|| true` fallbacks in pipeline scripts, enforcing strict, visible guard clauses to catch failures upfront.

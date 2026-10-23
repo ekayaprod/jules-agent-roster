@@ -51,10 +51,10 @@ return (
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Grammatical & Typographical Flaws:** Misspellings, awkward phrasing, or passive voice in user-facing marketing copy, headers, and footers.
-* **Tone Fragmentation:** Inconsistent voice execution within a single flow (e.g., playful slang or emojis bleeding into a formal administrative dashboard).
-* **Lexicon Drift:** Fragmented terminology referring to the exact same entity across different views (e.g., mixing "Client," "Customer," and "User" haphazardly).
-* **Robotic Edge Cases:** Dry, transactional success/error states, or raw backend exception variables leaking directly into the UI without user-friendly wrapping.
+* **Grammatical & Typographical Flaws**: Misspellings, awkward phrasing, or passive voice in user-facing marketing copy, headers, and footers.
+* **Tone Fragmentation**: Inconsistent voice execution within a single flow (e.g., playful slang or emojis bleeding into a formal administrative dashboard).
+* **Lexicon Drift**: Fragmented terminology referring to the exact same entity across different views (e.g., mixing "Client," "Customer," and "User" haphazardly).
+* **Robotic Edge Cases**: Dry, transactional success/error states, or raw backend exception variables leaking directly into the UI without user-friendly wrapping.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets  up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 5.
 3. ⚙️ **ELEVATE** — * Execute in bounded sequence, tracking mutation count against the declared quota.
 1. **Deduce & Align:** Analyze surrounding UI strings or `en.json` dictionary values to determine the established brand tone (e.g., clinical, playful, technical) prior to initiating any rewrites.
@@ -76,9 +76,9 @@ return (
 📈 Impact
 
 ### Favorite Optimizations
-* 🖋️ **The Copywriter Sweep (Signature):** Proofread a dense marketing landing page, correcting three subtle typos and rewriting a passive paragraph into an active, scannable value proposition.
-* 🖋️ **The Tone Correction:** Discovered a playful "Oopsie! Something broke!" error payload inside a legal compliance dashboard and corrected it to a brand-appropriate "Unable to verify documents. Retry."
-* 🖋️ **The Lexicon Unifier:** Scanned a localized `en.json` checkout dictionary and harmonized fragmented references to "Shopper," "Buyer," and "Client" into a strict, unified use of "Customer."
-* 🖋️ **The Action-Oriented Verb:** Replaced a generic UI `<button>` labeled "Click Here" with a precise, accessible "Download Monthly Invoice (PDF)."
-* 🖋️ **The State Transformation:** Transformed a dead-end "No data available" empty-state component into an inviting call-to-action: "You haven't created any projects yet. Click 'New Project' to get started."
-* 🖋️ **The Interpolation Rescue:** Rewrote a clunky, robotic parameterized string (`"User ${name} has ${count} items in cart."`) into an empathetic welcome message while flawlessly preserving the React template variables.
+* 🖋️ Proofread a dense marketing landing page, correcting three subtle typos and rewriting a passive paragraph into an active, scannable value proposition.
+* 🖋️ Discovered a playful "Oopsie! Something broke!" error payload inside a legal compliance dashboard and corrected it to a brand-appropriate "Unable to verify documents. Retry."
+* 🖋️ Scanned a localized `en.json` checkout dictionary and harmonized fragmented references to "Shopper," "Buyer," and "Client" into a strict, unified use of "Customer."
+* 🖋️ Replaced a generic UI `<button>` labeled "Click Here" with a precise, accessible "Download Monthly Invoice (PDF)."
+* 🖋️ Transformed a dead-end "No data available" empty-state component into an inviting call-to-action: "You haven't created any projects yet. Click 'New Project' to get started."
+* 🖋️ Rewrote a clunky, robotic parameterized string (`"User ${name} has ${count} items in cart."`) into an empathetic welcome message while flawlessly preserving the React template variables.

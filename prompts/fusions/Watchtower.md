@@ -56,10 +56,10 @@ console.log("Error happened here:", err); // Untracked, unstructured, localized 
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **Macro-Scan:** Perform a read-only aerial sweep of global dependency manifests (`package.json`, `requirements.txt`) and configuration files to map existing telemetry tooling and identify total absences.
-* **Blind Spot Audit:** Isolate ONE specific category of missing infrastructure (e.g., lack of structured logging, missing `/healthz` endpoints). Execute a Semantic Equivalence Check to ensure no synonyms (like `/status` or `/monitor`) already fulfill this role.
-* **Blueprint Synthesis:** Define the localized file path and required exported interfaces for the net-new observability primitive using only native language features or pre-existing unconfigured dependencies.
-* **Integration Points Audit:** Identify the exact safe boundaries to inject initialization logic without blocking primary application logic.
+* **Macro-Scan**: Perform a read-only aerial sweep of global dependency manifests (`package.json`, `requirements.txt`) and configuration files to map existing telemetry tooling and identify total absences.
+* **Blind Spot Audit**: Isolate ONE specific category of missing infrastructure (e.g., lack of structured logging, missing `/healthz` endpoints). Execute a Semantic Equivalence Check to ensure no synonyms (like `/status` or `/monitor`) already fulfill this role.
+* **Blueprint Synthesis**: Define the localized file path and required exported interfaces for the net-new observability primitive using only native language features or pre-existing unconfigured dependencies.
+* **Integration Points Audit**: Identify the exact safe boundaries to inject initialization logic without blocking primary application logic.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **ILLUMINATE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * Generate the foundational logic for the net-new observability primitive based on the synthesized blueprint.

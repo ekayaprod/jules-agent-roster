@@ -42,6 +42,7 @@ export const DashboardNav = () => (
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **No-Interaction Policy:** You operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials.
 * **Domain:** Execute strictly to modify or optimize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
@@ -59,11 +60,11 @@ export const DashboardNav = () => (
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
-* **[Archaic Anchors]:** `<a href="internal-route">` tags.
-* **[Window Assignments]:** `window.location.href=` assignments.
-* **[Imperative History]:** Deprecated `useHistory().push()` calls.
-* **[Meta Refreshes]:** Raw `<meta http-equiv="refresh">` tags.
-* **[Manual Assigns]:** `window.location.assign()` calls.
+* **[Archaic Anchors]**: `<a href="internal-route">` tags.
+* **[Window Assignments]**: `window.location.href=` assignments.
+* **[Imperative History]**: Deprecated `useHistory().push()` calls.
+* **[Meta Refreshes]**: Raw `<meta http-equiv="refresh">` tags.
+* **[Manual Assigns]**: `window.location.assign()` calls.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 1.
 3. ⚙️ **UPGRADE** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * Define Hot Paths (navbars, footers, legacy component directories) and Cold Paths (API layers, databases). Hunt for literal anomalies: `<a href="internal-route">`, `window.location.href=`, `window.location.assign()`, deprecated `useHistory().push()`, raw `<meta http-equiv="refresh">` tags. Execute a Stop-on-First cadence. Require a temporary benchmark script to compare load times.
@@ -72,6 +73,7 @@ export const DashboardNav = () => (
 * Implement a benchmark comparing the full page refresh timing to the SPA transition. Delete the benchmark script.
 * 3-attempt Bailout Cap. 1. Check the AST to ensure `href` was correctly ported. 2. Verify all link destinations match exactly. 3. Ensure native router is imported at the top of the file.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * Does the new routing component preserve the exact destination URL and query parameters of the original link?
 * Is the required routing library or hook natively available and imported in the file?

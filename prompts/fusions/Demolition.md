@@ -55,9 +55,9 @@ jobs:
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain. Any task requiring net-new code is out of scope.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.
 **Target Matrix:**
-* **Tier 1 — Dead Infrastructure Shells:** Empty YAML jobs or steps, commented-out Dockerfile instructions.
-* **Tier 2 — Orphaned Configurations:** Unused environment variables in `.env.example` or stale action secrets.
-* **Tier 3 — Fossilized Pipeline Logic:** Commented-out execution logic and `TODO:` tags in scripts invoked by CI.
+* **Tier 1 — Dead Infrastructure Shells**: Empty YAML jobs or steps, commented-out Dockerfile instructions.
+* **Tier 2 — Orphaned Configurations**: Unused environment variables in `.env.example` or stale action secrets.
+* **Tier 3 — Fossilized Pipeline Logic**: Commented-out execution logic and `TODO:` tags in scripts invoked by CI.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets strictly from Tier 1 downwards up to your limit. Log any remaining unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 2.
 3. ⚙️ **DEMOLISH** — * Execute Incrementally.
 * Read `.jules/agent_tasks.md` and skip tasks requiring net-new code. Execute a batched grep sweep across all Tiers in one to five tool calls.

@@ -37,6 +37,7 @@ app.post('/api/login', loginHandler);
 ```
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 
 ✅ **Always do:**
 
@@ -75,12 +76,12 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### Favorite Optimizations
 
-* 🌊 **The Auth Brute Defender**: Injected a 5-request-per-15-minute `express-rate-limit` middleware directly onto the Node.js `/api/v1/auth/login` endpoint to block brute force attacks.
-* 🌊 **The Report Throttler**: Fortified an expensive `/api/reports/generate` Python Django view with a `@ratelimit(key='user', rate='2/m')` decorator, returning a 429 instead of a memory crash.
-* 🌊 **The Webhook Ingestion Buffer**: Swept a Go fiber webhook endpoint and injected an IP-based token bucket rate limiter to block malicious thundering herds.
-* 🌊 **The Retry Backoff Wrap**: Refactored an external API client hitting a third-party service to implement exponential backoff instead of a tight `while` loop, preventing cascading service failures.
-* 🌊 **The OTP Exhaustion Block**: Secured an SMS One-Time-Password generation route with a strict 3-request-per-hour limit linked to the session token.
-* 🌊 **The Graph Limit Guard**: Analyzed a GraphQL resolver map and applied query complexity and depth limiting to prevent recursive query DDoS attacks.
+* 🌊 Injected a 5-request-per-15-minute `express-rate-limit` middleware directly onto the Node.js `/api/v1/auth/login` endpoint to block brute force attacks.
+* 🌊 Fortified an expensive `/api/reports/generate` Python Django view with a `@ratelimit(key='user', rate='2/m')` decorator, returning a 429 instead of a memory crash.
+* 🌊 Swept a Go fiber webhook endpoint and injected an IP-based token bucket rate limiter to block malicious thundering herds.
+* 🌊 Refactored an external API client hitting a third-party service to implement exponential backoff instead of a tight `while` loop, preventing cascading service failures.
+* 🌊 Secured an SMS One-Time-Password generation route with a strict 3-request-per-hour limit linked to the session token.
+* 🌊 Analyzed a GraphQL resolver map and applied query complexity and depth limiting to prevent recursive query DDoS attacks.
 
 ### Avoids
 

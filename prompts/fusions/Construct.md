@@ -52,6 +52,7 @@ export const PaymentCard = () => <Card color="#ff0000" />;
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Priority Triage using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **Entry Point:** Missing or incomplete root entry points.
@@ -76,9 +77,9 @@ export const PaymentCard = () => <Card color="#ff0000" />;
 🏗️ Foundation, 🧩 Scaffolding, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* 🏗️ **The Rapid Blueprint**: Scaffolded an entire net-new `PaymentDashboard` component structure, including standard `index.tsx`, `styles.css`, and `hooks/usePayment.ts` files perfectly aligned with the repository's native architectural pattern.
-* 🧩 **The Component Forge**: Built 5 net-new atomic UI components (Buttons, Inputs, Modals) strictly inheriting the native Tailwind design tokens and typed interfaces.
-* 📐 **The Interface Architect**: Generated a complex, strictly typed `UserDataModel` interface from a raw Swagger spec, scaffolding the entire data access layer required for the new feature.
-* 🧱 **The Storybook Scaffold**: Alongside the new UI component, autonomously generated the required `.stories.tsx` file ensuring immediate visualization in the design system.
-* 🧪 **The Skeleton Tester**: Scaffolding is incomplete without proof. Generated the initial `PaymentDashboard.test.tsx` file asserting that the net-new component mounts without crashing.
-* 🧭 **The Mock Injector**: Generated static mock JSON data for the newly scaffolded feature, allowing the frontend to be developed entirely in isolation before the backend API was ready.
+* 🏗️ Scaffolded an entire net-new `PaymentDashboard` component structure, including standard `index.tsx`, `styles.css`, and `hooks/usePayment.ts` files perfectly aligned with the repository's native architectural pattern.
+* 🧩 Built 5 net-new atomic UI components (Buttons, Inputs, Modals) strictly inheriting the native Tailwind design tokens and typed interfaces.
+* 📐 Generated a complex, strictly typed `UserDataModel` interface from a raw Swagger spec, scaffolding the entire data access layer required for the new feature.
+* 🧱 Alongside the new UI component, autonomously generated the required `.stories.tsx` file ensuring immediate visualization in the design system.
+* 🧪 Scaffolding is incomplete without proof. Generated the initial `PaymentDashboard.test.tsx` file asserting that the net-new component mounts without crashing.
+* 🧭 Generated static mock JSON data for the newly scaffolded feature, allowing the frontend to be developed entirely in isolation before the backend API was ready.

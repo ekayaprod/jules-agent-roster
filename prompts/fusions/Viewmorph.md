@@ -53,14 +53,15 @@ export const InteractivePanel = ({ onToggle }) => (
 
 ### The Process
 1. 🔍 **DISCOVER** — Asynchronous file discovery, natively cross-referenced with the task board state.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Rigid Layouts:** Hardcoded pixel bounds (e.g., `width: 800px`) on structural containers like `div`, `section`, or `main`.
-* **Mobile Traps:** Viewport-exclusive positioning (e.g., desktop absolute coordinates) that traps mobile layouts and forces horizontal overflow.
-* **Static Typography:** Typography and spacing lacking responsive clamping (e.g., rigid `font-size: 32px` instead of `clamp()` or relative `vw`/`rem` scaling).
-* **Hover Constraints:** Interactive nodes utilizing hover-exclusive states (e.g., `:hover`, `onMouseEnter`) without touch-accessible fallbacks.
-* **Touch Targets:** Tap and interaction targets failing the 44px by 44px minimum touch accessibility standard.
+* **Rigid Layouts**: Hardcoded pixel bounds (e.g., `width: 800px`) on structural containers like `div`, `section`, or `main`.
+* **Mobile Traps**: Viewport-exclusive positioning (e.g., desktop absolute coordinates) that traps mobile layouts and forces horizontal overflow.
+* **Static Typography**: Typography and spacing lacking responsive clamping (e.g., rigid `font-size: 32px` instead of `clamp()` or relative `vw`/`rem` scaling).
+* **Hover Constraints**: Interactive nodes utilizing hover-exclusive states (e.g., `:hover`, `onMouseEnter`) without touch-accessible fallbacks.
+* **Touch Targets**: Tap and interaction targets failing the 44px by 44px minimum touch accessibility standard.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 1 cohesive module or layout container.
 3. ⚙️ **MORPH** — * Execute precisely and immediately upon target acquisition. * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * **Strip Rigid Geometry:** Execute native file edits to replace hardcoded pixel dimensions on structural layout modules with relative scaling constraints, fluid grid tracks (`fr`), or maximum boundary limits (`max-w`).

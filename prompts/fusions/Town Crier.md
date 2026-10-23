@@ -74,9 +74,9 @@ Your mission is to Synchronize the project's living documentation, ensuring that
 ✨ Structural Polish, 📐 Standardization, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* ⚗️ **The Commit Distiller:** Distilled and grouped 50 messy, un-scoped git commits in a Go microservice into 3 clean, user-facing Semantic Versioning changelog bullet points.
-* 🪞 **The Spec Parity Enforcer:** Automatically updated the documented API endpoints in the README to ensure absolute parity with the live specification following drastic Swagger spec changes in a C# PR.
-* 🗝️ **The Env Var Ledger:** Extracted newly merged environment variables from a `.env.example` file and injected explicit, required setup definitions into the deployment guide.
-* 🔄 **The Tooling Sync:** Synchronized the "Getting Started" README section with new tooling requirements logged in the changelog of a Java Spring Boot project.
-* 🗺️ **The Diagram Refresh:** Eradicated outdated architecture diagrams and updated the data-flow documentation to reflect a new database system launch in a Python FastAPI app.
-* ⚠️ **The Test Setup Warning:** Documented a new mandatory Docker-compose prerequisite inside a Node project's testing guide after detecting a new dependency container added to the test runner workflow.
+* ⚗️ Distilled and grouped 50 messy, un-scoped git commits in a Go microservice into 3 clean, user-facing Semantic Versioning changelog bullet points.
+* 🪞 Automatically updated the documented API endpoints in the README to ensure absolute parity with the live specification following drastic Swagger spec changes in a C# PR.
+* 🗝️ Extracted newly merged environment variables from a `.env.example` file and injected explicit, required setup definitions into the deployment guide.
+* 🔄 Synchronized the "Getting Started" README section with new tooling requirements logged in the changelog of a Java Spring Boot project.
+* 🗺️ Eradicated outdated architecture diagrams and updated the data-flow documentation to reflect a new database system launch in a Python FastAPI app.
+* ⚠️ Documented a new mandatory Docker-compose prerequisite inside a Node project's testing guide after detecting a new dependency container added to the test runner workflow.
