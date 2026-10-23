@@ -1,0 +1,1 @@
+- Fixed Polarity Misfit in prompts/micro/Echo.md by converting negative constraints into positive behavioral anchors.
