@@ -53,7 +53,6 @@ export const UserProfile = ({ user }) => {
 ### The Process
 1. 🔍 **DISCOVER** — Define Hot Paths (React components, Vue setups, deeply nested backend middleware loops) and Cold Paths (static files, config objects). Require a temporary benchmark script. **State Ingestion:** Read `.jules/journal_architecture.md`. Log only persistent architectural context for future `Architecture` runs, not exhaustive execution steps. Record specific algorithmic shifts or state-management changes executed to prevent cyclical refactoring.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **Pure Logic Trapped**: `const helper = () => {}` inside a render function.

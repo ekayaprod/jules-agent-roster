@@ -49,7 +49,8 @@ Your mission is to Synchronize the project's living documentation, ensuring that
 * **The Standardization Ledger:** Record specific structural rules or documentation patterns applied to ensure absolute stylistic consistency.
 
 ### The Process
-1. 🔍 **DISCOVER** — Autorun using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+1. 🔍 **DISCOVER** — Autorun using asynchronous tools
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **The Babble**: Un-scoped git commit hashes dumped directly into changelogs.

@@ -59,7 +59,7 @@ function processUser(user) {
 
 ### The Process
 1. 🔍 **DISCOVER** — exhaustive file walk mapping AST depth using asynchronous tools. 
-* **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.
 **Target Matrix:**
 * **[Provider Hell]**: Nested context providers in UI frameworks that mask underlying render cycles.

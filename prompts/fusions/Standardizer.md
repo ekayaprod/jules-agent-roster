@@ -42,7 +42,6 @@ return <Button onClick={save}>Complete Action</Button>;
 ### The Process
 1. 🔍 **DISCOVER** — Execute a precise sweep for structural and semantic anomalies in copy constants.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** `Read \`.jules/agent_tasks.md\` and permanently delete genuinely completed tasks matching your domain.`
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **Button Labels**: Precise duplicated button labels ("Submit", "Save", "Done").

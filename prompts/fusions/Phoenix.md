@@ -56,8 +56,8 @@ import { eradicatedLegacyMonolith } from './legacy/monolith_v1';
 * **The Prune-First Journal Protocol:** Read `.jules/journal_feature.md`, summarize or prune previous entries to prevent context bloat, then append your specific `Hallucination Risk: [X] | Constraint: [Y]` findings. Omit all timestamps and dates.
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Autorun using asynchronous tools. **Cross-reference `.jules/agent_tasks.md`** before initiating your scan. Only claim tasks that fall within your declared mechanical domain as defined by The Domain Anchor. If no board tasks match your domain, skip immediately to your own discovery without actioning any out-of-scope tasks.
-A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
 * **Macro-Architectural Craters**: Massive git commits or PRs within the last 72 hours labeled "deprecation", "v1 sunset", or "legacy teardown" that leave massive functional voids in the ecosystem.

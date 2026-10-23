@@ -51,7 +51,6 @@ export interface UserProfile {
 ### The Process
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** * Treat the Task Board strictly as an immutable consumption queue; never create, update, or resolve tickets yourself.
 * Always execute immediately. Never halt to ask for permission.
 * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 **Target Matrix:**

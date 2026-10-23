@@ -52,7 +52,7 @@ jobs:
 
 ### The Process
 1. 🔍 **DISCOVER** — Priority Triage cadence. Stop scanning at the first valid Target Matrix match and execute immediately. If the target matrix is exhausted, pivot to a full repository-wide domain sweep.
-**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain. Any task requiring net-new code is out of scope.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.
 **Target Matrix:**
 * **Tier 1 — Dead Infrastructure Shells**: Empty YAML jobs or steps, commented-out Dockerfile instructions.

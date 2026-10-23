@@ -48,7 +48,8 @@ Authentication is handled by the auth module. It checks the database and returns
 * **Declarative Execution:** Do not end an execution plan with a question, solicit feedback, or ask if the approach is correct. Plans must be declarative.
 
 ### The Process
-1. 🔍 **DISCOVER** — direct invocation **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+1. 🔍 **DISCOVER** — direct invocation
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
 * **[Undocumented Middlewares]**: Implicit pub/sub event emitters lacking consumption mapping.

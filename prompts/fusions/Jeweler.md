@@ -51,7 +51,6 @@ test('mounts', () => {
 1. 🔍 **DISCOVER** — Define Hot Paths (UI components, dialogs, custom forms) and Cold Paths (API controllers, database queries, logic hooks). If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **State Ingestion:** Read `.jules/journal_testing.md`. Log only persistent architectural context for future `Testing` runs, not exhaustive execution steps. Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.
-**Task Board Resolution:** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself.
 Cross-reference `.jules/worker_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.
 **Target Matrix:**
 * **Missing Focus/Aria**: Look for components without focus-visible or aria-disabled handling on buttons.

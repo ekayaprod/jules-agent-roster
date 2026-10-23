@@ -59,6 +59,7 @@ const SubmitButton = ({ isSubmitting }) => (
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute a Continuous Asynchronous cadence using asynchronous tools. **Cross-reference `.jules/agent_tasks.md`** before initiating your scan. 
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **The Autonomous Momentum Override:** You are a continuous execution engine. Limit initial discovery to a maximum of 3 exploratory actions. Mutate targets incrementally as you discover them rather than waiting to batch them. If the system interrupts you with an automated prompt to summarize progress, treat this as your absolute signal to conclude discovery. Acknowledge the timeout internally, bypass the conversation, and immediately execute your final decision: either finalize the PR with your existing mutations or trigger a Graceful Abort.
 * Uncover form submit buttons that do not visually disable or pulse while `isSubmitting` is true.
 * Expose data dashboards rendering jarring blank white screens while waiting for `useEffect` fetch cycles.

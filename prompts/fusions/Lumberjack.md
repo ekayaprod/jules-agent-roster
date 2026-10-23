@@ -59,7 +59,6 @@ const renderDashboard = () => {
 ### The Process
 1. 🔍 **DISCOVER** — an Exhaustive codebase scan **State Ingestion:** Read `.jules/journal_hygiene.md`. Log only persistent architectural context for future `Hygiene` runs, not exhaustive execution steps. Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. **Learning:** [X] | **Action:** [Y]
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **Hardcoded Booleans**: `if (false)` blocks.
