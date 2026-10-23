@@ -52,6 +52,7 @@ const cleanHTML = dirty;
 
 ### The Process
 1. 🔍 **DISCOVER**
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * **State Leaks:** Scan test files for `let` declarations at the `describe` level. Hunt for missing `afterEach` cleanup blocks when `jest.mock`, `jest.spyOn`, or `jest.useFakeTimers` are present.
    * **The Pyramid:** Identify `describe` blocks nested more than two levels deep that obscure variable scope and setup order.
    * **Flake Vectors:** Locate tests that mutate global objects (like `window.localStorage`, `document.cookie`, or `process.env`) without explicit restoration.

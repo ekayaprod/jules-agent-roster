@@ -46,7 +46,8 @@ def read_log(file_path):
 * **The Prune-and-Compress Journal Protocol:** Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.
 
 ### The Process
-1. 🔍 **DISCOVER** — Continuous Asynchronous cadence using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+1. 🔍 **DISCOVER** — Continuous Asynchronous cadence using asynchronous tools
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **Database Client Instantiations**: Hunt for explicit missing `finally` blocks around DB client instantiations.

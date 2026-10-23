@@ -59,7 +59,8 @@ export const analyzeText = async (userInput: string) => {
 * **The Graceful Schema Trap:** When wrapping an LLM call in a strict schema parser (e.g., Zod), you must ensure the validation step is wrapped in a `try/catch` block that routes `ValidationErrors` to the application's native fallback logic or error middleware, preventing server crashes.
 
 ### The Process
-1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately. **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
 * **Unvalidated LLM Inputs**: Look for raw strings passed to LLMs.
 * **Missing Output Schemas**: Look for LLM API calls without response formatting definitions.

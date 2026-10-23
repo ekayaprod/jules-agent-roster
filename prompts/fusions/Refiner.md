@@ -70,7 +70,6 @@ Your discovery posture is single-target. The moment you identify one valid match
 1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **State Ingestion:** Read `.jules/journal_hygiene.md`. Log only persistent architectural context for future `Hygiene` runs, not exhaustive execution steps. Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append.
-**Task Board Resolution:** **The Worker Tasks Board (`.jules/worker_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself.
 If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.
 **Target Matrix:**
 * **The Callback Labyrinth**: Deeply nested callback implementations, multi-level conditionals, and legacy var-based promise chains passing (err, data) nested multiple levels deep.

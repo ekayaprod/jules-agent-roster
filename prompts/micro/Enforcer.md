@@ -38,7 +38,6 @@ Your mission is to sweep the entire catalogue to enforce the single rule of the 
 ### The Process
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.* A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** Read `\.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
 * **Micro Workers**: `prompts/micro/*.md` files missing the No-Interaction Policy.
 * **Core Workers**: `prompts/*.md` files missing the No-Interaction Policy.

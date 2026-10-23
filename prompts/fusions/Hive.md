@@ -48,7 +48,6 @@ Execute Incrementally. Execute modifications precisely and *immediately* upon di
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Priority Triage using asynchronous tools. If the target matrix is exhausted and nothing is found, halt execution cleanly. Do not expand the search.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** **The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself.
 You possess autonomy to identify and resolve any anomaly falling within your domain.
 Your discovery posture is full-sweep.
 **Target Matrix:**

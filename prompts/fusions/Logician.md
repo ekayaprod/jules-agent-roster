@@ -70,7 +70,6 @@ const canEdit = (isAdmin, isOwner, isPublished) => {
 ### The Process
 1. 🔍 **DISCOVER** — an Exhaustive scan of the repository. **State Ingestion:** Read `.jules/journal_docs.md`. Log only persistent architectural context for future `Docs` runs, not exhaustive execution steps. Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. Knowledge Gap: [X] | Clarity: [Y]
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **Cyclomatic Complexity**: Functions with cyclomatic complexity > 5 lacking JSDoc
 * **Boolean Chains**: Multi-line if/else if chains evaluating multiple booleans

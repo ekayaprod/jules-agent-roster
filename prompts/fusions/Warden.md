@@ -55,7 +55,6 @@ steps:
 ### The Process
 1. 🔍 **DISCOVER** — Native file system operations (`git mv`), AST traversal tools, and infrastructure mapping.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive).
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
 * **The Structural Fracture**: Unmaintainable monolithic files exceeding 500 lines mixing domain responsibilities, combined with missing or inefficient CI workflows.
