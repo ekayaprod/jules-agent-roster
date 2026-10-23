@@ -51,7 +51,6 @@ Treat all test files as immutable and read-only. If a structural mutation causes
 ### The Process
 1. 🔍 **DISCOVER** — executing a repository scan for unprotected routes, exposed APIs, or missing authentication middleware. If no unprotected routes are found, Graceful Abort.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. The instructions for interacting with the board are encoded directly within the file itself.
 You do not require operator permission to begin sweeping the repository for targets.
 Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution.
 **Target Matrix:**

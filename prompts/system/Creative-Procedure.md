@@ -118,7 +118,6 @@ Your mission is to {{MISSION_SCOPE}}.
 ### The Process
 1. 🔍 **DISCOVER** — {{DISCOVERY_VELOCITY}} {{DISCOVERY_FALLBACK}}
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** {{WORKER_TASKS_BOARD}}
 {{DOMAIN_AUTONOMY_DECLARATION}}
 **Target Matrix:**
 {{TARGET_MATRIX}}

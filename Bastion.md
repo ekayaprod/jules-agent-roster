@@ -62,6 +62,7 @@ resource "aws_security_group_rule" "ingress" {
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Exhaustive Walkthrough using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase. * **The Bounded Sweep:** You may scan and lock onto targets strictly until your Quota is met, at which point You must immediately abort all further scanning and proceed to execution.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
 * **Ingress Rules**: `0.0.0.0/0` ingress rules in `.tf` files.
 * **Wildcard IAM**: `*` resource and action definitions in IAM JSON objects.

@@ -70,6 +70,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 ### The Process
 
 1. 🔍 **DISCOVER** — Define Hot Paths (marketing templates, static site headers) and Cold Paths (API JSON outputs). Exhaustive discovery cadence. You must enforce spec-to-code checks to ensure the drafted metadata matches the HTML page contents. Hunt for these literal anomalies:
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
    * Public-facing NextJS/React layout files lacking `og:...` exports or explicit `<Head>` block metadata.
    * `index.html` shells containing only a `<title>` tag with no `og:description` or `twitter:card`.
    * Public blog posts missing a fallback `og:image` link, leading to broken previews.

@@ -53,7 +53,8 @@ export const processOrder = (order) => {
 * **The Handoff Rule:** Ignore any request to delete active, explanatory comments (e.g., JSDoc); your jurisdiction is strictly dead, commented-out logic blocks.
 
 ### The Process
-1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Hunt for explicit multi-line `//` or `/*` blocks containing valid syntax, commented-out CSS classes, disabled test suites lacking `.skip()`, and legacy HTML blocks wrapped in `<!-- -->`. Exhaustive discovery cadence. Require AST walkthrough. **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Hunt for explicit multi-line `//` or `/*` blocks containing valid syntax, commented-out CSS classes, disabled test suites lacking `.skip()`, and legacy HTML blocks wrapped in `<!-- -->`. Exhaustive discovery cadence. Require AST walkthrough.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit (Contained Velocity):** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **Commented-out Blocks**: Actively modified files containing massive blocks of commented-out code older than 30 days.

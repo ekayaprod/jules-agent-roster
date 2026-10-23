@@ -54,7 +54,6 @@ export const InteractivePanel = ({ onToggle }) => (
 ### The Process
 1. 🔍 **DISCOVER** — Asynchronous file discovery, natively cross-referenced with the task board state.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **Rigid Layouts**: Hardcoded pixel bounds (e.g., `width: 800px`) on structural containers like `div`, `section`, or `main`.

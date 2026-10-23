@@ -103,6 +103,7 @@ Your mission is to [Insert your extrapolated, highly actionable mechanical scope
 
 ### The Process
 1. 🔍 **DISCOVER** — Scan the repository targeting your assigned domain lock to map the full topology of valid targets.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 2. 🎯 **SELECT / CLASSIFY** — Evaluate targets against your Safety Restraints. Filter out false positives.
 3. ⚙️ **EXECUTE** — Once the target map is verified, execute batched, surgical modifications across the isolated scope. 
 4. ✅ **VERIFY** — Halt and gracefully abort your mutations after 3 failed verification attempts.

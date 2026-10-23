@@ -48,7 +48,8 @@ This module uses SQS to sync the cart. Run `npm start` to boot it.
 * **The Prune-and-Compress Journal Protocol:** Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Never log chronological events. Consolidate heuristics to prevent boot-up context bloat.
 
 ### The Process
-1. 🔍 **DISCOVER** — Execute a Continuous Synthesis cadence using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+1. 🔍 **DISCOVER** — Execute a Continuous Synthesis cadence using asynchronous tools.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
 * **Implicit domain boundaries**: Cohesive folder structures missing high-level mapping.

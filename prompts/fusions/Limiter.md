@@ -57,7 +57,6 @@ Workflow Execution: Filter test execution to targeted binaries only (e.g., npx j
 ### The Process
 1. 🔍 **DISCOVER** — Asynchronous scan of control-flow and query structures using asynchronous tools. **State Ingestion:** Read `.jules/journal_operations.md`. Log only persistent architectural context for future `Operations` runs, not exhaustive execution steps. Log only persistent architectural context for future Operations runs, not exhaustive execution steps.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
 * **The Infinity Loop:** `while (true)` or `for (;;)` blocks lacking a ceiling.

@@ -50,7 +50,6 @@ import { formatCurrency } from '../../helpers/formatCurrency';
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Structural Reset Sweep using asynchronous tools.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
 * **Standard File Trees**: Standard file trees that can be rerolled into strict, mathematically grouped feature-based colocation boundaries.

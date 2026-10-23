@@ -55,10 +55,10 @@ export const fetchData = () => {
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_docs.md`
-**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 
 ### The Process
 1. 🔍 **DISCOVER** — Hunt for deprecated syntax paradigms. * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
 * **Class Components**: Identify legacy React class component usage.
 * **Promise Chains**: Identify raw Promise (`.then().catch()`) chains.

@@ -44,7 +44,8 @@ const secret = 'sk_live_1234567890abcdef';
 * **The Prune-and-Compress Journal Protocol:** Record the specific vulnerability mitigations executed and compress historical entries into a manifest of closed exploit paths.
 
 ### The Process
-1. 🔍 **DISCOVER** — a 1 shift cadence using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+1. 🔍 **DISCOVER** — a 1 shift cadence using asynchronous tools
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
 * **Exposed Secrets**: Precise hardcoded AWS keys, API tokens, or database passwords.

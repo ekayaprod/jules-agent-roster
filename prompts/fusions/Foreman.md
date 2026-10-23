@@ -49,8 +49,8 @@ import { FormatDate } from "./Utils/dateFormatter";
 
 ### The Process
 1. 🔍 **DISCOVER** — asynchronous tools (e.g., `find . -type f`, `grep -rn 'import' .`, `ls -lR`, `git ls-files`). Target all relevant file extensions (e.g., `*.js`, `*.ts`, `*.py`, `*.go`, `*.java`, `*.cpp`, `*.cs`, `*.rb`).
-* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Target Matrix:**
 * **Lexical Collisions:** Mixed casing paradigms cohabitating within the exact same bounded context or domain folder.
 * **Framework Routing Violations:** Capitalization or naming anomalies that silently break implicit file-system routers.

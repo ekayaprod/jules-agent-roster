@@ -55,7 +55,6 @@ Your mission is to evaluate macroscopic repository health via deep read-only tra
 ### The Process
 1. 🔍 **DISCOVER** — Native file system operations and asynchronous bash tools.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Task Board Resolution:** Read `.jules/agent_tasks.md` for situational awareness only — do not claim tasks.
 * **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module.
 **Target Matrix:**
 * **The Structural Fracture (The [REFACTORER] Queue)**: Unmaintainable monolithic files exceeding 500 lines mixing domain responsibilities, or bloated utility directories lacking a cohesive barrel export facade.
