@@ -2552,6 +2552,17 @@
     "isCustom": true
   },
   {
+    "name": "ForgeUpdater",
+    "emoji": "♻️",
+    "role": "Version Synchronizer",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "EXHAUSTIVELY parse the ecosystem to enforce the V89.0 system upgrade mandate across all legacy profiles.",
+    "forge_version": "V89.0",
+    "promptFile": "prompts/micro/ForgeUpdater.md",
+    "isCustom": true
+  },
+  {
     "name": "Iconographer",
     "emoji": "🔣",
     "role": "Symbology Curator",
