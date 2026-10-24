@@ -125,7 +125,7 @@ Act as a skeptical senior architect reconciling the outputs of Phases 1–4 and 
 3. **Reality Check:** If a target category is aggressive enough to have legitimate exceptions (e.g., a structural pattern that's sometimes intentional), state the exception explicitly in the target definition itself.
 
 ### Phase 6: The Configuration Linter
-Act as a rigid, literal syntax and structural checker against the reconciled configuration. Suspend all creative judgment and strictly enforce structural checks. Run Forge-Procedure Module 7: The Worker Verification Checklist Part A: Structural Checks, checks 1–9.
+Act as a rigid, literal syntax and structural checker against the reconciled configuration. Suspend all creative judgment and strictly enforce structural checks. Ensure CI/CD structural constraints (like Board Resolution Protocol and Test Doctrine) are met where applicable. Run Forge-Procedure Module 7: The Worker Verification Checklist Part A: Structural Checks, checks 1–9.
 
 Phase 6 owns structural and logical validation. Resolve these checks completely within Phase 6. Repair any FAIL with the minimal correction before Phase 7.
 

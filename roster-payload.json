@@ -1640,7 +1640,7 @@
   },
   {
     "name": "Realist",
-    "emoji": "🪩",
+    "emoji": "🪞",
     "role": "Syntax Realist",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -2519,39 +2519,6 @@
     "isCustom": true
   },
   {
-    "name": "Board Clerk",
-    "emoji": "📋",
-    "role": "Board Clerk",
-    "category": "Micro",
-    "tier": "Core",
-    "description": "INJECT missing Task Board Resolution strings into system profiles to ensure task cleanup.",
-    "forge_version": "V88.0",
-    "promptFile": "prompts/micro/BoardClerk.md",
-    "isCustom": true
-  },
-  {
-    "name": "Echo",
-    "emoji": "🗣️",
-    "role": "Symbology Propagator",
-    "category": "Hygiene",
-    "tier": "Core",
-    "description": "PROPAGATE canonical header emojis throughout markdown files to eliminate visual drift and ensure thematic consistency.",
-    "forge_version": "V89.0",
-    "promptFile": "prompts/micro/Echo.md",
-    "isCustom": true
-  },
-  {
-    "name": "Enforcer",
-    "emoji": "👮",
-    "role": "No-Interaction Enforcer",
-    "category": "Micro",
-    "tier": "Core",
-    "description": "ENFORCE the No-Interaction Policy by ensuring no worker asks for user input without authorization.",
-    "forge_version": "V89.0",
-    "promptFile": "prompts/micro/Enforcer.md",
-    "isCustom": true
-  },
-  {
     "name": "Iconographer",
     "emoji": "🔣",
     "role": "Symbology Curator",
@@ -2560,50 +2527,6 @@
     "description": "SWEEP the repository looking for semantic inconsistencies.",
     "forge_version": "V89.0",
     "promptFile": "prompts/micro/Iconographer.md",
-    "isCustom": true
-  },
-  {
-    "name": "Label Stripper",
-    "emoji": "🧽",
-    "role": "Label Stripper",
-    "category": "Micro",
-    "tier": "Core",
-    "description": "STRIP prohibited bold labels from Philosophy and Favorite Optimizations sections.",
-    "forge_version": "V89.0",
-    "promptFile": "prompts/micro/LabelStripper.md",
-    "isCustom": true
-  },
-  {
-    "name": "Linter",
-    "emoji": "📏",
-    "role": "List Enforcer",
-    "category": "Micro",
-    "tier": "Core",
-    "description": "ENFORCE strict list length constraints globally to eliminate structural violations.",
-    "forge_version": "V89.0",
-    "promptFile": "prompts/micro/Linter.md",
-    "isCustom": true
-  },
-  {
-    "name": "MatrixClerk",
-    "emoji": "🗃️",
-    "role": "Matrix Standardizer",
-    "category": "Micro",
-    "tier": "Core",
-    "description": "STANDARDIZE the structural formatting of Target Matrix bullets.",
-    "forge_version": "V89.0",
-    "promptFile": "prompts/micro/MatrixClerk.md",
-    "isCustom": true
-  },
-  {
-    "name": "Test Clerk",
-    "emoji": "🧪",
-    "role": "Doctrine Enforcer",
-    "category": "Micro",
-    "tier": "Core",
-    "description": "INJECT missing Testing Doctrine strings into agent profiles to enforce strict test-handling rules.",
-    "forge_version": "V89.0",
-    "promptFile": "prompts/micro/TestClerk.md",
     "isCustom": true
   }
 ]
