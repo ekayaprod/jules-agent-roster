@@ -1,20 +1,5 @@
 # Orphaned Agents
 
-## Aegis
-
-- **Role:** Payload Purifier
-- **Category:** Security
-- **Description:** PURIFY the perimeter. Intercept vulnerable data pathways and enforce strict sanitization boundaries to prevent hostile payloads from detonating inside the application architecture.
-
-### Favorite Optimizations
-
-* 🛡️ Wrapped a vulnerable dynamically rendered React prop in a strict sanitization call, neutralizing a critical DOM injection vector in a comment section.
-* 🧱 Refactored a raw, string-interpolated database query into a secure parameterized query, closing a massive data exposure loophole.
-* 🛂 Added a strict escaping utility to a child process command that was receiving unfiltered user input from an API route.
-* 🛡️ Replaced a catastrophic, exponentially backtracking regular expression with a safe, strictly bounded native validator.
-* 🛂 Injected a strict HTML scrubber into a markdown parsing pipeline, ensuring embedded scripts were neutralized before rendering.
-* 🧱 Replaced an insecure payload parsing call with a strict deserialization method wrapped in a schema validation layer.
-
 ## Autopilot
 
 - **Role:** Journey Tester
@@ -49,21 +34,6 @@
 
 #
 
-## Caliper
-
-- **Role:** Spatial Standardizer
-- **Category:** UX
-- **Description:** RECALIBRATE fragile DOM geometry and hardcoded spacing into an absolute, tokenized mathematical grid using centralized design variables.
-
-### Favorite Optimizations
-
-* 📐 Obliterated hardcoded inline style integers (`style={{ gap: 17 }}`) in `Dashboard.tsx` in favor of centralized layout system tokens (`var(--spacing-md)`).
-* 📐 Stripped out arbitrary square-bracket syntax (`m-[13px]`) in `ProfileCard.jsx` to enforce strict adherence to the `tailwind.config.js` spacing scale.
-* 📐 Normalized rogue negative margins (`margin-left: -15px`) in `Navigation.css` that intentionally broke flexbox containers, restoring predictable alignment.
-* 📐 Replaced an entire grid of product cards relying on fragile `float: left` and clearfixes with a robust, one-dimensional flexbox architecture in `ProductGrid.tsx`.
-* 📐 Converted text elements trapped in brittle `position: absolute` mathematical positioning into fluid, responsive `display: flex` rows inside `HeroBanner.jsx`.
-* 📐 Resolved brittle `calc(100% - 15px)` spacing logic into robust flex-gap declarations driven strictly by predefined system tokens in `Modal.css`.
-
 ## Canon
 
 - **Role:** Lexicon Arbiter
@@ -78,119 +48,6 @@
 * 📜 Stripped raw database `snake_case` keys from an analytics data grid and mapped them to the human-readable table column headers documented in the API schema.
 * 📜 Eradicated 9 instances of "Config" and "Options" in the Vue settings portal, enforcing the absolute "Preferences" terminology mandated by the architectural README.
 * 📜 Aligned mismatched hover tooltips on a SwiftUI tab bar to correctly reflect the updated feature nouns from the Q3 product strategy glossary.
-
-## Captionist
-
-- **Role:** Payload Specialist
-- **Category:** UX
-- **Description:** Convert massive, uncompressed visual assets into highly optimized modern formats and perfect their semantic accessibility descriptions.
-
-### Favorite Optimizations
-
-* 🎟️ Converted 5MB marketing PNGs with generic alt tags to 200kb WebPs and rewrote them with perfect semantic descriptions.
-* 🎟️ Applied `aria-hidden="true"` to decorative background SVGs that were previously cluttering screen reader output.
-* 🎟️ Ensured an avatar component lacking context consistently uses `alt="{user.name}'s profile picture"` across different framework implementations.
-* 🎟️ Made the screen reader announce a generic gear icon link as "Settings" instead of just "gear icon" using an `aria-label`.
-* 🎟️ Stripped unnecessary XML metadata and comment blocks from heavy inline SVGs using svgo, significantly reducing raw document payload.
-* 🎟️ Rewrote plain Markdown image links `![image](foo.png)` to include rich contextual descriptions and converted source files to `.avif`.
-
-#
-
-## Choreographer
-
-- **Role:** Transition Enforcer
-- **Category:** UX
-- **Description:** CHOREOGRAPH the seams. I weave fluid transitions and visual feedback into frozen execution pipelines to mask the latency.
-
-### Favorite Optimizations
-
-* 🩰 Replaced a jarring blank white screen on a React dashboard with a sleek, CSS-pulsing skeleton layout to hold the scene while the data loaded.
-* 🩰 Wired an `onUploadProgress` event to a smooth HTML5 `<progress>` bar to replace static text during a heavy payload transition.
-* 🩰 Injected `transition: max-height 0.3s ease-out` to make an abrupt HTML/CSS dropdown menu unroll organically.
-* 🩰 Injected a threaded ASCII spinner `['|', '/', '-', '\']` to a Python CLI script during a heavy calculation to prevent the terminal from looking dead.
-* 🩰 Appended a native CSS SVG spinner inside a form submit button while `isSubmitting` was true, and ensured the `catch` block explicitly removed the spinner on failure.
-* 🩰 Implemented `loading.tsx` in a NextJS App Router path to natively mask server-side rendering latency and choreograph the page transition.
-
-## Compactor
-
-- **Role:** UNKNOWN
-- **Category:** UNKNOWN
-- **Description:** UNKNOWN
-
-### Favorite Optimizations
-
-🗜️ The Make Sweep: Centralized 6 different Node.js microservices with slightly different `npm run clean` commands into a single top-level `Makefile` execution.
-🗜️ The Docker Alias: Unified 4 scattered `.sh` and `.ps1` Docker teardown scripts in a DevOps repository into a single master `docker-compose down -v` alias.
-🗜️ The C# Purge: Centralized fragmented SQL Server maintenance jobs embedded directly in C# application code into a single PowerShell module specifically designated for database teardowns.
-🗜️ The PyCache Destroyer: Unified multiple Python build scripts manually deleting `__pycache__` into a single `clean.sh` master script.
-🗜️ The Monorepo Map: Combined deeply nested Lerna/Turborepo workspace cache clearing commands into a singular, parallelized top-level utility target.
-🗜️ The Artifact Pipeline: Grouped separate GitHub Action workflows that individually scrubbed build artifacts into one cohesive final job step.
-<!-- WORKER_TEMPLATE_END -->
-
-## Cryptographer
-
-- **Role:** Syntax Decrypter
-- **Category:** Docs
-- **Description:** Seek out highly complex, undocumented machine syntaxes like raw Regular Expressions and Cron schedules. Translate these dense strings into plain, human-readable English inline comments.
-
-### Favorite Optimizations
-
-* 🔏 Injected a plain-text regex translation above an undocumented email validation rule in a Node API.
-* 🔏 Injected a clear English sentence above a GitHub Actions `.yml` schedule of `*/15 * * * *`.
-* 🔏 Translated a check for the 3rd bit being set in a TypeScript permissions service into a human comment.
-* 🔏 Injected a CHMOD translation detailing Owner/Group access above a Node.js build script.
-* 🔏 Translated a little-endian C struct format string above a Python struct unpack call.
-* 🔏 Injected an explanation detailing the removal of the shortest matching prefix above a bash script.
-#
-
-## Diplomat
-
-- **Role:** Empathy Translator
-- **Category:** UX
-- **Description:** Rewrite terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy.
-
-### Favorite Optimizations
-
-* 🕊️ Prevented a React component from directly rendering `<p>{error.message}</p>` on a failed fetch, replacing it with calm fallback copy.
-* 🕊️ Redesigned a generic 500 error page that just said "Internal Server Error" into an actionable page with a "Return Home" button.
-* 🕊️ Translated an aggressive form validation message screaming "INVALID PASSWORD FORMAT" into a helpful checklist of missing requirements.
-* 🕊️ Intercepted a checkout failure alerting raw `StripeCardError: card_declined` codes and provided the user with clear instructions on checking their billing details.
-* 🕊️ Caught `undefined is not an object` UI crashes caused by missing user profiles and rendered a friendly "Profile still loading" empty state.
-* 🕊️ Replaced a harsh "Gateway Timeout" page with an empathetic message explaining high traffic volumes and offering an auto-refresh timer.
-
-#
-
-## Fabricator
-
-- **Role:** Mock Synthesizer
-- **Category:** Testing
-- **Description:** Sweep test suites to eradicate brittle, hardcoded JSON coincidences and replace them with dynamic, randomized factory fixtures.
-
-### Favorite Optimizations
-
-* 🏭 Extracted a massive hardcoded JSON user object into a central factory, allowing individual tests to inject only the `{ role: 'admin' }` override they actually needed.
-* 🏭 Replaced static `user_id: 1` assignments across forty test cases with randomized UUID generation, exposing three previously hidden edge cases where tests were accidentally sharing state.
-* 🏭 Swapped a hardcoded `[ { id: 1 }, { id: 2 } ]` fixture with a dynamic factory loop, ensuring pagination logic successfully handles variable-length data sets.
-* 🏭 Bound the mock factory directly to the application's Zod schema, ensuring test data automatically updates whenever the domain model changes.
-* 🏭 Injected extreme-length strings and boundary-case integers into the default factory values, silently hardening the test suite against unhandled data limits.
-* 🏭 Replaced static `2023-01-01` date mocks with dynamic `Date.now()` +/- offsets, preventing tests from failing arbitrarily when the calendar year flipped.
-
-#
-
-## Historian
-
-- **Role:** Temporal Archivist
-- **Category:** Documentation
-- **Description:** Archive the ephemeral history of the repository by excavating git forensics and preserving the business intent within the living code.
-
-### Favorite Optimizations
-
-⏳ Excavated a 2-year-old commit hash to recover and document the forgotten GDPR compliance mandate behind a cryptic hashing utility in `.js` files.
-⏳ Deciphered a fossilized regex string and archived its mechanical intent with a line-by-line semantic breakdown in the JSDoc comments.
-⏳ Traced a complex if/else ladder through three major refactors to restore its original business rationale via inline JSDoc.
-⏳ Identified an arbitrary constant and cross-referenced the archives to document its origin as the 15% Partner Discount Rule.
-⏳ Scanned undocumented legacy modules and injected comprehensive docstrings synthesized from historical PR narratives.
-⏳ Linked raw environment variable calls to original setup specs, archiving the specific security requirements for production keys.
 
 ## Information Architect
 
@@ -208,21 +65,6 @@
 * 📋 Applied `.accessibilityHeading()` and strict `Header()` modifiers to a flattened SwiftUI list to restore screen reader navigation.
 
 #
-
-## LiveFeed
-
-- **Role:** State Broadcaster
-- **Category:** UX
-- **Description:** BROADCAST asynchronous network streams into seamless, layout-preserving visual states to eradicate UI dead air.
-
-### Favorite Optimizations
-
-* 📺 Converted a laggy server-side "Like" button into an Optimistic UI interaction, immediately rendering the active state while routing the network resolution to the background.
-* 📺 Replaced a jarring empty data state that caused a 200px vertical layout shift with an exact-dimension, pulsing Skeleton loader bound to the API's pending state.
-* 📺 Intercepted a silent GraphQL mutation failure that was burying 500s in the network tab and broadcasted it into an actionable, user-facing error toast.
-* 📺 Semantically disabled a "Submit Order" button during network flight time, injecting an inline SVG spinner while preserving the screen reader announcement text.
-* 📺 Optimizing bounds to ensure optimal outcomes.
-* 📺 Optimizing bounds to ensure optimal outcomes.
 
 ## Media Pipeline
 
@@ -271,57 +113,6 @@
 🏎️ Converted a sequential array search nested inside a `.map()` into a pre-computed O(1) `Set` intersection, slashing processing time from 400ms to 8ms.
 🏎️ Attached a V8 heap snapshot to a suspected Next.js API bottleneck, established the baseline, optimized the memory allocation, and deleted the scaffolding perfectly.
 
-## Polyglot
-
-- **Role:** String Centralizer
-- **Category:** UX
-- **Description:** Eradicate hardcoded English strings embedded deep within UI components and relocate them into centralized JSON or TS localization dictionaries (`i18n`).
-
-### Favorite Optimizations
-
-* 🌍 Extracted 15 hardcoded labels, placeholders, and validation messages from a massive React registration form into a clean `auth.json` dictionary namespace.
-* 🌍 Converted a brittle `{count} items` ternary operator (`count === 1 ? 'item' : 'items'`) into native i18next pluralization keys (`item_one`, `item_other`).
-* 🌍 Extracted a complex Vue template string `<p>Welcome back, {{ user.firstName }}</p>` and properly mapped the variable to `$t('welcome', { name: user.firstName })`.
-* 🌍 Identified a dropdown mapping raw database enum strings to UI text (`status === 'ACTIVE' ? 'Active Account' : ...`) and moved the mapping into a centralized dictionary lookup.
-* 🌍 Scanned an angular application for hardcoded `aria-label`, `alt`, and `title` tags on icons and extracted them for screen-reader localization.
-* 🌍 Relocated generic `throw new Error("Invalid format")` strings from domain logic into translation keys to ensure API errors returned localized text.
-
-#
-
-## Publicist
-
-- **Role:** SEO Broadcaster
-- **Category:** Architecture
-- **Description:** Sweep routing configurations to identify public-facing URLs and inject rich visual metadata.
-
-### Favorite Optimizations
-
-* 📸 Autonomously injected `og:title`, `og:description`, and a generated SVG data-uri card containing the title text to a static HTML blog post with zero social presence.
-* 📸 Injected `twitter:card` and `twitter:image` tags into a global layout component using dynamic metadata hooks to prevent blank links on Twitter.
-* 📸 Autonomously wrote an inline SVG `<link rel="icon">` utilizing the first letter of the `<h1>` tag in a React application to provide instant brand recognition.
-* 📸 Injected `theme-color` and OpenGraph metadata into a public API documentation endpoint to ensure mobile browser toolbars match the site's styling.
-* 📸 Extracted the core `h1` element text from a Go template and automatically fed it into a newly injected SEO block spanning multiple social networks.
-* 📸 Swept a Flask routing file to ensure the `<title>` string output correctly mapped to stylized OpenGraph meta tags via Python dictionary injections.
-
-#
-
-## Redactor
-
-- **Role:** PII Scrubber
-- **Category:** UX
-- **Description:** Sweeps the UI and logging layers to mask and redact sensitive user data.
-
-### Favorite Optimizations
-
-* 🥷 Replaced raw `console.error(errorResponse)` calls across the React frontend with a sanitized logger that masks user session tokens and email addresses.
-* 🥷 Injected a middleware layer into a Node.js Express server that recursively strips `password` and `ssn` keys from `req.body` before logging the incoming request.
-* 🥷 Upgraded a generic C# WPF label displaying a full Social Security Number to a masked `XXX-XX-1234` component with a toggle-to-view feature.
-* 🥷 Modified a Python Django exception handler that dumped raw database dictionaries to scrub all fields matching a regex of known PII keys.
-* 🥷 Rewrote an API utility to strip sensitive user IDs from the query parameters before sending the URL string to an external analytics provider.
-* 🥷 Ensured a backend ORM's debug logger parameterized all output strings instead of logging raw SQL containing user emails.
-
-#
-
 ## Redliner
 
 - **Role:** Dead Copy Purger
@@ -337,22 +128,6 @@
 * 🖍️ Wrote a custom regex to map `status_${id}` keys in the code, correctly identifying 5 obsolete status strings in the dictionary that could be safely purged.
 * 🖍️ Swept an `strings.xml` Android resource file and purged 30 unused text nodes flagged by the Android lint tool.
 
-#
-
-## Sandboxer
-
-- **Role:** Isolation Specialist
-- **Category:** Testing
-- **Description:** The Objective: Guarantee hermetically sealed, deterministic test executions by untangling shared global state, eradicating leaky mocks, and flattening nested test suites.
-
-### Favorite Optimizations
-
-* 🏜️ A suite used an enormous, shared `beforeEach` block to instantiate a mock database, slowing down all tests and leaking state. Extracted the setup into a `buildMockDB(overrides)` factory function, allowing tests to build only what they needed and run concurrently.
-* 🏜️ Discovered `jest.useFakeTimers()` bleeding across test boundaries, causing arbitrary timeouts in downstream tests. Enforced a strict `afterEach(() => { jest.runOnlyPendingTimers(); jest.useRealTimers(); })` teardown to hermetically seal the temporal state.
-* 🏜️ A 5-level deep `describe` pyramid made it impossible to trace which `beforeEach` hook was setting a crucial `mockUser` variable. Flattened the structure into distinct, one-level-deep suites, massively improving readability and error tracing.
-* 🏜️ A flaky UI test randomly failed in CI because earlier tests left appended modal dialogs in the `document.body`. Injected a strict `afterEach(() => document.body.innerHTML = '')` to ensure a pristine DOM for every run.
-* 🏜️ Optimizing bounds to ensure optimal outcomes.
-* 🏜️ Optimizing bounds to ensure optimal outcomes.
 #
 
 ## Seawall
@@ -420,53 +195,6 @@
 * 🧨 Fuzzed a C# image upload endpoint with malformed headers and corrupted magic bytes to prove the parser's resilience under stress.
 * 🧨 Configured a Pytest suite to assault a GraphQL backend with raw `'; DROP TABLE users;--` strings to guarantee the ORM correctly parameterized the input.
 * 🧨 Added a strict `.strip()` directive to a Joi schema, verifying via tests that users could not pass `{"isAdmin": true}` to the user creation endpoint.
-
-#
-
-## Tokenizer
-
-- **Role:** Window Optimizer
-- **Category:** Strategy
-- **Description:** MINIFY instruction payloads and system-provided data by stripping useless tokens, bloated HTML/JSON, and irrelevant metadata.
-
-### Favorite Optimizations
-
-* 🪙 Injected an HTML parser into a web-scraping AI pipeline to strip all `<style>`, `<script>`, and `<svg>` tags before sending the DOM string to the LLM.
-* 🪙 Refactored a deeply nested JSON object injection to use a flat, key-value mapped representation, cutting token weight by 60%.
-* 🪙 Added a regex filter to automatically detect and truncate raw Base64 image strings embedded inside scraped markdown content before inference.
-* 🪙 Converted an AI prompt injecting massive JSON objects into injecting equivalent YAML objects, saving thousands of punctuation tokens.
-* 🪙 Swapped a `.map().join()` routine sending 5,000 JSON lines to the AI into a condensed CSV string generator.
-* 🪙 Implemented a recursive object pruner that deletes all `null`, `undefined`, or empty string keys from an API payload before it hits the prompt template.
-
-## Upcycler
-
-- **Role:** Architectural Recycler
-- **Category:** Creation
-- **Description:** UPCYCLE abandoned stubs, hollow scaffolds, and incomplete boilerplate by deducing their intended purpose and building them into fully realized, production-ready architecture.
-
-### Favorite Optimizations
-
-* ♻️ Discovered an abandoned `fetchData.js` scratchpad and upcycled it into a fully typed, strictly integrated API utility complete with retry logic.
-* ♻️ Located a hollow `<UserProfile />` component stub containing only a `<div>` and synthesized a complete UI layout with native data hooks.
-* ♻️ Found an empty endpoint returning a hardcoded `200 OK` and constructed a fully realized database transaction route that resolves the latent consumer.
-* ♻️ Swept an isolated `mockUsers.json` file and built a complete seed generator script that integrates directly with the existing testing architecture.
-* ♻️ Upcycled a discarded authentication middleware shell into a production-ready token validator that flawlessly plugs into the Express app.
-* ♻️ Identified an unfinished `errorBoundary.tsx` file and completed the architectural bridge by implementing comprehensive fallback rendering logic.
-
-## Virtuoso
-
-- **Role:** Interaction Artisan
-- **Category:** UX
-- **Description:** Sculpt comprehensive visual states and inject accessible ARIA attributes to transform cold, robotic UI components into flawless, empathetic interaction flows.
-
-### Favorite Optimizations
-
-* 🎭 Replaced a generic loading spinner in a massive data table with a context-aware `aria-live` element that announces the specific volume of transaction records.
-* 🎭 Upgraded a generic "Error" toast message into an empathetic inline recovery path offering specific guidance on CVV validation.
-* 🎭 Swept a custom dropdown component that was impossible to navigate via keyboard and injected flawless `focus-visible` rings alongside custom keydown handlers.
-* 🎭 Replaced a statically disabled submit action with an active button that smoothly scrolls the user to the missing required field upon click.
-* 🎭 Added a subtle, CSS-only micro-interaction checkmark animation to a clipboard action to provide absolute visual confirmation.
-* 🎭 Upgraded a custom structural card meant to act as a button, injecting native keystroke listeners alongside a perfect `tabIndex` flow.
 
 #
 
