@@ -61,7 +61,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "COLLAPSE sprawling imperative logic into highly dense, declarative functional pipelines without sacrificing runtime physics or debugging clarity.",
-    "forge_version": "V87.2",
+    "forge_version": "V89.0",
     "promptFile": "prompts/Helix.md",
     "isCustom": false
   },
