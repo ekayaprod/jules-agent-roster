@@ -17,7 +17,7 @@ CRITICAL: You cannot hold 200+ files in your immediate context window. You MUST 
 </thinking> 
  
 ## Step 1: Initialization & Intelligence Gathering 
-- Sweep the `prompts/micro/` directory to establish the baseline of existing maintenance workers (e.g., `Iconographer.md`, `Echo.md`). Log their operational domains in memory to strictly avoid duplicating their tasks. 
+- Sweep the `prompts/micro/` directory to establish the baseline of existing maintenance workers (e.g., `Iconographer.md`). Log their operational domains in memory to strictly avoid duplicating their tasks.
 - Ingest `prompts/system/Master-Forge.md`, `prompts/system/Forge-Procedure.md`, and `prompts/system/Creative-Procedure.md` using the `read_file` tool. These are the absolute theoretical standards your new worker will enforce. 
  
 ## Step 2: The Contextual Diff (Ecosystem Audit) 
