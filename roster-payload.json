@@ -1106,7 +1106,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "POLISH UI components with strict accessibility states, then permanently lock those facets in place with rigorous DOM interaction tests.",
-    "forge_version": "V87.1",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Jeweler.md",
     "isCustom": true
   },
