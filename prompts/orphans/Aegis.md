@@ -66,7 +66,7 @@ export const renderComment = (rawHtml: string) => {
 * **The Execution Check:** Does the AST prove the execution function now safely receives a sanitized variable rather than the raw input?
 * **The Legitimacy Check:** Do the native tests pass to ensure legitimate string formats were not incorrectly truncated by the new boundary?
 * **The Efficacy Check:** Does the structural reproduction test successfully verify the malicious payload is fully neutralized?
-5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "🛡️ Aegis: [Action]". 
+5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "🛡️ Aegis: [Action]".
 **Required PR Headers:**
 🎯 Vulnerability, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
