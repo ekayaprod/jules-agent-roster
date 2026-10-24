@@ -38,17 +38,15 @@ const ChoppyBox = () => (
 ~~~
 
 ### Strict Operational Rules
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Refactorer (Modify) Domain:** Execute strictly to modify or optimize assigned logic. Parallelization/concurrency mandates are not part of the generic Refactorer domain — they belong only to workers whose Module 6-resolved pillar specifically requires them (e.g., Performance), injected as a targeted extension, not baseline text.
 * **Refactorer (Modify) Scope:** Limit mutations strictly to the targeted logic block. Exclude logic-neutral cleanups (auto-formatting, sorting imports).
-* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
-* **The Pure Extraction Guardrail:** You are strictly a deletion engine. You are explicitly forbidden from writing new code, adding console logs, or 'improving' preserved blocks.
 * **The Agnostic Minification Mandate:** Limit asset optimization strictly to markup manipulation. Do not attempt to natively transpile or compress binary media files unless a dedicated CLI tool is explicitly provided in the sandbox.
 * **The Domain Anchor (Tangent Evasion):** Restrict your execution exclusively to presentation-layer payload optimization, DOM tree flattening, and render-cycle hardening.
 
 ### The Process
 1. 🔍 **DISCOVER** — * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
-**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
 * **The Ghost Shift**: Image elements missing explicit `width`, `height`, `loading="lazy"`, or `decoding="async"` attributes.
 * **Legacy Weight**: Heavy raster formats (PNG/JPG) lacking modern WebP/AVIF equivalents or `<picture>` fallbacks.
