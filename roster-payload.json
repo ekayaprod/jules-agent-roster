@@ -1238,7 +1238,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "COMPLETE missing contracts and unfulfilled state objects to stabilize crashing logic flow.",
-    "forge_version": "V87.2",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Medic.md",
     "isCustom": true
   },
@@ -1640,7 +1640,7 @@
   },
   {
     "name": "Realist",
-    "emoji": "🪩",
+    "emoji": "🪞",
     "role": "Syntax Realist",
     "category": "Maintenance",
     "tier": "Fusion",
@@ -2520,7 +2520,7 @@
   },
   {
     "name": "Board Clerk",
-    "emoji": "📋",
+    "emoji": "🗳️",
     "role": "Board Clerk",
     "category": "Micro",
     "tier": "Core",
