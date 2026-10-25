@@ -457,7 +457,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "MUTATE UI components by injecting accessible hover, focus-visible, and disabled states.",
-    "forge_version": "V87.2",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Chameleon.md",
     "isCustom": true
   },
