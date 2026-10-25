@@ -2530,6 +2530,17 @@
     "isCustom": true
   },
   {
+    "name": "Aligner",
+    "emoji": "📏",
+    "role": "Syntax Standardizer",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "SWEEP the repository to enforce strict Target Matrix formatting across all worker configurations.",
+    "forge_version": "V89.1",
+    "promptFile": "prompts/micro/Aligner.md",
+    "isCustom": true
+  },
+  {
     "name": "Iconographer",
     "emoji": "🔣",
     "role": "Symbology Curator",
