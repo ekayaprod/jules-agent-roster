@@ -2327,7 +2327,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "ENFORCE visual rhythm at the code level by hunting down rogue inline margins and enforcing WCAG contrast ratios.",
-    "forge_version": "V88.0",
+    "forge_version": "V88.1",
     "promptFile": "prompts/fusions/Typesetter.md",
     "isCustom": true
   },
