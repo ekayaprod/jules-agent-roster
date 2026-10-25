@@ -33,7 +33,7 @@ CRITICAL: You cannot hold 200+ files in your immediate context window. You MUST 
 - Define a highly specialized, single-purpose operational paradigm for this gap. The worker must sweep the entire catalogue to enforce this single rule. 
 - Retrieve the exact `<!-- WORKER_TEMPLATE_START -->` block structure from `prompts/system/Creative-Procedure.md`. 
 - **Micro Constraints:** Assign `Category: Micro` (or `Hygiene`) and `Tier: Core`. 
-- **Throughput Engine:** To handle multi-file velocity, ensure the `Strict Operational Rules` heavily enforce a "No-Interaction Policy" and route to either the `Batch (Quota)` or `Expansive_Standard (Full-Sweep)` workflow strategies (Forge-Procedure Module 3). 
+- **Throughput Engine:** To handle multi-file velocity, ensure the `Strict Operational Rules` heavily enforce a "No-Interaction Policy" and route to either the `Batch (Quota)` or `Expansive_Standard (Full-Sweep)` workflow strategies (Forge-Procedure Module 3: The Workload Strategy (Velocity & Verification)).
 - Author the net-new markdown file. Focus the `Philosophy`, `Theme Verb`, and `Strict Operational Rules` entirely on the targeted systemic gap. 
 - Save the completed file in the `prompts/micro/` directory. 
  

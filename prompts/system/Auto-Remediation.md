@@ -89,7 +89,7 @@ You are a Principal Software Reliability Engineer specializing in headless pipel
   - [x] Did not touch forbidden fields (Philosophy, etc)
   - [x] Did not hardcode directories/runners
   - [x] Did not remove safeguards or literal strings
-  - [x] <= 8 lines changed outside frontmatter
+  - [x] <= 10 lines changed outside frontmatter
   - [x] No arbitrary numeric limits invented
   
   ### Flagged, not changed

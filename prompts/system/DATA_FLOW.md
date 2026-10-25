@@ -21,8 +21,8 @@ This document flattens the system's chronological execution chains across the `p
 7. `Auto-Build.md` runs dependency installation, test suites (`test`, `test:e2e`), commits, and submits a PR.
 
 ## 3. Audit-Procedure Flow (Architecture Regulator Flow)
-1. `Audit-Procedure.md` reads 4 critical architecture files: `Master-Forge.md`, `Auto-Forge.md`, `Creative-Procedure.md`, and `Forge-Procedure.md`.
+1. `Audit-Procedure.md` reads all files in the `prompts/system/` directory.
 2. `Audit-Procedure.md` sweeps for reference integrity (named modules/steps across files), version lock (`CURRENT_FORGE_VERSION`), obvious numeric mismatches, and literal duplications.
-3. `Audit-Procedure.md` collapses mechanical drift by making the smallest possible patch exclusively inside those 4 files.
-4. `Audit-Procedure.md` asserts the diff touches zero files outside the 4 approved targets.
+3. `Audit-Procedure.md` collapses mechanical drift by making the smallest possible patch exclusively inside the `prompts/system/` directory.
+4. `Audit-Procedure.md` asserts the diff touches zero files outside the `prompts/system/` directory.
 5. `Audit-Procedure.md` triggers PR creation containing a precise ledger of fixes and flagged anomalies.
