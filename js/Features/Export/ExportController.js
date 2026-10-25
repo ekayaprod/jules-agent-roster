@@ -168,15 +168,13 @@ You are required to retrieve your primary system instructions from the secure ce
     const prefix = parentName + ',';
     const suffix = ',' + parentName;
     for (const key in fusionMatrixMap) {
-      if (Object.prototype.hasOwnProperty.call(fusionMatrixMap, key)) {
-        if (key.includes(parentName)) {
-          if (key.startsWith(prefix) || key.endsWith(suffix) || key === parentName) {
-            const fusionName = fusionMatrixMap[key];
-            const a = customAgentsMap[fusionName];
-            if (a) validCustomAgents.push(a); // collect them even if prompt is missing
-          }
-        }
-      }
+      if (!Object.prototype.hasOwnProperty.call(fusionMatrixMap, key)) continue;
+      if (!key.includes(parentName)) continue;
+      if (!key.startsWith(prefix) && !key.endsWith(suffix) && key !== parentName) continue;
+
+      const fusionName = fusionMatrixMap[key];
+      const a = customAgentsMap[fusionName];
+      if (a) validCustomAgents.push(a); // collect them even if prompt is missing
     }
 
     if (btn) btn.disabled = true;
