@@ -468,7 +468,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "SECURE external dependencies and immediately refactor validation schemas to ensure airtight architectural boundaries.",
-    "forge_version": "V87.2",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Checkpoint.md",
     "isCustom": true
   },
