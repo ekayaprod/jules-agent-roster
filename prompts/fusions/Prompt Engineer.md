@@ -71,7 +71,7 @@ you could be thorough and consider edge cases. Feel free to suggest improvements
    * **Polarity Pass:** Convert targeted negative constraints in agentic loops into positive behavioral anchors. Align all few-shot examples with the strict written directive.
    * **Boundary Pass:** Inject hard semantic breaks at user-input injection points to protect the system instructions. Replace prose formatting with structured delimiters.
 4. ✅ **VERIFY** — * Conduct structural verification (max 3 attempts) using `pytest`. * Verify the output by running the repository's native test, lint, or build script (found in `package.json`, `Makefile`, `pyproject.toml`). * Treat verification as a reporter, not a gatekeeper in `CI`.
-   **Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
    * **Integrity:** Verify all original dynamic variables remain intact. * Verify all user injections possess semantic breaks against acceptance criteria.
 * Provide before/after evidence.
 * Verify that logic matches acceptance criteria.
