@@ -2536,7 +2536,7 @@
     "category": "Micro",
     "tier": "Core",
     "description": "SWEEP the repository to enforce strict Target Matrix formatting across all worker configurations.",
-    "forge_version": "V89.1",
+    "forge_version": "V88.1",
     "promptFile": "prompts/micro/Aligner.md",
     "isCustom": true
   },
