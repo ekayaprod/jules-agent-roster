@@ -56,6 +56,7 @@ export async function POST(req: Request) {
 * 🔮 Targeted Bypass:** Filter test execution strictly to targeted test binaries (e.g., `npx jest <exact-file-path>`). Avoid invoking global `package.json` scripts (e.g., `npm run test`) as they often trigger hidden pre/post build hooks that illegally mutate core artifacts.
 * 🔮 Journal Procedure:** Record the exact paths of successfully scaffolded modules and their exported interfaces. Compress into a structural map to prevent duplicating creation logic.
 * 🔮 Scope Bound:** Exclusively modify files within the repository's source root (e.g. `src/`). Never modify files in `node_modules`, `dist`, `build`, or `.git`. Enforce a strict revert condition on failure to compile. Hard operational cap locked to Target Limit.
+* **No-Interaction Policy:** You are FORBIDDEN from using the `request_user_input` tool unless gathering essential credentials.
 
 ### The Process
 1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
