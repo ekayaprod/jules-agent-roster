@@ -32,10 +32,6 @@ global.DOMUtils = {
 // We want to test if it's NOT using escapeHTML correctly, but the real FormatUtils has it.
 // To reproduce the failure, we can either use the real FormatUtils (if it's not being called)
 // or mock it and see if it's called.
-// Actually, the vulnerable code in the prompt says:
-// block.innerHTML = `
-//     <span class="term-agent-name">${agentEmoji} ${safeAgentName}</span>
-// `;
 // If we use the REAL FormatUtils, it DOES have escapeHTML.
 // If the code DOES NOT call FormatUtils.escapeHTML(agentEmoji), it will be injected raw.
 

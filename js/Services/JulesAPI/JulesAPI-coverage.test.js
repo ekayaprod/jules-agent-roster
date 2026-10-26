@@ -67,9 +67,6 @@ describe('JulesAPI Coverage', () => {
              const code = fs.readFileSync('js/Services/JulesAPI/JulesAPI.js', 'utf8');
 
              let windowMock = {};
-             // The code does:
-             // if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') ...
-             // else { window.JulesAPI = JulesAPI; }
 
              // Wrap it in a way to make module and module.exports undefined
              const executeFunc = new Function('window', `
