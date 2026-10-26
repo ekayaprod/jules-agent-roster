@@ -1436,7 +1436,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "CENTRALIZE scattered literal string magic routes and canonicalize them to prevent maintenance-heavy infrastructure breakages.",
-    "forge_version": "V87.4",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/PathCentralizer.md",
     "isCustom": true
   },
