@@ -1,3 +1,5 @@
+const z = typeof require !== 'undefined' ? require('zod').z : window.z;
+
 class LLMConfigurationError extends Error {
     constructor(message) {
         super(message);
@@ -26,6 +28,27 @@ class LLMValidationError extends Error {
         this.name = 'LLMValidationError';
     }
 }
+
+const MessageSchema = z.array(z.object({
+    role: z.string(),
+    content: z.string()
+}).passthrough()).min(1);
+
+const OpenAIResponseSchema = z.object({
+    choices: z.array(z.object({
+        message: z.object({
+            role: z.string(),
+            content: z.string()
+        }).passthrough()
+    }).passthrough()).min(1)
+}).passthrough();
+
+const AnthropicResponseSchema = z.object({
+    content: z.array(z.object({
+        type: z.string(),
+        text: z.string()
+    }).passthrough()).min(1)
+}).passthrough();
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -66,13 +89,9 @@ class LLMRouter {
     }
 
     _validateMessages(messages) {
-        if (!Array.isArray(messages) || messages.length === 0) {
+        const result = MessageSchema.safeParse(messages);
+        if (!result.success) {
             throw new LLMValidationError("Payload must contain a non-empty array of messages with 'role' and 'content'.");
-        }
-        for (const msg of messages) {
-            if (!msg || typeof msg !== 'object' || typeof msg.role !== 'string' || typeof msg.content !== 'string') {
-                throw new LLMValidationError("Payload must contain a non-empty array of messages with 'role' and 'content'.");
-            }
         }
     }
 
@@ -163,14 +182,15 @@ class LLMRouter {
             body: JSON.stringify(payload)
         }, "OpenAI");
 
-        if (!rawResponse || !Array.isArray(rawResponse.choices) || rawResponse.choices.length === 0) {
-            throw new LLMValidationError(`OpenAI response failed schema validation: Invalid choices array`);
-        }
-        for (const choice of rawResponse.choices) {
-            if (!choice || !choice.message || typeof choice.message.role !== 'string' || typeof choice.message.content !== 'string') {
+        const validation = OpenAIResponseSchema.safeParse(rawResponse);
+        if (!validation.success) {
+            const isMessageError = validation.error.issues.some(issue => issue.path.includes('message'));
+            if (isMessageError) {
                 throw new LLMValidationError(`OpenAI response failed schema validation: Invalid message structure`);
             }
+            throw new LLMValidationError(`OpenAI response failed schema validation: Invalid choices array`);
         }
+
         return rawResponse;
     }
 
@@ -227,14 +247,15 @@ class LLMRouter {
             body: JSON.stringify(payload)
         }, "Anthropic");
 
-        if (!rawResponse || !Array.isArray(rawResponse.content) || rawResponse.content.length === 0) {
-            throw new LLMValidationError(`Anthropic response failed schema validation: Invalid content array`);
-        }
-        for (const item of rawResponse.content) {
-            if (!item || typeof item.type !== 'string' || typeof item.text !== 'string') {
+        const validation = AnthropicResponseSchema.safeParse(rawResponse);
+        if (!validation.success) {
+            const isContentError = validation.error.issues.some(issue => issue.path.includes('type') || issue.path.includes('text'));
+            if (isContentError) {
                 throw new LLMValidationError(`Anthropic response failed schema validation: Invalid content structure`);
             }
+            throw new LLMValidationError(`Anthropic response failed schema validation: Invalid content array`);
         }
+
         return rawResponse;
     }
 }
