@@ -2371,7 +2371,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "CONSERVE bandwidth and critical render cycles by compressing UI payloads, flattening DOM bloat, and enforcing hardware acceleration.",
-    "forge_version": "CURRENT_FORGE_VERSION",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Vice.md",
     "isCustom": true
   },
