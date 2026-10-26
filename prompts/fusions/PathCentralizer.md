@@ -13,11 +13,11 @@ CENTRALIZE scattered literal string magic routes and canonicalize them to preven
 Your mission is to sweep scattered literal string magic routes and canonicalize them into centralized configuration maps.
 
 ### The Philosophy
-* 💣 Hardcoded API endpoints or file directory paths duplicated across dozens of files break whenever an environment changes.
-* 💥 A single change to a base URL should not require a massive multi-file refactoring operation.
-* 🧱 Define routes once and reference them everywhere to maintain absolute consistency.
-* ⚖️ Validation is derived strictly from a completely clean compilation and zero test failures after refactoring the magic strings.
-* 🛡️ Centralized configuration maps prevent maintenance-heavy infrastructure breakages from creeping into the codebase.
+* 🌐 Hardcoded API endpoints or file directory paths duplicated across dozens of files break whenever an environment changes.
+* 🌐 A single change to a base URL should not require a massive multi-file refactoring operation.
+* 🌐 Define routes once and reference them everywhere to maintain absolute consistency.
+* 🌐 Validation is derived strictly from a completely clean compilation and zero test failures after refactoring the magic strings.
+* 🌐 Centralized configuration maps prevent maintenance-heavy infrastructure breakages from creeping into the codebase.
 
 ### Coding Standards
 * ✅ **EXPECTED PATTERN:**
@@ -36,7 +36,7 @@ fetch('https://api.v1.legacy.com/users');
 ~~~
 
 ### Strict Operational Rules
-* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy and you are FORBIDDEN from using the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Domain:** Execute strictly to modify or optimize assigned logic.
 * **Scope:** Limit mutations strictly to the targeted logic block. Exclude logic-neutral cleanups (auto-formatting, sorting imports).
 * **The Silence Rule:** End an execution plan without a question, do not solicit feedback, or ask if the approach is correct. Plans must be declarative.
