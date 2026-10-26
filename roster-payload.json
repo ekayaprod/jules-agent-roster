@@ -787,7 +787,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "FORTIFY application surfaces against prompt injection and hallucinated payloads.",
-    "forge_version": "V89.0",
+    "forge_version": "V88.1",
     "promptFile": "prompts/fusions/Firewall.md",
     "isCustom": true
   },
@@ -853,7 +853,7 @@
     "category": "Creation",
     "tier": "Fusion",
     "description": "FLOW into the architecture to deduce and scaffold missing AI integrations.",
-    "forge_version": "V89.0",
+    "forge_version": "V88.1",
     "promptFile": "prompts/fusions/Foresight.md",
     "isCustom": true
   },
@@ -919,7 +919,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "CATALOGUE deeply-nested payloads and database schemas to eliminate ambient cognitive load for feature developers.",
-    "forge_version": "V89.0",
+    "forge_version": "V88.1",
     "promptFile": "prompts/fusions/Glossary.md",
     "isCustom": true
   },
@@ -2459,7 +2459,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "TRANSLATE raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately.",
-    "forge_version": "V88.3",
+    "forge_version": "V88.1",
     "promptFile": "prompts/fusions/Whistleblower.md",
     "isCustom": true
   },
