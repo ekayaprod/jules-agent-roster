@@ -318,12 +318,15 @@ def load_file(path, state):
         "units": final_units,
         "all_units": final_all_units,
         "fences": fences,
-        "word_count": word_count
+        "word_count": word_count,
+        "_body_start_idx": _body_start_idx
     }
 
 def extract_shell_commands(ctx):
     import shlex
     commands = []
+
+    _body_start_idx = ctx.get("_body_start_idx", 1)
 
     # 1. From bash/sh/shell/zsh/console fences
     shell_langs = {"bash", "sh", "shell", "zsh", "console"}
