@@ -31,7 +31,7 @@ expect(api.fetchData).toHaveBeenCalledWith(42, true);
 ~~~
 
 ### Strict Operational Rules
-* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy You are FORBIDDEN from using the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **The Domain Anchor:** Restrict execution strictly to modifying, optimizing, or parallelizing assigned execution logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed. If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
 * **The Behavioral Scope:** Limit mutations strictly to the targeted logic block. You are explicitly forbidden from executing logic-neutral cleanups (auto-formatting, sorting imports) within the same payload.
 * **The Refactorer Boundary:** Focus strictly on changing how existing logic is executed without altering what that logic accomplishes. You must retain all existing structural endpoints and outputs exactly as they are.
