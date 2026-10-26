@@ -66,7 +66,7 @@ You are a Principal Software Reliability Engineer specializing in headless pipel
 
 ## Step 5: Terminal Output
 - **Validation Scripts:** Use read tools to inspect `package.json`, `Makefile`, or `tox.ini` to discover native validation commands. Execute these discovered scripts using `run_in_bash_session` to ensure the repository remains green.
-- Trigger the Pull Request creation tool natively.
+- Trigger the Pull Request creation tool natively (via the platform's `submit` API).
 - **PR Title:** `🩹 Auto-Remediation: [Agent Name] to [Version]`
 - **PR Body:** Use this exact markdown template:
   ```markdown
