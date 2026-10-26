@@ -1700,7 +1700,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "DISTILL messy, nested callback spaghetti into flat, modern async/await execution paths by untangling the structure and upgrading the syntax.",
-    "forge_version": "V87.2",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Refiner.md",
     "isCustom": true
   },
