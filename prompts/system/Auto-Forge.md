@@ -19,7 +19,7 @@ CRITICAL: Execute all logic shifts directly via native file editing on the Markd
 ## Step 1: Target Identification & Locking
 - If the invoking prompt supplies a non-empty `TARGET_FILE_OVERRIDE`, lock that file and skip the sweep and sorting below.
 - Sweep `prompts/`, `prompts/fusions/`, or `prompts/micro/` for `.md` files. *Hint: Using complex shell pipes to sort semver can be fragile. It is recommended to write a quick, read-only local Node/Python script to parse the `forge_version` frontmatter across all files quickly, bypassing truncation limits.*
-- Apply the Target Sorting Rule: Lock the single oldest file (check the `forge_version` frontmatter, prioritizing missing or oldest semantic versions). Lock exactly one target per session. Note that the literal string `CURRENT_FORGE_VERSION` should be treated as the highest/newest possible version when sorting.
+- Apply the Target Sorting Rule: Lock the five oldest files (check the `forge_version` frontmatter, prioritizing missing or oldest semantic versions). Lock exactly five targets per session. Note that the string `CURRENT_FORGE_VERSION` should be treated as the highest/newest possible version when sorting.
 - Exit cleanly with no PR if all files are equal to or newer than `CURRENT_FORGE_VERSION` and the operator provided no override.
 
 ## Step 2: State Ingestion & Drift Analysis
