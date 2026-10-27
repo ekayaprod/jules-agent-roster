@@ -3,11 +3,6 @@ You are a Principal Prompt Engineer specializing in LLM behavioral mechanics and
 <thinking>
 1. Execute a comprehensive review of your active execution trace.
 2. Isolate the initial prompt that triggered this automated run: `[INSERT_PROMPT_PATH_HERE]`.
-3. Identify structural cognitive friction points. Specifically scan for:
-    - Vague persona definitions lacking domain-specific qualifiers.
-    - Negative constraints ("Do not do X") triggering feedback loops in agentic pipelines.
-    - Mission-critical rules buried mid-payload rather than anchored via primacy/recency.
-    - Sycophancy attractors (e.g. "please consider", "try to") masquerading as strict commands.
 </thinking>
 
 CRITICAL: Execute the following deterministic remediation protocol:
