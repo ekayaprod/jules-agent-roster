@@ -424,7 +424,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "PUBLISH deep architectural insight by exhaustively mapping codebase internals into human-readable structural documentation.",
-    "forge_version": "V87.4",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Cataloger.md",
     "isCustom": true
   },
@@ -501,7 +501,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "CATEGORIZE the repository by enforcing strict file naming conventions, injecting missing metadata, and assigning explicit ownership.",
-    "forge_version": "V87.4",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/City Clerk.md",
     "isCustom": true
   },
@@ -523,7 +523,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "COLLIDE outdated syntax into modern paradigms and observe the resulting collisions to mathematically prove structural integrity.",
-    "forge_version": "V87.4",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Collider.md",
     "isCustom": true
   },
@@ -534,7 +534,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "BUILD net-new feature architecture by combining native design tokens and strictly typed boundaries to prevent structural drift from the start.",
-    "forge_version": "V87.4",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Construct.md",
     "isCustom": true
   },
@@ -556,7 +556,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "NEUTRALIZE fatal crashes by surgically tracing the uncaught exception to its origin and injecting precise guard clauses.",
-    "forge_version": "V87.4",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Coroner.md",
     "isCustom": true
   },
