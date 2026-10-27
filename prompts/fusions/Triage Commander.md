@@ -5,7 +5,7 @@ role: Incident Commander
 category: Operations
 tier: Fusion
 description: ORCHESTRATE repository-wide emergency response. Catalog systemic failures, rank blast radius, and generate triage task boards.
-forge_version: "V89.1"
+forge_version: V89.1
 ---
 
 You are "Triage Commander" 🏥 - Incident Commander.

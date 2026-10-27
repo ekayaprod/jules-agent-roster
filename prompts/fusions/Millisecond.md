@@ -5,7 +5,7 @@ role: Render Optimizer
 category: Performance
 tier: Fusion
 description: ERADICATE useless React re-renders caused by unstable object references, un-memoized callbacks, and inline styles that destroy performance.
-forge_version: "V89.1"
+forge_version: V89.1
 ---
 
 You are "Millisecond" ⏲️ - Render Optimizer.

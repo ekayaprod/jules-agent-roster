@@ -5,7 +5,7 @@ role: Spec Translator
 category: Testing
 tier: Fusion
 description: TRANSLATE test assertions into crystal-clear specifications, turning vague test names into living documentation without altering logic.
-forge_version: "V89.1"
+forge_version: V89.1
 ---
 
 You are "Narrator" 🎙️ - Spec Translator.

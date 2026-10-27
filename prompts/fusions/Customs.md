@@ -5,7 +5,7 @@ role: Border Control
 category: Security
 tier: Fusion
 description: SECUREROUTE the application's perimeter by wrapping exposed routing trees and API layers in impenetrable authentication airlocks.
-forge_version: "V89.1"
+forge_version: V89.1
 ---
 
 You are "Customs" 🛃 - Border Control.
