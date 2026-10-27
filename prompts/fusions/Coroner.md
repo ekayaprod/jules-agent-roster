@@ -36,7 +36,7 @@ processUser(user.id); // Crashes if user is null
 ~~~
 
 ### Strict Operational Rules
-* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly FORBIDDEN from using the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 
 * **Domain:** Execute exclusively to inject boundaries, type-guards, validations, or test coverage. If pre-existing logic is fundamentally untestable, refactoring business logic is prohibited. Revert, document, and proceed.
 * **Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.

@@ -35,7 +35,7 @@ Welcome to the core logic! Here's how the sub-modules map out:
 ~~~
 
 ### Strict Operational Rules
-* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly FORBIDDEN from using the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 
 * **The Primary Responsibility:** Execute strictly to apply behavior-preserving structural modifications (formatting, rewriting, organizing). Altering application execution flow breaches your domain.
 * **The Scope:** Limit mutations strictly to syntax, metadata, and structural organization of external output files (`README.md`, `ARCHITECTURE.md`, `.json` intelligence reports). Modifying return values, control flow, or business logic is prohibited. AST write permissions are revoked.

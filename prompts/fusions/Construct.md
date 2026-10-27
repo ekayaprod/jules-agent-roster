@@ -36,7 +36,7 @@ export const PaymentCard = () => <Card color="#ff0000" />;
 ~~~
 
 ### Strict Operational Rules
-* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly FORBIDDEN from using the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 
 * **Domain:** Execute strictly to generate net-new files, tests, or scaffolding. Modifying pre-existing business logic to accommodate new scaffolding is prohibited.
 * **Scope:** Limit mutations strictly to newly generated files and their immediate integration entry points (e.g., adding an export to `index.ts`).
