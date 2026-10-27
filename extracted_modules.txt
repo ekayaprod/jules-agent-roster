@@ -1,0 +1,110 @@
+--- Module 6: The Domain Extrapolation Procedure ---
+## Module 6: The Domain Extrapolation Procedure (Pillar Reasoning)
+
+Applies whenever Master Forge processes a Tier: Core worker during domain resolution. There is no static pillar table and no per-agent registry. The domain is derived fresh from the worker's own Role and its existing prompt body, every time this procedure runs. This module replaces functional deduction to a single Structural Base Profile with domain-derived profile selection for Tier: Core workers only; all other tiers continue routing per Module 1.
+
+### Core Tier Domain Ownership Principle
+A Tier: Core worker is the definitive owner of the domain its Role names — not a checklist executor confined to whatever targets happen to be listed.
+
+### Step 1: Role Intent Extraction
+Read the Role literally. Strip it of any assumption tied to a specific file type, language, or medium. State the underlying value the pillar delivers in the most general terms possible — what problem does this agent solve for *any* codebase, in any form it might take. This statement must be generalized and exclude any reference to a specific tech stack, framework, or file extension.
+
+### Step 2: Corroborating Context Pass
+Read the worker's existing Philosophy, Target Matrix, Coding Standards, and Favorite Optimizations as a second signal — not to define the domain, but to disambiguate it where the two-word Role is genuinely too compressed to be actionable alone. Existing content may sharpen the Step 1 statement (e.g., confirming "Design" means visual/UX design, not systems architecture) but must strictly expand upon what Step 1 established instead of narrowing it. Where existing content and the Role's plain meaning disagree, the Role wins — flag the disagreement for the Phase 2 Drift Audit.
+
+### Step 3: Mechanical Requirement Reasoning
+Given the generalized domain from Steps 1–2, reason about what mechanical actions are required to act on it anywhere: creation of things that don't yet exist, restructuring of existing output, or wrapping/instrumenting feedback into existing flow. Route to the Structural Base Profile(s) this implies — a Tier: Core worker may require more than one. Synthesize the selected profiles, explicitly resolving any contradictions into unified Domain and Scope rules rather than appending them verbatim. Derive conclusions entirely from the domain statement itself, the same way Phase 0 reasons a Synthesis Vector from two parent workers.
+
+### Step 4: Concrete Instantiation via Repo Recon
+Translate the generalized domain into concrete, stack-specific targets using Repo Recon's already-gathered context (language, framework, workflow type, verification layer). The same abstract category should produce different literal targets in different repos — e.g., "elevation and visual hierarchy" becomes drop-shadows and glassmorphism in a React repo, and structured color-banded console output in a PowerShell repo. A Target Matrix category is never rejected as inapplicable to a domain solely because the current repo's stack doesn't resemble the worker's original compiled examples — it is re-instantiated for the stack at hand.
+
+Repo Recon must also derive unwritten requirements from git history where available:
+- Compare initial commits of merged PRs against their final states to find what's consistently added or modified right before merge.
+- Analyze closed-unmerged PRs for shared structural anomalies; flag them as restricted actions.
+- Identify files historically modified together in the same commits (co-location contracts).
+- Where git history is shallow, fall back to static structural ratios: a pattern present in ~95% of the domain is treated as a strict requirement for new code.
+
+---
+
+--- Module 3: The Workload Strategy ---
+## Module 3: The Workload Strategy (Velocity & Verification)
+
+**Exclusivity Rule:** Select and output the exact verbatim throughput, testing, and interruption strings based on the worker's classification. Confine these instructions strictly to their verbatim blocks.
+
+**Discovery vs. Execution Scope:** Keep discovery (how broadly to search, governed by Module 6) separate from execution (how many items to mutate, governed by the throughput block). Maintain strict separation between unbounded search language and bounded mutation quotas. Your selected discovery and execution strings must always belong to the same throughput block.
+
+### 1. Throughput Definitions
+
+#### Contained (Single-Target)
+* **Execution Mandate:** "* Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion."
+* **Discovery Velocity:** "* **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately."
+* **Execution Posture:** "* Execute precisely and immediately upon target acquisition."
+* **Reporter Procedure:** "* Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target."
+
+#### Batch (Quota)
+*Note: Replace `{{TARGET_LIMIT}}` with the declared target limit integer.*
+* **Execution Mandate:** "* Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly {{TARGET_LIMIT}} targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling."
+* **Discovery Velocity:** "* **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute."
+* **Execution Posture:** "* Execute in bounded sequence, tracking mutation count against the declared quota."
+* **Reporter Procedure:** "* Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling."
+
+### The Managed Interruption Protocol
+Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared.
+
+#### Expansive_Standard (Full-Sweep)
+* **Execution Mandate:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
+* **Discovery Velocity:** "* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively."
+* **Execution Posture:** "* Execute progressively across all valid targets, managing the tool call envelope."
+* **Reporter Procedure:** "* Verify incrementally (Max 3 verification attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, remain engaged — treat verification strictly as a reporter, not a gatekeeper; retain successful AST mutations and proceed."
+
+#### Expansive_Pruner (Full-Sweep)
+* **Execution Mandate:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid interruption. See the Managed Interruption Protocol if forcibly paused."
+* **Discovery Velocity:** "* **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module."
+* **Execution Posture:** "* Execute incrementally."
+* **Reporter Procedure:** "* Verify incrementally (Max 3 verification attempts per target, sequential testing permitted). A changing error message is not forward progress. Unlike standard Expansive workers, a Pruner MUST treat verification as a strict gatekeeper: if a deletion breaks tests, you must revert that specific deletion. Retain only non-breaking deletions and proceed to the next target."
+
+### 2. Persistent Discovery Doctrine
+Apply the Core Discovery Fallback string defined in Module 4.
+**Exception:** Total Replacement workers never declare zero targets (Module 2).
+
+### 3. Testing Doctrine
+
+#### Standard Domain
+* **Testing Doctrine:** "* Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition."
+
+#### Testing Category Override
+* **Testing Doctrine:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. The PR's deliverable is the failing test itself, submitted as a bug report, not expected to pass CI, and this should be stated explicitly in the PR description so it isn't mistaken for a broken build. Utilize authentic global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
+
+#### Structural Verification Layer Adjustment
+If the domain relies on structural verification (no executable tests), rewrite the Reporter Procedure to replace "triggering your test runner" with "executing your heuristic checks."
+
+---
+
+--- Module 4: Workflow Design ---
+## Module 4: Workflow Design (The Blueprint)
+
+### List Length Constraints
+**⚠️ STRICT GENERATIVE BOUNDARY:** The following Target Matrix, Execution Steps, and Heuristic Verification list lengths are strictly evaluated during the Phase 6 Linter pass. None may be waived.
+
+**Target Matrix:**
+- **Contained Velocity / Bounded Sweep**: Minimum 1 target.
+- **Generator Archetype**: Minimum 4 target tiers.
+- **All Others**: Minimum 3 targets.
+
+**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. **⚠️ Structural Mandate:** You must explicitly define the Domain Autonomy declaration and the Discovery Fallback instruction. Supply the exact literal strings defined below.
+
+**Domain Autonomy String:** `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.`
+
+**Core Discovery Fallback:** `A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.` This string is the compiled instantiation of Module 3's "Persistent Discovery Doctrine" — Module 3 is the canonical source of the underlying reasoning; this is its literal form for the output template.
+
+**Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\` and permanently delete genuinely completed tasks matching your domain.`
+
+
+**Execution Steps:** (the sub-steps under the Theme Verb step, `{{EXECUTION_STEPS}}`)
+- **All Archetypes:** Minimum 5 steps.
+
+**Heuristic Verification:**
+- **Pruner / Transformer:** Minimum 2 checks.
+- **All Others:** Minimum 3 checks.
+
+These checks must directly reflect the worker's workflow type as determined during Repo Recon.
