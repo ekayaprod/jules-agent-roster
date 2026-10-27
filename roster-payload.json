@@ -479,7 +479,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "BUILD the automated machinery and pipelines that generate documentation, forging net-new release infrastructure from scratch.",
-    "forge_version": "V87.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Chronicle.md",
     "isCustom": true
   },
@@ -490,7 +490,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "ANNOTATE shipped features with strategic roadmaps to officially mark milestones complete.",
-    "forge_version": "V87.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Chronicler.md",
     "isCustom": true
   },
@@ -1161,7 +1161,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "CEIL every execution path with mathematically guaranteed upper bounds to prevent the expansion of the Unbounded Abyss.",
-    "forge_version": "V87.2",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Limiter.md",
     "isCustom": true
   },
@@ -1183,7 +1183,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "DOCUMENT undocumented if/else, switch, and Bitwise operations into clean Truth Tables inside JSDoc.",
-    "forge_version": "V87.2",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Logician.md",
     "isCustom": true
   },
@@ -1194,7 +1194,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "CHOP dead branches and unreachable execution paths from the AST.",
-    "forge_version": "V87.2",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Lumberjack.md",
     "isCustom": true
   },
