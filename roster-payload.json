@@ -1282,7 +1282,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "DISTILL scattered logic into centralized utilities, rigorously locking their behavior with 100% unit test coverage.",
-    "forge_version": "V87.4",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Mixologist.md",
     "isCustom": true
   },
@@ -1337,7 +1337,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "CODIFY scattered logic duplicates into a single utility, locking it behind an ironclad, strictly typed JSDoc contract.",
-    "forge_version": "V87.4",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Oracle.md",
     "isCustom": true
   },
@@ -1359,7 +1359,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "RESURRECT lost historical context for load-bearing spaghetti that modern developers are too afraid to touch.",
-    "forge_version": "V87.4",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Ouija.md",
     "isCustom": true
   },
@@ -1370,7 +1370,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "OVERCLOCK the test suite. Bend time, eradicate I/O gravity, and compress bloated CI execution cycles to save the VM from timeout exhaustion.",
-    "forge_version": "V87.4",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Overclock.md",
     "isCustom": true
   },
@@ -1733,7 +1733,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "POLISH disorganized feature hierarchies by colocating fragmented components, styles, and hooks into feature folders.",
-    "forge_version": "V87.4",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Renovator.md",
     "isCustom": true
   },
