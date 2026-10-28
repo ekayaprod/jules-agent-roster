@@ -186,17 +186,12 @@ class FusionIndex {
    */
   updateProgress(element) {
     if (this._totalCustomAgentsCache === undefined) {
-      this._totalCustomAgentsCache = 0;
       if (this.customAgents) {
-        for (const key in this.customAgents) {
-          if (
-            Object.prototype.hasOwnProperty.call(this.customAgents, key) &&
-            this.customAgents[key] !== ''
-          ) {
-            this._totalCustomAgentsCache++;
-          }
-        }
-      }
+        // 🧬 COLLAPSE: Collapsed sprawling imperative logic into highly dense, declarative functional pipelines.
+        this._totalCustomAgentsCache = Object.keys(this.customAgents).reduce((acc, key) => {
+            return acc + (this.customAgents[key] !== '' ? 1 : 0);
+        }, 0);
+      } else this._totalCustomAgentsCache = 0;
     }
     // ⚡ Bolt+: The Algorithmic Trap. Cached the O(n) total calculation to O(1) to prevent repetitive linear scans on every progress update.
     element.textContent = `${this.unlockedKeys.size} / ${this._totalCustomAgentsCache} Protocols Discovered`;

@@ -207,20 +207,18 @@ class LLMRouter {
 
         // Convert common chat structure to Anthropic schema if necessary
         // Anthropic requires top-level system message if any
-        let systemMessage = undefined;
-        const anthropicMessages = [];
-
-        for (const msg of messages) {
-            if (msg.role === 'system') {
-                if (!systemMessage) systemMessage = msg.content;
-                else systemMessage += "\n" + msg.content;
+        // 🧬 COLLAPSE: Collapsed sprawling imperative logic into highly dense, declarative functional pipelines.
+        const { systemMessage, anthropicMessages } = messages.reduce((acc, msg) => {
+            if (msg.role === "system") {
+                acc.systemMessage = acc.systemMessage ? acc.systemMessage + "\n" + msg.content : msg.content;
             } else {
-                anthropicMessages.push({
-                    role: msg.role === 'user' ? 'user' : 'assistant',
+                acc.anthropicMessages.push({
+                    role: msg.role === "user" ? "user" : "assistant",
                     content: msg.content
                 });
             }
-        }
+            return acc;
+        }, { systemMessage: undefined, anthropicMessages: [] });
 
         if (anthropicMessages.length === 0) {
             throw new LLMValidationError("Payload must contain at least one user or assistant message for Anthropic.");

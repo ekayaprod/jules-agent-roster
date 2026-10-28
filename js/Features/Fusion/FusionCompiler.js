@@ -25,15 +25,13 @@ const FusionCompiler = function (agents, customAgents, fusionMatrix = {}) {
   const normalizeKeys = (data) => {
     if (!data) return {};
 
-    const result = {};
-    for (const rawKey in data) {
-      if (Object.prototype.hasOwnProperty.call(data, rawKey)) {
-        const parts = typeof AgentUtils !== 'undefined' ? AgentUtils.splitFusionKey(rawKey) : rawKey.split(",").map(p => p.trim());
-        parts.sort();
-        result[parts.join(",")] = data[rawKey];
-      }
-    }
-    return result;
+    // 🧬 COLLAPSE: Collapsed sprawling imperative loop into a dense reduce pipeline.
+    return Object.keys(data).reduce((acc, rawKey) => {
+      const parts = typeof AgentUtils !== 'undefined' ? AgentUtils.splitFusionKey(rawKey) : rawKey.split(",").map(p => p.trim());
+      parts.sort();
+      acc[parts.join(",")] = data[rawKey];
+      return acc;
+    }, {});
   };
 
   const fusionMatrixMap = normalizeKeys(fusionMatrix);

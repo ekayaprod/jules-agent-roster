@@ -34,14 +34,12 @@ class AgentUtils {
     }
 
     static getValidCustomAgents(customAgents) {
-        const validCustomAgents = [];
-        for (const key in customAgents) {
-            if (Object.prototype.hasOwnProperty.call(customAgents, key)) {
-                const a = customAgents[key];
-                if (a && a.prompt && a.prompt.length > 0 && a.name !== "Error") validCustomAgents.push(a);
-            }
-        }
-        return validCustomAgents;
+        if (!customAgents) return [];
+        // 🧬 COLLAPSE: Collapsed sprawling imperative logic into highly dense, declarative functional pipelines.
+        return Object.values(customAgents).reduce((acc, a) => {
+            if (a && a.prompt && a.prompt.length > 0 && a.name !== "Error") acc.push(a);
+            return acc;
+        }, []);
     }
 
     static getPromptUrl(agent) {
