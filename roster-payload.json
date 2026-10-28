@@ -1271,7 +1271,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "ACCELERATE heavy, single-threaded UI logic into identical, parallel Web Worker cells.",
-    "forge_version": "V89.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Mitosis.md",
     "isCustom": true
   },
@@ -1315,7 +1315,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "BURY unreferenced or explicitly deprecated dead code, documenting its architectural history.",
-    "forge_version": "V89.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Obituary Writer.md",
     "isCustom": true
   },
@@ -1425,7 +1425,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "BUILD modern, dormant replacements alongside legacy systems without migrating or deleting the original architecture.",
-    "forge_version": "V89.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Parallel.md",
     "isCustom": true
   },
@@ -1447,7 +1447,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "STREAMLINE core interaction loops and flatten logic routing to ensure the 'Happy Path' requires the absolute minimum number of clicks.",
-    "forge_version": "V89.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Pathfinder.md",
     "isCustom": true
   },
@@ -1458,7 +1458,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "ACCELERATE public traffic via aggressive caching while locking authenticated routes inside zero-trust cargo cars.",
-    "forge_version": "V89.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Payload.md",
     "isCustom": true
   },
