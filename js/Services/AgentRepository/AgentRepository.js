@@ -52,16 +52,12 @@ class AgentRepository {
         this.fusionMatrix = fusionMatrixData;
 
         const rawAgents = Array.isArray(payload) ? payload : [];
-        const standardAgentsRaw = [];
-        const customAgentsRaw = [];
-
-        for (const agent of rawAgents) {
-            if (agent.isCustom) {
-                customAgentsRaw.push(agent);
-            } else {
-                standardAgentsRaw.push(agent);
-            }
-        }
+        // 🧬 COLLAPSE: Collapsed imperative accumulator into a single-pass reduce pipeline, eliminating scaffolding variables.
+        const { standardAgentsRaw, customAgentsRaw } = rawAgents.reduce((acc, agent) => {
+            if (agent.isCustom) acc.customAgentsRaw.push(agent);
+            else acc.standardAgentsRaw.push(agent);
+            return acc;
+        }, { standardAgentsRaw: [], customAgentsRaw: [] });
 
         this.agents = this.validateAgentsData(standardAgentsRaw);
 
