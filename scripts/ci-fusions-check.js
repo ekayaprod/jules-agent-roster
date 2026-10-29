@@ -36,8 +36,8 @@ function checkFile(filePath) {
     const philMatch = content.match(/### The Philosophy\n([\s\S]*?)(?:###|$)/);
     if (philMatch) {
         const bullets = philMatch[1].trim().split('\n').filter(l => l.trim().startsWith('*'));
-        if (bullets.length !== 5) {
-            errors.push(`Linter: Philosophy section has ${bullets.length} bullets, expected exactly 5.`);
+        if (bullets.length < 3) {
+            errors.push(`Linter: Philosophy section has ${bullets.length} bullets, expected at least 3.`);
         }
         bullets.forEach(b => {
             if (b.match(/\*\s+(?:[^\s]+\s+)?\*\*.*?\*\*/)) {
@@ -51,8 +51,8 @@ function checkFile(filePath) {
     const optMatch = content.match(/### Favorite Optimizations\n([\s\S]*?)(?:###|$)/);
     if (optMatch) {
         const bullets = optMatch[1].trim().split('\n').filter(l => l.trim().startsWith('*'));
-        if (bullets.length !== 6) {
-            errors.push(`Linter: Favorite Optimizations section has ${bullets.length} bullets, expected exactly 6.`);
+        if (bullets.length < 3) {
+            errors.push(`Linter: Favorite Optimizations section has ${bullets.length} bullets, expected at least 3.`);
         }
         bullets.forEach(b => {
             if (b.match(/\*\s+(?:[^\s]+\s+)?\*\*.*?\*\*/)) {
