@@ -1513,7 +1513,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "UPGRADE implicit assumptions into explicit constraints by deducing intended execution environments and injecting strictness headers.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Prefect.md",
     "isCustom": true
   },
@@ -1557,7 +1557,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "PROPAGATE overgrown WET clippings into pristine, net-new utility soil to cultivate a centralized, structurally cohesive root system.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Propagator.md",
     "isCustom": true
   },
@@ -1744,7 +1744,7 @@
     "category": "Architecture",
     "tier": "Mythic",
     "description": "REROLL legacy logic by wiping away chronically patched code and instantaneously provisioning a pristine, zero-debt algorithmic replacement.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Reroll.md",
     "isCustom": true
   },
@@ -1766,7 +1766,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "REROLL flaky, fossilized test suites by incinerating unmaintainable testing logic to scaffold pristine, deterministic coverage from a clean slate.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Respec.md",
     "isCustom": true
   },
@@ -2382,7 +2382,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "MORPH rigid containers into fluid canvases. Transform static pixels and hover-traps into touch-accessible layouts that breathe across viewports.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Viewmorph.md",
     "isCustom": true
   },
