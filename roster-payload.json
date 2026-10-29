@@ -138,7 +138,7 @@
     "category": "Repair",
     "tier": "Core",
     "description": "RESUSCITATE fatal crashes and silent output failures alike — trace both to root cause and restore genuine, observable function.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/Paramedic.md",
     "isCustom": false
   },
@@ -226,7 +226,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "ENFORCE strict build-time failure thresholds to halt bundle bloat before it ever hits production.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Accountant.md",
     "isCustom": true
   },
@@ -578,7 +578,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "EXCISE ghost routes to prune the application's surface area, permanently deleting both the route definition and the underlying component.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Dead-Ender.md",
     "isCustom": true
   },
@@ -600,7 +600,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "DECODE broken test suites and translate massive terminal stack traces into actionable Markdown reports.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Decoder.md",
     "isCustom": true
   },
@@ -1887,7 +1887,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "PROPAGATE the structural skeleton by bridging missing architectural boilerplate.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Scaffolder.md",
     "isCustom": true
   },
