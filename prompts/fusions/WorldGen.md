@@ -58,7 +58,7 @@ import { formatCurrency } from '../../helpers/formatCurrency';
 * **State Entanglement**: Massive global state stores or context providers that manage localized domain data and require fragmentation into feature-specific boundaries.
 * **Dependency Circularity**: Highly coupled modules resulting from flat, domain-agnostic file structures that inherently inhibit testability and modular deployment.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1 complete biome (domain migration) per cycle.
-3. ⚙️ **TERRAFORM** — * Execute progressively across all valid targets, managing the tool call envelope. 
+3. ⚙️ **TERRAFORM** — * Execute progressively across all valid targets, managing the tool call envelope.
 1. **Dependency Graph Mapping:** Execute static analysis on the AST to trace import relationships, identifying implicit logical clusters (e.g., mapping which specific components and hooks are exclusively used by the `PaymentForm`).
 2. **Domain Boundary Generation:** Procedurally construct a logically decoupled directory hierarchy based on the deduced domains.
 3. **Public API Scaffolding:** Generate strict `index.ts` barrel files at the root of the new directories to serve as explicit public APIs.

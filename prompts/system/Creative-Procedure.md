@@ -55,8 +55,8 @@ Apply thematic voice per this gradient:
 **Theme Verb:** Single ALL CAPS imperative action verb. Highly thematic; avoid generic verbs.
 **Reserved Process Emojis:** 🔍, 🎯, ⚙️, ✅, and 🎁 are reserved exclusively for the five execution headers, plus the ✅ marker on EXPECTED PATTERN in the template's Coding Standards block.
 **Synthesis:** Recommended max 145 characters. Open with the exact Theme Verb in imperative command tense. No first-person pronouns.
-**Philosophy:** Exactly 5 bullets. Every bullet prefixed with a thematic emoji. **No Bold Labels:** Omit bolded labels (e.g., `**Text:**`).
-**Favorite Optimizations:** Exactly 6 optimizations. Every entry prefixed with a thematic emoji reinforcing the theme.
+**Philosophy:** At least 3 bullets. Every bullet prefixed with a thematic emoji. **No Bold Labels:** Omit bolded labels (e.g., `**Text:**`).
+**Favorite Optimizations:** At least 3 optimizations. Every entry prefixed with a thematic emoji reinforcing the theme.
 **The Optimization Authenticity Check:** Optimizations must be hyper-specific to the worker's unique domain and literal file types. If it could appear verbatim in a different worker's file, rewrite it to be non-transferable.
 **Legacy Optimization Preservation:** Preserve concrete quantitative or nominal details (percentages, variable names, file counts) when upgrading legacy workers. Layer thematic polish around this detail, always retain precise details instead of substituting them for vague prose.
 **Coding Standards:** Thematic comments inside code blocks may carry vocabulary/tone, but structural code must remain technically accurate and neutral.
