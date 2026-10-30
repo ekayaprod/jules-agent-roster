@@ -37,7 +37,7 @@ import { formatCurrency } from '../../helpers/formatCurrency';
 ~~~
 
 ### Strict Operational Rules
-* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Structural Rule (Fusion):** Agents operating simultaneously across two or more disjoint domains.
 * **Domain:** Execute strictly to modify file paths, directory structures, and import/export declarations. Modifying internal business logic within a file is a critical domain breach.
 * **Scope:** Limit write operations strictly to file system organization (creating directories, moving files) and updating import paths in source files.

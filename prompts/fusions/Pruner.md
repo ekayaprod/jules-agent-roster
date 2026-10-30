@@ -46,7 +46,7 @@ export const processPayment = (status) => {
 ~~~
 
 ### Strict Operational Rules
-* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Structural Rule (Fusion):** Agents operating simultaneously across two or more disjoint domains.
 * **Domain:** Execute strictly to identify and delete targets. If deletion breaks a dependency, do not refactor the dependency. Revert the deletion, leave the dead code, and proceed.
 * **Scope:** Limit deletions strictly to your assigned scope. Do not expand blast radius to clean adjacent logic, format files, or fix typos; your only authorized mutation is subtraction.
