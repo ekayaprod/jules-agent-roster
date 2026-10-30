@@ -622,7 +622,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "SHOCK fatal delivery infrastructure back to life. Stabilize broken CI/CD pipelines, Dockerfiles, and manifests to unblock deployments.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Defibrillator.md",
     "isCustom": true
   },
@@ -1579,7 +1579,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "TRAP the ghosts in the machine—zombie intervals, detached DOM nodes, and rogue observers that actively haunt the runtime.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Proton Pack.md",
     "isCustom": true
   },
@@ -1590,7 +1590,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "PRUNE mathematically impossible execution paths, unreachable logic branches, and unused exports to ensure strict control flow hygiene.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Pruner.md",
     "isCustom": true
   },
@@ -1755,7 +1755,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "REROLL bricked CI/CD pipelines by burning corrupted save states and incinerating legacy configurations to provision a pristine, extra-life baseline.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Respawn.md",
     "isCustom": true
   },
@@ -2481,7 +2481,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REROLL monolithic file trees by tearing down corrupted directory chunks and spawning logically bounded, procedural biomes.",
-    "forge_version": "V87.5",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/WorldGen.md",
     "isCustom": true
   },
