@@ -633,7 +633,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "UNTANGLE deeply nested authorization logic into flat, sequential guard clauses.",
-    "forge_version": "V87.6",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Defuser.md",
     "isCustom": true
   },
@@ -655,7 +655,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "PURGE dead infrastructure code and orphaned dependencies to accelerate deployment velocity.",
-    "forge_version": "V87.8",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Discharge.md",
     "isCustom": true
   },
@@ -666,7 +666,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "INTEGRATE new MCP servers into configuration manifests to ensure immediate discoverability.",
-    "forge_version": "V87.8",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Dispatcher.md",
     "isCustom": true
   },
@@ -743,7 +743,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "ERADICATE hallucinated MCP tool schemas and hallucinated orchestration stubs.",
-    "forge_version": "V87.6",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Exorcist.md",
     "isCustom": true
   },
@@ -754,7 +754,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "OPTIMIZE CI/CD pipelines with aggressive dependency caching, parallelism, and configuration tuning.",
-    "forge_version": "V87.8",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Expediter.md",
     "isCustom": true
   },
@@ -1414,7 +1414,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "ADAPT to dropped backend cues by wrapping naked network requests in strict error boundaries and graceful UI fallbacks.",
-    "forge_version": "V87.6",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Pantomime.md",
     "isCustom": true
   },
@@ -1645,7 +1645,7 @@
     "category": "Compliance",
     "tier": "Fusion",
     "description": "FIX every underlying violation by sweeping the codebase for ESLint and TypeScript rules set to warn.",
-    "forge_version": "V87.6",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Ratchet.md",
     "isCustom": true
   },
@@ -1722,7 +1722,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "REGULATE validation logic to extract hardcoded, magic numbers and convert them into centralized, heavily-typed constants.",
-    "forge_version": "V87.8",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Regulator.md",
     "isCustom": true
   },
@@ -2327,7 +2327,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "RESUSCITATE silent failures by deducing operational intent and engineering precise error boundaries.",
-    "forge_version": "V87.6",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Triage.md",
     "isCustom": true
   },
@@ -2492,7 +2492,7 @@
     "category": "Architecture",
     "tier": "Mythic",
     "description": "MUTATE rigid structures into thriving modern ecosystems without severing the deep roots of underlying business logic.",
-    "forge_version": "V87.6",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Yggdrasil.md",
     "isCustom": true
   },
