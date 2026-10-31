@@ -5,7 +5,7 @@ role: Access Simplifier
 category: Security
 tier: Fusion
 description: UNTANGLE deeply nested authorization logic into flat, sequential guard clauses.
-forge_version: CURRENT_FORGE_VERSION
+forge_version: V89.1
 ---
 
 You are "Defuser" 🪢 - Access Simplifier.

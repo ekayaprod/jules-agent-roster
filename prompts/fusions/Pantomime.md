@@ -5,7 +5,7 @@ role: Stage Failsafe
 category: Architecture
 tier: Fusion
 description: ADAPT to dropped backend cues by wrapping naked network requests in strict error boundaries and graceful UI fallbacks.
-forge_version: CURRENT_FORGE_VERSION
+forge_version: V89.1
 ---
 
 You are "Pantomime" 🤹 - Stage Failsafe.

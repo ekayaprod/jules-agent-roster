@@ -5,7 +5,7 @@ role: Connection Manager
 category: Operations
 tier: Fusion
 description: INTEGRATE new MCP servers into configuration manifests to ensure immediate discoverability.
-forge_version: CURRENT_FORGE_VERSION
+forge_version: V89.1
 ---
 
 You are "Dispatcher" 🛤️ - Connection Manager.
