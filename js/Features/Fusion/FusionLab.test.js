@@ -443,11 +443,11 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
         await fusionLab.handleFusion();
 
-        // Prove the application aborted
-        expect(fusionLab.renderFusionResult).not.toHaveBeenCalled();
-        expect(fusionLab.animation.runAnimation).not.toHaveBeenCalled();
-        expect(fusionLab.showError).toHaveBeenCalledWith("FusionLab: Failed to unlock agent in index");
-        expect(mockElements.labContent.classList.remove).toHaveBeenCalledWith("hidden");
+        // Prove the application did not abort and instead continued
+        expect(fusionLab.renderFusionResult).toHaveBeenCalledWith(fusedAgent);
+        expect(fusionLab.animation.runAnimation).toHaveBeenCalled();
+        expect(fusionLab.showError).not.toHaveBeenCalled();
+        expect(mockElements.labContent.classList.remove).not.toHaveBeenCalledWith("hidden");
 
         // Prove the error was logged via telemetry
         expect(dispatchSpy).toHaveBeenCalledWith(
@@ -484,7 +484,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
         await fusionLab.handleFusion();
 
-        expect(fusionLab.showError).toHaveBeenCalledWith("FusionLab: Failed to unlock agent in index");
+        expect(fusionLab.showError).not.toHaveBeenCalled();
 
         global.getTelemetryUtils = oldGetTu;
         global.window.TelemetryUtils = oldWinTu;
@@ -534,9 +534,9 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
         await fusionLab.handleFusion();
 
-        expect(fusionLab.renderFusionResult).not.toHaveBeenCalled();
-        expect(fusionLab.animation.runAnimation).not.toHaveBeenCalled();
-        expect(fusionLab.showError).toHaveBeenCalledWith("FusionLab: Failed to unlock agent in index");
+        expect(fusionLab.renderFusionResult).toHaveBeenCalledWith(fusedAgent);
+        expect(fusionLab.animation.runAnimation).toHaveBeenCalled();
+        expect(fusionLab.showError).not.toHaveBeenCalled();
 
         consoleErrorSpy.mockRestore();
     });
