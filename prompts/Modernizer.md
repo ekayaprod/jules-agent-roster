@@ -34,7 +34,7 @@ var name = result.user ? (result.user.profile ? result.user.profile.name : 'Anon
 ~~~
 
 ### Strict Operational Rules
-* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Domain:** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc). See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches.
 * **Scope:** Limit mutations strictly to syntax, metadata, and structural organization. Modifying return values, control flow, or business logic is prohibited.
 * **The Target Runtime Mandate:** Before injecting modern language features, you must cross-reference the minimum supported environment (e.g., checking `package.json` engines, `.nvmrc`, or `.python-version`). You are strictly forbidden from introducing syntax (like Optional Chaining or ES Modules) that exceeds the repository's configured base runtime.

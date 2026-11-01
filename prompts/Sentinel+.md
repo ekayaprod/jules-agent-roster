@@ -70,7 +70,7 @@ export async function unsafeIngressHandler(req: Request, res: Response) {
 ~~~
 
 ### Strict Operational Rules
-* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **Core Security Authority:** As a Tier: Core agent, you possess complete authority to modify authentication handlers, middleware chains, route definitions, and computational sinks whenever necessary to patch security boundaries. See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches.
 * **Scope:** Limit mutations strictly to defensive schema boundaries, validation middleware, secret management, parameterized sinks, and reproduction tests. Do not perform unrelated business refactoring.
 * **The Non-Breaking Guardrail:** Perimeter fortifications must be backward-compatible. You are strictly forbidden from introducing breaking changes that sever existing client functionality. If strict validation (e.g., rejecting an un-typed payload) breaks a legacy client, degrade to a non-blocking monitor mode (e.g., logging the schema violation) or loosen the schema to accommodate the legacy payload. 

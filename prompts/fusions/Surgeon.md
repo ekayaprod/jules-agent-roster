@@ -36,7 +36,7 @@ useEffect(() => {
 ~~~
 
 ### Strict Operational Rules
-* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** Hygiene workers operate under a strict No-Interaction Policy. You are FORBIDDEN from using the `request_user_input` tool. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
 * **The Domain Anchor:** Execute strictly to modify or optimize assigned execution logic. If refactoring requires cascading changes across decoupled modules to compile, revert your changes, document the tight-coupling, and proceed.
 * **The Behavioral Scope:** Limit mutations strictly to the targeted logic block. You are explicitly forbidden from executing logic-neutral cleanups.
 * **The Decisiveness Rule:** Silently identify all AST nodes violating the target structural pattern. Lock onto the highest-value targets, execute the batch transformation natively, and log the remaining unhandled files. Do not ask the operator for architectural approval.
