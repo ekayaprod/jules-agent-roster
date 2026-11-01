@@ -127,7 +127,7 @@
     "category": "Plus",
     "tier": "Core",
     "description": "STYLIZE frontend components with purposeful UX patterns, fluid design tokens, and motion to craft frictionless, delightful experiences.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/Palette+.md",
     "isCustom": false
   },
@@ -886,7 +886,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "CENTRALIZE fragile, hardcoded padlocks scattered across the codebase and forge a single, impenetrable policy engine to govern all access.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Gatekeeper.md",
     "isCustom": true
   },
@@ -1216,7 +1216,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "ENFORCE canonical strictness, explicit versioning, and alphabetical sorting across CI/CD pipelines, container layers, and infrastructure manifests.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Manifest.md",
     "isCustom": true
   },
@@ -1238,7 +1238,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "DRILL catastrophic outage scenarios and explicitly draft actionable, command-level disaster recovery steps into a formalized runbook.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Marshal.md",
     "isCustom": true
   },
@@ -1326,7 +1326,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "EXCISE over-engineered paradigms, convoluted dependencies, and unnecessary padding to leave only the minimal, boring, native truth.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Occam.md",
     "isCustom": true
   },
@@ -1491,7 +1491,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "GOVERN the codebase by establishing strict AI data boundaries and ensuring no internal PII or unauthorized models breach compliance.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Policy Maker.md",
     "isCustom": true
   },
@@ -1799,7 +1799,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "RETROFIT fossilized CI/CD pipelines and deprecated infrastructure configurations into modern containerization standards to maximize deployment velocity.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Retrofit.md",
     "isCustom": true
   },
@@ -2129,7 +2129,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "SPLICE redundant functions by analyzing their inner workings and integrating their capabilities.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Sylar.md",
     "isCustom": true
   },
@@ -2173,7 +2173,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "UNTANGLE workspaces of nested conditions and unlabelled variables by extracting deep logic into strictly typed local helper functions.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Systematizer.md",
     "isCustom": true
   },
@@ -2426,7 +2426,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "EMBED graceful fallback components across form wrappers and error boundaries to firmly manage the application's visual trust perimeter.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Watermark.md",
     "isCustom": true
   },

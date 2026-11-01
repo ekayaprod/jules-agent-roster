@@ -12,7 +12,7 @@ function checkFile(filePath) {
     }
 
     // 2. Enforcer.md
-    if (!content.includes('No-Interaction Policy') || !content.includes('FORBIDDEN from using the `request_user_input`')) {
+    if (!content.includes('No-Interaction Policy') || (!content.includes('FORBIDDEN from using the `request_user_input`') && !content.includes('forbidding the `request_user_input`'))) {
         errors.push("Enforcer: Missing 'No-Interaction Policy' in Strict Operational Rules.");
     }
 
