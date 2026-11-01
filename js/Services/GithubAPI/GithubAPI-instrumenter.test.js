@@ -1,4 +1,4 @@
-const { GithubAPI, GithubNetworkError } = require('./GithubAPI.js');
+const { GithubAPI } = require('./GithubAPI.js');
 
 describe('GithubAPI - Instrumenter', () => {
     let api;

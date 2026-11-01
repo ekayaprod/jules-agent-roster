@@ -1,4 +1,4 @@
-const { GithubAPI, GithubConfigurationError, GithubNetworkError } = require('./GithubAPI');
+const { GithubAPI } = require('./GithubAPI');
 
 describe('GithubAPI _fetch error mapping fallback', () => {
     let api;
