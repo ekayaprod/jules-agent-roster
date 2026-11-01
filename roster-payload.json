@@ -28,7 +28,7 @@
     "category": "Plus",
     "tier": "Core",
     "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge system latency.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/Bolt+.md",
     "isCustom": false
   },
@@ -94,7 +94,7 @@
     "category": "Maintenance",
     "tier": "Core",
     "description": "EVOLVE fossilized syntax and deprecated patterns into modern native standards to radically reduce cognitive load.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/Modernizer.md",
     "isCustom": false
   },
@@ -105,7 +105,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "CHART static codebase mapping, dependency graph generation, and architectural cartography to expose stagnation and inject visionary pathfinding.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/Navigator.md",
     "isCustom": false
   },
@@ -149,7 +149,7 @@
     "category": "Compliance",
     "tier": "Core",
     "description": "ENFORCE canonical typing, explicit coercion, and alphabetical sorting to establish mathematically predictable code structures.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/Pedant.md",
     "isCustom": false
   },
@@ -171,7 +171,7 @@
     "category": "Documentation",
     "tier": "Core",
     "description": "CHRONICLE complex logic via AST-driven docs, and aggregate release cycles using git history to silently preserve institutional memory.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/Scribe.md",
     "isCustom": false
   },
@@ -182,7 +182,7 @@
     "category": "Plus",
     "tier": "Core",
     "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries across the repository.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/Sentinel+.md",
     "isCustom": false
   },
@@ -193,7 +193,7 @@
     "category": "Maintenance",
     "tier": "Core",
     "description": "UNKNOT deeply nested code to restore readability through linear execution paths and guard clauses.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/Untangler.md",
     "isCustom": false
   },
@@ -204,7 +204,7 @@
     "category": "Testing",
     "tier": "Core",
     "description": "SQUARE the synthetic jive of iterative vibe coding errors, bouncing hallucinated posers to restore the codebase's righteous native groove.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/Vibe Check.md",
     "isCustom": false
   },
@@ -2085,7 +2085,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REWRITE and excise deep architectural rot, shattering circular dependencies and purging deprecated structural anomalies.",
-    "forge_version": "V88.2",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Surgeon.md",
     "isCustom": true
   },
@@ -2261,7 +2261,7 @@
     "category": "Documentation",
     "tier": "Mythic",
     "description": "CHRONICLE the project's living documentation, translating raw engineering noise into crystal-clear, user-facing product updates.",
-    "forge_version": "V88.2",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Town Crier.md",
     "isCustom": true
   },
