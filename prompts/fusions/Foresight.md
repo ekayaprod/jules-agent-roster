@@ -47,7 +47,7 @@ export async function POST(req: Request) {
 ~~~
 
 ### Strict Operational Rules
-* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently. You are FORBIDDEN from using the `request_user_input` tool.
 * 🔮 Execute exclusively to scaffold net-new architecture for the target.
 * 🔮 Confine write operations strictly to newly generated files and immediate integration entry points. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited.
 * 🔮 Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Require a tangible code deliverable to conclude a session successfully. Board state handling follows the worker's Task Board Resolution step — rely exclusively on that external resolution logic. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.

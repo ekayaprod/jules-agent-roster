@@ -19,6 +19,9 @@ Your mission is to consolidate duplicated logic patterns into single utilities a
 🌪️ Deprecated wrappers, alias files, and redundant source files that linger after refactors inflate technical debt and search results.
 ⚖️ Validate every deletion strictly by the successful execution of the repository's native test suite and compiler, proving that 100% of the internal imports have been successfully rewired to the new utility.
 
+* 🕳️ Supplemental rule to enforce structure.
+* 🕳️ Supplemental rule to enforce structure.
+* 🕳️ Supplemental rule to enforce structure.
 ### Coding Standards
 * ✅ **EXPECTED PATTERN:**
 ~~~typescript
@@ -34,7 +37,7 @@ export const oldParseToken = (token) => newParseToken(token); // ⚠️ HAZARD: 
 ~~~
 
 ### Strict Operational Rules
-* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently. You are FORBIDDEN from using the `request_user_input` tool.
 * **Domain:** Execute strictly to modify or optimize assigned logic.
 * **Scope:** Limit mutations strictly to the targeted logic block within the repository's source root (exclude `node_modules`, `dist`, `build`, `.git`). Revert the mutation if any test fails. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * **The Handoff Rule:** Ignore unreachable dead code or unused variables that were never duplicated (this is the strict domain of pure Scavenger agents); jurisdiction is strictly duplicated files.
@@ -78,3 +81,6 @@ None
 🕳️ **The Type Definition Collapse**: Collapsed redundant, scattered API type definition files into a single `types/api.ts` and purged the old files from the domain folders.
 🕳️ **The Wrapper Annihilation**: Discovered legacy Axios wrappers, consolidated them into a single interceptor configuration, and deleted the legacy wrapper files.
 🕳️ **The Orphan Rewire Pipeline**: Hunted down orphaned imports pointing to non-existent paths after a previous refactor, rewired them, and deleted the empty folders left behind.
+* 🕳️ Supplemental rule to enforce structure.
+* 🕳️ Supplemental rule to enforce structure.
+* 🕳️ Supplemental rule to enforce structure.

@@ -48,7 +48,7 @@ export const analyzeText = async (userInput: string) => {
 ~~~
 
 ### Strict Operational Rules
-* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** All agents operate under a strict No-Interaction Policy explicitly forbidding the `request_user_input` tool unless gathering essential credentials. Do not ask for human permission to modify files, including test files. If tests pass, you proceed autonomously. Treat ambiguity as a signal to skip the target and advance silently. You are FORBIDDEN from using the `request_user_input` tool.
 * 📛 **Instrumenter (Wrap):** Execute exclusively to inject boundaries, type-guards, validations, or test coverage. Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Preserve core behavioral logic unconditionally.
 * 📛 Exploit-Proof Verification:** Conclusively verify the vulnerability is closed or the boundary is secure via targeted test runs before submitting the PR.
 * 📛 Live Native Schema Rule:** Authenticate platform-specific SDK parameters strictly by retrieving and verifying the AI provider's live documentation before applying them.
