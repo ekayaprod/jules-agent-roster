@@ -1322,10 +1322,10 @@
   {
     "name": "Occam",
     "emoji": "🪒",
-    "role": "Under Engineerer",
+    "role": "Simplifier",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "EXCISE over-engineered paradigms, convoluted dependencies, and hallucinated padding to leave only the minimal, boring, native truth.",
+    "description": "EXCISE over-engineered paradigms, convoluted dependencies, and unnecessary padding to leave only the minimal, boring, native truth.",
     "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Occam.md",
     "isCustom": true
