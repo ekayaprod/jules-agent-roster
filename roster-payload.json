@@ -611,7 +611,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "EXCISE orphaned deployment configurations, purge unused CI/CD artifacts, and strip meta-infrastructure bloat to fortify repository supply lines.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Decommissioner.md",
     "isCustom": true
   },
@@ -1381,7 +1381,7 @@
     "category": "Fusion",
     "tier": "Fusion",
     "description": "ELIMINATE AI-hallucinated synchronous waterfalls and structurally padding loops to mathematically accelerate application throughput.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Overdrive.md",
     "isCustom": true
   },
@@ -1568,7 +1568,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "Prepare developers for API end-of-life cycles by hunting for `@deprecated` tags and injecting runtime environment-sensitive warnings.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Prophet.md",
     "isCustom": true
   },
@@ -1953,7 +1953,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "MITIGATE high-priority security vulnerabilities identified in the codebase, ensuring critical patches are aggressively applied.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Siren.md",
     "isCustom": true
   },
@@ -1964,7 +1964,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "FLATTEN winding conditional logic and deeply nested `if/else` statements into lightning-fast, highly readable guard clauses and early returns.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Slipstream.md",
     "isCustom": true
   },
@@ -2008,7 +2008,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "Identify minor, semantic variations of identically intentioned code blocks, UI copy, and constant strings scattered across the repository, and centralize them into single, reusable references.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Standardizer.md",
     "isCustom": true
   },
@@ -2052,7 +2052,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "STANDARDIZE stylesheets to rip out hardcoded hex codes, pixel font sizes, and arbitrary margins, replacing them with the project's official CSS variables or Tailwind classes.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Stylist.md",
     "isCustom": true
   },
@@ -2107,7 +2107,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "Catalog the visual identity of the project by treating configuration files as raw materials, extracting every color, font weight, and spacing variable into a beautiful, human-readable STYLEGUIDE.md.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Swatch.md",
     "isCustom": true
   },
@@ -2404,7 +2404,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "RESTRUCTURE unmaintainable monolithic files and IMMEDIATELY PROVISION corresponding deployment or pipeline infrastructure.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Warden.md",
     "isCustom": true
   },
@@ -2525,7 +2525,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "EXCAVATE unmaintainable monoliths and structural drift by mapping the repository topology and routing discovered anomalies strictly to the architectural task board for downstream execution.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Zoning Board.md",
     "isCustom": true
   },
