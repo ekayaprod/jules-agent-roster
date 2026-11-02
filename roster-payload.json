@@ -545,7 +545,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "COLLAPSE sprawling CI/CD pipelines and infrastructure manifests into highly dense, reusable matrices without sacrificing deployment stability.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Conveyor.md",
     "isCustom": true
   },
@@ -710,7 +710,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "CODIFY complex CI/CD pipelines, containerization logic, and meta-infrastructure into pristine, actionable deployment documentation.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Envoy.md",
     "isCustom": true
   },
@@ -908,7 +908,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "PURGE hallucinated onboarding instructions and phantom API references, grounding synthetic documentation artifacts directly back to verifiable codebase reality.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Ghostwriter.md",
     "isCustom": true
   },
@@ -1480,7 +1480,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "DEMOLISH hallucinated file structures and over-engineered directory facades by directly modifying the filesystem using git mv and rewiring native import corridors.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Plumbline.md",
     "isCustom": true
   },
@@ -1612,7 +1612,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "QUARANTINE volatile, scattered logic into a single shared utility and wrap it in an impenetrable error-handling boundary.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Quarantine.md",
     "isCustom": true
   },
@@ -1898,7 +1898,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "SYNTHESIZE implicit domain boundaries and tribal knowledge via git archaeology into living Architecture Decision Records (ADRs) and glossaries.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Scholar.md",
     "isCustom": true
   },
@@ -1942,7 +1942,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "DELETE commented-out code that has sat untouched for over 30 days to reduce visual noise.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Shredder.md",
     "isCustom": true
   },
@@ -2019,7 +2019,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "MAP the overarching impact of dependency updates and polyfill removals, bridging the gap between package bumps and macro architecture.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Steward.md",
     "isCustom": true
   },
@@ -2041,7 +2041,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "FLATTEN underlying cognitive complexity and mask it with clean, chunked UI, transforming overwhelming tasks into simple, step-by-step actions using progressive disclosure.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Streamliner.md",
     "isCustom": true
   },
@@ -2063,7 +2063,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "SUNSET legacy patterns. Author formal DEPRECATION.md plans and sweep wikis to erase or rewrite tutorials that still point to retired systems.",
-    "forge_version": "V88.3",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Sunsetter.md",
     "isCustom": true
   },
