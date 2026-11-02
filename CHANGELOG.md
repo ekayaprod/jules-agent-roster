@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### 🛡️ Resilience & Security
+- **Runtime Validation**: Refactored LLMRouter to use Zod for runtime validation, enforcing strict schema checks on payloads (`5ccf5229`).
+
+### 🔧 Chores & Code Health
+- **Dead Code Cleanup**: Removed fossilized debris and orphaned test imports in Scavenger sweeps (`e0016e1b`, `b29ab7f1`).
+
 ### 🚀 Features
 - **UI & Transitions**: Implemented comprehensive Palette+ aesthetic upgrades, injecting fluid transitions, glassmorphism, depth layers, and semantic CSS utilities across frontend components (e.g., AgentCards, EmptyStates, Modals).
 - **Agent Architecture Upgrades**: Auto-Forge upgraded Quarantine (V86.0) and REST Enforcer (V87.6).
