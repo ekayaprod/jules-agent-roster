@@ -88,6 +88,15 @@ class LLMRouter {
         }
     }
 
+    // 🕯️ CHRONICLE: AST reasoning explains the logic; Git history explains the business intent.
+
+    /**
+     * Validates the structure of the messages payload using a strict Zod schema.
+     * * Historical Intent: Added via PR/commit 5ccf5229 (Oct 2026) to refactor LLMRouter to use Zod for runtime validation, replacing manual payload checks with robust `.safeParse()` handlers.
+     *
+     * @param {Array<Object>} messages - The array of message objects to validate.
+     * @throws {LLMValidationError} If the payload fails schema validation.
+     */
     _validateMessages(messages) {
         const result = MessageSchema.safeParse(messages);
         if (!result.success) {
