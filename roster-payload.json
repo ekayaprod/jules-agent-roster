@@ -787,7 +787,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "FORTIFY application surfaces against prompt injection and hallucinated payloads.",
-    "forge_version": "V88.1",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Firewall.md",
     "isCustom": true
   },
@@ -853,7 +853,7 @@
     "category": "Creation",
     "tier": "Fusion",
     "description": "FLOW into the architecture to deduce and scaffold missing AI integrations.",
-    "forge_version": "V88.1",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Foresight.md",
     "isCustom": true
   },
@@ -919,7 +919,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "CATALOGUE deeply-nested payloads and database schemas to eliminate ambient cognitive load for feature developers.",
-    "forge_version": "V88.1",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Glossary.md",
     "isCustom": true
   },
@@ -1293,7 +1293,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "REROLL bricked or fossilized interfaces by folding the layout entirely and dealing a sweeping, net-new visual architecture without dropping a single state hook.",
-    "forge_version": "V88.0",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Mulligan.md",
     "isCustom": true
   },
@@ -1546,7 +1546,7 @@
     "category": "Documentation",
     "tier": "Mythic",
     "description": "Refine vague prompt prose into high-fidelity instructions. Maximize LLM success by tuning polarity, primacy, and behavioral mechanics to perfectly match the prompt's execution environment.",
-    "forge_version": "V88.0",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },
@@ -2261,7 +2261,7 @@
     "category": "Documentation",
     "tier": "Mythic",
     "description": "CHRONICLE the project's living documentation, translating raw engineering noise into crystal-clear, user-facing product updates.",
-    "forge_version": "V88.2",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Town Crier.md",
     "isCustom": true
   },
@@ -2338,7 +2338,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "ENFORCE visual rhythm at the code level by hunting down rogue inline margins and enforcing WCAG contrast ratios.",
-    "forge_version": "V88.1",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Typesetter.md",
     "isCustom": true
   },
@@ -2393,7 +2393,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "ERADICATE duplicated logic, centralize into a single source of truth, and physically eradicate legacy source files from the repository.",
-    "forge_version": "V88.0",
+    "forge_version": "V89.1",
     "promptFile": "prompts/fusions/Void.md",
     "isCustom": true
   },
@@ -2450,17 +2450,6 @@
     "description": "WEAVE duplicated logic into single utilities, flattening deeply nested execution paths into pristine, linear strands.",
     "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Weaver.md",
-    "isCustom": true
-  },
-  {
-    "name": "Whistleblower",
-    "emoji": "📢",
-    "role": "Syntax Shamer",
-    "category": "Documentation",
-    "tier": "Fusion",
-    "description": "TRANSLATE raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately.",
-    "forge_version": "V88.1",
-    "promptFile": "prompts/fusions/Whistleblower.md",
     "isCustom": true
   },
   {
@@ -2536,7 +2525,7 @@
     "category": "Micro",
     "tier": "Core",
     "description": "SWEEP the repository to enforce strict Target Matrix formatting across all worker configurations.",
-    "forge_version": "V88.1",
+    "forge_version": "V89.1",
     "promptFile": "prompts/micro/Aligner.md",
     "isCustom": true
   },
