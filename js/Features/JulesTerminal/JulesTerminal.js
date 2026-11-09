@@ -477,9 +477,12 @@ class JulesTerminal {
         return block;
     }
 
+    // 🕯️ CHRONICLE: AST reasoning explains the logic; Git history explains the business intent.
+
     /**
      * Orchestrates the creation of a new task session execution.
      * Implements an optimistic UI state block that handles silent rollback on API failure.
+     * * Historical Intent: Added via PR/commit 4d79cfea8 (Mar 2026) by ekayaprod to decouple Jules API logic from RosterApp into a dedicated manager.
      * @param {Object} agent - The agent data representing the logic to execute.
      * @param {HTMLElement} [btn=null] - Optional launch button reference for state manipulation.
      * @returns {Promise<void>}
