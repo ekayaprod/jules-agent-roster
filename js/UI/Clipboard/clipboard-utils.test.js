@@ -405,6 +405,21 @@ describe('ClipboardUtils', () => {
 
             getTelemetrySpy.mockRestore();
         });
+
+        it('should handle the branch where ClipboardUtils._getTelemetryUtils() returns null to cover the missing branch on line 44', async () => {
+            delete global.navigator.clipboard;
+            const mockFallbackError = new Error('execCommand failed');
+            document.execCommand.mockImplementation(() => { throw mockFallbackError; });
+
+            const getTelemetrySpy = jest.spyOn(ClipboardUtils, '_getTelemetryUtils').mockReturnValue(null);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(window.TelemetryUtils.dispatchEvent).not.toHaveBeenCalled();
+            expect(result).toBe(false);
+
+            getTelemetrySpy.mockRestore();
+        });
     });
 
     describe('animateButtonSuccess', () => {
