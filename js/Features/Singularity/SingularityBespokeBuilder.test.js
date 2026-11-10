@@ -41,6 +41,47 @@ describe('SingularityBespokeBuilder', () => {
       expect(renderSpy).toHaveBeenCalled();
       expect(bindEventsSpy).toHaveBeenCalled();
     });
+
+    it('should toggle header expansion on click', () => {
+      builder.init();
+      const headerToggle = document.getElementById("sgHeaderToggle");
+      const forgeContainer = document.getElementById("sgForgeContainer");
+
+      expect(forgeContainer.classList.contains("expanded")).toBe(false);
+
+      headerToggle.dispatchEvent(new Event('click'));
+      expect(forgeContainer.classList.contains("expanded")).toBe(true);
+      expect(headerToggle.getAttribute("aria-expanded")).toBe("true");
+
+      headerToggle.dispatchEvent(new Event('click'));
+      expect(forgeContainer.classList.contains("expanded")).toBe(false);
+      expect(headerToggle.getAttribute("aria-expanded")).toBe("false");
+    });
+
+    it('should toggle header expansion on Enter or Space keydown', () => {
+      builder.init();
+      const headerToggle = document.getElementById("sgHeaderToggle");
+      const forgeContainer = document.getElementById("sgForgeContainer");
+
+      expect(forgeContainer.classList.contains("expanded")).toBe(false);
+
+      const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
+      const preventDefaultSpy = jest.spyOn(enterEvent, 'preventDefault');
+      headerToggle.dispatchEvent(enterEvent);
+
+      expect(preventDefaultSpy).toHaveBeenCalled();
+      expect(forgeContainer.classList.contains("expanded")).toBe(true);
+
+      const spaceEvent = new KeyboardEvent('keydown', { key: ' ' });
+      headerToggle.dispatchEvent(spaceEvent);
+
+      expect(forgeContainer.classList.contains("expanded")).toBe(false);
+
+      // Other keys should not toggle
+      const otherEvent = new KeyboardEvent('keydown', { key: 'a' });
+      headerToggle.dispatchEvent(otherEvent);
+      expect(forgeContainer.classList.contains("expanded")).toBe(false);
+    });
   });
 
   describe('render', () => {
@@ -102,6 +143,46 @@ describe('SingularityBespokeBuilder', () => {
       expect(mockTerminal.launchSession).toHaveBeenCalled();
       const payload = mockTerminal.launchSession.mock.calls[0][0];
       expect(payload.prompt).toContain('Test Mission');
+    });
+
+    it('should handle successful forge request via NetworkUtils if available', async () => {
+      global.NetworkUtils = {
+        fetchWithRetry: jest.fn().mockResolvedValueOnce({
+          ok: true,
+          text: () => Promise.resolve('Template with {{UI_MISSION_STATEMENT}} via NetworkUtils'),
+        })
+      };
+
+      builder.init();
+      builder.elements.missionInput.value = 'Test Mission NetworkUtils';
+
+      await builder.handleForge();
+
+      expect(global.NetworkUtils.fetchWithRetry).toHaveBeenCalledWith("js/Features/Singularity/Singularity.md", { throwOn404: false });
+      expect(mockTerminal.launchSession).toHaveBeenCalled();
+      const payload = mockTerminal.launchSession.mock.calls[0][0];
+      expect(payload.prompt).toContain('Test Mission NetworkUtils');
+      expect(payload.prompt).toContain('via NetworkUtils');
+
+      delete global.NetworkUtils;
+    });
+
+    it('should handle NetworkUtils fetch failure gracefully', async () => {
+      global.NetworkUtils = {
+        fetchWithRetry: jest.fn().mockRejectedValueOnce(new Error('NetworkUtils error'))
+      };
+
+      builder.init();
+      global.window.TelemetryUtils = { dispatchEvent: jest.fn() };
+      builder.elements.missionInput.value = 'Valid Mission NetworkUtils Fail';
+      await builder.handleForge();
+
+      expect(global.window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BUILDER_FORGE_ERROR', expect.any(Error));
+      expect(global.window.rosterApp.showToast).toHaveBeenCalledWith(expect.stringContaining('Failed to forge bespoke agent:'));
+      expect(mockTerminal.launchSession).not.toHaveBeenCalled();
+
+      delete global.NetworkUtils;
+      delete global.window.TelemetryUtils;
     });
 
     it('should handle fetch failure gracefully', async () => {
@@ -178,6 +259,7 @@ describe('SingularityBespokeBuilder', () => {
 
       expect(mockTerminal.launchSession).toHaveBeenCalled();
 
+      expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(builder.elements.submitBtn, 'ready', "🌌 Forge Bespoke Agent");
       expect(builder.elements.errorWrapper.classList.contains('hidden')).toBe(false);
       expect(builder.elements.errorText.innerText).toBe('Launch failed');
       expect(builder.elements.missionInput.classList.contains('border-error')).toBe(true);
@@ -203,6 +285,7 @@ describe('SingularityBespokeBuilder', () => {
 
       expect(mockTerminal.launchSession).toHaveBeenCalled();
 
+      expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(builder.elements.submitBtn, 'ready', "🌌 Forge Bespoke Agent");
       expect(builder.elements.errorWrapper.classList.contains('hidden')).toBe(false);
       expect(builder.elements.errorText.innerText).toBe('Failed to forge agent. Try again.');
       expect(builder.elements.missionInput.classList.contains('border-error')).toBe(true);
@@ -240,6 +323,7 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
     });
 
     global.window.TelemetryUtils = { dispatchEvent: jest.fn() };
+    global.DOMUtils = { setButtonState: jest.fn() };
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
 
     builder.julesTerminal = null;
@@ -247,9 +331,11 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
       builder.elements.missionInput.value = 'Valid Mission';
       await builder.handleForge();
 
+    expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(builder.elements.submitBtn, 'ready', "🌌 Forge Bespoke Agent");
     expect(global.window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_MISSING_TERMINAL", expect.any(Error));
 
     delete global.window.TelemetryUtils;
+    delete global.DOMUtils;
     delete global.fetch;
     consoleWarnSpy.mockRestore();
   });
