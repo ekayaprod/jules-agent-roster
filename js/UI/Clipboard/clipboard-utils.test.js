@@ -273,6 +273,101 @@ describe('ClipboardUtils', () => {
             removeChildSpy.mockRestore();
         });
 
+        it('should handle string errors thrown by execCommand in the catch block on line 44', async () => {
+            delete global.navigator.clipboard;
+            const stringError = 'Explicit string error';
+            document.execCommand.mockImplementation(() => { throw stringError; });
+
+            const removeChildSpy = jest.spyOn(document.body, 'removeChild');
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', stringError);
+            expect(result).toBe(false);
+
+            expect(removeChildSpy).toHaveBeenCalledTimes(1);
+            expect(removeChildSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement));
+
+            removeChildSpy.mockRestore();
+        });
+
+        it('should handle number errors thrown by execCommand in the catch block on line 44', async () => {
+            delete global.navigator.clipboard;
+            const numberError = 123;
+            document.execCommand.mockImplementation(() => { throw numberError; });
+
+            const removeChildSpy = jest.spyOn(document.body, 'removeChild');
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', numberError);
+            expect(result).toBe(false);
+
+            expect(removeChildSpy).toHaveBeenCalledTimes(1);
+            expect(removeChildSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement));
+
+            removeChildSpy.mockRestore();
+        });
+
+        it('should handle null errors thrown by execCommand in the catch block on line 44', async () => {
+            delete global.navigator.clipboard;
+            const nullError = null;
+            document.execCommand.mockImplementation(() => { throw nullError; });
+
+            const removeChildSpy = jest.spyOn(document.body, 'removeChild');
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', nullError);
+            expect(result).toBe(false);
+
+            expect(removeChildSpy).toHaveBeenCalledTimes(1);
+            expect(removeChildSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement));
+
+            removeChildSpy.mockRestore();
+        });
+
+        it('should handle undefined errors thrown by execCommand in the catch block on line 44', async () => {
+            delete global.navigator.clipboard;
+            const undefinedError = undefined;
+            document.execCommand.mockImplementation(() => { throw undefinedError; });
+
+            const removeChildSpy = jest.spyOn(document.body, 'removeChild');
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', undefinedError);
+            expect(result).toBe(false);
+
+            expect(removeChildSpy).toHaveBeenCalledTimes(1);
+            expect(removeChildSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement));
+
+            removeChildSpy.mockRestore();
+        });
+
+        it('should handle custom object errors thrown by execCommand in the catch block on line 44', async () => {
+            delete global.navigator.clipboard;
+            const customObjectError = { custom: 'error' };
+            document.execCommand.mockImplementation(() => { throw customObjectError; });
+
+            const removeChildSpy = jest.spyOn(document.body, 'removeChild');
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', customObjectError);
+            expect(result).toBe(false);
+
+            expect(removeChildSpy).toHaveBeenCalledTimes(1);
+            expect(removeChildSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement));
+
+            removeChildSpy.mockRestore();
+        });
+
         it('should clean up the DOM if an error occurs in execCommand', async () => {
             delete global.navigator.clipboard;
             const mockFallbackError = new Error('execCommand failed');
