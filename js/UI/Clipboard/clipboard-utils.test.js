@@ -576,6 +576,51 @@ describe('ClipboardUtils', () => {
 
             getTelemetrySpy.mockRestore();
         });
+
+        it('should propagate errors if _getTelemetryUtils throws an error on line 44', async () => {
+            expect.assertions(3);
+            delete global.navigator.clipboard;
+            const mockFallbackError = new Error('execCommand failed');
+            document.execCommand.mockImplementation(() => { throw mockFallbackError; });
+
+            const telemetryError = new Error('Telemetry fetching failed on line 44');
+            const getTelemetrySpy = jest.spyOn(ClipboardUtils, '_getTelemetryUtils').mockImplementation(() => {
+                throw telemetryError;
+            });
+
+            const removeChildSpy = jest.spyOn(document.body, 'removeChild');
+
+            try {
+                await ClipboardUtils.copyText('test text');
+            } catch (err) {
+                expect(err.message).toBe('Telemetry fetching failed on line 44');
+            }
+
+            expect(removeChildSpy).toHaveBeenCalledTimes(1);
+            expect(removeChildSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement));
+
+            getTelemetrySpy.mockRestore();
+            removeChildSpy.mockRestore();
+        });
+
+        it('should return false and dispatch telemetry if tu is available and execCommand throws on line 44', async () => {
+            delete global.navigator.clipboard;
+            const mockFallbackError = new Error('execCommand failed fallback');
+            document.execCommand.mockImplementation(() => { throw mockFallbackError; });
+
+            const removeChildSpy = jest.spyOn(document.body, 'removeChild');
+            const dispatchEventSpy = jest.spyOn(window.TelemetryUtils, 'dispatchEvent');
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(dispatchEventSpy).toHaveBeenCalledWith("CLIPBOARD_FALLBACK_FAILED", mockFallbackError);
+            expect(result).toBe(false);
+            expect(removeChildSpy).toHaveBeenCalledTimes(1);
+            expect(removeChildSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement));
+
+            removeChildSpy.mockRestore();
+            dispatchEventSpy.mockRestore();
+        });
     });
 
     describe('animateButtonSuccess', () => {
