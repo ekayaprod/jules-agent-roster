@@ -15,8 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Dead Code Cleanup**: Removed fossilized debris and orphaned test imports in Scavenger sweeps (`e0016e1b`, `b29ab7f1`).
 
 ### 🚀 Features
+- **Agent Templates**: Upgraded legacy and Fusion agents to the V89.1 template (`63e10fa0`, `094cb017`).
 - **UI & Transitions**: Implemented comprehensive Palette+ aesthetic upgrades, injecting fluid transitions, glassmorphism, depth layers, and semantic CSS utilities across frontend components (e.g., AgentCards, EmptyStates, Modals).
 - **Agent Architecture Upgrades**: Auto-Forge upgraded Quarantine (V86.0) and REST Enforcer (V87.6).
+
+### 🔧 Chores & Code Health
+- **Structural Collapse**: Converted sprawling imperative loops to declarative reduce pipelines across AgentRepository, LLMRouter, FusionCompiler, FusionIndex, and agent-utils (`09bb41dc`).
+- **Cleanup**: Removed unused catch block parameters and hollow empty callback functions (`3f11ccbb`, `c93d733a`).
 
 ### 🛡️ Resilience & Security
 - **Error Handling**: Paramedic hotfixes resolved unhandled Promise rejections and uncaught ReferenceErrors in JulesTerminal API configurations and GlobalEvents JSDOM fallback tests.
