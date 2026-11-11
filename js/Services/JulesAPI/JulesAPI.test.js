@@ -109,6 +109,11 @@ describe('JulesAPI', () => {
              delete global.TelemetryUtils;
         });
 
+        it('should format 500-level error messages as server errors', async () => {
+            global.fetch.mockResolvedValueOnce({ ok: false, status: 500, json: async () => ({ error: { message: 'Internal Server Error' } }) });
+            await expect(api._fetch('/test')).rejects.toThrow('We encountered a server error. Please wait a moment and try again.');
+        });
+
         it('should handle malformed JSON in error response gracefully', async () => {
             const malformedError = new Error('Malformed JSON');
             global.fetch.mockResolvedValueOnce({ ok: false, status: 500, json: async () => { throw malformedError; } });
