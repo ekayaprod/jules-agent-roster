@@ -75,6 +75,21 @@ describe('ClipboardUtils', () => {
             expect(result).toBe(true);
         });
 
+        it('should catch error in try-catch block as described in line 28', async () => {
+            const mockApiError = new Error('Explicitly mocked writeText rejection for line 28');
+            global.navigator.clipboard.writeText.mockImplementation(() => {
+                throw mockApiError;
+            });
+            document.execCommand.mockReturnValue(true);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_API_FAILED', mockApiError);
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(result).toBe(true);
+        });
+
         it('should use fallback if navigator.clipboard exists but writeText is undefined', async () => {
             global.navigator.clipboard = {}; // writeText is undefined
             document.execCommand.mockReturnValue(true);
