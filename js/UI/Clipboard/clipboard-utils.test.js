@@ -85,6 +85,32 @@ describe('ClipboardUtils', () => {
             expect(result).toBe(true);
         });
 
+        it('should handle Array error thrown by Clipboard API writeText (line 28)', async () => {
+            const arrayError = ['Error item 1', 'Error item 2'];
+            global.navigator.clipboard.writeText.mockRejectedValue(arrayError);
+            document.execCommand.mockReturnValue(true);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_API_FAILED', arrayError);
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(result).toBe(true);
+        });
+
+        it('should handle TypeError thrown by Clipboard API writeText (line 28)', async () => {
+            const typeError = new TypeError('TypeError explicitly thrown for line 28');
+            global.navigator.clipboard.writeText.mockRejectedValue(typeError);
+            document.execCommand.mockReturnValue(true);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_API_FAILED', typeError);
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(result).toBe(true);
+        });
+
         it('should execute catch block on line 28 if Modern Clipboard API writeText rejects', async () => {
             const mockApiError = new Error('Explicitly mocked writeText rejection');
             global.navigator.clipboard.writeText.mockRejectedValueOnce(mockApiError);
