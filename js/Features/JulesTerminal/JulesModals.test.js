@@ -767,6 +767,51 @@ describe('JulesTerminal', () => {
             expect(transmitSpy).not.toHaveBeenCalled();
             expect(mockElements.historyModalInput.classList.add).toHaveBeenCalledWith('border-error');
         });
+
+        it('should handle API failure during interaction modal submission and properly rollback state', async () => {
+            modals._initInteractionModal();
+            const sessionId = 'test-rollback-session';
+            mockManager.activeModalSessionId = sessionId;
+            mockElements.interactionModalInput.value = 'My Reply';
+
+            // Create a mock status span
+            const mockStatusSpan = {
+                className: 'term-status status-waiting',
+                textContent: 'Waiting...',
+                onclick: jest.fn()
+            };
+            document.getElementById.mockReturnValue(mockStatusSpan);
+
+            // Mock the API to fail
+            const apiError = new Error('Interaction submit failed');
+            window.julesAPI.provideInput.mockRejectedValueOnce(apiError);
+
+            const submitHandler = mockElements.submitInteractionBtn.addEventListener.mock.calls[0][1];
+            await submitHandler();
+
+            // After API failure, rollback state should be applied to statusSpan
+            expect(window.julesAPI.provideInput).toHaveBeenCalledWith(sessionId, 'My Reply');
+            expect(mockApp.toast.show).toHaveBeenCalledWith('Failed to send reply.', 'error');
+            expect(mockStatusSpan.className).toBe('term-status status-waiting');
+            expect(mockStatusSpan.textContent).toBe('Waiting...');
+        });
+
+        it('should handle API failure without throwing if status span does not exist', async () => {
+            modals._initInteractionModal();
+            const sessionId = 'test-rollback-no-span';
+            mockManager.activeModalSessionId = sessionId;
+            mockElements.interactionModalInput.value = 'My Reply';
+
+            document.getElementById.mockReturnValue(null);
+
+            const apiError = new Error('Interaction submit failed 2');
+            window.julesAPI.provideInput.mockRejectedValueOnce(apiError);
+
+            const submitHandler = mockElements.submitInteractionBtn.addEventListener.mock.calls[0][1];
+
+            await expect(submitHandler()).resolves.not.toThrow();
+            expect(mockApp.toast.show).toHaveBeenCalledWith('Failed to send reply.', 'error');
+        });
     });
 
 
