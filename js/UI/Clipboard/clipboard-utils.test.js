@@ -454,6 +454,7 @@ describe('ClipboardUtils', () => {
         });
 
         it('should propagate errors if the catch block itself throws for Clipboard API on line 28', async () => {
+            expect.assertions(1);
             const mockApiError = new Error('Clipboard denied');
             global.navigator.clipboard.writeText.mockRejectedValue(mockApiError);
 
@@ -465,6 +466,25 @@ describe('ClipboardUtils', () => {
             } catch (err) {
                 expect(err.message).toBe('Telemetry failed');
             }
+        });
+
+        it('should propagate errors if _getTelemetryUtils throws an error on line 28', async () => {
+            expect.assertions(1);
+            const mockApiError = new Error('Clipboard denied');
+            global.navigator.clipboard.writeText.mockRejectedValue(mockApiError);
+
+            const telemetryError = new Error('Telemetry fetching failed');
+            const getTelemetrySpy = jest.spyOn(ClipboardUtils, '_getTelemetryUtils').mockImplementation(() => {
+                throw telemetryError;
+            });
+
+            try {
+                await ClipboardUtils.copyText('test text');
+            } catch (err) {
+                expect(err.message).toBe('Telemetry fetching failed');
+            }
+
+            getTelemetrySpy.mockRestore();
         });
 
         it('should return false if fallback returns false when Clipboard API is not available', async () => {
