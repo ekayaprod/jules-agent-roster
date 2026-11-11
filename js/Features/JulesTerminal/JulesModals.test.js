@@ -288,6 +288,23 @@ describe('JulesTerminal', () => {
             global.URL = originalURL;
         });
 
+        it('should catch error in try-catch block for URL parsing as described in line 254', () => {
+            mockElements.prModalExternalLink.removeAttribute = jest.fn();
+            const originalURL = global.URL;
+            global.URL = jest.fn(() => {
+                throw new Error('URL Parsing Failed');
+            });
+
+            // The catch block uses JulesModals.getTelemetryUtils() which might fail or handle it
+            // This simulates the missing error test exactly as described
+            modals._showPRModal({ ...mockPR, html_url: 'invalid-url-to-trigger-catch' });
+
+            expect(mockElements.prModalExternalLink.removeAttribute).toHaveBeenCalledWith('href');
+
+            // Restore original URL
+            global.URL = originalURL;
+        });
+
         it('should safely catch error if telemetry utils are missing', () => {
             mockElements.prModalExternalLink.removeAttribute = jest.fn();
             const originalURL = global.URL;
