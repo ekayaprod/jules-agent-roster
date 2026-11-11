@@ -869,6 +869,25 @@ describe('JulesTerminal', () => {
             expect(manager._fetchAndRenderSessions).toHaveBeenCalledWith('owner/repo', document.getElementById('julesTerminal'));
         });
 
+        it('handles failure when agent prompt assignment fails', async () => {
+            const agent = Object.freeze({ name: 'TestAgent' }); // No prompt, frozen
+            const btn = document.createElement('button');
+
+            mockApp.agentRepo.fetchPrompt.mockResolvedValue('fetched prompt');
+
+            await manager.launchSession(agent, btn);
+
+            await Promise.resolve();
+            await Promise.resolve();
+            await Promise.resolve();
+
+            expect(mockApp.toast.show).toHaveBeenCalledWith(
+                expect.stringContaining('Cannot add property prompt, object is not extensible'),
+                TOAST_TYPES.ERROR,
+                20000
+            );
+        });
+
         it('fetches prompt if not provided', async () => {
             const agent = { name: 'TestAgent' };
             const btn = document.createElement('button');
@@ -958,6 +977,36 @@ describe('JulesTerminal', () => {
             expect(manager._fetchAndRenderSessions).not.toHaveBeenCalled();
             expect(DOMUtils.setButtonState).not.toHaveBeenCalled();
             expect(manager._checkEmptyTerminal).toHaveBeenCalled();
+        });
+
+        it('handles launch failure gracefully, verifies error cause, and removes hidden class from fetchingIndicator', async () => {
+            const agent = { name: 'TestAgent', prompt: 'test' };
+            const mockError = new Error('API Error');
+            const btn = document.createElement('button');
+
+            const terminal = document.getElementById('julesTerminal');
+            terminal.innerHTML = '<div id="fetchingIndicator" class="hidden"></div>';
+
+            jest.spyOn(DOMUtils, 'setButtonState');
+            manager._checkEmptyTerminal = jest.fn();
+            global.window.julesAPI.createSession.mockRejectedValue(mockError);
+
+            await manager.launchSession(agent, btn);
+
+            await Promise.resolve();
+            await Promise.resolve();
+            await Promise.resolve();
+
+            const indicator = document.getElementById('fetchingIndicator');
+            expect(indicator.classList.contains('hidden')).toBe(false);
+
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith(
+                'JULES_LAUNCH_SESSION_FAILED',
+                expect.objectContaining({
+                    cause: mockError
+                }),
+                { sourceName: 'owner/repo' }
+            );
         });
 
         it('handles launch failure gracefully with missing error message', async () => {
