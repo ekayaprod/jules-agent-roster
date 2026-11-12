@@ -1,7 +1,18 @@
 {
   "name": "fusion-lab",
   "version": "1.0.0",
-  "description": "Fusion Lab Project",
+  "description": "Jules Agent Roster - a vanilla JavaScript roster for browsing, synthesizing, and launching specialized Jules AI agents.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ekayaprod/jules-agent-roster.git"
+  },
+  "keywords": [
+    "jules",
+    "ai-agents",
+    "agent-roster",
+    "prompt-engineering",
+    "vanilla-javascript"
+  ],
   "engines": {
     "node": ">=18.0.0"
   },
